@@ -1,0 +1,431 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Transaction & Sales</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="">
+                <div class="card-body">
+                    <div>
+                        <!-- Checkboxes: targeted in the JS by class and value set to the class on item you want to filter for -->
+                        <div class="row col-12">
+                                <div class="col-8">
+                                    <span class="wet-btn-tranSales">Wet Product</span>
+                                    <span class="dry-btn-tranSales">Dry Product</span>
+                                    <span class="wash-btn-tranSales">Car Wash</span>
+                                </div>
+                                <div class="col-4">
+                                    <span class="eod-btn-tranSales">Active Employees</span>
+                                    <span class="eod-btn-tranSales">End Of The Day</span>
+                                </div>
+                        </div>
+
+                        <div id="products" class="transSales">
+                            <div class="pink corncob product-block item card bg-light" ng-click="openRefundInfoPopup('Fuel')">
+                                <div class="card-header text-muted border-bottom-0">
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <div class="col-4 text-center div-nozzle">
+                                            <img src="/Resources/Images/nozzle.png" alt="user-avatar" class="img-fluid nozzle-img">
+                                        </div>
+                                        <div class="col-8 nozzle-info">
+                                            <h2 class="lead"><b>Nozzle number - Fuel Type</b></h2>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Amount</label>
+                                                        <input disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <input type="text" class="form-control" disabled="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Dollar Rate</label> <br />
+                                                        <label>Employee Shift</label> <br />
+                                                        <label>Nozzle Inventory</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" style="text-align: end;">
+                                                    <div class="form-group">
+                                                        <label>93000 L.L</label> <br />
+                                                        <label>-</label> <br />
+                                                        <label>150 L</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pink corncob product-block item card bg-light" ng-click="openRefundInfoPopup('Fuel')">
+                                <div class="card-header text-muted border-bottom-0">
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <div class="col-4 text-center div-nozzle">
+                                            <img src="/Resources/Images/nozzle.png" alt="user-avatar" class="img-fluid nozzle-img">
+                                        </div>
+                                        <div class="col-8 nozzle-info">
+                                            <h2 class="lead"><b>Nozzle number - Fuel Type</b></h2>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Amount</label>
+                                                        <input disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <input type="text" class="form-control" disabled="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Dollar Rate</label> <br />
+                                                        <label>Employee Shift</label> <br />
+                                                        <label>Nozzle Inventory</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" style="text-align: end;">
+                                                    <div class="form-group">
+                                                        <label>93000 L.L</label> <br />
+                                                        <label>-</label> <br />
+                                                        <label>150 L</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pink corncob product-block item card bg-light" ng-click="openRefundInfoPopup('Fuel')">
+                                <div class="card-header text-muted border-bottom-0">
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <div class="col-4 text-center div-nozzle">
+                                            <img src="/Resources/Images/nozzle.png" alt="user-avatar" class="img-fluid nozzle-img">
+                                        </div>
+                                        <div class="col-8 nozzle-info">
+                                            <h2 class="lead"><b>Nozzle number - Fuel Type</b></h2>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Amount</label>
+                                                        <input disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <input type="text" class="form-control" disabled="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Dollar Rate</label> <br />
+                                                        <label>Employee Shift</label> <br />
+                                                        <label>Nozzle Inventory</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" style="text-align: end;">
+                                                    <div class="form-group">
+                                                        <label>93000 L.L</label> <br />
+                                                        <label>-</label> <br />
+                                                        <label>150 L</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pink corncob product-block item card bg-light" ng-click="openRefundInfoPopup('Fuel')">
+                                <div class="card-header text-muted border-bottom-0">
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <div class="col-4 text-center div-nozzle">
+                                            <img src="/Resources/Images/nozzle.png" alt="user-avatar" class="img-fluid nozzle-img">
+                                        </div>
+                                        <div class="col-8 nozzle-info">
+                                            <h2 class="lead"><b>Nozzle number - Fuel Type</b></h2>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Amount</label>
+                                                        <input disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <input type="text" class="form-control" disabled="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Dollar Rate</label> <br />
+                                                        <label>Employee Shift</label> <br />
+                                                        <label>Nozzle Inventory</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" style="text-align: end;">
+                                                    <div class="form-group">
+                                                        <label>93000 L.L</label> <br />
+                                                        <label>-</label> <br />
+                                                        <label>150 L</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pink corncob product-block item card bg-light" ng-click="openRefundInfoPopup('Fuel')">
+                                <div class="card-header text-muted border-bottom-0">
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <div class="col-4 text-center div-nozzle">
+                                            <img src="/Resources/Images/nozzle.png" alt="user-avatar" class="img-fluid nozzle-img">
+                                        </div>
+                                        <div class="col-8 nozzle-info">
+                                            <h2 class="lead"><b>Nozzle number - Fuel Type</b></h2>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Amount</label>
+                                                        <input disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <input type="text" class="form-control" disabled="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Dollar Rate</label> <br />
+                                                        <label>Employee Shift</label> <br />
+                                                        <label>Nozzle Inventory</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" style="text-align: end;">
+                                                    <div class="form-group">
+                                                        <label>93000 L.L</label> <br />
+                                                        <label>-</label> <br />
+                                                        <label>150 L</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pink corncob product-block item card bg-light" ng-click="openRefundInfoPopup('Fuel')">
+                                <div class="card-header text-muted border-bottom-0">
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <div class="col-4 text-center div-nozzle">
+                                            <img src="/Resources/Images/nozzle.png" alt="user-avatar" class="img-fluid nozzle-img">
+                                        </div>
+                                        <div class="col-8 nozzle-info">
+                                            <h2 class="lead"><b>Nozzle number - Fuel Type</b></h2>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Amount</label>
+                                                        <input disabled type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <input type="text" class="form-control" disabled="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <!-- text input -->
+                                                    <div class="form-group">
+                                                        <label>Dollar Rate</label> <br />
+                                                        <label>Employee Shift</label> <br />
+                                                        <label>Nozzle Inventory</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" style="text-align: end;">
+                                                    <div class="form-group">
+                                                        <label>93000 L.L</label> <br />
+                                                        <label>-</label> <br />
+                                                        <label>150 L</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row table-row">
+            <div class="col-12">
+                <div class="card-header" style="padding-left: 0;">
+                    <div class="row">
+                        <div class="col-8">
+                            <span class="transfer-all-box" id="clear-filters"><span id="allTab" class="fas fa-times-circle "></span>&nbsp;All</span>
+                            <label class="sales-checkbox-label"><input id="transfer-checkbox" type="checkbox" value="corncob" class="filter-item " />Wet Product</label>&nbsp;&nbsp;
+                            <label class="sales-checkbox-label"><input type="checkbox" value="rebar" class="filter-item transfer-checkbox" />Dry Product</label>
+                            <label class="sales-checkbox-label"><input ng-click="clickedBox()" type="checkbox" value="Car wash" class="filter-item transfer-checkbox" />Car Wash</label>
+                        </div>
+                        <div class="row col-4">
+                            <div class="input-group input-group-sm">
+                                <button type="button" class="btn  btn-primary pos-trans-history-btn">History</button>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <input ng-model="filterTable" id="filter" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card">
+
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover  table-condensed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" style="width: 20%"
+                                        data-ng-click="singleSort('date')">
+                                        Time and Date
+                                        <span class="caret-blank"
+                                              data-ng-class="{'caret-down':sortDescend('date'), 'caret-up':sortAscend('date')}">
+                                        </span>
+                                    </th>
+                                    <th class="sortable" style="width: 18%"
+                                        data-ng-click="singleSort('category')">
+                                        Category
+                                        <span class="caret-blank"
+                                              data-ng-class="{'caret-down':sortDescend('category'), 'caret-up':sortAscend('category')}">
+                                        </span>
+                                    </th>
+                                    <th class="sortable" style="width: 18%">
+                                        Amount
+                                    </th>
+                                    <th class="sortable" style="width: 18%">
+                                        WOP
+                                    </th>
+                                    <th class="sortable" style="width: 18%"
+                                        data-ng-click="singleSort('currency')">
+                                        Currency
+                                        <span class="caret-blank"
+                                              data-ng-class="{'caret-down':sortDescend('currency'), 'caret-up':sortAscend('currency')}">
+                                        </span>
+                                    </th>
+                                    <th class="sortable" style="width: 18%">
+                                        Total
+                                    </th>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="person in peopleArray | orderBy:[filterSort, sortType, secondSortType, thirdSortType]"
+                                    data-ng-show="(filterSort(person) == 1) && ($index >= firstIndex) && ($index < lastIndex)"
+                                    ng-click="openTransactionInfoPopup(person)">
+                                    <td date>
+                                        <time datetime="{{person.date}}">
+                                            {{ person.formattedDate }}
+                                        </time>
+                                    </td>
+                                    <td>
+                                        {{ person.category }}
+                                    </td>
+                                    <td>
+                                        {{ person.amount }}
+                                    </td>
+                                    <td>
+                                        {{ person.wop }}
+                                    </td>
+                                    <td>
+                                        {{ person.currency }}
+                                    </td>
+                                    <td>
+                                        {{ person.total }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="card-tools pagination pagination-sm float-right">
+                            <uib-pagination data-total-items="(peopleArray | filter:filterTable).length"
+                                            data-ng-model="currentPage"
+                                            data-ng-change="updatePageIndexes()"
+                                            data-max-size="maxPaginationSize"
+                                            data-items-per-page="itemsPerPage"
+                                            data-boundary-links="true"
+                                            data-previous-text="Previous"
+                                            data-next-text="Next"
+                                            data-first-text="First"
+                                            data-last-text="Last">
+                            </uib-pagination>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+

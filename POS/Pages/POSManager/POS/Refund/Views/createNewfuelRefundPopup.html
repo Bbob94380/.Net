@@ -1,0 +1,214 @@
+﻿<div class="modal-header">
+    <h5 class="modal-title">Invoice Id</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row" style="padding: 1em;">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Refund Type</label>
+                <select class="form-control" ng-options="refund.type for refund in refundTypes" ng-change="refundTypeChanged()" ng-model="refundTypeSelected">
+                    <option value="">--Select User--</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding: 0em 1em 1em 1em;" ng-if="refundTypeSelected.id == '2'">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Sale Invoice ID</label>
+                <input class="form-control" ng-model="saleId"  />
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="form-group">
+                <label class="popUp-span-title" style="visibility:hidden !important">Transaction ID</label>
+                <span class="create-btn-popup" style="display: block;border-radius: 4px; cursor: pointer" ng-click="getInfo(saleId)">Get info</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding: 0em 1em 1em 1em;border-bottom: 1px solid #dee2e6;" ng-if="refundTypeSelected.id == '1'">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Fuel Type</label>
+                <select class="form-control" ng-options="item for item in wetProductTypes" ng-model="fuelTypeSelected">
+                    <option value="">--Select User--</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Creation Date</label>
+                <input class="form-control" ng-model="creationDate" disabled />
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Creation Time</label>
+                <input class="form-control" ng-model="creationTime" disabled />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Employee Name</label>
+                <input class="form-control" value="{{employeeNameCalib}}" disabled />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" style="padding: 0em 1em 1em 1em; border-bottom: 1px solid #dee2e6;" ng-if="refundTypeSelected.id == '2'">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Employee Name</label>
+                <input class="form-control" value="{{employeeName}}" disabled />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Creation Date</label>
+                <input class="form-control" value="{{creationDate}}" disabled />
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Creation Time</label>
+                <input class="form-control" value="{{creationTime}}" disabled />
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" style="padding: 2em 1em 1em 1em;" ng-if="refundTypeSelected.id == '1'">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Nozzle Number</label>
+                <input class="form-control" valuw="{{saleTransaction.nozzleNumber}}" disabled />
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Tank Number</label>
+                <input class="form-control" ng-model="tankNumber"  />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Amount</label>
+                <input class="form-control" ng-model="amountFuel" />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding: 1em;" ng-if="refundTypeSelected.id == '2'">
+        <div class="col-1">
+            <span class="popUp-span-title">Customer ID</span> <br />
+            <span>{{saleInvoice.customerId}}</span>
+        </div>
+        <div class="col-2">
+            <span class="popUp-span-title">Way of Payment</span> <br />
+            <span>{{saleInvoice.wop}}</span>
+        </div>
+        <div class="col-2">
+            <span class="popUp-span-title">Discount</span> <br />
+            <span>{{saleInvoice.discountPercent}}</span>
+        </div>
+        <div class="col-1">
+            <span class="popUp-span-title">Dollar</span> <br />
+            <span>{{dollarPaid}}</span>
+        </div>
+        <div class="col-1">
+            <span class="popUp-span-title">Lebanese</span> <br />
+            <span>{{lebanesePaid}}</span>
+        </div>
+        <div class="col-2">
+            <span class="popUp-span-title">Total </span> <br />
+            <span>{{total}}</span>
+        </div>
+    </div>
+
+
+    <div class="row" style="border-top: 1px solid #dee2e6;padding: 1em;" ng-if="refundTypeSelected.id == '2'">
+        <table class="table table-hover text-nowrap tableTransPopupDry">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ITEM ID</th>
+                    <th>ITEN NAME</th>
+                    <th>QUANTITY</th>
+                    <th>DISCOUNT</th>
+                    <th>PRICE</th>
+                    <th>TOTAL</th>
+                    <th>REFUND AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in saleDetailReturn">
+                    <td>
+                        <input type="checkbox" class="form-control" ng-model="IsDisabled" />
+                    </td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.discountPercent}}</td>
+                    <td>{{item.priceMc}} L.L/{{item.priceSc}} $ </td>
+                    <td>{{item.netTotalMc}} L.L/{{item.netTotalSc}} $ </td>
+                    <td>
+                        <input type="number" class="form-control" ng-disabled="!IsDisabled" ng-model="refundAmount[$index]" ng-change="refundAmountChanged(item, refundAmount[$index], $index)" />
+                    </td>
+                </tr>
+                <tr style="border:none">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{saleInvoice.discountPercent}}</td>
+                    <td></td>
+                    <td>{{total}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div class="row" style="padding: 1em; border-top: 1px solid #dee2e6;" ng-if="refundTypeSelected.id == '2'">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Way Of Refund</label>
+                <select class="form-control">
+                    <option>Cash</option>
+                    <option>Card</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Currency</label>
+                <select class="form-control">
+                    <option>Dollar</option>
+                    <option>Lebanese Lira</option>
+                </select>
+            </div>
+        </div>
+        <!--<div class="col-4">
+            <div class="form-group">
+                <label class="popUp-span-title">Amount</label>
+                <input class="form-control" ng-model="amountDry" />
+            </div>
+        </div>-->
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default cancel-btn-popup" data-dismiss="modal">CANCEL</button>
+    <button type="button" class="btn btn-primary create-btn-popup" ng-click="createRefund()">CREATE</button>
+</div>

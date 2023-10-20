@@ -1,0 +1,191 @@
+﻿<div class="modal-body">
+
+    <div class="card-body">
+        <div class="form-check">
+            <label class="form-check-label">CUSTOMER SECTION</label>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Customer Name</label>
+                    <select class="form-control payInputField" ng-model="customer" ng-options="item as item.name for item in customersList " ng-change="customerChanged(customer.id)">
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3"  ng-show="!isExistCustomer">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">First Name</label>
+                    <input type="text" class="form-control payInputField" ng-model="firstName" >
+                </div>
+            </div>
+            <div class="col-sm-3"  ng-show="!isExistCustomer">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Middle Name</label>
+                    <input type="text" class="form-control payInputField" ng-model="middleName" >
+                </div>
+            </div>
+            <div class="col-sm-3"  ng-show="!isExistCustomer">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Last Name</label>
+                    <input type="text" class="form-control payInputField" ng-model="lastName">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Phone Number</label>
+                    <input type="text" class="form-control payInputField" ng-model="customer.mobileNum" ng-disabled="isExistCustomer">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Amana Member</label>
+                    <select class="form-control payInputField" ng-model="customer.hasAmanaCard" ng-options="x for x in boolList" ng-change="" ng-disabled="isExistCustomer">
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Customer Car</label>
+                    <select class="form-control payInputField" ng-model="customerCar" ng-options="item2 as item2.type for item2 in customer.cars" ng-show="!showCarField">
+                    </select>
+                    <input type="text" class="form-control payInputField" ng-model="customerCarText" ng-show="showCarField">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Car Plate</label>
+                    <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="customerCar.carPlate">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Plate Number</label>
+                    <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="customerCar.plateNumber">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Old KM</label>
+                    <input type="text" class="form-control payInputField" ng-model="oldKM">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">New KM</label>
+                    <input type="text" class="form-control payInputField" ng-model="newKM">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Current Date</label>
+                    <input type="text" class="form-control payInputField" disabled ng-model="creationDate">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Due Date</label>
+                    <input type="date" class="form-control payInputField" ng-model="dueDate">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- select -->
+                <div class="form-group">
+                    <input type="button" class="form-control payInputField" ng-click="createCustomer()" value="Create customer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-5" style="border-right: 2px solid #dee2e6;">
+            <form>
+                <div class="card-body">
+                    <span class="carWashOptionSpan {{item.styleClass}}" ng-repeat="item in servicesList" ng-click="addService(item)" >{{item.name}}</span>
+                </div>
+            </form>
+
+            <div class="calculator card">
+                <!--<input type="text" class="calculator-screen calculator-screen2 z-depth-1" value="" disabled />-->
+
+                <div class="calculator-keys calculator-keys2 calculator-keys-pay col-md-12">
+
+                    <button type="button" class="all-clear function btn btn-danger btn-sm c-btn" ng-click="ClearFocusedField()" value="all-clear">C</button>
+                    <button type="button" class="decimal function btn-light waves-effect cal-grey-btn" ng-click="addDecimal('.')" value=".">.</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>
+
+                    <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('1')">1</button>
+                    <button type="button" value="2" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('2')">2</button>
+                    <button type="button" value="3" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('3')">3</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('-')" value="-" disabled>-</button>
+
+                    <button type="button" value="4" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('4')">4</button>
+                    <button type="button" value="5" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('5')">5</button>
+                    <button type="button" value="6" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('6')">6</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn " ng-click="addOperator('*')" value="*" disabled>&times;</button>
+
+
+                    <button type="button" value="7" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('7')">7</button>
+                    <button type="button" value="8" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('8')">8</button>
+                    <button type="button" value="9" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('9')">9</button>
+                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-b-btn" ng-click="addNumber('0')">0</button>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-7">
+            <div class="card-body">
+                <div class="form-check">
+                    <label class="form-check-label">OIL SECTION</label>
+                </div>
+                <table class="trans-table-wop table-responsive table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>ITEM ID</th>
+                            <th>ITEM NAME</th>
+                            <th>QUANTITY</th>
+                            <th>DISCOUNT</th>
+                            <th>PRICE</th>
+                            <th>TOTAL</th>
+                            <th>UsedInService</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in dryList">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.qtyItem}}</td>
+                            <td>{{item.discountItem}}</td>
+                            <td>${{item.price}}</td>
+                            <td>${{item.totalIt}}</td>
+                            <td><input type="checkbox" ng-model="item.usedInService" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer wetTransPopupFooter payFooterPopup" ng-init="load()">
+    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="clearWashTable()">CLEAR</button>
+    <button type="button" class="btn btn-primary nextbtn" ng-click="done()">Done</button>
+
+</div>

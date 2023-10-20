@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H.O</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/fontawesome-free/all.min.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/flag-icon/flag-icon.min.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/adminlte/adminlteAr.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Custom/customStyleHOAr.css">
+
+</head>
+<body ng-app="rootHOModule" class="hold-transition sidebar-mini">
+
+    <div class="wrapper" ng-controller="rootHOCtrl">
+        @Html.Partial("_navbar")
+
+        @Html.Partial("_sidebar")
+
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        @Html.Partial("_footer")
+
+    </div>
+
+    @Scripts.Render("~/bundles/angular")
+
+    <script src="~/Resources/Scripts/Plugins/AngularJs/angular-ui/ui-bootstrap.js"></script>
+    <script src="~/Resources/Scripts/Plugins/AngularJs/angular-ui/ui-bootstrap-tpls.js"></script>
+
+    <script src="~/Resources/Scripts/Plugins/Js/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Resources/Scripts/Plugins/Js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Resources/Scripts/Plugins/Js/adminlte.js"></script>
+
+    @*<script src="~/Resources/Scripts/Plugins/AngularJs/angular-translate.js"></script>*@
+
+    @*@RenderSection("scripts", required: false)*@
+
+    <!-- Custom -->
+    <script src="~/Resources/Scripts/Custom/AngularJs/Modules/rootHOModule.js"></script>
+    <script src="~/Resources/Scripts/Custom/AngularJs/Controllers/rootHOCtrl.js"></script>
+    <script src="~/Resources/Scripts/Custom/AngularJs/translation.js"></script>
+
+    <div class="CustomLoader" ng-show="showLoader"></div>
+    <div class="ui-loader-background" ng-show="showLoader"> </div>
+
+</body>
+</html>

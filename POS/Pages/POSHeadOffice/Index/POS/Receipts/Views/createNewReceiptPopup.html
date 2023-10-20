@@ -1,0 +1,94 @@
+﻿<div class="modal-header">
+    <h5 class="modal-title">Create Receipt</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-12">
+            <!-- /.card-header -->
+            <div class="">
+                <div class="card-body table-responsive p-0">
+                    <table id="dataTableNewReceiptId" newreceipt-table class="table table-hover  table-condensed text-nowrap table-trans">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%">
+                                    ID
+                                </th>
+                                <th style="width: 18%">
+                                    WOP
+                                </th>
+                                <th style="width: 18%">
+                                    Time & Date
+                                </th>
+                                <th style="width: 18%">
+                                    Currency
+                                </th>
+                                <th style="width: 18%">
+                                    Total
+                                </th>
+                                <th style="width: 18%">
+                                    
+                                </th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in transList">
+                                <td>{{item.id}}</td>
+                                <td>{{item.wop}}</td>
+                                <td>{{item.creationDate}}</td>
+                                <td>{{item.currency}}</td>
+                                <td>{{item.netTotalMc}} L.L / {{item.netTotalSc}} $ </td>
+                                <td>
+                                    <span class="receipt-add-btn" ng-click="addTransToReceipt(item)">+</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <div class="row new-receipt-row ">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th>TRAN. ID</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in listOfAddedTransToReceipt">
+                    <td>{{item.id}}</td>
+                    <td>{{item.netTotalMc }} L.L/{{ item.netTotalSc}} $</td>
+                    <td ng-click="removeTransFromReceipt(item.id)"><img src="/Resources/Images/remove-icon.png" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row receipt-row2" ng-hide="isHide">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>TOTAL</th>
+                    <td>{{ totalReceipt }}</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+
+</div>
+<div class="modal-footer" style="display:block">
+    <!--<button type="button" class="btn btn-default btnClearReceipt" data-dismiss="modal" ng-click="clearAll()">CLEAR</button>-->
+    <button type="button" class="btn btn-primary btnReceipt" ng-click="createReceipt()">CREATE RECEIPT & PRINT </button>
+</div>

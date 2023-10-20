@@ -1,0 +1,123 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content ff">
+    <div class="container-fluid">
+            <div class="col-12">
+                <div class="card-header" style="border-bottom: none;">
+                    <a ui-sref="pos.receipts" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                        < Back
+                    </a>
+                    <h3 class="receiptInfo-title">Receipts</h3>
+                    <h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>
+                </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card receiptInfo-card">
+                    <div class="card-body  p-0">
+                        <div class="row" style="padding: 1em;">
+                            <div class="col-2" style="border-right: 1px solid #dee2e6;">
+                                <span>Receipts ID</span> <br />
+                                <span>400</span>
+                            </div>
+                            <div class="col-2">
+                                <span>Way of payment</span> <br />
+                                <span>400</span>
+                            </div>
+                            <div class="col-2">
+                                <span>Way of payment</span> <br />
+                                <span>4</span>
+                            </div>
+                            <div class="col-2">
+                                <span>Transaction Number</span> <br />
+                                <span>55</span>
+                            </div>
+                            <div class="col-2" style="border-right: 1px solid #dee2e6;">
+                                <span>Amount</span> <br />
+                                <span>400</span>
+                            </div>
+                            <div class="col-2">
+                                <span>Created by</span> <br />
+                                <span>400</span>
+                            </div>
+                        </div>
+
+                        <div class="row" style="border-top: 1px solid #dee2e6;padding: 1em;">
+                            <table class="table table-hover text-nowrap receiptInfoTable">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction ID</th>
+                                        <th>Transaction Type</th>
+                                        <th>Amount</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in receipt.transactions">
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.category}}</td>
+                                        <td>{{item.amount}}</td>
+                                        <td>{{item.total}}</td>
+                                        <td><span class="view-btn">View</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span style="padding-right: 2em;font-weight:bold">TOTAL</span> <span>{{totalTrans}}</span></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row receiptInfo-lastRow" style="padding: 1em;clear: both;">
+                            <div class="col-1">
+                                <span style="font-weight: 700;">CREDIT</span> <br />
+                            </div>
+                            <div class="col-1">
+                                <span>DOLLAR</span> <br />
+                                <span>400</span>
+                            </div>
+                            <div class="col-1"  style="border-right: 1px solid #dee2e6;">
+                                <span>LEBANESE</span> <br />
+                                <span>4</span>
+                            </div>
+                            <div class="col-1">
+                                <span style="font-weight: 700;margin-left: 1em;">CASH</span> <br />
+                            </div>
+                            <div class="col-1">
+                                <span>DOLLAR</span> <br />
+                                <span>400</span>
+                            </div>
+                            <div class="col-1" style="border-right: 1px solid #dee2e6;">
+                                <span>LEBANESE</span> <br />
+                                <span>4</span>
+                            </div>
+                            <div class="col-2">
+                                <span>TOTAL</span> <br />
+                                <span>4000</span>
+                            </div>
+                        </div>
+
+                        <div class="row receiptInfo-footer">
+                            <button type="button" class="btn  btn-primary btn-print">Print</button>
+                            <button type="button" class="btn  btn-primary btn-export">Export</button>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+        </div>
+        <!-- /.row -->
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+

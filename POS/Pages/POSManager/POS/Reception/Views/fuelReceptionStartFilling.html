@@ -1,0 +1,243 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card-header" style="border-bottom: none;">
+                <a ui-sref="pos.receipts" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                    < Back
+                </a>
+                <h3 class="receiptInfo-title">Receipts</h3>
+                <h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>
+            </div>
+        </div>
+
+
+        <div class="card modal-body" style="margin: 1.7em;">
+            <div class="row" style="padding: 1em;">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info">
+                    <thead>
+                        <tr>
+                            <th>RECEPTION ID</th>
+                            <th>SENDER BY</th>
+                            <th>CREATION DATE </th>
+                            <th>RECEIVING DATE</th>
+                            <th>SUPPLIER NAME</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{reception.id}}</td>
+                            <td>{{reception.creator}}</td>
+                            <td>{{reception.creationDate}}</td>
+                            <td>{{reception.receptionDate}}</td>
+                            <td>{{reception.supplierName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div>
+                <label style=" width: 100%; margin-bottom: 0.1em; padding: 1em 1em 0em 1em;">Driver and truck data</label>
+                <div class="row" style="padding: 1em;">
+                    <table class="table  text-nowrap transfer-popup-table reception-table-info" style=" width: 50%;">
+                        <thead>
+                            <tr>
+                                <th>DRIVER NAME</th>
+                                <th>PLATE NUMBER</th>
+                                <th>TRANSPORT PARTY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{reception.driverName}}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-check conformity-check">
+                    <input type="checkbox" class="form-check-input"  ng-model="chkStatus" ng-change="showHideDiv()">
+                    <label class="form-check-label">NONCONFORMITY</label>
+                </div>
+                <div ng-show='showhideprop'>
+                    <div class="row" style="padding: 0 5em;" ng-repeat="choice in conformities">
+                        <div>
+                            <img style="cursor:pointer" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeChoice(choice.id)" />
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Nonconformity Reason</label>
+                                <select class="form-control" ng-model="choice.reason" ng-options="item for item in NConfTypes">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input class="form-control" ng-model="choice.desc" />
+                            </div>
+                        </div>
+                        <!--<button class="btn btn-danger" ng-click="removeChoice(choice.id)" ng-if="choice.id!=index">-</button>-->
+                    </div>
+                    <img class="form-group add-btn" style="cursor:pointer;padding: 0 3em;" ng-click="addNewChoice()" src="/Resources/Images/add-btn.png" />
+                    <!--{{ conformities }}-->
+                </div>
+
+
+
+            </div>
+
+            <div class="row" style="padding: 1em;">
+                <label>DO Information</label>
+                <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in reception.receivedSubTanks">
+                    <thead>
+                        <tr>
+                            <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                            <th class="th-text">Type</th>
+                            <th class="th-text">SUBTANK</th>
+                            <th class="th-text">AMOUNT SENT</th>
+                            <th class="th-text">Quantity OBS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle2"></span></td>
+                            <td>{{item.wetProductName}}</td>
+                            <td>{{item.subTankNumber}}</td>
+                            <td>{{item.volume}}</td>
+                            <td>{{item.quantityOBS}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <label style=" width: 100%;margin-bottom: 1.5em;padding: 1em;">Reception Information</label>
+                <div class="row" style="padding: 0 1em;" ng-repeat="item in reception.receivedSubTanks">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>{{$index + 1}}. Fuel Type</label>
+                                <input class="form-control" disabled value="{{item.wetProductName}}-{{item.subTankNumber}} " />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Amount Sent</label>
+                                <input class="form-control" disabled value="{{item.volume}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-3 conformity-check form-check">
+                            <input type="checkbox" class="form-check-input" ng-model="item.fuel_below_indicator" >
+                            <label class="form-check-label" for="exampleCheck1">Missing Amount</label>
+                        </div>
+                        <div class="col-md-3 form-check">
+                            <input type="checkbox" class="form-check-input" ng-model="item.fillingPayedByDriver">
+                            <label class="form-check-label" for="exampleCheck1">Payed by Driver</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12" ng-show='item.fuel_below_indicator'>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="label-reception-info">Missing Amount in Tank Truck</label>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">TRANSACRION ID</label>
+                                <input class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">ADDED AMOUNT</label>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">ADDED AMOUNT PRICE</label>
+                                <input class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-2">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">Tank</label>
+                                <select class="form-control" ng-model="tanksToBeFilled[$index].tankId" ng-options="item for item in tankNumbers">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">Available Amount</label>
+                                <input class="form-control" ng-model="tanksToBeFilled[$index].volumeBeforeReception" />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">Added Amount</label>
+                                <input class="form-control"  ng-model="tanksToBeFilled[$index].volumeSoldDuringReception"/>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">New Available Amount </label>
+                                <input class="form-control" ng-model="tanksToBeFilled[$index].actualVolAfterReception" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-2">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="label-reception-info">Subtank ID on Valve</label>
+                                <select class="form-control" ng-model="item.subTankID_on_valve" ng-options="item for item in sealTypes">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="label-reception-info">Seal on Valve</label>
+                                <select class="form-control" ng-model="item.seal_on_valve" ng-options="item for item in sealTypes">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="label-reception-info">Seal on Subtank</label>
+                                <select class="form-control" ng-model="item.seal_on_subTank_cover" ng-options="item for item in sealTypes">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="createReception()">Confirm</button>
+            </div>
+        </div>
+        
+    </div>
+</section>

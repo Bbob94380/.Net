@@ -1,0 +1,283 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card-header" style="border-bottom: none;">
+                <a ui-sref="" class="nav-link back-btn" >
+                    < Back
+                </a>
+                <h3 class="receiptInfo-title">New Purchase</h3>
+            </div>
+        </div>
+
+        <div class="card modal-body" style="margin: 1.7em;">
+            <div class="row col-md-12" style="padding: 1em;">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="new-po-title">Sales Manager</label>
+                        <input class="form-control" disabled ng-model="salesManagerName" />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="new-po-title">Creation Time</label>
+                        <input class="form-control" disabled ng-model="creationTime" />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="new-po-title">Creation Date</label>
+                        <input class="form-control" disabled ng-model="creationDate" />
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12" style="padding: 1em;">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="new-po-title">Supplier Name</label>
+                        <select class="form-control" ng-model="selectedSupplier" ng-change="selectedSupplierChanged(selectedSupplier)" ng-options="item as item.companyName for item in suppliersList"></select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="new-po-title">Supplier Address</label>
+                        <input class="form-control" disabled ng-model="supplierAddress" />
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label class="new-po-title">Supplier Trucks</label>
+                        <input type="number" class="form-control" ng-model="numberOfTrucksOfSelectedSupplier" disabled />
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label class="new-po-title">Number of Trucks</label>
+                        <input type="number" class="form-control" ng-disabled="isNbOfTruckDisabled" ng-model="numberOfTrucks" ng-change="numberOfTrucksChanged(numberOfTrucks)" />
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label class="new-po-title"></label>
+                        <input type="button" class="form-control" value="Add more trucks" ng-click="addMoreTrucks()" />
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="col-3">
+                <div class="form-group">
+                    <input type="button" value="Add truck" ng-click="addNewTruck()" class="form-control" />
+                </div>
+            </div>-->
+
+            <div class="row" ng-repeat="truckItem in trucks" style="padding: 1em;">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header" style="border-bottom: none; background: #e0e2e4;">
+                            <h3 class="card-title">
+                                <select class="form-control" ng-model="selectedTruck" ng-change="selectedTruckChanged(selectedTruck, $index)" ng-options="item as item.plateNumber for item in trucksList">
+                                    <option value="">-- Select Truck Plate Number --</option>
+                                </select>
+                            </h3>
+
+                            <div class="card-tools">
+                                <!--<img style="cursor:pointer" class="form-group remove-icon remove-icon-po-truck" src="/Resources/Images/remove-icon.png" ng-click="removeTruck(truckItem.truckId)" />-->
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+
+                            <span ng-click="createNewDO($index)" class="create-new-do-btn" ng-hide="hideCreateDOBtn">Create a New DO</span>
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row col-12">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="new-po-title">Driver</label>
+                                        <select class="form-control" ng-model="selectedDriver" ng-change="selectedDriverChanged(selectedDriver, truckItem)" ng-options="item as item.name for item in driversList">
+                                            <option value="">-- Select Driver --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="new-po-title">Plate Number</label>
+                                        <input class="form-control" disabled ng-model="truckItem.plateNumber" />
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="new-po-title">Chese Number</label>
+                                        <input class="form-control" disabled ng-model="truckItem.cheseNumber" />
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="new-po-title">Delivery Date</label>
+                                        <input type="date" class="form-control"  ng-model="truckItem.deliveryDate" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="row" style="padding: 1em;">
+        <label>Attachments</label>
+        <table class="table  text-nowrap transfer-popup-table">
+            <thead>
+                <tr>
+                    <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                    <th class="th-text">Attachment Type</th>
+                    <th class="th-text">Attachment Type</th>
+                    <th class="th-text">Attachment Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>-->
+
+                            <div class="row generator-new-customer-row" style="padding: 1em;">
+                                <div>
+                                    <label ng-hide="isSubTankHide">Subtank</label>
+                                    <div class="row" style="padding: 0 1em;" ng-repeat="subtank in truckItem.poFuelAmountsDetail">
+                                        <!--<div>
+            <img style="cursor:pointer" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeSubTank($parent.$index, subtank.id)" />
+        </div>-->
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="new-po-title">Sub-tank</label>
+                                                <input class="form-control" disabled ng-model="subtank.subTankNum" />
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="new-po-title">Sub-tank Size</label>
+                                                <input class="form-control" disabled ng-model="subtank.subTankSize" />
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="new-po-title">Top size</label>
+                                                <input class="form-control" disabled ng-model="subtank.subTankUpSize" />
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="new-po-title">Down size</label>
+                                                <input class="form-control" disabled ng-model="subtank.subTankDownSize" />
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="new-po-title">Product Type</label>
+                                                <select class="form-control" ng-model="selectedWet" ng-change="selectedWetChanged(selectedWet, subtank)" ng-options="item as item.name for item in wetProductsList">
+                                                    <option value="">-- Select Product Type --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="new-po-title">Amount Sent</label>
+                                                <input class="form-control" ng-model="subtank.productVolume" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<img class="form-group add-btn" style="cursor:pointer" ng-click="addNewSubTank($index)" src="/Resources/Images/add-btn.png" />-->
+                                    <!--{{ trucks }}-->
+                                </div>
+                            </div>
+                            <!--<div class="row" style="width: 100%; display: block;">
+                                <span ng-click="createPO($index)" style=" background: #9fd965; border: none; padding: 3px 32px; float: right; color: #fff; border-radius: 4px;">Save</span>
+                            </div>-->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+
+
+            <!--<div class="row" style="padding: 1em;">
+        <label>DO Information</label>
+        <table class="table  text-nowrap transfer-popup-table">
+            <thead>
+                <tr>
+                    <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                    <th class="th-text">Type</th>
+                    <th class="th-text">AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="transfer-half-rectangle2"></span></td>
+                    <td>Fuel 98</td>
+                    <td>500L</td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                    <th class="th-text">Type</th>
+                    <th class="th-text">AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="transfer-half-rectangle2"></span></td>
+                    <td>500L</td>
+                    <td>500L</td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                    <th class="th-text">Type</th>
+                    <th class="th-text">AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="transfer-half-rectangle2"></span></td>
+                    <td>Fuel 98</td>
+                    <td>500L</td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                    <th class="th-text">Type</th>
+                    <th class="th-text">AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>Fuel 98</td>
+                    <td>500L</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>-->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="createPO()">Create PO</button>
+            </div>
+        </div>
+        
+    </div>
+</section>

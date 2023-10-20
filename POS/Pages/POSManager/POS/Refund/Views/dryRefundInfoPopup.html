@@ -1,0 +1,163 @@
+﻿<div class="modal-header" style="background: #F3F3F3;">
+    <div class="popUpHeader">
+        <h5 class="modal-title">3.DR1234</h5>
+        <h6 class="modal-title">DR1234 - Dry Product - Employee - Customer - Amount - Dollar Rate</h6>
+    </div>
+    <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row" style="padding: 1em;">
+        <div class="col-1" style="border-right: 1px solid #dee2e6;">
+            <span class="popUp-span-title">REFUND ID</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.id}}</span>
+        </div>
+        <div class="col-2">
+            <span class="popUp-span-title">Sale ID</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.saleId}}</span>
+        </div>
+        <div class="col-2" style="border-right: 1px solid #dee2e6;">
+            <span class="popUp-span-title">WAY OF PAYMENT</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.wop}}</span>
+        </div>
+        <div class="col-3">
+            <span class="popUp-span-title">CREATION DATE</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.creationDate}}</span>
+        </div>
+        <div class="col-2">
+            <span class="popUp-span-title">CREATED BY</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.creator}}</span>
+        </div>
+        <div class="col-1">
+            <span class="popUp-span-title">CUSTOMER</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.customerId}}</span>
+        </div>
+    </div>
+    <div class="row" style="border-top: 1px solid #dee2e6;padding: 1em;">
+        <table class="table table-hover text-nowrap tableTransPopupDry">
+            <thead>
+                <tr>
+                    <th>ITEM ID</th>
+                    <th>ITEN NAME</th>
+                    <th>QUANTITY</th>
+                    <th>DISCOUNT</th>
+                    <th>PRICE</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in refundItem.saleDetailReturn">
+                    <td>{{item.id}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.discountPercent}}</td>
+                    <td>{{item.priceMc}} L.L/{{item.priceSc}} $</td>
+                    <td>{{item.netTotalMc}} L.L/{{item.netTotalSc}} $</td>
+                </tr>
+                <tr style="border-bottom:none;border-left:none;border-right:none;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{discount}}</td>
+                    <td>{{price}}</td>
+                    <td>{{total}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row " style="border-top: 1px solid #dee2e6;padding: 2em 0em 1em 1em;">
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpanBold">TOTAL</span> <br />
+            <!--<span class="titleValue">400</span>-->
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpanBold">CREDIT</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="titleValue">{{$scope.dollarPaid}}</span>
+        </div>
+        <div class="col-1" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="titleValue">{{$scope.lebanesePaid}}</span>
+        </div>
+        <div class="col-1" style="padding-left: 1em;">
+            <span class="PopUpFuelHeaderTitleSpanBold">CASH</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="titleValue">{{saleInvoice.cachAmountSc}}</span>
+        </div>
+        <div class="col-1" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="titleValue">{{saleInvoice.cachAmountMc}}</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">TOTAL</span> <br />
+            <span class="titleValue">{{saleInvoice.netTotalMc}} L.L/ {{saleInvoice.netTotalSc}} $</span>
+        </div>
+    </div>
+    <div class="row" style="padding: 1em 0em 1em 1em;">
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpanBold">REFUND</span> <br />
+            <!--<span class="titleValue">400</span>-->
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpanBold">CREDIT</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="titleValue">{{refundItem.cardReturnedSc}}</span>
+        </div>
+        <div class="col-1" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="titleValue">{{refundItem.cardReturnedLc}}</span>
+        </div>
+        <div class="col-1" style="padding-left: 0.5em;">
+            <span class="PopUpFuelHeaderTitleSpanBold">CASH</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="titleValue">{{refundItem.cachAmountSc}}</span>
+        </div>
+        <div class="col-1" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="titleValue">{{refundItem.cachAmountMc}}</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">REFUND TOTAL</span> <br />
+            <span class="titleValue">{{refundItem.netTotalMc}} L.L/ {{refundItem.netTotalSc}} $</span>
+        </div>
+    </div>
+
+    <div class="row" style="padding: 1em 0em 1em 1em;">
+        <div class="col-1">
+           
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+           
+        </div>
+        <div class="col-1">
+            
+        </div>
+        <div class="col-1" >
+        </div>
+        <div class="col-1">
+           
+        </div>
+        <div class="col-1" style="border-right: 1px solid #dee2e6;">
+           
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">NEW TOTAL</span> <br />
+            <span class="titleValue">{{saleInvoice.netTotalMc - refundItem.netTotalMc}} L.L/ {{saleInvoice.netTotalSc - refundItem.netTotalSc}} $</span>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn exportBtn-trans"  data-dismiss="modal">Export</button>
+    <button type="button" class="btn printBtn-trans" style="background:#2A5699">Print</button>
+</div>

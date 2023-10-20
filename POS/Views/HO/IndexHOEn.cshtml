@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutHOEn.cshtml";
+}
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light navbar-root">
+
+
+        <img src="~/Resources/Images/common/logo.png" class="navBarPOSLogo" />
+
+        <!-- Left navbar links -->
+        <ul class="navbar-nav navbarTopSM">
+            @*<li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>*@
+            <li class="nav-item d-none d-sm-inline-block">
+                <a ui-sref="HO_Index_Dashboard" class="nav-link navBarPos navDashItem">DASHBOARD</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a ui-sref="HO_Index_POS" class="nav-link navBarPos navPOSItem">POS</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a ui-sref="HO_Index_Inventory" class="nav-link navBarPos navFMSItem">FMS</a>
+            </li>
+
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto navbarSM" style="align-items: baseline;margin-bottom: 8px;">
+            <li class="nav-item">
+                <span class="nav-link" ng-click="SignOut()">Sign out</span>
+            </li>
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <img class="far fa-comments" src="~/Resources/Images/common/wifi-icon.png" />
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <span class="pos-menu-rate">1$ = 100000L.L</span>
+                </a>
+            </li>
+            <!-- Notifications Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <img class="far fa-bell bell-icon" src="~/Resources/Images/common/notif-icon.png" />
+                    <span class="badge badge-warning navbar-badge">99</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <span class="pos-menu-profile-icon">ME</span>
+                </a>
+            </li>
+            <!-- Language Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="flag-icon  {{addActiveWord}}"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right p-0">
+                    <a ng-click="goToEnglishLayout()" class="dropdown-item ">
+                        <i class="flag-icon flag-icon-us mr-2"></i> English
+                    </a>
+                    <a ng-click="goToArabicLayout()" class="dropdown-item">
+                        <i class="flag-icon flag-icon-de mr-2"></i> Arabic
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+    <!--  Sidebar  -->
+    <aside class="main-sidebar main-sidebar-custom-root sidebar-dark-primary elevation-4 sidebar-no-expand">
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel user-panel-bottom-border mt-3 pb-6 mb-3 d-flex">
+
+            </div>
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="~/Resources/Images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+            </div>
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="~/Resources/Images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+            </div>
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="~/Resources/Images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+            </div>
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="~/Resources/Images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+            </div>
+
+
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper" style="margin-left: 4.6em;">
+
+        <div ui-view style="position: relative;"></div>
+
+    </div>
+
+
+

@@ -1,0 +1,212 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-5" style="border-right: 2px solid #dee2e6;">
+
+            <form>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Station Manager</label>
+                        <input ng-model="stationManagerName" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Employee Name</label>
+                        <input ng-model="employeeName" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Creation Date</label>
+                        <input ng-model="creationDate" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Creation Time</label>
+                        <input ng-model="creationTime" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Previous Dollar Rate</label>
+                        <input ng-model="oldDollarRate" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                </div>
+            </form>
+
+            <div class="calculator card">
+                <!--<input type="text" class="calculator-screen calculator-screen2 z-depth-1" value="" disabled />-->
+
+                <div class="calculator-keys calculator-keys2 calculator-keys-pay col-md-12">
+
+                    <button type="button" class="all-clear function btn btn-danger btn-sm c-btn" ng-click="ClearFocusedField()" value="all-clear">C</button>
+                    <button type="button" class="decimal function btn-light waves-effect cal-grey-btn" ng-click="addDecimal('.')" value=".">.</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>
+
+                    <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('1')">1</button>
+                    <button type="button" value="2" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('2')">2</button>
+                    <button type="button" value="3" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('3')">3</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('-')" value="-" disabled>-</button>
+
+                    <button type="button" value="4" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('4')">4</button>
+                    <button type="button" value="5" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('5')">5</button>
+                    <button type="button" value="6" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('6')">6</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn " ng-click="addOperator('*')" value="*" disabled>&times;</button>
+
+
+                    <button type="button" value="7" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('7')">7</button>
+                    <button type="button" value="8" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('8')">8</button>
+                    <button type="button" value="9" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('9')">9</button>
+                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-b-btn" ng-click="addNumber('0')">0</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="card-body">
+
+                <div style=" border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <!-- select -->
+                            <div class="form-group">
+                                <label class="label-dropdown">Fuel Type</label>
+                                <input type="text" class="form-control payInputField" disabled  value="{{item.wetProductName}}"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <!-- select -->
+                            <div class="form-group">
+                                <label class="label-dropdown">Old Nuzzle Counter</label>
+                                <input type="text" class="form-control payInputField" disabled  value="{{item.litersCounterEnd}}" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <!-- select -->
+                            <div class="form-group">
+                                <label class="label-dropdown">New Nuzzle Counter</label>
+                                <input type="text" class="form-control payInputField" ng-change="calculateTotalLitreAmount(displayNewCounterResult[$index], item.litersCounterEnd, $index)" ng-model="displayNewCounterResult[$index]" ng-focus="NewCounterFocus($index)" ng-blur="NewCounterBlur(displayNewCounterResult[$index])" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <!-- select -->
+                            <div class="form-group" style=" margin-bottom: 0;">
+                                <label class="label-dropdown">Total Liter Amount</label>
+                                <input type="text" class="form-control payInputField" disabled ng-model="TotalLitreAmount[$index]"  />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <!-- select -->
+                            <div class="form-group" style=" margin-bottom: 0;">
+                                <label class="label-dropdown">Price in Dollar</label>
+                                <input type="text" class="form-control payInputField" disabled value="{{item.priceInUsd}}" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <!-- select -->
+                            <div class="form-group" style=" margin-bottom: 0;">
+                                <label class="label-dropdown">Price in Lebanese</label>
+                                <input type="text" class="form-control payInputField" disabled value="{{item.priceInLbp}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row  paytotalLabelLLAndDolar">
+                <div>
+                    <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
+                    <span class="col-md-3 payDryTotalValue">{{totalLL}}</span>
+                </div>
+                <div style="float:right;">
+                    <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
+                    <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
+                </div>
+            </div>
+
+            <span class="closeSessionLine"></span>
+
+                <div class="card-body">
+                    <div style="padding: 0px 15px;">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label class="label-dropdown">Currency Type</label>
+                                    <input type="text" class="form-control payInputField" disabled value="Lebanese Lira"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label class="label-dropdown">Dollar Rate</label>
+                                    <input type="text" class="form-control payInputField" disabled ng-model="oldDollarRate" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label class="label-dropdown">Lebanese L.L</label>
+                                    <input type="text" class="form-control payInputField" ng-change="calculateTotalAttendantMoney(lebaneseCashFirst, 'LL')" ng-model="lebaneseCashFirst" ng-focus="FirstCashLebaneseFieldFocus()" ng-blur="FirstCashLebaneseFieldBlur(lebaneseCashFirst)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label class="label-dropdown">Currency Type</label>
+                                    <input type="text" class="form-control payInputField" disabled value="Dollar"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label class="label-dropdown">Dollar Rate</label>
+                                    <input type="text" class="form-control payInputField" disabled ng-model="oldDollarRate" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label class="label-dropdown">Dollar</label>
+                                    <input type="text" class="form-control payInputField" ng-change="calculateTotalAttendantMoney(dollarCashFirst, 'USD')" ng-model="dollarCashFirst" ng-focus="FirstCashDollarFieldFocus()" ng-blur="FirstCashDollarFieldBlur(dollarCashFirst)" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" ng-model="isChecked" ng-change="validateByManager()" />
+                                <label class="form-check-label" >VALIDATED BY THE STATION MANAGER</label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="row  paytotalLabelLLAndDolar">
+                    <div>
+                        <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
+                        <span class="col-md-3 payDryTotalValue">{{TotalAttendantLL}}</span>
+                    </div>
+                    <!--<div style="float:right;">
+                        <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
+                        <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
+                    </div>
+                    <div style="float:right;margin-top:1em;">
+                        <span class="col-md-3 payDryTotal2Label">Total</span>
+                        <span class="col-md-3 payDryTotalValue">{{total}}</span>
+                    </div>-->
+                </div>
+            </div>
+    </div>
+</div>
+<div class="modal-footer wetTransPopupFooter payFooterPopup">
+    <button type="button" class="btn btn-primary nextbtn" ng-click="closeSessionClicked()" >CLOSE SESSION</button>
+
+</div>

@@ -1,0 +1,165 @@
+﻿<div class="modal-header">
+    <h5 class="modal-title">TW1234 - Source Station Name - Destination Station Name </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row" style="padding: 1em;">
+        <table class="table  text-nowrap transfer-popup-table">
+            <thead>
+                <tr>
+                    <th>Transfer ID</th>
+                    <th>Created By</th>
+                    <th>Creation Date</th>
+                    <th>Source Station</th>
+                    <th>Destination Station</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>183</td>
+                    <td>John Doe</td>
+                    <td>11-7-2014</td>
+                    <td><span class="tag tag-success">Approved</span></td>
+                    <td>50000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row" style="padding: 1em;">
+        <label>Transfer Information</label>
+        <table class="table  text-nowrap transfer-popup-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                    <th class="th-text">Type</th>
+                    <th class="th-text">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><span class="transfer-half-rectangle2"></span></td>
+                    <td>Fuel 98</td>
+                    <td>500L</td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><span class="transfer-half-rectangle"></span></th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Fuel 98</td>
+                    <td>500L</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div>
+        <label style=" width: 100%;margin-bottom: 1.5em;">Source Station</label>
+        <div class="row" style="padding: 0 1em;" ng-repeat="choice in choices">
+            <div>
+                <img style="cursor:pointer" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeChoice(choice.id)" />
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Fuel Type</label>
+                    <select class="form-control" ng-model="choice.type" ng-options="item for item in selectOptions">
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Tank</label>
+                    <select class="form-control">
+                        <option>option 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input class="form-control" ng-model="choice.name" />
+                </div>
+            </div>
+            <!--<button class="btn btn-danger" ng-click="removeChoice(choice.id)" ng-if="choice.id!=index">-</button>-->
+        </div>
+        <img class="form-group add-btn" style="cursor:pointer" ng-click="addNewChoice()" src="/Resources/Images/add-btn.png" />
+        <!-- {{ choices }}-->
+    </div>
+
+    <div class="row" style="padding:1em;">
+        <div class="col-12">
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Rejection Reason</label>
+                </div>
+                <textarea class="form-control" rows="6" cols="6">
+
+                </textarea>
+            </div>
+            <div style="text-align:end;">
+                <input type="button" value="Reject" class="col-2 btn  btn-primary transfer-popup-accept-btn" />
+                <input type="button" value="Accpet" class="col-2 btn  btn-primary transfer-popup-accept-btn" />
+            </div>
+        </div>
+        <!--<button class="btn btn-danger" ng-click="removeChoice(choice.id)" ng-if="choice.id!=index">-</button>-->
+    </div>
+
+    <div>
+        <label style=" width: 100%;margin-bottom: 1.5em;">Source Station</label>
+        <div class="row" style="padding: 0 1em;" ng-repeat="choice in choices">
+            <div>
+                <img style="cursor:pointer" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeChoice(choice.id)" />
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Fuel Type</label>
+                    <select class="form-control" ng-model="choice.type" ng-options="item for item in selectOptions">
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Tank</label>
+                    <select class="form-control">
+                        <option>option 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input class="form-control" ng-model="choice.name" />
+                </div>
+            </div>
+            <!--<button class="btn btn-danger" ng-click="removeChoice(choice.id)" ng-if="choice.id!=index">-</button>-->
+        </div>
+        <img class="form-group add-btn" style="cursor:pointer" ng-click="addNewChoice()" src="/Resources/Images/add-btn.png" />
+        <!-- {{ choices }}-->
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary">Confirm</button>
+</div>

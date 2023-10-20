@@ -1,0 +1,76 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 style=" font-family: 'rubikMedium'; margin-left: 0.6em;">Reception</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="">
+        <div class="card-body">
+            <div>
+                <div class="row">
+                    <div class="col-sm-5">
+                    </div>
+                    <div class="col-3"></div>
+                    <div class="row col-4" style="flex-direction: row-reverse;">
+                        <span ng-click="goToHistoryPage()" style="cursor: pointer" class="refund-history-btn">History</span>
+                    </div>
+                </div>
+                <div id="transferProducts" class="reception-items">
+                    <div class="col-md-12 pink corncob rebar product-block item card bg-light" ng-repeat="item in receptionsList" ng-click="goToPurchaseInfo(item)">
+                        <div class="card-header text-muted border-bottom-0">
+
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <h2 style="display: inline; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100;">
+                                        {{item.id}} -  {{item.supplierName}} -  {{item.driverName}}
+                                    </h2>
+                                    <span class="reception-item-status">{{item.status}}</span>
+                                    <table class="table reception-item-table">
+                                        <tr>
+                                            <th style="text-align:left">
+                                                TYPE
+                                            </th>
+                                            <th>
+                                                Creation Date
+                                            </th>
+                                            <th>
+                                                SENDED BY
+                                            </th>
+                                            <th>
+                                                RECEIVING DATE
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left">
+                                                Fuel 98, Fuel 95, Diesel Red and Diesel Green
+                                            </td>
+                                            <td>
+                                                {{item.creationDate}}
+                                            </td>
+                                            <td>
+                                                {{item.creator}}
+                                            </td>
+                                            <td>
+                                                {{item.receptionDate}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-3 text-center" style=" margin: auto;">
+                                    <input ng-click="goToReceptionInfo(item.id)" type="button" value="Start Filling Process" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

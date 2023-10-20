@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Attendant page</title>
+
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/fontawesome-free/all.min.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/flag-icon/flag-icon.min.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/datatables/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/datatables/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://kenwheeler.github.io/slick/slick/slick-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Plugins/adminlte/adminlteEn.css">
+    <link rel="stylesheet" href="~/Resources/Styles/Custom/customAttendantStyleEn.css">
+    @RenderSection("stylesAttendantLoginEn", false)
+
+
+</head>
+<body ng-app="posAttendantRootModule" class="hold-transition layout-top-nav">
+
+    <div class="" ng-controller="posAttendantRootCtrl">
+
+        <div class="content-wrapper">
+
+            @RenderBody()
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/angular")
+
+    <script src="~/Resources/Scripts/Plugins/Js/jquery.min.js"></script>
+    <script src="~/Resources/Scripts/Plugins/Js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+
+
+    <script src="~/Resources/Scripts/Plugins/Js/adminlte.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+    <!-- Custom -->
+    <script src="~/Resources/Scripts/Custom/AngularJs/Modules/posAttendantRootModule.js"></script>
+    <script src="~/Resources/Scripts/Custom/AngularJs/translationAttendant.js"></script>
+    <script src="~/Resources/Scripts/Custom/AngularJs/Controllers/posAttendantRootCtrl.js"></script>
+    <script src="~/Resources/Scripts/Custom/AngularJs/Controllers/posAttendantLoginCtrl.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/main2Controller.js"></script>
+    <script src="~/Pages/POSAttendant/Fuel/Controllers/wetMenuController.js"></script>
+    <script src="~/Pages/POSAttendant/Fuel/Controllers/wetTransactionPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/wetWayOfPaymentPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Dry/Controllers/dryMenuController.js"></script>
+    <script src="~/Pages/POSAttendant/Dry/Controllers/searchDryBarcodePopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Dry/Controllers/oilChangePopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/editTransactionsPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/CarWash/Controllers/carWashMenuController.js"></script>
+    <script src="~/Pages/POSAttendant/CarWash/Controllers/carWashTransactionPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/createReceiptPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/couponPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/employeeLoginPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/pinCodePopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/dollarRateChangedPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/closeSessionPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/openShiftPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/closeShiftPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/loginManagerPermissionPopupController.js"></script>
+
+    <div class="CustomLoader" ng-show="showLoader"></div>
+    <div class="ui-loader-background" ng-show="showLoader"> </div>
+
+</body>
+</html>
