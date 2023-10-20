@@ -1,0 +1,546 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <a ui-sref="pos.refund" class="nav-link back-btn">
+                    < Back
+                </a>
+                <h1 class="pos-section-title">Refunds</h1>
+                <span class="history-subtitle">Refunds History</span>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="">
+        <div class="card-body">
+            <div>
+                <!-- Checkboxes: targeted in the JS by class and value set to the class on item you want to filter for -->
+                <div class="row col-12">
+                    <div class="col-6">
+                        <span id="clear-filters" class="transfer-all-box"><span class="fa-times-circle"></span>&nbsp;All</span>
+                        <label class="transfer-checkbox-label"><input type="checkbox" value="rebar" class="filter-item" />Dry product</label>
+                        <label class="transfer-checkbox-label"><input type="checkbox" value="corncob" class="filter-item" />Calibration</label>&nbsp;&nbsp;
+                    </div>
+                    <div class="col-5 input-group-sm input-group-receipts">
+                        <div class="input-group input-group-sm input-group-receipts">
+                            <div class="form-group has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input id="CustomSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="products">
+                    <div class="pink corncob product-block item card bg-light" ng-click="openRefundInfoPopup('Fuel')">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink rebar product-block item card bg-light  flex-fill"  ng-click="openRefundInfoPopup('Dry')">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">170 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink corncob product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">170 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink rebar product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink corncob product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink rebar product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink corncob product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink rebar product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink corncob product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-5 div-nozzle">
+                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Calibration</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">Hassan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 nozzle-info">
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, 12:12:12 PM - DD/MM/YY</span>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK NUMBER</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" style="text-align: end;">
+                                            <div class="form-group">
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">99</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink rebar product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            Dry
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                    </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink corncob product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            Corncob
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                    </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink rebar product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            Dry
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                    </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink corncob product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            Corncob
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                    </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pink rebar product-block item card bg-light  flex-fill">
+                        <div class="card-header text-muted border-bottom-0">
+                            Dry
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                    </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2" style=" margin-bottom: 1em !important; margin-left: 0.2em;">
+            <div class="col-sm-6">
+                <a ui-sref="pos.receipts" class="nav-link back-btn">
+                    < Back
+                </a>
+                <h1 class="pos-section-title">Receipts</h1>
+                <span class="history-subtitle">Receipts History</span>
+            </div>
+        </div>
+        <div class="row col-sm-12" style="padding-right: 0;">
+            <div class="col-sm-8">
+                <label class="date-filter-label">From </label>
+                <input class="date-filter-input" type="text" id="min" name="min">
+
+                <label class="date-filter-label">To </label>
+                <input class="date-filter-input" type="text" id="max" name="max">
+
+                <span ng-click="openCreateNewReceiptPopup()" class="history-clear-btn">Clear</span>
+            </div>
+            <div class="col-sm-4" style="padding-right: 0;">
+                <div class="input-group input-group-sm input-group-receipts">
+                    <div class="form-group has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input id="CustomSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content ff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-table-trans">
+                    <div class="card-body table-responsive p-0">
+                        <table id="dataTableId" table-jquery class="table table-hover  table-condensed text-nowrap table-trans">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%">
+                                        ID
+                                    </th>
+                                    <th style="width: 18%">
+                                        Nu. of Transactions
+                                    </th>
+                                    <th style="width: 18%">
+                                        WOP
+                                    </th>
+                                    <th style="width: 18%">
+                                        Time & Date
+                                    </th>
+                                    <th style="width: 18%">
+                                        Currency
+                                    </th>
+                                    <th style="width: 18%">
+                                        Total
+                                    </th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in ReceiptsList" ng-click="goToReceiptInfo(item)">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.nbOfTrans}}</td>
+                                    <td>{{item.wop}}</td>
+                                    <td>{{item.date}}</td>
+                                    <td>{{item.currency}}</td>
+                                    <td>{{item.total}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

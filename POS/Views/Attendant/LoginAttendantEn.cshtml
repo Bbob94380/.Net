@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutAttendantEn.cshtml";
+}
+
+@section stylesAttendantLoginEn {
+    <link href="~/Resources/Styles/Custom/customStyleHOLoginEn.css" rel="stylesheet" type="text/css" />
+}
+
+<section class="h-100 gradient-form" ng-controller="posAttendantLoginCtrl">
+    <div class="container py-5 h-100" style="padding-top: 2rem !important;">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
+
+                                <div class="text-center">
+                                    <img src="~/Resources/Images/common/logo.png" alt="logo">
+                                </div>
+
+                                <form>
+                                    <p class="signInLabel">Sign In to Your Account</p>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="form2Example11" class="form-control input-login-ho"
+                                               placeholder="Username or Email" />
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="form2Example22" class="form-control input-login-ho" placeholder="Password" />
+                                    </div>
+
+                                    <div class="pt-1 pb-1">
+                                        <button ng-click="loginBtn()" class="btn btn-primary fa-lg gradient-custom-2 mb-3 login-span" style="height: auto !important;    padding: 10px 31px;" type="button">
+                                            Login Now
+                                        </button>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input custom-control-input-danger" type="checkbox" id="customCheckbox4" checked="">
+                                            <label for="customCheckbox4" class="custom-control-label custom-checkbox-text">Remember Me</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="align-items-center pb-4">
+                                        <span class="mb-0 me-2 lostAndRegister">Lost your password?</span>
+                                        <span class="mb-0 me-2 lostAndRegister">Register Now</span>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="px-3 py-4 p-md-5 mx-md-4 touch" style="margin-top: 4em;">
+                                <h4 class="mb-4">Get In Touch</h4>
+                                <p class="small mb-0" style="font-size: 13px;">
+                                    Lorem ipsum dolor sit amet, duis metus ligula amet in purus, vitae donec vestibulum enim, tincidunt massa sit, convallis ipsum.
+                                </p>
+                                <div class="div-icons" style="margin-top: 1.5em; padding: 1px;">
+                                    <img src="~/Resources/Images/HO/login-phone.png" class="login-icon" style="float: left; margin-right: 12px; width: 1.8em;" />
+                                    <span class="login-icon-span" style="display: block;">+961 00 000 000</span>
+                                    <span class="login-icon-span2">Mon-Fri 9am-6pm</span>
+                                </div>
+                                <div class="div-icons">
+                                    <img src="~/Resources/Images/HO/login-email.png" class="login-icon" style="float: left; margin-right: 12px; width: 1.8em;" />
+                                    <span class="login-icon-span" style="display: block; color:#C9002D">example@email.com</span>
+                                    <span class="login-icon-span2">online support</span>
+                                </div>
+                                <div class="div-icons">
+                                    <img src="~/Resources/Images/HO/login-address.png" class="login-icon" style="float: left; margin-right: 12px; width: 1.8em;" />
+                                    <span class="login-icon-span" style="display: block;">Lebanon</span>
+                                    <span class="login-icon-span2">Beirut, Main Street</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

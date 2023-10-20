@@ -1,0 +1,112 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card-header" style="border-bottom: none;">
+                <a ui-sref="pos.eod" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                    < Back
+                </a>
+                <h3 class="receiptInfo-title">End of Day Form</h3>
+                <h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>
+            </div>
+        </div>
+
+
+        <div class="card modal-body" style="margin: 1.7em;">
+            <div class="row" style="padding: 1em;">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info">
+                    <thead>
+                        <tr>
+                            <th>EOD ID</th>
+                            <th>CREATED BY</th>
+                            <th>CREATION DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>183</td>
+                            <td>John Doe</td>
+                            <td>11-7-2014</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="row" style="padding: 0 1em;">
+                    <div class="col-4" style="border-right: 1px solid #e1e1e1; padding: 0 2em 0em 1em;">
+                        <div class="form-group">
+                            <label>Fuel Type</label>
+                            <input class="form-control" disabled placeholder="Fuel 98 - Subtank 1" />
+                        </div>
+                        <div class="form-group">
+                            <label>Fuel Type</label>
+                            <input class="form-control" disabled placeholder="Fuel 98 - Subtank 1" />
+                        </div>
+                        <div class="form-group">
+                            <label>Fuel Type</label>
+                            <input class="form-control" disabled placeholder="Fuel 98 - Subtank 1" />
+                        </div>
+                        <div class="form-group">
+                            <label>Fuel Type</label>
+                            <input class="form-control" disabled placeholder="Fuel 98 - Subtank 1" />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group shift-box" ng-click="shiftFuelClicked()" >
+                            <label style="display: block;">Shift 1</label>
+                            <span style="display: block;margin-top: 3em;">EMPLOYEE NUMBER</span>
+                            <span style="display: block;">3</span>
+                        </div>
+                        <div class="form-group shift-box" ng-click="shiftFuelClicked()">
+                            <label style="display: block;">Shift 2</label>
+                            <span style="display: block;margin-top: 3em;">EMPLOYEE NUMBER</span>
+                            <span style="display: block;">3</span>
+                        </div>
+                        <div class="form-group shift-box">
+                            <label style="display: block;">Shift 3</label>
+                            <span style="display: block;margin-top: 3em;">EMPLOYEE NUMBER</span>
+                            <span style="display: block;">3</span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group shift-box2" ng-click="goToShiftCash()">
+                            <label style="display: block;">Cash</label>
+                            <span class="cash-title" style="margin-top: 10em; ">BANK</span>
+                            <span class="cash-value">342233</span>
+                            <span class="cash-value">342233</span>
+                            <br />
+                            <span class="cash-title">CARDS</span>
+                            <span class="cash-value">342233</span>
+                            <br />
+                            <span class="cash-title">NOUR CARDS</span>
+                            <span class="cash-value">342233</span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group shift-box2" ng-click="goToShiftMoneyType()">
+                            <label style="display: block;">Money Type</label>
+                            <span class="cash-title" style="margin-top: 16em; ">USD</span>
+                            <span class="cash-value">342233</span>
+                            <br />
+                            <span class="cash-title">LBP</span>
+                            <span class="cash-value">342233</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" >End of The Day</button>
+            </div>
+        </div>
+        
+    </div>
+</section>

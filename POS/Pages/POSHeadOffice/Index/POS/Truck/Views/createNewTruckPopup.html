@@ -1,0 +1,104 @@
+﻿<div class="modal-header" style="background: #F3F3F3;">
+    <div class="popUpHeader">
+        <h5 class="modal-title">Truck ID - Truck Name</h5>
+        <h6 class="modal-title">Truck ID - Truck Name</h6>
+    </div>
+    <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row generator-new-customer-row" style="padding: 1em;">
+        <div class="col-3">
+            <div class="">
+                <label>Engine Number</label>
+                <input type="text" class="form-control" ng-model="engineNumber" />
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="">
+                <label>Chese Number</label>
+                <input type="text" class="form-control" ng-model="cheseNumber" />
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="">
+                <label>Plate Number</label>
+                <input type="text" class="form-control" ng-model="plateNumber" />
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="">
+                <label>Transport Party Number</label>
+                <input type="text" class="form-control" ng-model="transportNumber" />
+            </div>
+        </div>
+    </div>
+    <div class="row generator-new-customer-row" style="padding: 1em;">
+        <div class="col-3">
+            <div class="">
+                <label>Height</label>
+                <input class="form-control" ng-model="height" />
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="">
+                <label>Width</label>
+                <input class="form-control" ng-model="width" />
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="">
+                <label>Depth</label>
+                <input class="form-control" ng-model="depth" />
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="">
+                <label>Supplier</label>
+                <select ng-disabled="disableSupplier" class="form-control" ng-model="selectedSupplier" ng-options="item.companyName for item in suppliersList">
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row generator-new-customer-row" style="padding: 1em;">
+        <div>
+            <span style=" width: 100%; background-color: #e4e0e0; display: block; height: 1px; margin-bottom: 2em; margin-left: 10px;"></span>
+            <div class="row" style="padding: 0 1em;" ng-repeat="subtank in subtanks">
+                <div>
+                    <img style="cursor:pointer" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeChoice(choice.id)" />
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label>Sub-tank</label>
+                        <input class="form-control" ng-model="subtank.subTankNum" />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label>Sub-tank Size</label>
+                        <input class="form-control" ng-model="subtank.subTankSize" />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label>Top size</label>
+                        <input class="form-control" ng-model="subtank.subTankUpSize" />
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label>Down size</label>
+                        <input class="form-control" ng-model="subtank.subTankDownSize" />
+                    </div>
+                </div>
+            </div>
+            <img class="form-group add-btn" style="cursor:pointer" ng-click="addNewChoice()" src="/Resources/Images/add-btn.png" />
+            <!--{{ subtanks }}-->
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default generator-cancel-btn" data-dismiss="modal">CANCEL</button>
+    <button type="button" class="btn btn-primary generator-create-btn" ng-click="createTruck()">CREATE</button>
+</div>

@@ -1,0 +1,93 @@
+﻿<div class="modal-header" style="background: #F3F3F3;">
+    <div class="popUpHeader">
+        <h5 class="modal-title">{{transactionItem.id}}</h5>
+        <!--<h6 class="modal-title">Invoice ID - Type - Way of Payment - Employee - Amount</h6>-->
+    </div>
+    <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row" style="padding: 1em;">
+        <div class="col-2" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">Oil Transaction Id</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.id}}</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">Type</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.category}}</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">Amount</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.amount}}</span>
+        </div>
+        <div class="col-2" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">Way of payment</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{wop}}</span>
+        </div>
+        <div class="col-3" style="padding-left: 15px;">
+            <span class="PopUpFuelHeaderTitleSpan">Creation date</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.creationDate}}</span>
+        </div>
+        <div class="col-2" style="padding-left: 5px;">
+            <span class="PopUpFuelHeaderTitleSpan">Created by</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.creator}}</span>
+        </div>
+    </div>
+    <div class="row" style="border-top: 1px solid #dee2e6;padding: 1em;">
+        <table class="table table-hover table-bordered text-nowrap tableTransPopupDry">
+            <thead>
+                <tr>
+                    <th>ITEM ID</th>
+                    <th>ITEN NAME</th>
+                    <th>QUANTITY</th>
+                    <th>DISCOUNT</th>
+                    <th>PRICE</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in transactionItem.saleDetails">
+                    <td>{{item.id}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.discountPercent}}</td>
+                    <td>{{item.priceMc}} L.L/{{item.priceSc}}$ </td>
+                    <td>{{item.netTotalMc}} L.L/{{item.netTotalSc}}$ </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="border-top: 1px solid #dee2e6;padding: 1em 0em 1em 13em;">
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpanBold">CREDIT</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{dollarCredit}}</span>
+        </div>
+        <div class="col-2" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{LebaneseCredit}}</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpanBold">CASH</span>
+        </div>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.cachAmountSc}}</span>
+        </div>
+        <div class="col-2" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.cachAmountMc}}</span>
+        </div>
+        <div class="col-2">
+            <span class="PopUpFuelHeaderTitleSpan">TOTAL</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.netTotalMc}} L.L/{{transactionItem.netTotalSc}} $</span>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn exportBtn-trans" data-dismiss="modal">Export</button>
+    <button type="button" class="btn printBtn-trans">Print</button>
+</div>

@@ -1,0 +1,138 @@
+﻿<!--  Sidebar  -->
+<aside class="main-sidebar main-sidebar-custom-pos  pos-sidebar-color elevation-4">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="info">
+                <span class="d-block pos-activ-title">POS ACTIVITIES</span>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column pos-dash" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a ui-sref="pos.receipts" class="nav-link" ng-class="classItemStyle1" ng-click="addActiveItem1()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/receipts-dash-icon.png" />
+                        <p>
+                            Receipts
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.transaction" class="nav-link " ng-class="classItemStyle2" ng-click="addActiveItem2()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/trans-dash-icon.png" />
+                        <p>
+                            Transactions
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.refund" class="nav-link " ng-class="classItemStyle3" ng-click="addActiveItem3()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/refunds-dash-icon.png" />
+                        <p>
+                            Refunds
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.transfer" class="nav-link " ng-class="classItemStyle4" ng-click="addActiveItem4()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/transfer-dash-icon.png" />
+                        <p>
+                            Transfer
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.transactionAndSales" class="nav-link" ng-class="classItemStyle5" ng-click="addActiveItem5()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/live-dash-icon.png" />
+                        <p>
+                            Live Sales
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.reception" class="nav-link" ng-class="classItemStyle6" ng-click="addActiveItem6()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/reception-dash-icon.png" />
+                        <p>
+                            Reception
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.reception" class="nav-link" ng-class="classItemStyle7" ng-click="addActiveItem7()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/do-dash-icon.png" />
+                        <p>
+                            DO
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.reception" class="nav-link" ng-class="classItemStyle8" ng-click="addActiveItem8()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/fms-dash-icon.png" />
+                        <p>
+                            FMS
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.reception" class="nav-link" ng-class="classItemStyle9" ng-click="addActiveItem9()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/gms-dash-icon.png" />
+                        <p>
+                            GMS
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.reception" class="nav-link" ng-class="classItemStyle10" ng-click="addActiveItem10()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/pps-dash-icon.png" />
+                        <p>
+                            PPS
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.generator" class="nav-link" ng-class="classItemStyle11" ng-click="addActiveItem11()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/generator-dash-icon.png" />
+                        <p>
+                            Generator
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.eod" class="nav-link" ng-class="classItemStyle12" ng-click="addActiveItem12()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/generator-dash-icon.png" />
+                        <p>
+                            End of The Day
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a ui-sref="pos.money" class="nav-link" ng-class="classItemStyle13" ng-click="addActiveItem13()">
+                        <img class="nav-icon fas fa-th" src="/Resources/Images/common/generator-dash-icon.png" />
+                        <p>
+                            Money Delivery
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+
+<div class="content-wrapper pos-wrapper">
+    <div ui-view ></div>
+</div>
+
+<!-- Control Sidebar -->
+<!--<aside class="control-sidebar control-sidebar-dark">-->
+<!-- Control sidebar content goes here -->
+<!--<div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+    </div>
+</aside>-->
+<!-- /.control-sidebar -->

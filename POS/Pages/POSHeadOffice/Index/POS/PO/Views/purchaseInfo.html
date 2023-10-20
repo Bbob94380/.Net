@@ -1,0 +1,165 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card-header" style="border-bottom: none;">
+                <a ui-sref="" class="nav-link back-btn">
+                    < Back
+                </a>
+                <h3 class="receiptInfo-title">Purchase</h3>
+                <span>{{po.id}} -  {{po.supplierName}} - {{po.numOfTrucks}}</span>
+            </div>
+        </div>
+
+
+        <div class="card modal-body" style="margin: 1.7em;">
+            <div class="row" style="padding: 1em;">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info">
+                    <thead>
+                        <tr>
+                            <th>PO ID</th>
+                            <th>CREATED BY</th>
+                            <th>Creation Date</th>
+                            <th>SUPPLIER Name</th>
+                            <th>SUPPLIER ADDRESS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{po.id}}</td>
+                            <td>{{employeeName}}</td>
+                            <td>{{po.creationDate}}</td>
+                            <td>{{po.supplierName}}</td>
+                            <td>50000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row" style="padding: 1em;">
+                <label>Purchase Fuel Content</label>
+                <table class="table  text-nowrap transfer-popup-table">
+                    <thead>
+                        <tr>
+                            <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                            <th class="th-text">Type</th>
+                            <th class="th-text">AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle2"></span></td>
+                            <td>Fuel 98</td>
+                            <td>500L</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                            <th class="th-text">Type</th>
+                            <th class="th-text">AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle2"></span></td>
+                            <td>500L</td>
+                            <td>500L</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                            <th class="th-text">Type</th>
+                            <th class="th-text">AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle2"></span></td>
+                            <td>Fuel 98</td>
+                            <td>500L</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                            <th class="th-text">Type</th>
+                            <th class="th-text">AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>Fuel 98</td>
+                            <td>500L</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <label>Trucks</label>
+
+            <div class="row" ng-repeat="truck in po.poDetail">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header" style="border-bottom: none; background: #e0e2e4;" data-card-widget="collapse">
+                            <h3 class="card-title" style="color: #000; padding: 4px; font-family: 'rubikMedium';">{{truck.id}}  - {{truck.driverName}} - {{truck.plateNumber}} - {{truck.transportPartyNumber}}</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+
+                            <span ng-click="createNewDO($index)" class="create-new-do-btn" ng-hide="truck.hasDO" >Create a New DO</span>
+                            <span ng-click="viewDOPage($index)" class="view-do-btn" ng-hide="!truck.hasDO" >View DO</span>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="padding: 1em;">
+                                <table class="table  text-nowrap transfer-popup-table" ng-repeat="subtank in truck.poFuelAmountsDetail">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-text">Type</th>
+                                            <th class="th-text">SUBTANK</th>
+                                            <th class="th-text">SUB-TANK SIZE</th>
+                                            <th class="th-text">TOP SIZE</th>
+                                            <th class="th-text">DOWN SIZE</th>
+                                            <th class="th-text">AMOUNT SENT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{subtank.wetProductName}}</td>
+                                            <td>{{subtank.subTankNum}}</td>
+                                            <td>{{subtank.subTankSize}}</td>
+                                            <td>{{subtank.subTankUpSize}}</td>
+                                            <td>{{subtank.subTankDownSize}}</td>
+                                            <td>{{subtank.productVolume}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">CLOSE</button>
+            </div>
+        </div>
+        
+    </div>
+</section>

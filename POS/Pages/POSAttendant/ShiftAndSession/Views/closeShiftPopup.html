@@ -1,0 +1,397 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-5" style="border-right: 2px solid #dee2e6;">
+
+            <form>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Station Manager</label>
+                        <input ng-model="stationManagerName" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Employee Name</label>
+                        <input ng-model="employeeName" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Creation Date</label>
+                        <input ng-model="creationDate" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Creation Time</label>
+                        <input ng-model="creationTime" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                    <div class="form-group">
+                        <label class="field-info-label-pay">Dollar Rate</label>
+                        <input ng-model="dollarRate" disabled class="form-control form-control-lg form-control-lg-pay">
+                    </div>
+                </div>
+            </form>
+
+            <div class="calculator card">
+                <!--<input type="text" class="calculator-screen calculator-screen2 z-depth-1" value="" disabled />-->
+
+                <div class="calculator-keys calculator-keys2 calculator-keys-pay col-md-12">
+
+                    <button type="button" class="all-clear function btn btn-danger btn-sm c-btn" ng-click="ClearFocusedField()" value="all-clear">C</button>
+                    <button type="button" class="decimal function btn-light waves-effect cal-grey-btn" ng-click="addDecimal('.')" value=".">.</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>
+
+                    <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('1')">1</button>
+                    <button type="button" value="2" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('2')">2</button>
+                    <button type="button" value="3" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('3')">3</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('-')" value="-" disabled>-</button>
+
+                    <button type="button" value="4" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('4')">4</button>
+                    <button type="button" value="5" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('5')">5</button>
+                    <button type="button" value="6" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('6')">6</button>
+                    <button type="button" class="operator btn btn-info cal-grey-b-btn " ng-click="addOperator('*')" value="*" disabled>&times;</button>
+
+
+                    <button type="button" value="7" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('7')">7</button>
+                    <button type="button" value="8" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('8')">8</button>
+                    <button type="button" value="9" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('9')">9</button>
+                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-b-btn" ng-click="addNumber('0')">0</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="card-body">
+
+
+                <div class="row" style="border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList"> 
+                    <div class="col-sm-4">
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="label-dropdown">Nozzle Number</label>
+                            <input type="text" class="form-control payInputField" disabled  value="{{item.number}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="label-dropdown">Fuel Type</label>
+                            <input type="text" class="form-control payInputField" disabled  value="{{item.wetProductName}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="label-dropdown">Old Nuzzle-Counter</label>
+                            <input type="text" class="form-control payInputField" ng-disabled="isCounterDisabled" value="{{item.litersCounterEnd}}" ng-model="displayCounterResult[$index]" ng-focus="CounterFocus($index)" ng-blur="CounterBlur(displayCounterResult[$index])" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="label-dropdown">New Nuzzle-Counter</label>
+                            <input type="text" class="form-control payInputField"  ng-model="displayNewCounterResult[$index]" ng-focus="NewCounterFocus($index)" ng-blur="NewCounterBlur(displayNewCounterResult[$index])" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:1em;margin-left:1em;">
+                    <div class="col-sm-6">
+                        <input class="form-check-input" type="checkbox" ng-model="isChecked" ng-change="validateByManager()">
+                        <label class="form-check-label">PROBLEM IN COUNTERS</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="close-shift-edit-btn" ng-click="updateNozzleCounters()" ng-hide="isSaveBtnHide">SAVE</span>
+                        <span class="get-sales-summary-btn" ng-click="getSalesSummary()" >Get Sales Summary</span>
+                    </div>
+                </div>
+
+                <span class="closeShiftLine"></span>
+
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <label>Wet Product</label>
+                    <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in salesSummary.wetProductDtos">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                                <th class="th-text">Type</th>
+                                <th class="th-text">LITRES</th>
+                                <th class="th-text">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td><span class="transfer-half-rectangle2"></span></td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.liters}}</td>
+                                <td>{{item.amountLbp}} L.L/ {{item.amountUsd}} $</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <label>Car Wash</label>
+                    <table class="table  text-nowrap transfer-popup-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                                <th class="th-text">NUMBER OF CARS</th>
+                                <th class="th-text">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>{{salesSummary.numberOfVehicles}}</td>
+                                <td>{{salesSummary.carWashTotalLbp}} L.L/ {{salesSummary.carWashTotalUsd}} $</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <label>Dry Product</label>
+                    <table class="table  text-nowrap transfer-popup-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                                <th class="th-text">NUMBER OF ITEMS</th>
+                                <th class="th-text">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>{{salesSummary.numberOfItems}}</td>
+                                <td>{{salesSummary.dryProductTotalLbp}} L.L/ {{salesSummary.dryProductTotalUsd}} $</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row  paytotalLabelLLAndDolar" ng-hide="hideSummary">
+                    <div>
+                        <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
+                        <span class="col-md-3 payDryTotalValue">{{salesSummary.totalLbp}}</span>
+                    </div>
+                    <div style="float:right;">
+                        <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
+                        <span class="col-md-3 payDryTotalValue">{{salesSummary.totalUsd}}</span>
+                    </div>
+                    <!--<div style="float:right;margin-top:1em;">
+                        <span class="col-md-3 payDryTotal2Label">Total</span>
+                        <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
+                    </div>-->
+                </div>
+
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <table class="table text-nowrap close-session-table col-md-5">
+                        <thead>
+                            <tr>
+                                <th class="th-text">USD CLASS</th>
+                                <th class="th-text">QUANTITY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>100</td>
+                                <td>
+                                    <input type="number" class="form-control" ng-model="USD100" ng-change="MoneyAdded(USD100, 100, 'USD')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>50</td>
+                                <td>
+                                    <input type="number" class="form-control " ng-model="USD50" ng-change="MoneyAdded(USD50, 50, 'USD')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>20</td>
+                                <td>
+                                    <input type="number" class="form-control " ng-model="USD20" ng-change="MoneyAdded(USD20, 20, 'USD')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>
+                                    <input type="number" class="form-control " ng-model="USD10" ng-change="MoneyAdded(USD10, 10, 'USD')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <input type="number" class="form-control " ng-model="USD5" ng-change="MoneyAdded(USD5, 5, 'USD')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <input type="number" class="form-control " ng-model="USD1" ng-change="MoneyAdded(USD1, 1, 'USD')" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col-md-1"></div>
+
+                    <table class="table text-nowrap close-session-table  col-md-5">
+                        <thead>
+                            <tr>
+                                <th class="th-text">LBP CLASS</th>
+                                <th class="th-text">QUANTITY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>100000</td>
+                                <td>
+                                    <input type="number" class="form-control" ng-model="LBP100" ng-change="MoneyAdded(LBP100, 100000, 'LBP')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>50000</td>
+                                <td>
+                                    <input type="number" class="form-control" ng-model="LBP50" ng-change="MoneyAdded(LBP50, 50000, 'LBP')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>20000</td>
+                                <td>
+                                    <input type="number" class="form-control" ng-model="LBP20" ng-change="MoneyAdded(LBP20, 20000, 'LBP')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10000</td>
+                                <td>
+                                    <input type="number" class="form-control" ng-model="LBP10" ng-change="MoneyAdded(LBP10, 10000, 'LBP')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5000</td>
+                                <td>
+                                    <input type="number" class="form-control " ng-model="LBP5" ng-change="MoneyAdded(LBP5, 5000, 'LBP')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1000</td>
+                                <td>
+                                    <input type="number" class="form-control " ng-model="LBP1" ng-change="MoneyAdded(LBP1, 1000, 'LBP')" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row  paytotalLabelLLAndDolar" ng-hide="hideSummary">
+                    <div>
+                        <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
+                        <span class="col-md-3 payDryTotalValue">{{TotalLBPAdded}}</span>
+                    </div>
+                    <div style="float:right;">
+                        <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
+                        <span class="col-md-3 payDryTotalValue">{{TotalUSDAdded}}</span>
+                    </div>
+                    <!--<div style="float:right;margin-top:1em;">
+                        <span class="col-md-3 payDryTotal2Label">Total</span>
+                        <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
+                    </div>-->
+                </div>
+
+                <span class="closeShiftLine" ng-hide="hideSummary"></span>
+
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <label>Post Paid</label>
+                    <table class="table  text-nowrap transfer-popup-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                                <th class="th-text">COUNT</th>
+                                <th class="th-text">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>{{salesSummary.numberOfPostPaid}}</td>
+                                <td>{{salesSummary.postPaidTotalLbp}} L.L/ {{salesSummary.postPaidTotalUsd}} $ </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <label>Refunds</label>
+                    <table class="table  text-nowrap transfer-popup-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                                <th class="th-text">COUNT</th>
+                                <th class="th-text">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>{{salesSummary.numberOfRefunds}}</td>
+                                <td>{{salesSummary.refundTotalLbp}} L.L/ {{salesSummary.refundTotalUsd}} $ </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <span class="closeShiftLine" ng-hide="hideSummary"></span>
+
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <label>Calibration</label>
+                    <table class="table  text-nowrap transfer-popup-table">
+                        <thead>
+                            <tr>
+                                <th class="th-text2">STATION MANAGER</th>
+                                <th class="th-text2">LITRES</th>
+                                <th class="th-text2">FUEL TYPE</th>
+                                <th class="th-text2">NUZZLE NUMBER</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{stationManagerName}}</td>
+                                <td>{{salesSummary.calibrationTransaction.volume}}</td>
+                                <td>{{salesSummary.calibrationTransaction.fuelType}}</td>
+                                <td>{{salesSummary.calibrationTransaction.nozzleNumber}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--<table class="table  text-nowrap transfer-popup-table">
+                        <thead>
+                            <tr>
+                                <th class="th-text2">DISPENSER NUMBER</th>
+                                <th class="th-text2">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>-->
+                </div>
+
+
+            </div>
+
+            </div>
+    </div>
+</div>
+<div class="modal-footer wetTransPopupFooter payFooterPopup" style="border-top: 2px solid #E6E6E6; display: flex !important" ng-init="load()">
+    <!--<button type="button" class="btn btn-primary clearbtn">EDIT</button>-->
+    <button type="button" class="btn btn-primary nextbtn" ng-disabled="isOpenBtnHide" ng-click="closeEmployeeShift()">CLOSE SHIFT</button>
+
+</div>

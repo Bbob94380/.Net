@@ -1,0 +1,127 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                Back
+            </div>
+            <div class="col-6 float-sm-right">
+               
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content ff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card-header">
+                    <h3 class="card-title">
+                    </h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm">
+                            <button type="button" class="btn  btn-primary pos-trans-history-btn">History</button>
+                            <button ng-click="openCreateNewReceiptPopup()" type="button" class="btn  btn-primary pos-trans-history-btn">Create New Receipt</button>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <input ng-model="filterTable" id="filter" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover  table-condensed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" style="width: 20%"
+                                        data-ng-click="singleSort('date')">
+                                        ID
+                                        <span class="caret-blank"
+                                              data-ng-class="{'caret-down':sortDescend('date'), 'caret-up':sortAscend('date')}">
+                                        </span>
+                                    </th>
+                                    <th class="sortable" style="width: 18%"
+                                        data-ng-click="singleSort('category')">
+                                        Nu. of Transactions
+                                        <span class="caret-blank"
+                                              data-ng-class="{'caret-down':sortDescend('category'), 'caret-up':sortAscend('category')}">
+                                        </span>
+                                    </th>
+                                    <th class="sortable" style="width: 18%">
+                                        WOP
+                                    </th>
+                                    <th class="sortable" style="width: 18%">
+                                        Time & Date
+                                    </th>
+                                    <th class="sortable" style="width: 18%"
+                                        data-ng-click="singleSort('currency')">
+                                        Currency
+                                        <span class="caret-blank"
+                                              data-ng-class="{'caret-down':sortDescend('currency'), 'caret-up':sortAscend('currency')}">
+                                        </span>
+                                    </th>
+                                    <th class="sortable" style="width: 18%">
+                                        Total
+                                    </th>
+                            </thead>
+                            <tbody>
+                                
+                                    <tr data-ng-repeat="person in peopleArray | orderBy:[filterSort, sortType, secondSortType, thirdSortType]"
+                                        data-ng-show="(filterSort(person) == 1) && ($index >= firstIndex) && ($index < lastIndex)"
+                                         ng-click="goToEdit(person)">
+                                        
+                                            <td>
+                                               {{ person.id }}
+                                            </td>
+                                            <td>
+                                              {{ person.category }}
+                                            <td>
+                                                {{ person.amount }}
+                                            </td>
+                                            <td>
+                                                {{ person.wop }}
+                                            </td>
+                                            <td>
+                                                {{ person.currency }}
+                                            </td>
+                                            <td>
+                                                {{ person.total }}
+                                            </td>
+                                        
+                                    </tr>
+                            </tbody>
+                        </table>
+                        <div class="card-tools pagination pagination-sm float-right">
+                            <uib-pagination data-total-items="(peopleArray | filter:filterTable).length"
+                                            data-ng-model="currentPage"
+                                            data-ng-change="updatePageIndexes()"
+                                            data-max-size="maxPaginationSize"
+                                            data-items-per-page="itemsPerPage"
+                                            data-boundary-links="true"
+                                            data-previous-text="Previous"
+                                            data-next-text="Next"
+                                            data-first-text="First"
+                                            data-last-text="Last">
+                            </uib-pagination>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+

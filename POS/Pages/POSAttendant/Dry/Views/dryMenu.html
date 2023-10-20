@@ -1,0 +1,102 @@
+﻿<!-- Main content -->
+    <div class="content">
+        <div class="container">
+            <div class="row dry-row-lang">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item item-filter-dry ">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="" data-target="#cat0" role="tab" aria-controls="home" aria-selected="true">All</a>
+                    </li>
+                    <li class="nav-item item-filter-dry" ng-repeat="item in dryProducts">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="" data-target="#cat{{$index+1}}" role="tab" aria-controls="profile" aria-selected="false">{{item.cat_name}}</a>
+                    </li>
+                    <input type="button" value="Search" ng-click="searchProductByBarcode()" style=" border-radius: 6px; background: #32ACD1; color: #fff; border: none; padding: 0px 21px; height: 2.2em; margin-top: 7px;" />
+                </ul>
+                <div class="container tab-content" id="myTabContent" >
+                    <div class="container tab-pane fade show active" id="cat0" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="container your-class">
+                            <div class="card-body" ng-repeat="product in allDryProducts.products1" ng-click="dryItemClicked(product, 1)">
+                                <img class="dry-item-img" src="/Resources/Images/attendant/dry/dry1.png" />
+                                <span class="card-title dry-item-title">{{product.barcode}}</span>
+                                <span class="card-title dry-item-title2">{{product.name}}</span>
+                                <span class="card-title dry-item-title2">{{product.sale_price}}$</span>
+                            </div>
+                        </div>
+                        <div class="container your-class">
+                            <div class="card-body" ng-repeat="product in allDryProducts.products2" ng-click="dryItemClicked(product, 1)">
+                                <img class="dry-item-img" src="/Resources/Images/attendant/dry/dry3.png" />
+                                <span class="card-title dry-item-title">{{product.barcode}}</span>
+                                <span class="card-title dry-item-title2">{{product.name}}</span>
+                                <span class="card-title dry-item-title2">{{product.sale_price}}$</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-repeat="item in dryProducts" class="tab-pane fade" id="cat{{$index+1}}" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="container your-class">
+                            <div ng-repeat="product in item.products1" class="card-body" ng-click="dryItemClicked(product, 1)">
+                                <img class="dry-item-img" src="/Resources/Images/attendant/dry/dry3.png" />
+                                <span class="card-title dry-item-title">{{product.barcode}}</span>
+                                <span class="card-title dry-item-title2">{{product.name}}</span>
+                                <span class="card-title dry-item-title2">{{product.sale_price}}$</span>
+                            </div>
+                        </div>
+                        <div class="container your-class">
+                            <div ng-repeat="product in item.products2" class="card-body" ng-click="dryItemClicked(product, 1)">
+                                <img class="dry-item-img" src="/Resources/Images/attendant/dry/dry3.png" />
+                                <span class="card-title dry-item-title">{{product.barcode}}</span>
+                                <span class="card-title dry-item-title2">{{product.name}}</span>
+                                <span class="card-title dry-item-title2">{{product.sale_price}}$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <table class="dry-table table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>{{'itemid' | translate}}</th>
+                            <th>{{'itemname' | translate}}</th>
+                            <th>{{'quantity' | translate}}</th>
+                            <th>{{'discount' | translate}}</th>
+                            <th>{{'price' | translate}}</th>
+                            <th>{{'total' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in dryItemsList">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td><input style=" border: 1px solid #a7a7a7; padding-left: 6px;" ng-focus="DryQtyFieldFocus($index)" ng-blur="DryQtyFieldBlur(item.qtyItem)" ng-change="calculateTotalDry(item.qtyItem,item.discountItem,item.price,$index, item.maxQtyItem)"  type="text" ng-model="item.qtyItem"/></td>
+                            <td><input style=" border: 1px solid #a7a7a7; padding-left: 6px;" ng-focus="DryDiscountFieldFocus($index)" ng-blur="DryDiscountFieldBlur(item.discountItem)"  ng-change="calculateTotalDry(item.qtyItem,item.discountItem,item.price, $index)" type="text" ng-model="item.discountItem" /></td>
+                            <td>${{item.price}}</td>
+                            <td>${{item.totalIt}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row" style="" ng-class="totalLabelDry">
+                <span class="dryTotalLabel">Total</span>
+                <span class="drylineTotal"></span>
+            </div>
+            <div class="row" style="" ng-class="totalLabelDry">
+                <div>
+                    <span class="dryTotal2Label">Total in Lebanese LIra</span>
+                    <span class="dryTotalValue">{{totalLL}}</span>
+                </div>
+                <div>
+                    <span class="dryTotal2Label">Total in Dollar</span>
+                    <span class="dryTotalValue">{{totalDollar}}</span>
+                </div>
+            </div>
+            <div class="row" style="display:block;clear: both;" ng-class="ButtonsDry" >
+                <div >
+                    <button type="button" class="btn btn-default dryClearBtn" ng-click="clearDryBtn()">Clear</button>
+                    <buton type="button" class="btn btn-default dryAddBtn" ng-click="addBtn()">Add</buton>
+                </div>
+            </div>
+
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->

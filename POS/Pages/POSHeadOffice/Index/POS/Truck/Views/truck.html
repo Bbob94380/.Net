@@ -1,0 +1,66 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+        <div class="row col-sm-12">
+            <div class="col-sm-5">
+                <h1 class="pos-section-title">Trucks</h1>
+            </div>
+            <div class="col-sm-7">
+                <div class="input-group input-group-sm input-group-receipts">
+                    <span ng-click="openCreateNewTruckPopup()" style="cursor: pointer" class="receipts-create-btn">Create a Truck</span>
+                    <div class="form-group has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input id="CustomSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content ff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-table-trans">
+                    <div class="card-body table-responsive p-0">
+                        <table id="dataTableId" table-jquery class="table table-hover  table-condensed text-nowrap table-trans">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%">
+                                        ID
+                                    </th>
+                                    <th style="width: 18%">
+                                        TRUCK ENGINE NUMBER
+                                    </th>
+                                    <th style="width: 18%">
+                                        PLATE NUMBER
+                                    </th>
+                                    <th style="width: 18%">
+                                        CHESE NUMBER
+                                    </th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in trucksList" ng-click="goToTruckInfo(item)">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.engineNumber}}</td>
+                                    <td>{{item.plateNumber}}</td>
+                                    <td>{{item.cheseNumber}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

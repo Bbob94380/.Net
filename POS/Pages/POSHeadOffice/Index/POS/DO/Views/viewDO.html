@@ -1,0 +1,147 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card-header" style="border-bottom: none;">
+                <a ui-sref="pos.receipts" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                    < Back
+                </a>
+                <h3 class="receiptInfo-title">Reception</h3>
+                <span>R1234 -  Supplier Name - Driver Name - TN M123456</span>
+            </div>
+        </div>
+
+
+        <div class="card modal-body" style="margin: 1.7em;">
+            <div class="row" style="padding: 1em;">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info">
+                    <thead>
+                        <tr>
+                            <th>DO ID</th>
+                            <th>Sended By</th>
+                            <th>Creation Date</th>
+                            <th>Driver Name</th>
+                            <th>Plate number </th>
+                            <th>Transport party</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{truck.doId}}</td>
+                            <td>{{do.creator}}</td>
+                            <td>{{do.creationDate}}</td>
+                            <td>{{truck.driverName}}</td>
+                            <td>{{truck.plateNumber}}</td>
+                            <td>{{truck.transportPartyNumber}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row" style="padding: 1em;">
+                <label>Attachments</label>
+                <table class="table  text-nowrap transfer-popup-table">
+                    <thead>
+                        <tr>
+                            <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                            <th class="th-text">Attachment Type</th>
+                            <th class="th-text">Attachment Type</th>
+                            <th class="th-text">Attachment Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row" style="padding: 1em;">
+                <label>Subtank</label>
+                <table class="table  text-nowrap transfer-popup-table" style="margin-bottom: 0;" ng-repeat="subtank in truck.poFuelAmountsDetail">
+                    <thead>
+                        <tr>
+                            <th class="th-rect2"><span class="transfer-half-rectangle-do"></span></th>
+                            <th class="th-text">Type</th>
+                            <th class="th-text">SUBTANK</th>
+                            <th class="th-text">AMOUNT SENT</th>
+                            <th class="th-text">SUB-TANK SIZE</th>
+                            <th class="th-text">TOP SIZE</th>
+                            <th class="th-text">DOWN SIZE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle2"></span></td>
+                            <td>{{subtank.wetProductName}}</td>
+                            <td>{{subtank.subTankNum}}</td>
+                            <td>{{subtank.productVolume}}</td>
+                            <td>{{subtank.subTankSize}}</td>
+                            <td>{{subtank.subTankUpSize}}</td>
+                            <td>{{subtank.subTankDownSize}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="row" style="padding:3em 1em;" ng-repeat="station in stations">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header" style="border-bottom: none; background: #e0e2e4;" data-card-widget="collapse">
+                            <h3 class="card-title">{{station.stationName}} - {{station.stationManagerName}} - {{station.location}}  </h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="padding: 1em;">
+                                <table class="table  text-nowrap transfer-popup-table" ng-repeat="subtank in station.subTanks" style="margin-bottom: 0;">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
+                                            <th class="th-text">Type</th>
+                                            <th class="th-text">SUBTANK</th>
+                                            <th class="th-text">AMOUNT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="transfer-half-rectangle2"></span></td>
+                                            <td>{{subtank.wetProductName}}</td>
+                                            <td>{{subtank.subTankId}}</td>
+                                            <td>{{subtank.productVolume}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">EDIT</button>
+            </div>
+        </div>
+        
+    </div>
+</section>

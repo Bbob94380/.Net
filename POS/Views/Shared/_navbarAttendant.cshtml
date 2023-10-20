@@ -1,0 +1,49 @@
+﻿ <!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-white navbar-light navbar-root navbar-attendant" >
+    
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Navbar Search -->
+        @*<li class="nav-item">
+            <span class="nav-link" ng-click="SignOut()">Sign out</span>
+        </li>*@
+
+
+
+        <!-- Language Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="flag-icon flag-icon-us"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right p-0">
+                <a ng-click="goToEnglishLayout('en')" class="dropdown-item active">
+                    <i class="flag-icon flag-icon-us mr-2"></i> English
+                </a>
+                <a ng-click="goToArabicLayout('ar')" class="dropdown-item">
+                    <i class="flag-icon flag-icon-de mr-2"></i> Arabic
+                </a>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <span class="nav-link dollarRate">1$= {{dollarRate}} L.L</span>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <span style=" background-color: #04AA6D; color: white; padding: 10px 10px; font-size: 24px; border: none; border-radius: 46px;">ME</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right p-0">
+                <a ng-click="SignOut()" class="dropdown-item active">
+                    Log out
+                </a>
+                <a ng-click="lockScreen()" class="dropdown-item">
+                    Lock Screen
+                </a>
+            </div>
+        </li>
+
+
+    </ul>
+</nav>
+<!-- /.navbar -->

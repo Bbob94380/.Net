@@ -1,0 +1,60 @@
+﻿
+
+<section class="h-100 gradient-form" id="custom-modal-2">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-12">
+                <div class="rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-12">
+                            <table class="edit-table table  text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>TRAN.ID</th>
+                                        <th>AMOUNT</th>
+                                        <th>TOTAL</th>
+                                        <th style="border-right: none !important;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="trans in transactionsList">
+                                        <td>{{trans.id}}</td>
+                                        <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.qty + ' item(s)' }}</td>
+                                        <td>{{trans.priceLL}} L.L ({{trans.priceDollar}}$)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="edit-table-total table table-hover text-nowrap" style=" border-bottom: none !important;">
+                                <thead>
+
+                                </thead>
+                                <thead>
+                                    <tr>
+                                        <td style="visibility:hidden">Total</td>
+                                        <td>Total</td>
+                                        <td style="text-align: left !important;">
+                                            <span>{{transTotalLebanese}}</span>
+                                            <br />
+                                            <span>{{transTotalDollar}}</span>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                            <div style="text-align: center;">
+                                <span style="color: red; margin-top: 1em; display: block;">Scan Coupon QR Code or Enter Code</span>
+                                <input type="text" class="form-control payInputField" style="width: 87%; margin: 3em auto;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer wetTransPopupFooter payFooterPopup" ng-init="load()">
+        <button type="button" class="btn btn-primary nextbtn" ng-click="payDone()">Done</button>
+        <button type="button" class="btn btn-primary payCreateReceipt" ng-click="">ADD MORE</button>
+
+    </div>
+</section>

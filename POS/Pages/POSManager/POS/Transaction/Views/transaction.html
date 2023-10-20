@@ -1,0 +1,78 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row col-sm-12">
+            <div class="col-sm-9">
+                <h1 class="pos-section-title">Transactions</h1>
+            </div>
+            <div class="col-sm-3">
+                <div class="input-group input-group-sm">
+                    <div class="form-group has-search" style="width: 100%;">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input  id="CustomSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content ff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-table-trans">
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                            <table id="dataTableId" table-jquery class="table table-condensed text-nowrap table-trans">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            CATEGORY
+                                        </th>
+                                        <th >
+                                            AMOUNT
+                                        </th>
+                                        <th>
+                                            WOP
+                                        </th>
+                                        <th>
+                                            Time & Date
+                                        </th>
+                                        <th>
+                                            CURRENCY
+                                        </th>
+                                        <th>
+                                            TOTAL
+                                        </th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in saleTransList" ng-click="openTransactionInfoPopup(item)">
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.category}}</td>
+                                        <td>{{item.amount}}</td>
+                                        <td>{{item.wop}}</td>
+                                        <td>{{item.creationDate}}</td>
+                                        <td>{{item.currency}}</td>
+                                        <td>{{item.netTotalMc}} L.L / {{item.netTotalSc}} $ </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+
