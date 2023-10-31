@@ -1037,6 +1037,7 @@
     <Content Include="Resources\Scripts\Plugins\Js\jquery.min.js" />
     <Content Include="Resources\Styles\Custom\customStyleHOAr.css" />
     <Content Include="Resources\Styles\Custom\customAttendantStyleAr.css" />
+    <Content Include="Resources\Styles\Custom\customStyleAttendantLoginEn.css" />
     <Content Include="Resources\Styles\Custom\customStyleSMAr.css" />
     <Content Include="Resources\Styles\Custom\customAttendantStyleEn.css" />
     <Content Include="Resources\Styles\Custom\customStyleHOMainScreenEn.css" />

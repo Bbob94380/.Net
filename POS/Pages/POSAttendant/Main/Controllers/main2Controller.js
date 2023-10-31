@@ -5,7 +5,9 @@
     var totalDol = 0;
     $rootScope.transactionsList = [];
     $rootScope.totalLabelDryAndWet = "hideTotalLabelDryAndWet";
-
+    $scope.showMenuWet = false;
+    $scope.showMenuDry = false;
+    $scope.showMenuCar = false;
 
     $rootScope.OpenEmployeeLoginPopup = function () {
 
@@ -63,22 +65,35 @@
         $translate.use('ar');
     }
 
-    var userActionHandle;
-    function userDidSomething() {
-        clearTimeout(userActionHandle);
-        userActionHandle = setTimeout(function () {
-            //alert("5 seconds of inactivity");
-            localStorage.setItem("isEmployeeLoggedIn", "false");
-            $rootScope.OpenEmployeeLoginPopup();
-        }, 40000);
-    }
-    window.addEventListener("mousemove", userDidSomething, false);
-    window.addEventListener("keydown", userDidSomething, false);
-    window.addEventListener("keypress", userDidSomething, false);
-    window.addEventListener("scroll", userDidSomething, false);
-    window.addEventListener("click", userDidSomething, false);
-    //Start timeout
-    userDidSomething();
+    //var userActionHandle;
+    //function userDidSomething() {
+    //    clearTimeout(userActionHandle);
+    //    userActionHandle = setTimeout(function () {
+    //        //alert("5 seconds of inactivity");
+    //        localStorage.setItem("isEmployeeLoggedIn", "false");
+    //        $rootScope.OpenEmployeeLoginPopup();
+    //    }, 40000);
+    //}
+    //window.addEventListener("mousemove", userDidSomething, false);
+    //window.addEventListener("keydown", userDidSomething, false);
+    //window.addEventListener("keypress", userDidSomething, false);
+    //window.addEventListener("scroll", userDidSomething, false);
+    //window.addEventListener("click", userDidSomething, false);
+    ////Start timeout
+    //userDidSomething();
+
+
+    var roles = JSON.parse(localStorage.getItem("employeeRoles"));
+
+    if (roles !== undefined && roles !== null && roles !== "")
+    for (var i = 0; i < roles.length; i++) {
+        var role = roles[i];
+        if (role === "admin_payroll") { $scope.showMenuWet = true; }
+        if (role === "admin_contracts") { $scope.showMenuDry = true; }
+        if (role === "admin_employees") { $scope.showMenuCar = true; }
+
+        }
+
 
 
     var ws = new WebSocket("ws://localhost:8080/FPOS/sendingNotifications");
@@ -240,6 +255,8 @@
         var dryTotalPriceLL = 0;
         var dryTotalPriceDollar = 0;
         var isDryExist = false;
+        var idDry = 0;
+        var idDryExist = false;
 
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
@@ -250,6 +267,7 @@
                 dryTotalPriceDollar += parseInt($rootScope.transactionsList[i].priceDollar);
                 Array.prototype.push.apply(drySummaryProducts, $rootScope.transactionsList[i].products);
                 isDryExist = true;
+                if ($rootScope.transactionsList[i].id !== 0 && $rootScope.transactionsList[i].id !== null && $rootScope.transactionsList[i].id !== undefined) { idDry = $rootScope.transactionsList[i].id; idDryExist = true}
             } else {
                 finalTranList.push($rootScope.transactionsList[i]);
             }
@@ -257,7 +275,8 @@
 
         if (isDryExist) {
             var dryObj = {
-                id: 0,
+                id: idDry,
+                hasId: idDryExist,
                 qty: dryTotalQty,
                 priceLL: dryTotalPriceLL,
                 priceDollar: dryTotalPriceDollar,
@@ -305,6 +324,7 @@
                                 console.log(result.resultData);
                                 $rootScope.transactionsList[i].id = result.resultData;
                                 $rootScope.transactionsList[i].hasId = true;
+                                localStorage.setItem("transList", JSON.stringify($rootScope.transactionsList));
 
                             } else {
                                 swal("Oops", "Failed getting product id", "");
@@ -349,6 +369,8 @@
         //    }
         //}
 
+        localStorage.setItem("transList", JSON.stringify($rootScope.transactionsList));
+
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
             totalLL += $rootScope.transactionsList[i].priceLL;
             totalDollar += $rootScope.transactionsList[i].priceDollar;
@@ -358,6 +380,12 @@
         $scope.transTotalLebanese = totalLL + " L.L";
         $scope.transTotalDollar = "$" + totalDollar ;
         $rootScope.totalLabelDryAndWet = "showTotalLabelDryAndWet";
+    }
+
+    var transJson = JSON.parse(localStorage.getItem("transList"));
+    if (transJson !== undefined && transJson !== null && transJson !== "" && transJson !== "[]" && transJson !== []) {
+        $rootScope.transactionsList = transJson;
+        $rootScope.calculateTotal();
     }
 
 

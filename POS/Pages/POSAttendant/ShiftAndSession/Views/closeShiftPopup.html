@@ -60,19 +60,19 @@
             <div class="card-body">
 
 
-                <div class="row" style="border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList"> 
+                <div class="row" style="border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList">
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Nozzle Number</label>
-                            <input type="text" class="form-control payInputField" disabled  value="{{item.number}}" />
+                            <input type="text" class="form-control payInputField" disabled value="{{item.number}}" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Fuel Type</label>
-                            <input type="text" class="form-control payInputField" disabled  value="{{item.wetProductName}}" />
+                            <input type="text" class="form-control payInputField" disabled value="{{item.wetProductName}}" />
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -86,7 +86,7 @@
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">New Nuzzle-Counter</label>
-                            <input type="text" class="form-control payInputField"  ng-model="displayNewCounterResult[$index]" ng-focus="NewCounterFocus($index)" ng-blur="NewCounterBlur(displayNewCounterResult[$index])" />
+                            <input type="text" class="form-control payInputField" ng-model="displayNewCounterResult[$index]" ng-focus="NewCounterFocus($index)" ng-blur="NewCounterBlur(displayNewCounterResult[$index])" />
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="col-sm-6">
                         <span class="close-shift-edit-btn" ng-click="updateNozzleCounters()" ng-hide="isSaveBtnHide">SAVE</span>
-                        <span class="get-sales-summary-btn" ng-click="getSalesSummary()" >Get Sales Summary</span>
+                        <span class="get-sales-summary-btn" ng-click="getSalesSummary()">Get Sales Summary</span>
                     </div>
                 </div>
 
@@ -172,6 +172,28 @@
                     </table>
                 </div>
 
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <label>Oil Services</label>
+                    <table class="table  text-nowrap transfer-popup-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                                <th class="th-text">NUMBER OF SERVICES</th>
+                                <th class="th-text">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>{{salesSummary.numberOfStationServices}}</td>
+                                <td>{{salesSummary.stationServicesTotalLbp}} L.L/ {{salesSummary.stationServicesTotalUsd}} $</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="row  paytotalLabelLLAndDolar" ng-hide="hideSummary">
                     <div>
                         <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
@@ -182,9 +204,9 @@
                         <span class="col-md-3 payDryTotalValue">{{salesSummary.totalUsd}}</span>
                     </div>
                     <!--<div style="float:right;margin-top:1em;">
-                        <span class="col-md-3 payDryTotal2Label">Total</span>
-                        <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
-                    </div>-->
+            <span class="col-md-3 payDryTotal2Label">Total</span>
+            <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
+        </div>-->
                 </div>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
@@ -199,37 +221,37 @@
                             <tr>
                                 <td>100</td>
                                 <td>
-                                    <input type="number" class="form-control" ng-model="USD100" ng-change="MoneyAdded(USD100, 100, 'USD')" />
+                                    <input type="text" class="form-control"   ng-model="displayMoneyResult[0]" ng-focus="MoneyFocus(0, 100, 'USD')" ng-blur="MoneyBlur(displayMoneyResult[0])" ng-change="MoneyAdded()" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>50</td>
                                 <td>
-                                    <input type="number" class="form-control " ng-model="USD50" ng-change="MoneyAdded(USD50, 50, 'USD')" />
+                                    <input type="text" class="form-control "   ng-model="displayMoneyResult[1]" ng-focus="MoneyFocus(1, 50, 'USD')" ng-blur="MoneyBlur(displayMoneyResult[1])" ng-change="MoneyAdded()" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>20</td>
                                 <td>
-                                    <input type="number" class="form-control " ng-model="USD20" ng-change="MoneyAdded(USD20, 20, 'USD')" />
+                                    <input type="text" class="form-control " ng-model="displayMoneyResult[2]" ng-focus="MoneyFocus(2, 20, 'USD')" ng-blur="MoneyBlur(displayMoneyResult[2])" ng-change="MoneyAdded()"  />
                                 </td>
                             </tr>
                             <tr>
                                 <td>10</td>
                                 <td>
-                                    <input type="number" class="form-control " ng-model="USD10" ng-change="MoneyAdded(USD10, 10, 'USD')" />
+                                    <input type="text" class="form-control " ng-model="displayMoneyResult[3]" ng-focus="MoneyFocus(3, 10, 'USD')" ng-blur="MoneyBlur(displayMoneyResult[3])" ng-change="MoneyAdded()"  />
                                 </td>
                             </tr>
                             <tr>
                                 <td>5</td>
                                 <td>
-                                    <input type="number" class="form-control " ng-model="USD5" ng-change="MoneyAdded(USD5, 5, 'USD')" />
+                                    <input type="text" class="form-control " ng-model="displayMoneyResult[4]" ng-focus="MoneyFocus(4, 5, 'USD')" ng-blur="MoneyBlur(displayMoneyResult[4])" ng-change="MoneyAdded()"  />
                                 </td>
                             </tr>
                             <tr>
                                 <td>1</td>
                                 <td>
-                                    <input type="number" class="form-control " ng-model="USD1" ng-change="MoneyAdded(USD1, 1, 'USD')" />
+                                    <input type="text" class="form-control " ng-model="displayMoneyResult[5]" ng-focus="MoneyFocus(5, 1, 'USD')" ng-blur="MoneyBlur(displayMoneyResult[5])" ng-change="MoneyAdded()"  />
                                 </td>
                             </tr>
                         </tbody>
@@ -248,37 +270,37 @@
                             <tr>
                                 <td>100000</td>
                                 <td>
-                                    <input type="number" class="form-control" ng-model="LBP100" ng-change="MoneyAdded(LBP100, 100000, 'LBP')" />
+                                    <input type="text" class="form-control" ng-model="displayMoneyResult[6]" ng-focus="MoneyFocus(6, 100000, 'LBP')" ng-blur="MoneyBlur(displayMoneyResult[6])" ng-change="MoneyAdded()" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>50000</td>
                                 <td>
-                                    <input type="number" class="form-control" ng-model="LBP50" ng-change="MoneyAdded(LBP50, 50000, 'LBP')" />
+                                    <input type="text" class="form-control" ng-model="displayMoneyResult[7]" ng-focus="MoneyFocus(7, 50000, 'LBP')" ng-blur="MoneyBlur(displayMoneyResult[7])" ng-change="MoneyAdded()" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>20000</td>
                                 <td>
-                                    <input type="number" class="form-control" ng-model="LBP20" ng-change="MoneyAdded(LBP20, 20000, 'LBP')" />
+                                    <input type="text" class="form-control" ng-model="displayMoneyResult[8]" ng-focus="MoneyFocus(8, 20000, 'LBP')" ng-blur="MoneyBlur(displayMoneyResult[8])" ng-change="MoneyAdded()" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>10000</td>
                                 <td>
-                                    <input type="number" class="form-control" ng-model="LBP10" ng-change="MoneyAdded(LBP10, 10000, 'LBP')" />
+                                    <input type="text" class="form-control" ng-model="displayMoneyResult[9]" ng-focus="MoneyFocus(9, 10000, 'LBP')" ng-blur="MoneyBlur(displayMoneyResult[9])" ng-change="MoneyAdded()" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>5000</td>
                                 <td>
-                                    <input type="number" class="form-control " ng-model="LBP5" ng-change="MoneyAdded(LBP5, 5000, 'LBP')" />
+                                    <input type="text" class="form-control " ng-model="displayMoneyResult[10]" ng-focus="MoneyFocus(10, 5000, 'LBP')" ng-blur="MoneyBlur(displayMoneyResult[10])" ng-change="MoneyAdded()" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>1000</td>
                                 <td>
-                                    <input type="number" class="form-control " ng-model="LBP1" ng-change="MoneyAdded(LBP1, 1000, 'LBP')" />
+                                    <input type="text" class="form-control " ng-model="displayMoneyResult[11]" ng-focus="MoneyFocus(11, 1000, 'LBP')" ng-blur="MoneyBlur(displayMoneyResult[11])" ng-change="MoneyAdded()" />
                                 </td>
                             </tr>
                         </tbody>
@@ -295,9 +317,9 @@
                         <span class="col-md-3 payDryTotalValue">{{TotalUSDAdded}}</span>
                     </div>
                     <!--<div style="float:right;margin-top:1em;">
-                        <span class="col-md-3 payDryTotal2Label">Total</span>
-                        <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
-                    </div>-->
+            <span class="col-md-3 payDryTotal2Label">Total</span>
+            <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
+        </div>-->
                 </div>
 
                 <span class="closeShiftLine" ng-hide="hideSummary"></span>
@@ -317,8 +339,8 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td>{{salesSummary.numberOfPostPaid}}</td>
-                                <td>{{salesSummary.postPaidTotalLbp}} L.L/ {{salesSummary.postPaidTotalUsd}} $ </td>
+                                <td>{{salesSummary.numberOfPostPaidCoupons}}</td>
+                                <td>{{salesSummary.postPaidCouponsTotalLbp}} L.L/ {{salesSummary.postPaidCouponsTotalUSd}} $ </td>
                             </tr>
                         </tbody>
                     </table>
@@ -369,21 +391,57 @@
                         </tbody>
                     </table>
                     <!--<table class="table  text-nowrap transfer-popup-table">
-                        <thead>
-                            <tr>
-                                <th class="th-text2">DISPENSER NUMBER</th>
-                                <th class="th-text2">AMOUNT</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                        </tbody>
-                    </table>-->
+            <thead>
+                <tr>
+                    <th class="th-text2">DISPENSER NUMBER</th>
+                    <th class="th-text2">AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>-->
                 </div>
 
+                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                    <label>Sessions</label>
+                    <div class="row" ng-repeat="item in salesSummary.employeeSessionDtos">
+                        <label style="margin-left: 0.5em;">session {{$index+1}}</label>
+                        <table class="table  text-nowrap transfer-popup-table" ng-repeat="nozzle in item.nozzleCounterArchives">
+                            <thead>
+                                <tr>
+                                    <th class="th-text2">Nuzzle Number</th>
+                                    <th class="th-text2">Start Counter</th>
+                                    <th class="th-text2">Close Counter</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{nozzle.nozzleNumber}}</td>
+                                    <td>{{nozzle.oldNozzleCounter}}</td>
+                                    <td>{{nozzle.newNozzleCounter}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table  text-nowrap transfer-popup-table">
+                            <thead>
+                                <tr>
+                                    <th class="th-text2" style="width:8em;">USD Overall</th>
+                                    <th class="th-text2">LLB Overall</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{item.usdAmount}}</td>
+                                    <td>{{item.lbpAmount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
             </div>
 

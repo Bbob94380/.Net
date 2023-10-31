@@ -9,39 +9,47 @@
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Customer Name</label>
-                    <select class="form-control payInputField" ng-model="customer" ng-options="item as item.name for item in customersList " ng-change="customerChanged(customer.id)">
+                    <select class="form-control payInputField" ng-model="customer" ng-options="item as item.name for item in customersList " ng-change="customerChanged(customer)">
                     </select>
                 </div>
             </div>
-            <div class="col-sm-3"  ng-show="!isExistCustomer">
+            <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">First Name</label>
-                    <input type="text" class="form-control payInputField" ng-model="firstName" >
+                    <input type="text" class="form-control payInputField" ng-model="firstName">
                 </div>
             </div>
-            <div class="col-sm-3"  ng-show="!isExistCustomer">
+            <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Middle Name</label>
-                    <input type="text" class="form-control payInputField" ng-model="middleName" >
+                    <input type="text" class="form-control payInputField" ng-model="middleName">
                 </div>
             </div>
-            <div class="col-sm-3"  ng-show="!isExistCustomer">
+            <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Last Name</label>
                     <input type="text" class="form-control payInputField" ng-model="lastName">
                 </div>
             </div>
+            <div class="col-sm-3" ng-show="!isExistCustomer">
+                <!-- select -->
+                <div class="form-group">
+                    <label class="label-dropdown">Address</label>
+                    <input type="text" class="form-control payInputField" ng-model="address">
+                </div>
+            </div>
             <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Phone Number</label>
-                    <input type="text" class="form-control payInputField" ng-model="customer.mobileNum" ng-disabled="isExistCustomer">
+                    <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="displayCounterResult[1]" ng-focus="CounterFocus(1)" ng-blur="CounterBlur(displayCounterResult[1])" />
+                    <!--<input type="text" class="form-control payInputField" ng-model="customer.mobileNum" ng-disabled="isExistCustomer">-->
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Amana Member</label>
@@ -49,64 +57,69 @@
                     </select>
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Customer Car</label>
-                    <select class="form-control payInputField" ng-model="customerCar" ng-options="item2 as item2.type for item2 in customer.cars" ng-show="!showCarField">
+                    <select class="form-control payInputField" ng-model="customerCar" ng-options="item2 as item2.type for item2 in customer.cars" ng-show="!showCarField" ng-change="customerCarChanged(customerCar)">
                     </select>
-                    <input type="text" class="form-control payInputField" ng-model="customerCarText" ng-show="showCarField">
+                    <input type="text" class="form-control payInputField" ng-show="showCarField" ng-disabled="isExistCustomer" ng-model="displayCounterResult[2]" ng-focus="CounterFocus(2)" ng-blur="CounterBlur(displayCounterResult[2])" />
+                    <!--<input type="text" class="form-control payInputField" ng-model="customerCarText" ng-show="showCarField">-->
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Car Plate</label>
-                    <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="customerCar.carPlate">
+                    <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="displayCounterResult[3]" ng-focus="CounterFocus(3)" ng-blur="CounterBlur(displayCounterResult[3])" />
+                    <!--<input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="customerCar.carPlate">-->
                 </div>
             </div>
-        </div>
 
-        <div class="row">
+
             <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Plate Number</label>
-                    <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="customerCar.plateNumber">
+                    <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="displayCounterResult[4]" ng-focus="CounterFocus(4)" ng-blur="CounterBlur(displayCounterResult[4])" />
+                    <!--<input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="customerCar.plateNumber">-->
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3" ng-show="isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Old KM</label>
-                    <input type="text" class="form-control payInputField" ng-model="oldKM">
+                    <input type="text" class="form-control payInputField" ng-model="displayCounterResult[5]" ng-focus="CounterFocus(5)" ng-blur="CounterBlur(displayCounterResult[5])" />
+                    <!--<input type="text" class="form-control payInputField" ng-model="oldKM">-->
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3" ng-show="isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">New KM</label>
-                    <input type="text" class="form-control payInputField" ng-model="newKM">
+                    <input type="text" class="form-control payInputField" ng-model="displayCounterResult[6]" ng-focus="CounterFocus(6)" ng-blur="CounterBlur(displayCounterResult[6])" />
+                    <!--<input type="text" class="form-control payInputField" ng-model="newKM">-->
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3" ng-show="isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Current Date</label>
                     <input type="text" class="form-control payInputField" disabled ng-model="creationDate">
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3" ng-show="isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
                     <label class="label-dropdown">Due Date</label>
                     <input type="date" class="form-control payInputField" ng-model="dueDate">
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <input type="button" class="form-control payInputField" ng-click="createCustomer()" value="Create customer">
+                    <label class="label-dropdown" style="visibility:hidden">Due Date</label>
+                    <input type="button" style="background: #2A5699;color:#fff" class="form-control payInputField" ng-click="createCustomer()" value="Create customer">
                 </div>
             </div>
         </div>

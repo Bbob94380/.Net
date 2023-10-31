@@ -9,6 +9,7 @@ namespace POS.Models
     {
         public string id { get; set; } //receipt id
         public string name { get; set; }
+        public string employee { get; set; }
         public string[] roles { get; set; }
     }
 }

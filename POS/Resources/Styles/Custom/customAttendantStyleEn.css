@@ -145,6 +145,8 @@
 .menu-row div {
     padding: 0 !important;
     margin: 0;
+    flex-grow: 1;
+    border-radius: 0;
 }
 
 .navbar-attendant {
@@ -1083,13 +1085,6 @@ button {
 }
 
 
-.signInLabel {
-    margin-top: 6rem;
-    font-size: 35px;
-    color: #C9002D;
-    padding-left: 1.5rem;
-}
-
 .pincode-title {
     margin-top: 6rem;
     font-size: 2em;
@@ -1101,11 +1096,13 @@ button {
 
 
 .input-login-ho {
-    background: #f1f5f5;
+    background: #F7F9F9;
     border-radius: 33px;
     border: none;
-    padding: 38px 29px;
-    font-size: 22px;
+    padding: 34px 29px;
+    font-size: 20px;
+    margin-top: 1.5em;
+    width: 90%;
 }
 
 .input-pincode {
@@ -1127,7 +1124,7 @@ button {
     border: none;
     color: #C9002D;
     padding: 9px 36px;
-    font-size: 16px !important;
+    font-size: 22px !important;
 }
 
 .pincode-btn {
@@ -1164,7 +1161,7 @@ button {
 .lostAndRegister {
     color: #C9002D;
     display: block;
-    font-size: 19px;
+    font-size: 21px;
 }
 
 .custom-checkbox {
@@ -1228,7 +1225,8 @@ button {
     border: 1px solid #e3d9d9;
     border-radius: 3px;
     padding: 0;
-    margin: 5px 6px;
+    margin: 5px 8px;
+    display: inline-block;
 }
 
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
@@ -1274,8 +1272,55 @@ button {
     background-color: #72C75D;
 }
 
+.menu-row div {
+    padding: 0 !important;
+    margin: 0;
+    flex-grow: 1;
+    border-radius: 0;
+}
+
+.barcode-img-body {
+    display: block !important;
+    float: left;
+    width: 6.7em !important;
+    height: 9.4em;
+    position: relative;
+    border-radius: 18px;
+    box-shadow: 0px 3px 4px 0px rgb(0 0 0 / 22%);
+    margin: 0 10em;
+    padding-top: 0;
+}
+
+.dry-ul-scroll {
+    width: 35em;
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: auto;
+    max-width: 100%;
+    margin: 0 0 1em;
+    white-space: nowrap;
+    margin-right: 2em;
+}
+
+
+
+.signInLabel {
+    margin-top: 6rem;
+    font-size: 32px;
+    color: #C9002D;
+    padding-left: 1.5rem;
+}
+
+.login-icon-span {
+    font-size: 27px;
+    padding-top: 3px;
+    color: #2F2C2C;
+}
 
 /*end*/
+
+
 @-webkit-keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);

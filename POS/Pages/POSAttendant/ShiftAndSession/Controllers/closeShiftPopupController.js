@@ -7,10 +7,20 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
     $scope.hideSummary = true;
     var isFieldFocus = [];
     var isNewFieldFocus = [];
+    var isMoneyFieldFocus = [];
     var displayCounterValue = [];
     var displayNewCounterValue = [];
+    var displayMoneyValue = [];
     $scope.displayCounterResult = [];
     $scope.displayNewCounterResult = [];
+    $scope.displayMoneyResult = [];
+
+    for (var i = 0; i < 13; i++) {
+        isMoneyFieldFocus[i] = false;
+        displayMoneyValue[i] = '0';
+        $scope.displayMoneyResult[i] = '0';
+    }
+
 
     $scope.validateByManager = function () {
 
@@ -251,6 +261,7 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
                             $scope.displayNewCounterResult[i] = '0';
                         }
 
+
                     } else {
                         swal("Failed getting nozzles of employee", "Please try again", "error");
                         console.log(result.errorMsg);
@@ -364,18 +375,43 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
 
     $scope.dollarRate = localStorage.getItem('dollarRate');
 
-    $scope.TotalLBPAdded = 0;
-    $scope.TotalUSDAdded = 0;
+   
 
-    $scope.MoneyAdded = function (qty, value, type) {
+    $scope.MoneyAdded = function () {
 
-        if (type === "USD") {
+        $scope.TotalLBPAdded = 0;
+        $scope.TotalUSDAdded = 0;
+        var currency = "";
+        var value = 0;
 
-            $scope.TotalUSDAdded += value * qty;
-        }
+        for (var i = 0; i < $scope.displayMoneyResult.length; i++) {
 
-        if (type === "LBP") {
-            $scope.TotalLBPAdded += value * qty;
+            if (i === 0 || i === 1 || i === 2 || i === 3 || i === 4 || i === 5) currency = "USD";
+            if (i === 6 || i === 7 || i === 8 || i === 9 || i === 10 || i === 11) currency = "LBP";
+
+            if (i === 0) value = 100;
+            if (i === 1) value = 50;
+            if (i === 2) value = 20;
+            if (i === 3) value = 10;
+            if (i === 4) value = 5;
+            if (i === 5) value = 1;
+            if (i === 6) value = 100000;
+            if (i === 7) value = 50000;
+            if (i === 8) value = 20000;
+            if (i === 9) value = 10000;
+            if (i === 10) value = 5000;
+            if (i === 11) value = 1000;
+
+            if (currency === "USD") {
+
+                if ($scope.displayMoneyResult[i] === undefined || $scope.displayMoneyResult[i] === null || $scope.displayMoneyResult[i] === "") $scope.displayMoneyResult[i] = '0';
+                $scope.TotalUSDAdded += value * parseInt($scope.displayMoneyResult[i]);
+            }
+
+            if (currency === "LBP") {
+                if ($scope.displayMoneyResult[i] === undefined || $scope.displayMoneyResult[i] === null || $scope.displayMoneyResult[i] === "") $scope.displayMoneyResult[i] = '0';
+                $scope.TotalLBPAdded += value * parseInt($scope.displayMoneyResult[i]);
+            }
         }
        
     }
@@ -385,20 +421,20 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
         var nozzleCounters = [];
         var amounts = [];
 
-        amounts.push({ quantity: $scope.USD100, currencyCardUsd: "$100"});
-        amounts.push({ quantity: $scope.USD50, currencyCardUsd: "$50"});
-        amounts.push({ quantity: $scope.USD20, currencyCardUsd: "$20"});
-        amounts.push({ quantity: $scope.USD10, currencyCardUsd: "$10"});
-        amounts.push({ quantity: $scope.USD5, currencyCardUsd: "$5"});
-        amounts.push({ quantity: $scope.USD1, currencyCardUsd: "$1" });
+        amounts.push({ quantity: $scope.displayMoneyResult[0], currencyCardUsd: "$100"});
+        amounts.push({ quantity: $scope.displayMoneyResult[1], currencyCardUsd: "$50"});
+        amounts.push({ quantity: $scope.displayMoneyResult[2], currencyCardUsd: "$20"});
+        amounts.push({ quantity: $scope.displayMoneyResult[3], currencyCardUsd: "$10"});
+        amounts.push({ quantity: $scope.displayMoneyResult[4], currencyCardUsd: "$5"});
+        amounts.push({ quantity: $scope.displayMoneyResult[5], currencyCardUsd: "$1" });
 
 
-        amounts.push({ quantity: $scope.LBP100, currencyCardLbp: "LBP100" });
-        amounts.push({ quantity: $scope.LBP50, currencyCardLbp: "LBP50" });
-        amounts.push({ quantity: $scope.LBP20, currencyCardLbp: "LBP20" });
-        amounts.push({ quantity: $scope.LBP10, currencyCardLbp: "LBP10" });
-        amounts.push({ quantity: $scope.LBP5, currencyCardLbp: "LBP5" });
-        amounts.push({ quantity: $scope.LBP1, currencyCardLbp: "LBP1" });
+        amounts.push({ quantity: $scope.displayMoneyResult[6], currencyCardLbp: "LBP100" });
+        amounts.push({ quantity: $scope.displayMoneyResult[7], currencyCardLbp: "LBP50" });
+        amounts.push({ quantity: $scope.displayMoneyResult[8], currencyCardLbp: "LBP20" });
+        amounts.push({ quantity: $scope.displayMoneyResult[9], currencyCardLbp: "LBP10" });
+        amounts.push({ quantity: $scope.displayMoneyResult[10], currencyCardLbp: "LBP5" });
+        amounts.push({ quantity: $scope.displayMoneyResult[11], currencyCardLbp: "LBP1" });
 
 
         for (var i = 0; i < $scope.nuzzlesList.length; i++) {
@@ -468,6 +504,7 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
     const calculator = {
         displayCounterValue: displayCounterValue,
         displayNewCounterValue: displayNewCounterValue,
+        displayMoneyValue: displayMoneyValue,
         firstOperand: null,
         waitingForSecondOperand: false,
         operator: null,
@@ -497,14 +534,16 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
             }
         }
 
-    }
+        if (isMoneyFieldFocus[$scope.indexArrayMoney]) {
+            const { displayMoneyValue, waitingForSecondOperand } = calculator;
 
-
-    function resetCalculator() {
-        calculator.displayCounterValue[$scope.indexArray] = '0';
-        calculator.firstOperand = null;
-        calculator.waitingForSecondOperand = false;
-        calculator.operator = null;
+            if (waitingForSecondOperand === true) {
+                calculator.displayMoneyValue[$scope.indexArrayMoney] = digit;
+                calculator.waitingForSecondOperand = false;
+            } else {
+                calculator.displayMoneyValue[$scope.indexArrayMoney] = displayMoneyValue[$scope.indexArrayMoney] === '0' ? digit : displayMoneyValue[$scope.indexArrayMoney] + digit;
+            }
+        }
     }
 
     function inputDecimal(dot) {
@@ -524,6 +563,15 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
                 calculator.displayNewCounterValue += dot;
             }
         }
+
+        if (isMoneyFieldFocus[$scope.indexArrayMoney]) {
+            // If the `displayValue` does not contain a decimal point
+            if (!calculator.displayMoneyValue[$scope.indexArrayMoney].includes(dot)) {
+                // Append the decimal point
+                calculator.displayMoneyValue += dot;
+            }
+        }
+
     }
 
     function updateDisplay() {
@@ -533,6 +581,11 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
 
         if (isNewFieldFocus[$scope.indexArray]) {
             $scope.displayNewCounterResult[$scope.indexArray] = calculator.displayNewCounterValue[$scope.indexArray];
+        }
+
+        if (isMoneyFieldFocus[$scope.indexArrayMoney]) {
+            $scope.displayMoneyResult[$scope.indexArrayMoney] = calculator.displayMoneyValue[$scope.indexArrayMoney];
+            $scope.MoneyAdded($scope.displayMoneyResult[$scope.indexArrayMoney], $scope.valueMoney, $scope.currencyMoney);
         }
     }
 
@@ -553,6 +606,13 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
 
         if (isNewFieldFocus[$scope.indexArray]) {
             calculator.displayNewCounterValue[$scope.indexArray] = '0';
+            calculator.firstOperand = null;
+            calculator.waitingForSecondOperand = false;
+            calculator.operator = null;
+        }
+
+        if (isMoneyFieldFocus[$scope.indexArrayMoney]) {
+            calculator.displayMoneyValue[$scope.indexArrayMoney] = '0';
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
@@ -580,6 +640,10 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
             isNewFieldFocus[i] = false;
         }
 
+        for (var i = 0; i < isMoneyFieldFocus.length; i++) {
+            isMoneyFieldFocus[i] = false;
+        }
+
     }
 
     $scope.NewCounterFocus = function (index) {
@@ -592,6 +656,30 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
 
         for (var i = 0; i < isFieldFocus.length; i++) {
             isFieldFocus[i] = false;
+        }
+
+        for (var i = 0; i < isMoneyFieldFocus.length; i++) {
+            isMoneyFieldFocus[i] = false;
+        }
+
+    }
+
+    $scope.MoneyFocus = function (index, valueMoney, currencyMoney) {
+        $scope.indexArrayMoney = index;
+        $scope.currencyMoney = currencyMoney;
+        $scope.valueMoney = valueMoney;
+
+        for (var i = 0; i < isMoneyFieldFocus.length; i++) {
+            if (i === $scope.indexArrayMoney) { isMoneyFieldFocus[i] = true; }
+            else { isMoneyFieldFocus[i] = false }
+        }
+
+        for (var i = 0; i < isFieldFocus.length; i++) {
+            isFieldFocus[i] = false;
+        }
+
+        for (var i = 0; i < isNewFieldFocus.length; i++) {
+            isNewFieldFocus[i] = false;
         }
 
     }
@@ -610,6 +698,12 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
         }
     }
 
+    $scope.MoneyBlur = function (v) {
+
+        if (v !== undefined || v !== null) {
+            calculator.displayMoneyValue[$scope.indexArrayMoney] = v;
+        }
+    }
 
 
 });

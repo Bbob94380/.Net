@@ -10,11 +10,11 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
     console.log(data.carWashType);
 
     $scope.carWashType = data.carWashType;
-    $scope.carWashTypePriceLL = data.carWashTypePriceLL;
-    $scope.carWashTypePriceDollar = data.carWashTypePriceDollar;
+    //$scope.carWashTypePriceLL = data.carWashTypePriceLL;
+    //$scope.carWashTypePriceDollar = data.carWashTypePriceDollar;
 
-    $scope.totalDollar = $scope.carWashTypePriceDollar;
-    $scope.totalLL = $scope.carWashTypePriceLL;
+    $scope.totalDollar = 0;
+    $scope.totalLL = 0;
 
     $scope.addCarWashOption = function (id, name, priceLL, priceDollar) {
 
@@ -28,15 +28,15 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
 
     $scope.clearWashTable = function () {
         $scope.carWashOptionsList = [];
-        $scope.totalDollar = data.carWashTypeTotal;
-        $scope.totalLL = $scope.totalDollar * 100000;
+        $scope.totalDollar =0;
+        $scope.totalLL = 0;
     }
 
     $scope.next = function () {
         var carWashResultObj = {
             id: 0,
             currencyRatio: localStorage.getItem("dollarRate"),
-            vehiceType: "CAR",
+            vehiceType: $scope.carWashType,
             washSubCategoriesId: $scope.washSubCategoriesId,
             priceLL: $scope.totalLL,
             priceDollar: $scope.totalDollar,

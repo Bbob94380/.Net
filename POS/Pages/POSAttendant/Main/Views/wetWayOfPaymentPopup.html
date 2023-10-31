@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-group">
                         <label class="field-info-label-pay">Employee ID</label>
-                        <input value="" disabled class="form-control form-control-lg form-control-lg-pay">
+                        <input ng-model="employeeId" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
                         <label class="field-info-label-pay">Creation Date</label>
@@ -114,28 +114,42 @@
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Dollar USD </label>
-                            <input ng-focus="FirstCashDollarFieldFocus()" ng-blur="FirstCashDollarFieldBlur(dollarCashFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="dollarCashFirst"  ng-change="calculateTotalOfCashAndCard('dollar', dollarCashFirst,'firstCashDollar')">
+                            <input ng-focus="FirstCashDollarFieldFocus()" ng-blur="FirstCashDollarFieldBlur(dollarCashFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="dollarCashFirst" ng-change="calculateTotalOfCashAndCard('dollar', dollarCashFirst,'firstCashDollar')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCashFields">
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Lebanese L.L</label>
-                            <input ng-focus="FirstCashLebaneseFieldFocus()" ng-blur="FirstCashLebaneseFieldBlur(lebaneseCashFirst)" ng-disabled="!checked"  type="text" class="form-control payInputField" ng-model="lebaneseCashFirst"  ng-change="calculateTotalOfCashAndCard('cash', lebaneseCashFirst, 'firstCashLL')">
+                            <input ng-focus="FirstCashLebaneseFieldFocus()" ng-blur="FirstCashLebaneseFieldBlur(lebaneseCashFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="lebaneseCashFirst" ng-change="calculateTotalOfCashAndCard('cash', lebaneseCashFirst, 'firstCashLL')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCardFields">
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Code</label>
-                            <input ng-focus="FirstCardCodeFieldFocus()" ng-blur="FirstCardCodeFieldBlur(codeCardFirst)" ng-disabled="!checked"  type="text" class="form-control payInputField" ng-model="codeCardFirst">
+                            <input ng-focus="FirstCardCodeFieldFocus()" ng-blur="FirstCardCodeFieldBlur(codeCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="codeCardFirst">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCardFields">
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Dollar</label>
-                            <input ng-focus="FirstCardDollarFieldFocus()" ng-blur="FirstCardDollarFieldBlur(dollarCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="dollarCardFirst"  ng-change="calculateTotalOfCashAndCard('dollar', dollarCardFirst, 'firstCardDollar')">
+                            <input ng-focus="FirstCardDollarFieldFocus()" ng-blur="FirstCardDollarFieldBlur(dollarCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="dollarCardFirst" ng-change="calculateTotalOfCashAndCard('dollar', dollarCardFirst, 'firstCardDollar')">
+                        </div>
+                    </div>
+                    <div class="col-sm-4" ng-show="showNourCardFields">
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="label-dropdown">Code</label>
+                            <input ng-focus="FirstNourCardCodeFieldFocus()" ng-blur="FirstNourCardCodeFieldBlur(codeNourCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="codeNourCardFirst">
+                        </div>
+                    </div>
+                    <div class="col-sm-4" ng-show="showNourCardFields">
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="label-dropdown">Dollar</label>
+                            <input ng-focus="FirstNourCardDollarFieldFocus()" ng-blur="FirstNourCardDollarFieldBlur(dollarNourCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="dollarNourCardFirst" ng-change="calculateTotalOfCashAndCard('dollar', dollarNourCardFirst, 'firstNourCardDollar')">
                         </div>
                     </div>
                 </div>
@@ -159,7 +173,7 @@
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Dollar USD</label>
-                            <input ng-focus="SecondCashDollarFieldFocus()" ng-blur="SecondCashDollarFieldBlur(dollarCashSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="dollarCashSecond"  ng-change="calculateTotalOfCashAndCard('dollar', dollarCashSecond, 'secondCashDollar')">
+                            <input ng-focus="SecondCashDollarFieldFocus()" ng-blur="SecondCashDollarFieldBlur(dollarCashSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="dollarCashSecond" ng-change="calculateTotalOfCashAndCard('dollar', dollarCashSecond, 'secondCashDollar')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCashFields2">
@@ -181,6 +195,20 @@
                         <div class="form-group">
                             <label class="label-dropdown">Dollar</label>
                             <input ng-focus="SecondCardDollarFieldFocus()" ng-blur="SecondCardDollarFieldBlur(dollarCardSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="dollarCardSecond" ng-change="calculateTotalOfCashAndCard('dollar', dollarCardSecond, 'secondCardDollar')">
+                        </div>
+                    </div>
+                    <div class="col-sm-4" ng-show="showNourCardFields2">
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="label-dropdown">Code</label>
+                            <input ng-focus="SecondNourCardCodeFieldFocus()" ng-blur="SecondNourCardCodeFieldBlur(codeNourCardSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="codeNourCardSecond">
+                        </div>
+                    </div>
+                    <div class="col-sm-4" ng-show="showNourCardFields2">
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="label-dropdown">Dollar</label>
+                            <input ng-focus="SecondNourCardDollarFieldFocus()" ng-blur="SecondNourCardDollarFieldBlur(dollarNourCardSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="dollarNourCardSecond" ng-change="calculateTotalOfCashAndCard('dollar', dollarNourCardSecond, 'secondNourCardDollar')">
                         </div>
                     </div>
                 </div>

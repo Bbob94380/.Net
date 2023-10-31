@@ -212,7 +212,7 @@
 
         dryTranList.push(
             {
-                id: Math.floor(Math.random() * 1000),
+                id: 0,
                 qty: dryTotalQty,
                 priceLL: dryTotalPriceLL,
                 priceDollar: dryTotalPriceDollar,

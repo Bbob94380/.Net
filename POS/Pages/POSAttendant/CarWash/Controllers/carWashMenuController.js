@@ -14,7 +14,7 @@
 			windowClass: 'show',
 			resolve: {
 				data: function () {
-					return { carWashType: carWashType, carWashTypePriceLL: 100000, carWashTypePriceDollar: 1};
+					return { carWashType: carWashType};
 				}
 			}
 		});

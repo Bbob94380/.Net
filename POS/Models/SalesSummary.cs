@@ -10,6 +10,9 @@ namespace POS.Models
         public int numberOfItems { get; set; }
         public decimal dryProductTotalLbp { get; set; }
         public decimal dryProductTotalUsd { get; set; }
+        public int numberOfStationServices { get; set; }
+        public decimal stationServicesTotalLbp { get; set; }
+        public decimal stationServicesTotalUsd { get; set; }
         public int numberOfVehicles { get; set; }
         public decimal carWashTotalLbp { get; set; }
         public decimal carWashTotalUsd { get; set; }
@@ -18,11 +21,12 @@ namespace POS.Models
         public decimal refundTotalLbp { get; set; }
         public decimal refundTotalUsd { get; set; }
         public CalibrationTransaction calibrationTransaction { get; set; }
-        public int numberOfPostPaid { get; set; }
-        public decimal postPaidTotalLbp { get; set; }
-        public decimal postPaidTotalUsd { get; set; }
+        public int numberOfPostPaidCoupons { get; set; }
+        public decimal postPaidCouponsTotalLbp { get; set; }
+        public decimal postPaidCouponsTotalUSd { get; set; }
         public decimal totalLbp { get; set; }
         public decimal totalUsd { get; set; }
+        public List<EmployeeSession> employeeSessionDtos { get; set; }
 
     }
 
@@ -33,6 +37,29 @@ namespace POS.Models
         public decimal liters { get; set; }
         public decimal amountLbp { get; set; }
         public decimal amountUsd { get; set; }
+
+    }
+
+    public class EmployeeSession
+    {
+        public decimal previousCurrencyRatio { get; set; }
+        public decimal currenctCurrencyRatio { get; set; }
+        public decimal usdAmount { get; set; }
+        public decimal lbpAmount { get; set; }
+        public decimal requiredUsdAmount { get; set; }
+        public decimal requiredLbpAmount { get; set; }
+        public string startDateTime { get; set; }
+        public string endDateTime { get; set; }
+        public List<NozzleCounterArchive> nozzleCounterArchives { get; set; }
+
+    }
+
+    public class NozzleCounterArchive
+    {
+        public decimal nozzleId { get; set; }
+        public decimal oldNozzleCounter { get; set; }
+        public decimal newNozzleCounter { get; set; }
+        public int nozzleNumber { get; set; }
 
     }
 

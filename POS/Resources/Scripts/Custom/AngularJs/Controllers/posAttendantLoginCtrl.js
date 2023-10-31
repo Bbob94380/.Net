@@ -26,14 +26,14 @@ posAttendantRootModule.controller("posAttendantLoginCtrl", ["$scope", "$sce", "$
     }
 
 
-    $scope.loginBtn = function () {
+    $scope.loginBtn = function (username, password) {
 
         $rootScope.showLoader = true;
 
         $http({
             method: "POST",
             url: "/api/Request/LoginAsync",
-            data: { email: "admin@gsm.com", password: "odoo123" }
+            data: { email: username, password: password }
         }).then(function (response) {
 
             console.log(response);
@@ -47,6 +47,7 @@ posAttendantRootModule.controller("posAttendantLoginCtrl", ["$scope", "$sce", "$
 
                     localStorage.setItem('session_id', result.resultData.sessionId);
                     localStorage.setItem('isEmployeeLoggedIn', "true");
+                    localStorage.setItem('employeeRoles', JSON.stringify(result.resultData.roles));
                     //localStorage.setItem('username', result.resultData.sessionId);
                     if (localStorage.getItem('language') === 'en') {
                         window.location.href = "/Attendant/IndexAttendantEn#!/main2";
@@ -60,14 +61,17 @@ posAttendantRootModule.controller("posAttendantLoginCtrl", ["$scope", "$sce", "$
                     }
 
                 } else {
+                    localStorage.setItem('session_id', '');
                     swal("Oops", "Login failed", "");
                 }
 
             } else {
+                localStorage.setItem('session_id', '');
                 swal("Oops", "Login failed", "");
             }
 
         }, function (error) {
+            localStorage.setItem('session_id', '');
             swal("Oops", "Login failed", "");
             $rootScope.showLoader = false;
         });

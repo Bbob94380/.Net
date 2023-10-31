@@ -49,6 +49,7 @@ namespace POS.Controllers
 
                     HttpCookie cookie = new HttpCookie("loginCookie");
                     cookie.Values.Add("projectType", "sm");
+                    cookie.Values.Add("sessionId", loginResponse.sessionId);
                     HttpContext.Current.Response.SetCookie(cookie);
                     //FormsAuthentication.SetAuthCookie(loginResponse.sessionId, false);
                 }
@@ -69,6 +70,7 @@ namespace POS.Controllers
         public void SignOutSM()
         {
             HttpContext.Current.Response.Cookies["loginCookie"].Values.Add("projectType", "");
+            HttpContext.Current.Response.Cookies["loginCookie"].Values.Add("sessionId", "");
             //FormsAuthentication.SignOut();
         }
 

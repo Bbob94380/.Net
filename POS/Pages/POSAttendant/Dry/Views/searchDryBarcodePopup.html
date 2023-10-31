@@ -35,11 +35,19 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label>Barcode</label>
-                        <input required type="text" ng-model="displayBarcodeResult" class="form-control form-control-lg" ng-focus="BarcodeFocus()" ng-blur="BarcodeBlur(displayBarcodeResult)">
+                        <input required ng-change="getProductBarcode()" type="text" ng-model="displayBarcodeResult" class="form-control form-control-lg" ng-focus="BarcodeFocus()" ng-blur="BarcodeBlur(displayBarcodeResult)">
                     </div>
                     <div class="form-group">
-                        <label>Qty</label>
+                        <label>Quantity</label>
                         <input required type="text" ng-model="displayQtyResult" class="form-control form-control-lg" ng-focus="QtyFocus()" ng-blur="QtyBlur(displayQtyResult)">
+                    </div>
+                    <div class="form-group" ng-show="showImage">
+                        <div class="card-body barcode-img-body">
+                            <img class="dry-item-img" src="{{product.image}}" />
+                            <span class="card-title dry-item-title">{{product.barcode}}</span>
+                            <span class="card-title dry-item-title2">{{product.name}}</span>
+                            <span class="card-title dry-item-title2">{{product.sale_price}}$</span>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -48,5 +56,5 @@
 </div>
 <div class="modal-footer wetTransPopupFooter"  ng-init="load()">
     <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="clearAll()">Clear</button>
-    <button type="button" class="btn btn-primary nextbtn" ng-click="next()">Next</button>
+    <button type="button" class="btn btn-primary nextbtn" ng-click="done()">Done</button>
 </div>

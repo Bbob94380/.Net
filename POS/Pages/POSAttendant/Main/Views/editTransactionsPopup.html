@@ -16,7 +16,7 @@
                             <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.qty + ' item(s)' }}</td>
                             <td>{{trans.priceLL}} L.L ({{trans.priceDollar}}$)</td>
                             <td style="border-right: none !important;">
-                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTrans(trans.id);">Delete</button>
+                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTrans(trans.id, trans.productType);">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -25,7 +25,7 @@
                     <thead>
 
                     </thead>
-                    <thead>
+                    <thead ng-show="showTotal">
                         <tr>
                             <td style="visibility:hidden" >Total</td>
                             <td>Total</td>
@@ -44,6 +44,6 @@
     </div>
 </div>
 <div class="modal-footer wetTransPopupFooter editPoppupFooter"  ng-init="load()">
-    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="">CANCEL</button>
-    <button type="button" class="btn btn-primary nextbtn" ng-click="">DONE</button>
+    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="cancel()">CANCEL</button>
+    <button type="button" class="btn btn-primary nextbtn" ng-click="done()">DONE</button>
 </div>

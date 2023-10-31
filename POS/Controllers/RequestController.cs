@@ -33,22 +33,37 @@ namespace POS.Controllers
 
                 LoginResponse loginResponse = new LoginResponse();
                 ResponseData<LoginResponse> responseData = new ResponseData<LoginResponse>();
-                var parameters = new Dictionary<string, string> { { "email", payload.email}, { "password", payload.password } };
+
+                var parameters = new Dictionary<string, string> { { "email", payload.email }, { "password", payload.password } };
                 var encodedContent = new FormUrlEncodedContent(parameters);
 
+                //var formContent = new FormUrlEncodedContent(new[]
+                //    {
+                //        new KeyValuePair<string, string>("email", payload.email),
+                //        new KeyValuePair<string, string>("password", payload.password)
+                //    });
+
+                //string content = "email="+ payload.email + "&password="+ payload.password;
+                //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "FPOS/rest/user/login?email=" + payload.email + "&password=" + payload.password);
+
+                //HttpResponseMessage response = await client.SendAsync(request);
                 HttpResponseMessage response = await client.PostAsync("FPOS/rest/user/login", encodedContent);
-                
+
+
                 if (response.IsSuccessStatusCode)
                 {
                     var sessionId = response.Headers.GetValues("Set-Cookie").First(x => x.StartsWith("session_id"));
                     loginResponse.sessionId = sessionId.Substring(11);
+
+                    loginResponse.roles = await response.Content.ReadAsAsync<List<string>>();
                     responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
                     responseData.statusCode = response.StatusCode.ToString();
                     responseData.resultData = loginResponse;
+
                     HttpCookie cookie = new HttpCookie("loginCookieAttendant");
                     cookie.Values.Add("projectType", "pos");
+                    cookie.Values.Add("sessionId", loginResponse.sessionId);
                     HttpContext.Current.Response.SetCookie(cookie);
-                    //FormsAuthentication.SetAuthCookie(loginResponse.sessionId, false);
                 }
                 else
                 {
@@ -63,6 +78,125 @@ namespace POS.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<string> CheckPinCodeAsync(Payload payload)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8080/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+
+                LoginResponse loginResponse = new LoginResponse();
+                ResponseData<LoginResponse> responseData = new ResponseData<LoginResponse>();
+                var parameters = new Dictionary<string, string> { { "email", payload.email }, { "password", payload.password } };
+                var encodedContent = new FormUrlEncodedContent(parameters);
+
+                HttpResponseMessage response = await client.PostAsync("FPOS/rest/user/login", encodedContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var sessionId = response.Headers.GetValues("Set-Cookie").First(x => x.StartsWith("session_id"));
+                    loginResponse.sessionId = sessionId.Substring(11);
+
+                    loginResponse.roles = await response.Content.ReadAsAsync<List<string>>();
+                    responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                    responseData.statusCode = response.StatusCode.ToString();
+                    responseData.resultData = loginResponse;
+                }
+                else
+                {
+                    loginResponse.sessionId = null;
+                    responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                    responseData.statusCode = response.StatusCode.ToString();
+                    responseData.resultData = loginResponse;
+                }
+
+                return JsonConvert.SerializeObject(responseData);
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<string> loginManagerPermission(Payload payload)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8080/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+
+                LoginResponse loginResponse = new LoginResponse();
+                ResponseData<LoginResponse> responseData = new ResponseData<LoginResponse>();
+                var parameters = new Dictionary<string, string> { { "email", payload.email }, { "password", payload.password } };
+                var encodedContent = new FormUrlEncodedContent(parameters);
+
+                HttpResponseMessage response = await client.PostAsync("FPOS/rest/user/login", encodedContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                    responseData.statusCode = response.StatusCode.ToString();
+                }
+                else
+                {
+                    loginResponse.sessionId = null;
+                    responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                    responseData.statusCode = response.StatusCode.ToString();
+                }
+
+                return JsonConvert.SerializeObject(responseData);
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<string> getCheckedInUsers()
+        {
+            //variables
+            List<User> users = null;
+            ResponseData<List<User>> responseData = new ResponseData<List<User>>();
+
+            try
+            {
+                //http request
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/user/getCheckedInUsers");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        users = await response.Content.ReadAsAsync<List<User>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = users;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = null;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
 
         [HttpPost]
         public async Task<string> GetDryProductsAsync(Payload payload)
@@ -323,6 +457,7 @@ namespace POS.Controllers
         public void attendantSignOut()
         {
             HttpContext.Current.Response.Cookies["loginCookieAttendant"].Values.Add("projectType", "");
+            HttpContext.Current.Response.Cookies["loginCookieAttendant"].Values.Add("sessionId", "");
             //FormsAuthentication.SignOut();
 
         }
@@ -1595,6 +1730,7 @@ namespace POS.Controllers
     public class LoginResponse
     {
         public string sessionId { get; set; }
+        public List<string> roles { get; set; }
     }
 
     class Category

@@ -2,16 +2,17 @@
     <div class="content">
         <div class="container">
             <div class="row dry-row-lang">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs dry-ul-scroll" id="myTab" role="tablist">
                     <li class="nav-item item-filter-dry ">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="" data-target="#cat0" role="tab" aria-controls="home" aria-selected="true">All</a>
                     </li>
                     <li class="nav-item item-filter-dry" ng-repeat="item in dryProducts">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="" data-target="#cat{{$index+1}}" role="tab" aria-controls="profile" aria-selected="false">{{item.cat_name}}</a>
                     </li>
-                    <input type="button" value="Search" ng-click="searchProductByBarcode()" style=" border-radius: 6px; background: #32ACD1; color: #fff; border: none; padding: 0px 21px; height: 2.2em; margin-top: 7px;" />
                 </ul>
-                <div class="container tab-content" id="myTabContent" >
+                <input type="button" value="Search" ng-click="searchProductByBarcode()" style=" border-radius: 6px; background: #32ACD1; color: #fff; border: none; padding: 0px 21px; height: 2.2em; margin-top: 7px;" />
+                
+                <div class="container tab-content" id="myTabContent">
                     <div class="container tab-pane fade show active" id="cat0" role="tabpanel" aria-labelledby="home-tab">
                         <div class="container your-class">
                             <div class="card-body" ng-repeat="product in allDryProducts.products1" ng-click="dryItemClicked(product, 1)">

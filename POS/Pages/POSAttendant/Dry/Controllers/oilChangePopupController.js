@@ -19,7 +19,7 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
         if (item.hasStyle === true) {
             item.styleClass = "";
             item.hasStyle = false;
-            $scope.selectedServicesList = removeObjectWithId(item.id);
+            $scope.selectedServicesList = removeObjectWithId($scope.selectedServicesList, item.id);
         } else {
             item.styleClass = "serviceGreen";
             item.hasStyle = true;
@@ -170,11 +170,27 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
 
     $scope.createCustomer = function () {
 
+
+        if ($scope.firstName === null || $scope.firstName === undefined || $scope.firstName === "" ||
+            $scope.lastName === null || $scope.lastName === undefined || $scope.lastName === "" ||
+            $scope.middleName === null || $scope.middleName === undefined || $scope.middleName === "" ||
+            $scope.displayCounterResult[1] === null || $scope.displayCounterResult[1] === undefined || $scope.displayCounterResult[1] === "" || $scope.displayCounterResult[1] === "0" || $scope.displayCounterResult[1] === 0 ||
+            $scope.customer.hasAmanaCard === null || $scope.customer.hasAmanaCard === undefined || $scope.customer.hasAmanaCard === "" ||
+            $scope.displayCounterResult[3] === null || $scope.displayCounterResult[3] === undefined || $scope.displayCounterResult[3] === "" || $scope.displayCounterResult[3] === "0" || $scope.displayCounterResult[3] === 0 ||
+            $scope.displayCounterResult[4] === null || $scope.displayCounterResult[4] === undefined || $scope.displayCounterResult[4] === "" || $scope.displayCounterResult[4] === "0" || $scope.displayCounterResult[4] === 0 ||
+            $scope.displayCounterResult[2] === null || $scope.displayCounterResult[2] === undefined || $scope.displayCounterResult[2] === "" || $scope.displayCounterResult[2] === "0" || $scope.displayCounterResult[2] === 0 ||
+            $scope.address === null || $scope.address === undefined || $scope.address === "") {
+
+            swal("Please fill all fields", "", "warning");
+            return;
+        }
+
+
         var cars = [];
         var car = {
-            carPlate: $scope.customerCar.carPlate,
-            plateNumber: $scope.customerCar.plateNumber,
-            type: $scope.customerCarText
+            carPlate: $scope.displayCounterResult[3],
+            plateNumber: $scope.displayCounterResult[4],
+            type: $scope.displayCounterResult[2]
         }
 
         cars.push(car);
@@ -183,8 +199,8 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
             firstName: $scope.firstName,
             lastName: $scope.lastName,
             middleName: $scope.middleName,
-            address: $scope.customer.address,
-            mobileNum: $scope.customer.mobileNum,
+            address: $scope.address,
+            mobileNum: $scope.displayCounterResult[1],
             hasAmanaCard: $scope.customer.hasAmanaCard,
             cars: cars
         }
@@ -208,50 +224,87 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
 
                     if (result.isSuccessStatusCode) {
 
-
                         if (result.resultData !== undefined && result.resultData !== null) {
-                            $scope.customersList.push(result.resultData);
+                            result.resultData.name = result.resultData.firstName + " " + result.resultData.middleName + " " + result.resultData.lastName;
+                            $scope.customersList.unshift(result.resultData);
                             $scope.customer = result.resultData;
+                            $scope.customerCar = result.resultData;
+                            $scope.showCarField = false;
+                            $scope.isExistCustomer = true;
+                            $scope.displayCounterResult[3] = '0';
+                            $scope.displayCounterResult[4] = '0';
+                            $scope.displayCounterResult[5] = 0;
+                            $scope.displayCounterResult[6] = 0;
                             swal("Customer created successfully", "", "success");
                         }
 
                     } else {
-                        swal("Failed getting customers", "Please try again", "error");
+                        swal("Failed creating customer", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting services", "Please try again", "error");
+                    swal("Failed creating customer", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting services", "Please try again", "error");
+                swal("Failed creating customer", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting services", "Please try again", "error");
+                swal("Failed creating customer", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
 
     }
 
-    $scope.customerChanged = function (customerId) {
+    $scope.customerChanged = function (customer) {
 
-        if (customerId === -1) {
+        if (customer.id === -1) {
             $scope.isExistCustomer = false;
             $scope.showCarField = true;
+            $scope.displayCounterResult[3] = '0';
+            $scope.displayCounterResult[4] = '0';
+            $scope.displayCounterResult[5] = 0;
+            $scope.displayCounterResult[6] = 0;
+            $scope.displayCounterResult[1] = 0;
             return;
+        } else {
+            $scope.showCarField = false;
+            $scope.isExistCustomer = true;
+            $scope.displayCounterResult[1] = customer.mobileNum;
+            $scope.displayCounterResult[5] = 0;
+            $scope.displayCounterResult[6] = 0;
+            $scope.displayCounterResult[3] = '0';
+            $scope.displayCounterResult[4] = '0';
         }
+    }
 
-        $scope.showCarField = false;
-        $scope.isExistCustomer = true;
+    $scope.customerCarChanged = function (customerCar) {
+
+        $scope.displayCounterResult[3] = customerCar.carPlate;
+        $scope.displayCounterResult[4] = customerCar.plateNumber;
 
     }
 
 
     $scope.done = function () {
+
+
+        if ($scope.customer === null || $scope.customer === undefined || $scope.customer === "" ||
+            $scope.dueDate === null || $scope.dueDate === undefined || $scope.dueDate === "" ||
+            $scope.displayCounterResult[5] === null || $scope.displayCounterResult[5] === undefined || $scope.displayCounterResult[5] === "" || $scope.displayCounterResult[5] === "0" || $scope.displayCounterResult[5] === 0 ||
+            $scope.customer.hasAmanaCard === null || $scope.customer.hasAmanaCard === undefined || $scope.customer.hasAmanaCard === "" ||
+            $scope.displayCounterResult[6] === null || $scope.displayCounterResult[6] === undefined || $scope.displayCounterResult[6] === "" || $scope.displayCounterResult[6] === "0" || $scope.displayCounterResult[6] === 0 ||
+            $scope.displayCounterResult[3] === null || $scope.displayCounterResult[3] === undefined || $scope.displayCounterResult[3] === "" || $scope.displayCounterResult[3] === "0" || $scope.displayCounterResult[3] === 0 ||
+            $scope.displayCounterResult[4] === null || $scope.displayCounterResult[4] === undefined || $scope.displayCounterResult[4] === "" || $scope.displayCounterResult[4] === "0" || $scope.displayCounterResult[4] === 0) {
+
+            swal("Please fill all fields", "", "warning");
+            return;
+        }
+
 
         var servicesIds = [];
         var netTotalMc = 0;
@@ -274,8 +327,8 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
             servicesIds: servicesIds,
             qty: servicesIds.length,
             productType: "Service",
-            currentMileagePerKm: $scope.oldKM,
-            newMileagePerKm: $scope.newKM,
+            currentMileagePerKm: $scope.displayCounterResult[5],
+            newMileagePerKm: $scope.displayCounterResult[6],
             nextServiceDue: $scope.dueDate
         };
 
@@ -283,5 +336,105 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
         $scope.$parent.calculateTotal();
         $uibModalInstance.close('Succeeded');
     }
+
+
+    /*Calulator logic*/
+
+    var isFieldFocus = [];
+    var displayCounterValue = [];
+    $scope.displayCounterResult = [];
+
+
+    for (var j = 0; j < 10; j++) {
+        isFieldFocus[j] = false;
+        displayCounterValue[j] = '0';
+        $scope.displayCounterResult[j] = '0';
+    }
+
+    const calculator = {
+        displayCounterValue: displayCounterValue,
+        firstOperand: null,
+        waitingForSecondOperand: false,
+        operator: null,
+    };
+
+    function inputDigit(digit) {
+
+        if (isFieldFocus[$scope.indexArray]) {
+            const { displayCounterValue, waitingForSecondOperand } = calculator;
+
+            if (waitingForSecondOperand === true) {
+                calculator.displayCounterValue[$scope.indexArray] = digit;
+                calculator.waitingForSecondOperand = false;
+            } else {
+                calculator.displayCounterValue[$scope.indexArray] = displayCounterValue[$scope.indexArray] === '0' ? digit : displayCounterValue[$scope.indexArray] + digit;
+            }
+        }
+
+
+    }
+
+    function inputDecimal(dot) {
+
+        if (isFieldFocus[$scope.indexArray]) {
+            // If the `displayValue` does not contain a decimal point
+            if (!calculator.displayCounterValue[$scope.indexArray].includes(dot)) {
+                // Append the decimal point
+                calculator.displayCounterValue += dot;
+            }
+        }
+
+    }
+
+    function updateDisplay() {
+        if (isFieldFocus[$scope.indexArray]) {
+            $scope.displayCounterResult[$scope.indexArray] = calculator.displayCounterValue[$scope.indexArray];
+        }
+
+    }
+
+    $scope.addDecimal = function (dot) {
+        inputDecimal(dot);
+        updateDisplay();
+    }
+
+
+    $scope.ClearFocusedField = function () {
+
+        if (isFieldFocus[$scope.indexArray]) {
+            calculator.displayCounterValue[$scope.indexArray] = '0';
+            calculator.firstOperand = null;
+            calculator.waitingForSecondOperand = false;
+            calculator.operator = null;
+        }
+
+        updateDisplay();
+    }
+
+
+
+    $scope.addNumber = function (number) {
+        inputDigit(number);
+        updateDisplay();
+    }
+
+    $scope.CounterFocus = function (index) {
+        $scope.indexArray = index;
+
+        for (var i = 0; i < isFieldFocus.length; i++) {
+            if (i === $scope.indexArray) { isFieldFocus[i] = true; }
+            else { isFieldFocus[i] = false }
+        }
+
+    }
+
+
+    $scope.CounterBlur = function (v) {
+
+        if (v !== undefined || v !== null) {
+            calculator.displayCounterValue[$scope.indexArray] = v;
+        }
+    }
+
 
 });

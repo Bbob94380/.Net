@@ -6,6 +6,8 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
 
     $scope.displayBarcodeResult = "11318678641564";
     $scope.displayQtyResult = "";
+    $scope.product = {};
+    $scope.showImage = false;
 
     //Initialization
     $scope.wetName = data.wetName;
@@ -19,7 +21,7 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
     });
 
 
-    $scope.next = function () {
+    $scope.getProductBarcode = function () {
 
         if ($scope.displayBarcodeResult === undefined || $scope.displayBarcodeResult === null ||
             $scope.displayBarcodeResult === '0' || $scope.displayBarcodeResult === 0 || $scope.displayBarcodeResult === "") {
@@ -28,19 +30,8 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
             return;
         } else {
 
-            //var item = {
-            //    id: 15,
-            //    name: "Test",
-            //    sale_price: 120.0,
-            //    barcode: "5435468754",
-            //    quantity: 55,
-            //};
 
-            //$rootScope.dryItemClicked(item);
-
-            //$uibModalInstance.close('Succeeded');
-
-            $rootScope.showLoader = true;
+           // $rootScope.showLoader = true;
 
             $http({
                 method: "POST",
@@ -48,7 +39,10 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
                 data: { sessionId: localStorage.getItem('session_id'), barcode: $scope.displayBarcodeResult }
             }).then(function (response) {
                 console.log(response);
-                $rootScope.showLoader = false;
+                //$rootScope.showLoader = false;
+
+                $scope.product.image = ""
+                $scope.showImage = false;
 
                 if (response !== null && response !== undefined) {
 
@@ -58,9 +52,9 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
 
                         if (result.isSuccessStatusCode) {
 
-                            //result.resultData.addedQty = parseInt($scope.displayQtyResult);
-                            $rootScope.dryItemClicked(result.resultData, parseInt($scope.displayQtyResult));
-                            $uibModalInstance.dismiss();
+                            $scope.product = result.resultData;
+                            $scope.showImage = true;
+                            $scope.product.image = "https://picsum.photos/200/300";
 
                         } else {
                             swal("Oops", "Failed getting product", "");
@@ -76,14 +70,35 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
 
 
             }, function (error) {
-                swal("Oops", "eee", "error");
-                $rootScope.showLoader = false;
+                    swal("Oops", "Failed getting product", "");
+                //$rootScope.showLoader = false;
             });
 
 
         }
 
     };
+
+
+    $scope.done = function () {
+
+        if ($scope.displayBarcodeResult === undefined || $scope.displayBarcodeResult === null || $scope.displayBarcodeResult === "" || $scope.displayBarcodeResult === 0 || $scope.displayBarcodeResult === "0") {
+
+            swal("Please fill the barcode field", "", "warning");
+
+        } else {
+
+            if ($scope.displayQtyResult === undefined || $scope.displayQtyResult === null || $scope.displayQtyResult === "" || $scope.displayQtyResult === 0 || $scope.displayQtyResult === "0") {
+
+                swal("Please fill the quantity field", "", "warning");
+
+            } else {
+                $rootScope.dryItemClicked($scope.product, parseInt($scope.displayQtyResult));
+                $uibModalInstance.dismiss();
+            }
+        }
+
+    }
 
 
 
