@@ -10,10 +10,15 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
     console.log(data);
     $scope.wetName = data.wetName;
     $scope.wetId = data.wetId;
+    $scope.wetType = data.type;
     $scope.priceMcOfLitre = data.priceMc;
     $scope.priceScOfLitre = data.priceSc;
     $scope.dollarRate = parseInt(localStorage.getItem("dollarRate"));
+    $scope.disableField = false;
 
+    if ($scope.wetType === "GAZ10" || $scope.wetType === "GAZ12" || $scope.wetType === "GAZ_EMPTY") {
+        $scope.disableField = true;
+    }
 
     //events
     //$scope.$watch("displayQtyResult", function (newValue = '', oldValue = '') {

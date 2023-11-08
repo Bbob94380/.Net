@@ -3,6 +3,13 @@ rootHOModule.controller("viewDOController", ["$scope", "$location", "$stateParam
 
     $scope.truck = $stateParams.item; //getting fooVal
 
+    if ($scope.truck === undefined || $scope.truck === null || $scope.truck === "") {
+        $scope.truck = JSON.parse(localStorage.getItem("truckData"));
+    } else {
+        localStorage.setItem("truckData", JSON.stringify($scope.truck));
+    }
+
+
     console.log($scope.truck);
 
     $scope.stations = [];
@@ -42,20 +49,20 @@ rootHOModule.controller("viewDOController", ["$scope", "$location", "$stateParam
 
 
                     } else {
-                        swal("Oops", "Failed getting POs", "");
+                        swal("Oops", "Failed getting DO info", "");
                     }
 
                 } else {
-                    swal("Oops", "Failed getting POs", "");
+                    swal("Oops", "Failed getting DO info", "");
                 }
 
             } else {
-                swal("Oops", "Failed getting POs", "");
+                swal("Oops", "Failed getting DO info", "");
             }
 
 
         }, function (error) {
-            swal("Oops", "Failed getting POs", "");
+                swal("Oops", "Failed getting DO info", "");
             $rootScope.showLoader = false;
         });
 

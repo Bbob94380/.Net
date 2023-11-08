@@ -312,6 +312,7 @@ body:not(.layout-fixed) .main-sidebar {
 
 
 
+
 .reception-btn-filling {
     margin: auto;
     float: right;
@@ -1326,6 +1327,23 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 
+
+.reception-item-status-filling {
+    background-color: rgb(251 151 0 / 20%);
+    padding: 4px 15px;
+    color: #ffc720 !important;
+    font-size: 14px;
+    margin-left: 3em;
+}
+
+.reception-item-status-delivered {
+    background: #b5e38e;
+    font-size: 14px;
+    margin-left: 3em;
+    color: #38a900e6;
+}
+
+
 .reception-items {
     width: 95%;
 }
@@ -1347,8 +1365,79 @@ input[type="search"]::-webkit-search-cancel-button {
     color: #474747;
 }
 
-/*end*/
+.reception-do-item-status {
+    background: rgb(243 184 18 / 22%);
+    padding: 5px 17px;
+    font-size: 14px;
+    margin-left: 3em;
+}
 
+
+.reception-do-info-table th {
+    font-family: 'rubikRegular';
+    font-size: 11px;
+    color: #6F6F6F;
+}
+
+.reception-do-info-table td {
+    font-family: 'rubikRegular';
+    font-size: 11px;
+    color: #6F6F6F;
+    font-weight: 100;
+}
+
+.missing-title {
+    font-family: 'rubikRegular';
+    font-size: 14px;
+    color: #f10000;
+    margin: 9px;
+}
+
+.reception-info-title {
+    font-family: 'rubikRegular';
+    font-size: 14px;
+    color: #3fb7e7;
+    margin: 9px;
+}
+
+
+
+.isotope-pager,
+.filters {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: center;
+}
+
+    .isotope-pager .pager,
+    .filters li {
+        display: block;
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        margin: 0px;
+        color: #000;
+        text-decoration: none;
+        background-color: #fff;
+    }
+
+        .isotope-pager .pager,
+        .filters li a {
+            text-decoration: none;
+        }
+
+.isotope-pager .pager:focus {
+    color: #fff;
+    background-color: #D80404;
+    border-color: #D80404;
+}
+
+            .isotope-pager{
+                float: right;
+                margin-right: 3em;
+            }
+
+/*end*/
 
 .col-1 {
     -ms-flex: 0 0 8.333333%;

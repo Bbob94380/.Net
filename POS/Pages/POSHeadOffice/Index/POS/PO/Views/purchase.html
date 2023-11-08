@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-sm-7">
                         <div class="input-group input-group-sm input-group-receipts">
-                            <span class="purchase-history-btn">History</span>
+                            <span class="purchase-history-btn" ng-click="goToPOHistory()">History</span>
                             <span ng-click="goCreateNewPurchasePage()" style="cursor: pointer" class="purchase-create-btn">Create a Purchase</span>
                         </div>
                     </div>
@@ -26,11 +26,11 @@
                         <div class="card-header text-muted border-bottom-0">
 
                         </div>
-                        <div class="card-body pt-0">
+                        <div class="card-body pt-0" style="padding-right:0">
                             <div class="row">
                                 <div class="col-8">
                                     <h2 style="display: inline; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100;">
-                                        {{item.id}} -  Supplier Name - Driver Name - TN M123456
+                                        {{item.id}} -   {{item.supplierName}} - {{item.numOfTrucks}}
                                     </h2>
                                     <table class="table reception-item-table">
                                         <tr>
@@ -45,17 +45,23 @@
                                             </th>
                                         </tr>
                                         <tr>
-                                            <td style="text-align:left">
-                                                Fuel 98, Fuel 95, Diesel Red and Diesel Green
+                                            <td style="text-align:left; color: red">
+                                                {{item.wetProductName}}
                                             </td>
                                             <td>
-                                                6/3/2020 4:32 AM
+                                                {{item.creationDate}}
                                             </td>
                                             <td>
-                                                5
+                                                {{item.numOfTrucks}}
                                             </td>
                                         </tr>
                                     </table>
+                                </div>
+                                <div class="col-4">
+                                    <div class="barcontainer">
+                                        <div class="bar" ng-style="{{item.percentage}}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

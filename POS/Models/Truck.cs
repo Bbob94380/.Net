@@ -33,5 +33,6 @@ namespace POS.Models
         public decimal width { get; set; }
         public decimal depth { get; set; }
         public List<CreateSubTank> subTanks { get; set; }
+        public List<File> truckFiles { get; set; }
     }
 }

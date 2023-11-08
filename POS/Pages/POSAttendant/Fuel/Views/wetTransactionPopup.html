@@ -43,11 +43,11 @@
                     </div>
                     <div class="form-group">
                         <label>Price(LL)</label>
-                        <input   type="text" ng-model="displayPriceResult" ng-change="ValueChanged(displayPriceResult, 'LL')" class="form-control form-control-lg" ng-focus="PriceFocus()" ng-blur="PriceBlur(displayPriceResult)">
+                        <input   type="text" ng-disabled="disableField" ng-model="displayPriceResult" ng-change="ValueChanged(displayPriceResult, 'LL')" class="form-control form-control-lg" ng-focus="PriceFocus()" ng-blur="PriceBlur(displayPriceResult)">
                     </div>
                     <div class="form-group">
                         <label>Price(dollar)</label>
-                        <input  type="text" ng-model="displayPriceDollarResult" ng-change="ValueChanged(displayPriceDollarResult, 'dollar')" class="form-control form-control-lg" ng-focus="PriceDollarFocus()" ng-blur="PriceDollarBlur(displayPriceDollarResult)">
+                        <input  type="text" ng-disabled="disableField" ng-model="displayPriceDollarResult" ng-change="ValueChanged(displayPriceDollarResult, 'dollar')" class="form-control form-control-lg" ng-focus="PriceDollarFocus()" ng-blur="PriceDollarBlur(displayPriceDollarResult)">
                     </div>
                 </div>
             </form>

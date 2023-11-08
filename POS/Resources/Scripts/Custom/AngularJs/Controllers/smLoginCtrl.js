@@ -25,15 +25,46 @@ rootModule.controller("smLoginCtrl", ["$scope", "$sce", "$rootScope", "$http", "
         return $sce.trustAsResourceUrl(src);
     }
 
+    $scope.filterValue = function ($event) {
+        if (isNaN(String.fromCharCode($event.keyCode))) {
+            $event.preventDefault();
+        }
+    };
 
-    $scope.loginBtn = function () {
+
+    $scope.loginBtn = function (username, password) {
+
+
+        if ((username === undefined || username === null || username === "") && (password === undefined || password === null || password === "")) {
+            swal("Please fill the username and password fields", "", "warning");
+            return;
+        }
+
+
+        if (username === undefined || username === null || username === "") {
+            swal("Please fill the username field", "", "warning");
+            return;
+        }
+
+        if (password === undefined || password === null || password === "") {
+            swal("Please fill the password field", "", "warning");
+            return;
+        } else {
+
+            //if (password.trim().length !== 6) {
+            //    swal("Password should be just 6 digit", "", "warning");
+            //    return;
+            //}
+
+        }
 
         $rootScope.showLoader = true;
 
         $http({
             method: "POST",
             url: "/api/SmApi/LoginAsyncSM",
-            data: { email: "admin@gsm.com", password: "odoo123" }
+            //data: { email: "admin@gsm.com", password: "odoo123" }
+            data: { email: username, password: password }
         }).then(function (response) {
 
             console.log(response);
@@ -59,14 +90,17 @@ rootModule.controller("smLoginCtrl", ["$scope", "$sce", "$rootScope", "$http", "
                     }
 
                 } else {
+                    localStorage.setItem('session_id_sm', '');
                     swal("Oops", "Login failed", "");
                 }
 
             } else {
+                localStorage.setItem('session_id_sm', '');
                 swal("Oops", "Login failed", "");
             }
 
         }, function (error) {
+                localStorage.setItem('session_id_sm', '');
             swal("Oops", "Login failed", "");
             $rootScope.showLoader = false;
         });

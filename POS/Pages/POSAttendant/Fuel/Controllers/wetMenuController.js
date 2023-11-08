@@ -54,7 +54,7 @@
     getWetProductTypes();
 
 
-    $scope.displayWetTransactionPopup = function (wetName, wetId, priceMc, priceSc) {
+    $scope.displayWetTransactionPopup = function (wetName, wetId, priceMc, priceSc, type) {
 
 		var modalInstance;
 
@@ -66,7 +66,7 @@
 			windowClass: 'show',
 			resolve: {
 				data: function () {
-                    return { wetId: wetId, wetName: wetName, priceMc: priceMc, priceSc: priceSc };
+                    return { wetId: wetId, wetName: wetName, priceMc: priceMc, priceSc: priceSc, type: type };
 				}
 			}
 		});

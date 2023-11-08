@@ -23,52 +23,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto navbarSM" style="align-items: baseline;margin-bottom: 8px;">
-        <li class="nav-item">
-            <span class="nav-link" ng-click="SignOut()">Sign out</span>
-        </li>
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <img class="far fa-comments" src="~/Resources/Images/common/wifi-icon.png" />
-            </a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <span class="pos-menu-rate">1$ = 100000L.L</span>
-            </a>
-        </li>
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <img class="far fa-bell bell-icon" src="~/Resources/Images/common/notif-icon.png" />
-                <span class="badge badge-warning navbar-badge">99</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <span class="pos-menu-profile-icon">ME</span>
-            </a>
-        </li>
+
         <!-- Language Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -83,6 +38,47 @@
                 </a>
             </div>
         </li>
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <img class="far fa-comments" src="~/Resources/Images/common/wifi-icon.png" />
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <span class="pos-menu-rate">1$ = {{dollarRate}} L.L</span>
+            </a>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <img class="far fa-bell bell-icon" src="~/Resources/Images/common/notif-icon.png" />
+                <span class="badge badge-warning navbar-badge">{{notifications.length}}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                @*<span class="dropdown-header">{{notifications.length}}</span>*@
+                <div ng-repeat="notif in notifications track by $index">
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> {{notif.title}}
+                        <span class="float-right text-muted text-sm">{{notif.date}}</span>
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <span style="background-color: #D80404; color: white; padding: 7px 19px; font-size: 19px; border: none; border-radius: 46px;">  </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right p-0">
+                <a ng-click="SignOut()" class="dropdown-item active">
+                    Log out
+                </a>
+            </div>
+        </li>
+
+
     </ul>
 </nav>
 <!-- /.navbar -->

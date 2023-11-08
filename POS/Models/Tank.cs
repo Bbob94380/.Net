@@ -7,7 +7,11 @@ namespace POS.Models
 {
     public class Tank
     {
-
+        public decimal id { get; set; }
+        public decimal tankNumber { get; set; }
+        public decimal height { get; set; }
+        public decimal volume { get; set; }
+        public WetProductType wetProduct { get; set; }
     }
 
     public class SubTank

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H.O</title>
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.5.1/css/dataTables.dateTime.min.css">
     <link rel="stylesheet" href="~/Resources/Styles/Plugins/fontawesome-free/all.min.css">
     <link rel="stylesheet" href="~/Resources/Styles/Plugins/flag-icon/flag-icon.min.css">
     <link rel="stylesheet" href="~/Resources/Styles/Plugins/datatables/dataTables.bootstrap4.min.css">
@@ -45,6 +46,9 @@
     <script src="~/Resources/Scripts/Plugins/Js/datatables/dataTables.responsive.min.js"></script>
     <script src="~/Resources/Scripts/Plugins/Js/datatables/dataTables.buttons.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.5.1/js/dataTables.dateTime.min.js"></script>
+
     @*<script src="~/Resources/Scripts/Plugins/AngularJs/angular-translate.js"></script>*@
     @*@RenderSection("Scripts", required: false)*@
 
@@ -79,10 +83,12 @@
     <script src="~/Pages/POSHeadOffice/Index/POS/Truck/Controllers/truckController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/Truck/Controllers/createNewTruckPopupController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/Driver/Controllers/createNewDriverPopupController.js"></script>
+    <!-- PO/DO-->
     <script src="~/Pages/POSHeadOffice/Index/POS/PO/Controllers/purchaseController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/PO/Controllers/createPurchaseController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/DO/Controllers/createDOController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/PO/Controllers/poInfoController.js"></script>
+    <script src="~/Pages/POSHeadOffice/Index/POS/PO/Controllers/poHistoryController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/PO/Controllers/purchaseInfoController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/DO/Controllers/viewDOController.js"></script>
     <!-- Receipts-->
@@ -90,6 +96,8 @@
     <script src="~/Pages/POSHeadOffice/Index/POS/Receipts/Controllers/createNewReceiptPopupController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/Receipts/Controllers/receiptsInfoController.js"></script>
     <script src="~/Pages/POSHeadOffice/Index/POS/Receipts/Controllers/receiptsHistoryController.js"></script>
+    <!-- Station-->
+    <script src="~/Pages/POSHeadOffice/Index/POS/Station/Controllers/createStationController.js"></script>
 
     <!-- Directives-->
     <script src="~/Resources/Scripts/Custom/AngularJs/Directives/tableJqueryHO.js"></script>

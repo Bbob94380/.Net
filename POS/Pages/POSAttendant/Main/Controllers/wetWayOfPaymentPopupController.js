@@ -506,19 +506,22 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
         var secondCardCurrency = null;
         var firstCardDollarValue = null;
         var secondCardDollarValue = null;
+        var firstCardCodeValue = null;
+        var secondCardCodeValue = null;
+
 
         if ($scope.selectedPaymentType !== "Cash") {
             firstCardType = $scope.selectedPaymentType;
             firstCardCurrency = "USD";
-            if ($scope.selectedPaymentType === "LOCAL") { firstCardDollarValue = firstCardDollar;   }
-            if ($scope.selectedPaymentType === "NOUR") { firstCardDollarValue = firstNourCardDollar;  }
+            if ($scope.selectedPaymentType === "LOCAL") { firstCardDollarValue = firstCardDollar; firstCardCodeValue = $scope.codeCardFirst;   }
+            if ($scope.selectedPaymentType === "NOUR") { firstCardDollarValue = firstNourCardDollar; firstCardCodeValue = $scope.codeNourCardFirst;  }
         }
 
         if ($scope.selectedSecondPaymentType !== "Cash") {
             secondCardType = $scope.selectedSecondPaymentType;
             secondCardCurrency = "USD";
-            if ($scope.selectedSecondPaymentType === "LOCAL") { firstCardDollarValue = secondCardDollar; }
-            if ($scope.selectedSecondPaymentType === "NOUR") { firstCardDollarValue = secondNourCardDollar; }
+            if ($scope.selectedSecondPaymentType === "LOCAL") { secondCardDollarValue = secondCardDollar; secondCardCodeValue = $scope.codeCardSecond; }
+            if ($scope.selectedSecondPaymentType === "NOUR") { secondCardDollarValue = secondNourCardDollar; secondCardCodeValue = $scope.codeNourCardSecond; }
         }
 
         var createTransObj = {
@@ -530,11 +533,11 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
             cachAmountSc: firstCashDollar + secondCashDollar,
             invoiceAmountMc: firstCashLL + secondCashLL,
             invoiceAmountSc: firstCashDollar + secondCashDollar + firstCardDollar + secondCardDollar + firstNourCardDollar + secondNourCardDollar,
-            firstCardId: $scope.codeCardFirst,
+            firstCardId: firstCardCodeValue,
             firstCardType: firstCardType,
             firstCardTypeAmount: firstCardDollarValue,
             firstCardCurrency: firstCardCurrency,
-            secondCardId: $scope.codeCardSecond ,
+            secondCardId: secondCardCodeValue,
             secondCardType: secondCardType,
             secondCardTypeAmount: secondCardDollarValue,
             secondCardCurrency: secondCardCurrency,
@@ -726,19 +729,22 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
         var secondCardCurrency = null;
         var firstCardDollarValue = null;
         var secondCardDollarValue = null;
+        var firstCardCodeValue = null;
+        var secondCardCodeValue = null;
+
 
         if ($scope.selectedPaymentType !== "Cash") {
             firstCardType = $scope.selectedPaymentType;
             firstCardCurrency = "USD";
-            if ($scope.selectedPaymentType === "LOCAL") { firstCardDollarValue = firstCardDollar; }
-            if ($scope.selectedPaymentType === "NOUR") { firstCardDollarValue = firstNourCardDollar; }
+            if ($scope.selectedPaymentType === "LOCAL") { firstCardDollarValue = firstCardDollar; firstCardCodeValue = $scope.codeCardFirst;}
+            if ($scope.selectedPaymentType === "NOUR") { firstCardDollarValue = firstNourCardDollar; firstCardCodeValue = $scope.codeNourCardFirst;}
         }
 
         if ($scope.selectedSecondPaymentType !== "Cash") {
             secondCardType = $scope.selectedSecondPaymentType;
             secondCardCurrency = "USD";
-            if ($scope.selectedSecondPaymentType === "LOCAL") { firstCardDollarValue = secondCardDollar; }
-            if ($scope.selectedSecondPaymentType === "NOUR") { firstCardDollarValue = secondNourCardDollar; }
+            if ($scope.selectedSecondPaymentType === "LOCAL") { secondCardDollarValue = secondCardDollar; secondCardCodeValue = $scope.codeCardSecond; }
+            if ($scope.selectedSecondPaymentType === "NOUR") { secondCardDollarValue = secondNourCardDollar; secondCardCodeValue = $scope.codeNourCardSecond; }
         }
 
         var createTransObj = {
@@ -750,11 +756,11 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
             cachAmountSc: firstCashDollar + secondCashDollar,
             invoiceAmountMc: firstCashLL + secondCashLL,
             invoiceAmountSc: firstCashDollar + secondCashDollar + firstCardDollar + secondCardDollar + firstNourCardDollar + secondNourCardDollar,
-            firstCardId: $scope.codeCardFirst,
+            firstCardId: firstCardCodeValue,
             firstCardType: firstCardType,
             firstCardTypeAmount: firstCardDollarValue,
             firstCardCurrency: firstCardCurrency,
-            secondCardId: $scope.codeCardSecond,
+            secondCardId: secondCardCodeValue,
             secondCardType: secondCardType,
             secondCardTypeAmount: secondCardDollarValue,
             secondCardCurrency: secondCardCurrency,

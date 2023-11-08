@@ -3,6 +3,13 @@ rootHOModule.controller("purchaseInfoController", ["$scope", "$location", "$stat
 
     var item = $stateParams.item; //getting fooVal
 
+    if (item === undefined || item === null || item === "") {
+        item = JSON.parse(localStorage.getItem("itemData"));
+    } else {
+        localStorage.setItem("itemData", JSON.stringify(item));
+    }
+
+
     console.log(item);
     //$scope.truck = item.truck;
 
@@ -104,6 +111,8 @@ rootHOModule.controller("purchaseInfoController", ["$scope", "$location", "$stat
 
                         }
 
+                        calculateTotalFuelPurchases();
+
                     } else {
                         swal("Oops", "No drivers found", "");
                     }
@@ -123,6 +132,32 @@ rootHOModule.controller("purchaseInfoController", ["$scope", "$location", "$stat
         });
 
     };
+
+    function calculateTotalFuelPurchases() {
+
+        $scope.total = [];
+
+        for (var i = 0; i < $scope.po.poDetail.length; i++) {
+
+            var truck = $scope.po.poDetail[i];
+
+            for (var j = 0; j < truck.poFuelAmountsDetail.length; j++) {
+                var subtank = truck.poFuelAmountsDetail[j];
+
+                var found = false;
+
+                for (var z = 0; z < $scope.total.length; z++) {
+                    if ($scope.total[z].type === subtank.wetProductName) {
+                        $scope.total[z].amount = $scope.total[z].amount + subtank.productVolume;
+                        found = true;
+                    }
+                }
+
+                if (!found) $scope.total.push({ type: subtank.wetProductName, amount: subtank.productVolume  });
+            }
+        }
+
+    }
 
 
     function getDriverById(index, driverId) {
@@ -147,12 +182,9 @@ rootHOModule.controller("purchaseInfoController", ["$scope", "$location", "$stat
 
                         $scope.po.poDetail[index].driverName = result.resultData.name;
 
-                    } else {
-                        swal("Oops", "Failed getting POs", "");
                     }
 
                 } else {
-                    swal("Oops", "Failed getting POs", "");
                 }
 
             } else {

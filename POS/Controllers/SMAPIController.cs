@@ -884,6 +884,64 @@ namespace POS.Controllers
             return JsonConvert.SerializeObject(responseData);
         }
 
+
+        [HttpPost]
+        public async Task<string> getAllTanks(Payload payload)
+        {
+            //variables
+            List<Tank> tanks = null;
+            ResponseData<List<Tank>> responseData = new ResponseData<List<Tank>>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/tank/findAll");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        tanks = await response.Content.ReadAsAsync<List<Tank>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = tanks;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = null;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
         [HttpPost]
         public async Task<string> getReceptionById(Payload payload)
         {
@@ -936,6 +994,63 @@ namespace POS.Controllers
                 responseData.isSuccessStatusCode = false;
                 responseData.errorMsg = e.Message;
                 responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+        [HttpPost]
+        public async Task<string> createReceptionAsync(Payload payload)
+        {
+            //variables
+            ResponseData<int> responseData = new ResponseData<int>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var objAsJson = JsonConvert.SerializeObject(payload.createReception);
+                    var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync("FPOS/rest/reception/create", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.errorMsg = response.ReasonPhrase.ToString();
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                //responseData.resultData = null;
             }
 
             return JsonConvert.SerializeObject(responseData);

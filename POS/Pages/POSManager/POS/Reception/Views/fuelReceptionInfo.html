@@ -1,0 +1,215 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card-header" style="border-bottom: none;">
+                <a ui-sref="pos.receipts" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                    < Back
+                </a>
+                <h3 class="receiptInfo-title">Reception</h3>
+                <!--<h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>-->
+            </div>
+        </div>
+
+
+        <div class="card modal-body" style="margin: 1.7em;">
+            <div class="row" style="padding: 1em;">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info">
+                    <thead>
+                        <tr>
+                            <th>RECEPTION ID</th>
+                            <th>SENDED BY</th>
+                            <th>CREATION DATE</th>
+                            <th>DELIVERY DATE</th>
+                            <th>SUPPLIER NAME</th>
+                            <th class="reception-do-item-status" ng-class="item.statusStyle" style="color: #ffc720; width: 1em;">{{reception.status}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{reception.id}}</td>
+                            <td>{{reception.do_creator}}</td>
+                            <td>{{reception.creationDate}}</td>
+                            <td>{{reception.deliveryDate}}</td>
+                            <td>{{reception.supplierName}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <span style="height: 1px; background: #ede6e6;"></span>
+
+            <div>
+                <label style=" width: 100%; margin-bottom: 0.1em; padding: 1em 1em 0em 1em;">Driver and truck data</label>
+                <div class="row" style="padding: 1em;">
+                    <div class="col-md-6">
+                        <table class="table  text-nowrap transfer-popup-table reception-table-info">
+                            <thead>
+                                <tr>
+                                    <th>DRIVER NAME</th>
+                                    <th>PLATE NUMBER</th>
+                                    <th>TRANSPORT PARTY</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{reception.driverName}}</td>
+                                    <td>{{reception.plateNumber}}</td>
+                                    <td>{{reception.transportPartyNumber}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table  text-nowrap transfer-popup-table reception-table-info" style="margin-top:3em;">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="item in reception.files"><img src="data:image/png;base64,{{item.base64encoded}}" style=" width: 75px;" /></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="padding-left: 0.8em; font-family: 'rubikRegular'; font-size: 14px; color: #6F6F6F; font-weight: 100; ">NONCONFORMITY</label>
+                        <table class="table  text-nowrap transfer-popup-table reception-table-info">
+                            <thead>
+                                <tr>
+                                    <th>Nonconformity Reason</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(reason, desc) in reception.nonConf_Description">
+                                    <td style="font-size: 12px;">{{$index+1}}. {{reason}}</td>
+                                    <td style="font-size: 12px;">{{desc}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--<table class="table  text-nowrap transfer-popup-table reception-table-info">
+                            <thead>
+                                <tr>
+                                    <th>Sub-tank ID on Valve : </th>
+                                    <th>Seal on Valve : </th>
+                                    <th>Seal on Sub-tank : </th>
+                                </tr>
+                            </thead>
+                        </table>-->
+                    </div>
+
+                </div>
+
+            </div>
+
+            <span style="height: 1px; background: #ede6e6;"></span>
+
+
+            <div class="row" style="padding: 1em;">
+                <label>DO Information</label>
+                <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in reception.receivedSubTanks">
+                    <thead>
+                        <tr>
+                            <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                            <th class="th-text">Type</th>
+                            <th class="th-text">SUBTANK</th>
+                            <th class="th-text">AMOUNT SENT</th>
+                            <th class="th-text">Subtank Id On Valve</th>
+                            <th class="th-text">Seal On SubTank Cover</th>
+                            <th class="th-text">Seal On Valve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle2"></span></td>
+                            <td>{{item.wetProductType}}</td>
+                            <td>{{item.subTankNumber}}</td>
+                            <td>{{item.volume}}</td>
+                            <td>{{item.subTankID_on_valve}}</td>
+                            <td>{{item.seal_on_subTank_cover}}</td>
+                            <td>{{item.seal_on_valve}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <span style="height: 1px; background: #ede6e6;"></span>
+
+            <div class="row" style="padding: 1em;">
+                <label>Reception Information</label>
+                <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in reception.receivedSubTanks">
+                    <thead>
+                        <tr>
+                            <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                            <th class="th-text">Type</th>
+                            <th class="th-text">SUBTANK</th>
+                            <th class="th-text">AMOUNT</th>
+                            <th class="th-text">
+                                <div style=" background: #f3efef; width: 26em; height: 5em;">
+                                    <span class="missing-title">Missing Amount</span> <span class="missing-title">- Paid by the Driver</span>
+                                    <table class="table  text-nowrap transfer-popup-table reception-do-info-table" style="margin-top: 0.4em;">
+                                        <thead>
+                                            <tr>
+                                                <th class="th-text">Missing Amount</th>
+                                                <th class="th-text">SubTank</th>
+                                                <th class="th-text">TRANSACTION ID</th>
+                                                <th class="th-text">Amount Added</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{item.tank.actualVolAfterReception - item.tank.estVolAfterReception}}</td>
+                                                <td>Subtank {{item.subTankNumber}}</td>
+                                                <td>{{item.ncFillingTransactionId}}</td>
+                                                <td>{{item.tank.volumeSoldDuringReception}} L</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle2"></span></td>
+                            <td>{{item.wetProductType}}</td>
+                            <td>{{item.subTankNumber}}</td>
+                            <td>{{item.volume}}</td>
+                            <td class="th-text">
+                                <div style=" background: #f3efef; width: 26em; height: 5em; margin-top: 1em;">
+                                    <span class="reception-info-title">Reception Information</span>
+                                    <table class="table  text-nowrap transfer-popup-table reception-do-info-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="th-text">Reception Amount</th>
+                                                <th class="th-text">Tank</th>
+                                                <th class="th-text">Station Manager</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{item.volume}} L</td>
+                                                <td>{{item.tank.tankId}}</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="createReception()">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+</section>

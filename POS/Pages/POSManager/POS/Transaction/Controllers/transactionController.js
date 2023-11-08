@@ -49,18 +49,23 @@
 						for (let i = 0; i < result.resultData.length; i++) {
 
 							var trans = result.resultData[i];
-							trans.saleInvoice.category = "Dry Product";
-							trans.saleInvoice.amount = trans.saleInvoice.saleDetails.length + " item(s)";
-							trans.saleInvoice.creationDate = trans.creationDate;
-							trans.saleInvoice.creator = trans.creator;
-							$scope.saleTransList.push(trans.saleInvoice);
 
-							for (let j = 0; j < trans.saleTransactions.length; j++) {
-								trans.saleTransactions[j].category = "Fuel";
-								trans.saleTransactions[j].amount = trans.saleTransactions[j].dispensedVolume + " L";
-								trans.saleTransactions[j].creationDate = trans.creationDate;
-								trans.saleTransactions[j].creator = trans.creator;
-								$scope.saleTransList.push(trans.saleTransactions[j]);
+							if (trans.saleInvoice !== null) {
+								trans.saleInvoice.category = "Dry Product";
+								trans.saleInvoice.amount = trans.saleInvoice.saleDetails.length + " item(s)";
+								trans.saleInvoice.creationDate = trans.creationDate;
+								trans.saleInvoice.creator = trans.creator;
+								$scope.saleTransList.push(trans.saleInvoice);
+							}
+
+							if (trans.saleTransactions !== null && trans.saleTransactions !== undefined && trans.saleTransactions !== "") {
+								for (let j = 0; j < trans.saleTransactions.length; j++) {
+									trans.saleTransactions[j].category = "Fuel";
+									trans.saleTransactions[j].amount = trans.saleTransactions[j].dispensedVolume + " L";
+									trans.saleTransactions[j].creationDate = trans.creationDate;
+									trans.saleTransactions[j].creator = trans.creator;
+									$scope.saleTransList.push(trans.saleTransactions[j]);
+								}
 							}
 						}//end for loop
 
@@ -129,20 +134,20 @@
 						console.log($scope.saleTransList);
 
 					} else {
-						swal("Oops", "Failed getting transactions", "");
+						//swal("Oops", "Failed getting transactions", "");
 					}
 
 				} else {
-					swal("Oops", "No transactions found", "");
+					//swal("Oops", "No transactions found", "");
 				}
 
 			} else {
-				swal("Oops", "Failed getting transactions", "");
+				//swal("Oops", "Failed getting transactions", "");
 			}
 
 
 		}, function (error) {
-			swal("Oops", "Failed getting transactions", "error");
+			//swal("Oops", "Failed getting transactions", "error");
 			$rootScope.showLoader = false;
 		});
 

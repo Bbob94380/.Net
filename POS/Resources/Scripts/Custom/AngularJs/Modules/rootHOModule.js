@@ -98,10 +98,23 @@ rootHOModule.config(['$stateProvider', '$urlRouterProvider', function ($statePro
             templateUrl: "/Pages/POSHeadOffice/Index/POS/DO/Views/createDO.html",
             controller: "createDOController"
         })
+        .state("HO_Index_POS.createStation", {
+            url: "/createStation",
+            params: {
+                item: null
+            },
+            templateUrl: "/Pages/POSHeadOffice/Index/POS/Station/Views/createStation.html",
+            controller: "createStationController"
+        })
         .state("HO_Index_POS.poInfo", {
-            url: "",
+            url: "/poInfo",
             templateUrl: "/Pages/POSHeadOffice/Index/POS/PO/Views/poInfo.html",
             controller: "poInfoController"
+        })
+        .state("HO_Index_POS.poHistory", {
+            url: "/poHistory",
+            templateUrl: "/Pages/POSHeadOffice/Index/POS/PO/Views/poHistory.html",
+            controller: "poHistoryController"
         })
         .state("HO_Index_POS.purchaseinfo", {
             url: "/purchaseinfo",

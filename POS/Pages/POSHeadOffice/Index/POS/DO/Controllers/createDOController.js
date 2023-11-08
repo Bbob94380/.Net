@@ -1,16 +1,25 @@
 ﻿
-rootHOModule.controller("createDOController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$filter", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $filter) {
+rootHOModule.controller("createDOController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$filter", "$timeout", "$state", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $filter,$timeout, $state) {
 
     var item = $stateParams.item; //getting fooVal
+
+    if (item === undefined || item === null || item === "") {
+        item = JSON.parse(localStorage.getItem("newDOItemData"));
+    } else {
+        localStorage.setItem("newDOItemData", JSON.stringify(item));
+    }
+
 
     $scope.truck = item.truck;
     $scope.createdPO = item.createdPO;
     $scope.driverName = item.driverName;
     $scope.driverId = item.driverId;
-    $scope.deliveryDate = item.deliveryDate;
+    $scope.deliveryDate = "";
     $scope.counter = 1;
     $scope.stationsAddedToPO = [];
-    
+    $scope.imagesList = [];
+
+
     $scope.stationsAdded = [{
         "po_id": $scope.createdPO.id,
         "truck_id": $scope.truck.truckId,
@@ -19,6 +28,7 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
             {
                 "id": 1,
                 "wetProductId": "",
+                "wetProductName": "",
                 "productVolume": "",
                 "subTankId": ""
             }
@@ -133,6 +143,7 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
                     {
                         "id": 1,
                         "wetProductId": "",
+                        "wetProductName": "",
                         "productVolume": "",
                         "subTankId": ""
                     }
@@ -141,12 +152,37 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
         );
     };  
 
-    $scope.selectedWetChanged = function (selectedWet, subtank) {
-        subtank.wetProductId = selectedWet.id;
-    }; 
+    //$scope.selectedWetChanged = function (selectedWet, subtank) {
+    //    subtank.wetProductId = selectedWet.id;
+    //}; 
 
-    $scope.selectedSubtankChanged = function (selectedSubtank, subtank) {
-        subtank.subTankId = selectedSubtank.subTankId;
+    $scope.selectedSubtankChanged = function (subtank) {
+
+        var counter = 0;
+
+        for (var i = 0; i < $scope.stationsAdded.length; i++) {
+            for (var x = 0; x < $scope.stationsAdded[i].addStationDetails.length; x++) {
+                var subtankObj = $scope.stationsAdded[i].addStationDetails[x];
+                if (subtankObj.subTankId === subtank.subTankId) { counter++; }
+            }
+        }
+
+        if (counter > 1) {
+            swal("Subtank number already chosen", "", "warning");
+            subtank.subTankId = "";
+            subtank.wetProductName = "";
+            subtank.wetProductId = "";
+        } else {
+
+            for (var j = 0; j < $scope.truck.poFuelAmountsDetail.length; j++) {
+                var truck = $scope.truck.poFuelAmountsDetail[j];
+                if (truck.subTankNum === subtank.subTankId) {
+                    subtank.wetProductName = truck.wetProductName;
+                    subtank.wetProductId = truck.wetProductId;
+                }
+            }
+        }
+
     }; 
 
 
@@ -160,6 +196,7 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
             {
                 "id": $scope.counter,
                 "wetProductId": "",
+                "wetProductName": "",
                 "productVolume": "",
                 "subTankId": ""
             }
@@ -193,9 +230,53 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
     };
 
 
+    $scope.uploadFile = function (files, index) {
+
+        var base64 = getBase64(files[0], index);
+        console.log(base64);
+    };
+
+
+    function getBase64(file, index) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+
+            base64String = reader.result.replace("data:", "")
+                .replace(/^.+,/, "");
+
+            var imgObj = {
+                fileName: file.name,
+                size: file.size,
+                contentType: file.type,
+                base64encoded: base64String
+            }
+
+            $scope.imagesList[index] = imgObj;
+
+            console.log($scope.imagesList);
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
 
     $scope.addStationToPO = function (index) {
 
+
+        var found = false;
+
+        for (var i = 0; i < $scope.stationsAdded[index].addStationDetails.length; i++ ) {
+            var subtank = $scope.stationsAdded[index].addStationDetails[i];
+            if (subtank.wetProductId === "" || subtank.wetProductId === null) { swal("Please fill all fields", "", "warning"); found = true; break;}
+            if (subtank.productVolume === "" || subtank.productVolume === null) { swal("Please fill all fields", "", "warning"); found = true; break;}
+            if (subtank.subTankId === "" || subtank.subTankId === null) { swal("Please fill all fields", "", "warning"); found = true; break;}
+            
+        }
+
+        if (found) {
+            return;
+        }
 
         $rootScope.showLoader = true;
         $http({
@@ -278,9 +359,13 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
 
                     if (result.isSuccessStatusCode) {
 
-                        $scope.hideCreateDOBtn = false;
-                        //$scope.createdPO = result.resultData;
                         swal("DO created successfully", "", "success");
+
+                        $timeout(function () {
+                            $state.go('HO_Index_POS.purchaseinfo', {
+                                item: $scope.createdPO
+                            });
+                        })
 
                     } else {
                         swal("Oops", "DO creation failed", "");

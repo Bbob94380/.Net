@@ -13,6 +13,8 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
 
         var modalInstance;
 
+        var suppId = $scope.selectedSupplier.id;
+
         modalInstance = $uibModal.open({
             animate: true,
             templateUrl: '/Pages/POSHeadOffice/Index/POS/Truck/Views/createNewTruckPopup.html',
@@ -26,9 +28,18 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
             }
         });
 
-        modalInstance.result.then(function (Result) {
+        modalInstance.result.then(function (result) {
             //when $uibModalInstance.close() fct executed
 
+            if (result === true) {
+
+                for (var i = 0; i < $scope.suppliersList.length; i++) {
+                    if ($scope.suppliersList[i].id === suppId) {
+                        $scope.suppliersList[i].numOfTrucks += 1;
+                        $scope.numberOfTrucksOfSelectedSupplier = $scope.suppliersList[i].numOfTrucks;
+                    }
+                }
+            }
 
         }, function () {
             //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
@@ -41,7 +52,7 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
             driverName: $scope.driverName,
             driverId: $scope.driverId,
             truck: $scope.trucks[index],
-            deliveryDate: $scope.trucks[index].deliveryDate,
+            //deliveryDate: $scope.trucks[index].deliveryDate,
             createdPO: $scope.createdPO,
             //subTanks: $scope.trucksList.subTanks
         }
@@ -253,52 +264,52 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
     $scope.getAllWetProducts();
 
 
-    $scope.getTrucksBySupplierId = function (supplierId) {
+    //$scope.getTrucksBySupplierId = function (supplierId) {
 
-        $rootScope.showLoader = true;
-        $http({
-            method: "POST",
-            url: "/api/HOApi/findBySupplierId",
-            data: { sessionId: localStorage.getItem('session_id_ho'), supplierId: supplierId }
-        }).then(function (response) {
+    //    $rootScope.showLoader = true;
+    //    $http({
+    //        method: "POST",
+    //        url: "/api/HOApi/findBySupplierId",
+    //        data: { sessionId: localStorage.getItem('session_id_ho'), supplierId: supplierId }
+    //    }).then(function (response) {
 
-            console.log(response);
-            $rootScope.showLoader = false;
+    //        console.log(response);
+    //        $rootScope.showLoader = false;
 
-            if (response !== null && response !== undefined) {
+    //        if (response !== null && response !== undefined) {
 
-                if (response.data !== null && response.data !== undefined) {
+    //            if (response.data !== null && response.data !== undefined) {
 
-                    var result = JSON.parse(response.data);
+    //                var result = JSON.parse(response.data);
 
-                    if (result.isSuccessStatusCode) {
+    //                if (result.isSuccessStatusCode) {
 
-                        if (result.resultData !== null && result.resultData !== "" && result.resultData !== undefined) {
-                            $scope.numberOfTrucksOfSelectedSupplier = result.resultData.length;
-                            console.log($scope.numberOfTrucksOfSelectedSupplier);
-                            $scope.isNbOfTruckDisabled = false;
-                        }
-
-
-                    } else {
-                        swal("Oops", "No drivers found", "");
-                    }
-
-                } else {
-                    swal("Oops", "No drivers found", "");
-                }
-
-            } else {
-                swal("Oops", "Failed getting drivers", "");
-            }
+    //                    if (result.resultData !== null && result.resultData !== "" && result.resultData !== undefined) {
+    //                        $scope.numberOfTrucksOfSelectedSupplier = result.resultData.length;
+    //                        console.log($scope.numberOfTrucksOfSelectedSupplier);
+    //                        $scope.isNbOfTruckDisabled = false;
+    //                    }
 
 
-        }, function (error) {
-            swal("Oops", "Failed getting drivers", "");
-            $rootScope.showLoader = false;
-        });
+    //                } else {
+    //                    swal("Oops", "No drivers found", "");
+    //                }
 
-    };
+    //            } else {
+    //                swal("Oops", "No drivers found", "");
+    //            }
+
+    //        } else {
+    //            swal("Oops", "Failed getting drivers", "");
+    //        }
+
+
+    //    }, function (error) {
+    //        swal("Oops", "Failed getting drivers", "");
+    //        $rootScope.showLoader = false;
+    //    });
+
+    //};
 
 
     $scope.trucks = [];
@@ -323,7 +334,7 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
                     "truckId": "",
                     "plateNumber": "",
                     "cheseNumber": "",
-                    "deliveryDate": "",
+                    //"deliveryDate": "",
                     "subTanksNumber": "",
                     "status": "Initiated",
                     "supplierId": "",
@@ -342,7 +353,12 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
         $scope.supplierId = supplier.id;
         $scope.supplierName = supplier.companyName;
 
-        $scope.getTrucksBySupplierId(supplier.id);
+        $scope.numberOfTrucksOfSelectedSupplier = supplier.numOfTrucks;
+        $scope.isNbOfTruckDisabled = false;
+
+        $scope.numberOfTrucks = 0;
+        $scope.trucks = [];
+        //$scope.getTrucksBySupplierId(supplier.id);
     };  
 
     $scope.selectedWetChanged = function (wet,subtank) {
@@ -370,7 +386,7 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
         $scope.trucks[index].poFuelAmountsDetail = truck.subTanks;
         $scope.trucks[index].plateNumber = truck.plateNumber;
         $scope.trucks[index].cheseNumber = truck.cheseNumber;
-        $scope.trucks[index].deliveryDate = truck.deliveryDate;
+        //$scope.trucks[index].deliveryDate = truck.deliveryDate;
         $scope.trucks[index].transportPartyNumber = truck.transportPartyNumber;
         $scope.trucks[index].subTanksNumber = truck.subTanks.length;
     };  

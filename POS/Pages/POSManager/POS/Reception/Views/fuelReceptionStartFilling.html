@@ -13,8 +13,8 @@
                 <a ui-sref="pos.receipts" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
                     < Back
                 </a>
-                <h3 class="receiptInfo-title">Receipts</h3>
-                <h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>
+                <h3 class="receiptInfo-title">Reception</h3>
+                <!--<h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>-->
             </div>
         </div>
 
@@ -24,20 +24,22 @@
                 <table class="table  text-nowrap transfer-popup-table reception-table-info">
                     <thead>
                         <tr>
-                            <th>RECEPTION ID</th>
-                            <th>SENDER BY</th>
-                            <th>CREATION DATE </th>
-                            <th>RECEIVING DATE</th>
+                            <th>STATION DO ID</th>
+                            <th>SENDED BY</th>
+                            <th>CREATION DATE</th>
+                            <th>DELIVERY DATE</th>
                             <th>SUPPLIER NAME</th>
+                            <th class="reception-item-status-filling" style="color: #ffc720; width: 1em;">FILLING</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{reception.id}}</td>
-                            <td>{{reception.creator}}</td>
+                            <td>{{reception.do_creator}}</td>
                             <td>{{reception.creationDate}}</td>
-                            <td>{{reception.receptionDate}}</td>
+                            <td>{{reception.deliveryDate}}</td>
                             <td>{{reception.supplierName}}</td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -53,13 +55,22 @@
                                 <th>DRIVER NAME</th>
                                 <th>PLATE NUMBER</th>
                                 <th>TRANSPORT PARTY</th>
+                                <th>
+                                    <input style="width: 14em;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files, 0)" />
+                                </th>
+                                <th>
+                                    <input style="width: 14em;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files, 1)" />
+                                </th>
+                                <th>
+                                    <input style="width: 14em;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files, 2)" />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{{reception.driverName}}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{reception.plateNumber}}</td>
+                                <td>{{reception.transportPartyNumber}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -98,23 +109,27 @@
 
             <div class="row" style="padding: 1em;">
                 <label>DO Information</label>
-                <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in reception.receivedSubTanks">
+                <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in reception.fuelAmounts">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                             <th class="th-text">Type</th>
                             <th class="th-text">SUBTANK</th>
                             <th class="th-text">AMOUNT SENT</th>
-                            <th class="th-text">Quantity OBS</th>
+                            <th class="th-text">SUB-TANK SIZE</th>
+                            <th class="th-text">TOP SIZE</th>
+                            <th class="th-text">DOWN SIZE</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><span class="transfer-half-rectangle2"></span></td>
-                            <td>{{item.wetProductName}}</td>
-                            <td>{{item.subTankNumber}}</td>
-                            <td>{{item.volume}}</td>
-                            <td>{{item.quantityOBS}}</td>
+                            <td>{{item.wetProductType}}</td>
+                            <td>{{item.subTankId}}</td>
+                            <td>{{item.productVolume}}</td>
+                            <td>{{item.subTankSize}}</td>
+                            <td>{{item.subTankUpSize}}</td>
+                            <td>{{item.subTankDownSize}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -122,18 +137,18 @@
 
             <div>
                 <label style=" width: 100%;margin-bottom: 1.5em;padding: 1em;">Reception Information</label>
-                <div class="row" style="padding: 0 1em;" ng-repeat="item in reception.receivedSubTanks">
+                <div class="row" style="padding: 0 1em;" ng-repeat="item in reception.fuelAmounts">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label>{{$index + 1}}. Fuel Type</label>
-                                <input class="form-control" disabled value="{{item.wetProductName}}-{{item.subTankNumber}} " />
+                                <input class="form-control" disabled value="{{item.wetProductType}}-{{'Subtank '+ item.subTankId}} " />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Amount Sent</label>
-                                <input class="form-control" disabled value="{{item.volume}}" />
+                                <input class="form-control" disabled value="{{item.productVolume}}" />
                             </div>
                         </div>
                     </div>
@@ -148,28 +163,35 @@
                         </div>
                     </div>
                     <div class="row col-md-12" ng-show='item.fuel_below_indicator'>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">Sale Transaction</label>
+                                <select class="form-control"  ng-model="item.selectedTrans" ng-options="item5.id +' - '+ item5.dispensedVolume + ' L - '+ item5.nozzleNumber for item5 in transList">
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label class="label-reception-info">Missing Amount in Tank Truck</label>
-                                <input class="form-control" />
+                                <input class="form-control" disabled value="{{item.selectedTrans.dispensedVolume}}" />
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                             <div class="form-group">
                                 <label class="label-reception-info">TRANSACRION ID</label>
-                                <input class="form-control"  />
+                                <input class="form-control" disabled value="{{item.selectedTrans.id}}" />
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">ADDED AMOUNT</label>
-                                <input class="form-control" />
+                                <input class="form-control" disabled value="{{item.selectedTrans.dispensedVolume}}" />
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">ADDED AMOUNT PRICE</label>
-                                <input class="form-control" disabled />
+                                <input class="form-control" disabled  value="{{item.selectedTrans.netTotalMc}} L.L/$ {{item.selectedTrans.netTotalSc}}"/>
                             </div>
                         </div>
                     </div>
@@ -181,26 +203,26 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">Tank</label>
-                                <select class="form-control" ng-model="tanksToBeFilled[$index].tankId" ng-options="item for item in tankNumbers">
+                                <select class="form-control" ng-change="tankNumberSelected(item.tankId,item.subTankId, item.volumeSoldDuringReception)" ng-model="item.tankId" ng-options="item2.id as item2.tankNumber for item2 in tanks">
                                 </select>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">Available Amount</label>
-                                <input class="form-control" ng-model="tanksToBeFilled[$index].volumeBeforeReception" />
+                                <input class="form-control" disabled ng-model="item.volumeBeforeReception" />
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">Added Amount</label>
-                                <input class="form-control"  ng-model="tanksToBeFilled[$index].volumeSoldDuringReception"/>
+                                <input class="form-control" ng-model="item.volumeSoldDuringReception" ng-change="validateTankAddedAmount(item.volumeSoldDuringReception, item.productVolume, item.subTankId, item.volumeBeforeReception)"/>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">New Available Amount </label>
-                                <input class="form-control" ng-model="tanksToBeFilled[$index].actualVolAfterReception" />
+                                <input class="form-control" disabled ng-model="item.estVolAfterReception" />
                             </div>
                         </div>
                     </div>
@@ -209,24 +231,24 @@
                             <div class="form-group">
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">Subtank ID on Valve</label>
-                                <select class="form-control" ng-model="item.subTankID_on_valve" ng-options="item for item in sealTypes">
+                                <select class="form-control" ng-model="item.subTankID_on_valve" ng-options="item3 for item3 in sealTypes">
                                 </select>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">Seal on Valve</label>
-                                <select class="form-control" ng-model="item.seal_on_valve" ng-options="item for item in sealTypes">
+                                <select class="form-control" ng-model="item.seal_on_valve" ng-options="item4 for item4 in sealTypes">
                                 </select>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">Seal on Subtank</label>
-                                <select class="form-control" ng-model="item.seal_on_subTank_cover" ng-options="item for item in sealTypes">
+                                <select class="form-control" ng-model="item.seal_on_subTank_cover" ng-options="item5 for item5 in sealTypes">
                                 </select>
                             </div>
                         </div>

@@ -65,22 +65,22 @@
         $translate.use('ar');
     }
 
-    //var userActionHandle;
-    //function userDidSomething() {
-    //    clearTimeout(userActionHandle);
-    //    userActionHandle = setTimeout(function () {
-    //        //alert("5 seconds of inactivity");
-    //        localStorage.setItem("isEmployeeLoggedIn", "false");
-    //        $rootScope.OpenEmployeeLoginPopup();
-    //    }, 40000);
-    //}
-    //window.addEventListener("mousemove", userDidSomething, false);
-    //window.addEventListener("keydown", userDidSomething, false);
-    //window.addEventListener("keypress", userDidSomething, false);
-    //window.addEventListener("scroll", userDidSomething, false);
-    //window.addEventListener("click", userDidSomething, false);
-    ////Start timeout
-    //userDidSomething();
+    var userActionHandle;
+    function userDidSomething() {
+        clearTimeout(userActionHandle);
+        userActionHandle = setTimeout(function () {
+            //alert("5 seconds of inactivity");
+            localStorage.setItem("isEmployeeLoggedIn", "false");
+            $rootScope.OpenEmployeeLoginPopup();
+        }, 40000);
+    }
+    window.addEventListener("mousemove", userDidSomething, false);
+    window.addEventListener("keydown", userDidSomething, false);
+    window.addEventListener("keypress", userDidSomething, false);
+    window.addEventListener("scroll", userDidSomething, false);
+    window.addEventListener("click", userDidSomething, false);
+    //Start timeout
+    userDidSomething();
 
 
     var roles = JSON.parse(localStorage.getItem("employeeRoles"));
@@ -383,9 +383,9 @@
     }
 
     var transJson = JSON.parse(localStorage.getItem("transList"));
-    if (transJson !== undefined && transJson !== null && transJson !== "" && transJson !== "[]" && transJson !== []) {
+    if (transJson !== undefined && transJson !== null && transJson !== "") {
         $rootScope.transactionsList = transJson;
-        $rootScope.calculateTotal();
+        if ($rootScope.transactionsList.length > 0) $rootScope.calculateTotal();
     }
 
 

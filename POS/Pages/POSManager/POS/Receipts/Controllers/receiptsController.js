@@ -140,20 +140,20 @@ rootModule.controller("receiptsController", ["$scope", "$state", "$timeout", "$u
 
 					
 					} else {
-						swal("Oops", "Failed getting receipts", "");
+						//swal("Oops", "Failed getting receipts", "");
 					}
 
 				} else {
-					swal("Oops", "No receipts found", "");
+					//swal("Oops", "No receipts found", "");
 				}
 
 			} else {
-				swal("Oops", "Failed getting receipts", "");
+				//swal("Oops", "Failed getting receipts", "");
 			}
 
 
         }, function (error) {
-            swal("Oops", "Failed getting receipts", "error");
+            //swal("Oops", "Failed getting receipts", "error");
             $rootScope.showLoader = false;
         });
 

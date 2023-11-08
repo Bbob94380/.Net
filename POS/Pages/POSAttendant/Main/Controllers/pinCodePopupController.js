@@ -4,14 +4,20 @@ posAttendantRootModule.controller('pinCodePopupController', function ($scope, $r
 
     $scope.backBtnClicked = function (pinCodeValue) {
 
+
+        if (pinCodeValue === null || pinCodeValue === undefined || pinCodeValue === "") {
+            swal("Please add your pin code", "", "warning");
+            return;
+        }
+
         //call api to check credentials
         $rootScope.showLoader = true;
 
         $http({
             method: "POST",
             url: "/api/Request/CheckPinCodeAsync",
-            data: { email: data.username, password: pinCodeValue }
-            //data: { email: "admin@gsm.com", password: "odoo123" }
+            //data: { email: data.username, password: pinCodeValue }
+            data: { email: "admin@gsm.com", password: "odoo123" }
         }).then(function (response) {
 
             console.log(response);

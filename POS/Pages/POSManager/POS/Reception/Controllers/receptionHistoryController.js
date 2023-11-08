@@ -1,16 +1,14 @@
 ﻿
-rootHOModule.controller("purchaseController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$q", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $q) {
+rootModule.controller("receptionHistoryController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", function ($scope, $state, $timeout, $uibModal, $http, $rootScope) {
 
-    var promise1;
-    var promise2;
-    $scope.wetProductsList = [];
+    $rootScope.receptionsList = [];
 
-
+  
     function rootFilter() {
 
         var itemSelector = ".item";
         var $checkboxes = $('.filter-item');
-        var $container = $('#purchaseItems').isotope({ itemSelector: itemSelector, filter: '.example' });
+        var $container = $('#receptionHistoryItems').isotope({ itemSelector: itemSelector, filter: '.example' });
 
         //Ascending order
         var responsiveIsotope = [[480, 4], [720, 6]];
@@ -188,14 +186,13 @@ rootHOModule.controller("purchaseController", ["$scope", "$state", "$timeout", "
 
     }
 
-    function getAllPOs() {
+    function getAllReception() {
 
         $rootScope.showLoader = true;
-
-        promise1 = $http({
+        $http({
             method: "POST",
-            url: "/api/HOApi/getAllPOs",
-            data: { sessionId: localStorage.getItem('session_id_ho') }
+            url: "/api/SmApi/getAllReception",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
         }).then(function (response) {
 
             console.log(response);
@@ -209,173 +206,46 @@ rootHOModule.controller("purchaseController", ["$scope", "$state", "$timeout", "
 
                     if (result.isSuccessStatusCode) {
 
-                        if (result.resultData !== null || result.resultData !== undefined || result.resultData !== "") {
+                        $rootScope.receptionsList = result.resultData;
 
-                            if (Array.isArray(result.resultData)) {
-
-                                if (result.resultData.length > 0) {
-
-                                    $scope.poList = result.resultData;
-                                    console.log($scope.poList);
-                                    setTimeout(function () {
-                                        rootFilter();
-                                    }, 1);
-
-                                } else {
-                                    swal("No Purchases Found", " ", "warning");
-                                }
-                            } else {
-                                swal("No Purchases Found", " ", "warning");
-                            }
-
-                        } else {
-                            swal("No Purchases Found", " ", "warning");
-                        }
+                        setTimeout(function () {
+                            rootFilter();
+                        }, 1);
 
                     } else {
-                        swal("Oops", "Failed getting POs", "");
+                        swal("Oops", "Failed getting receptions", "");
                     }
 
                 } else {
-                    swal("Oops", "Failed getting POs", "");
+                    swal("Oops", "Failed getting receptions", "");
                 }
 
             } else {
-                swal("Oops", "Failed getting POs", "");
+                swal("Oops", "Failed getting receptions", "");
             }
 
 
         }, function (error) {
-                swal("Oops", "Failed getting POs", "");
+                swal("Oops", "Failed getting receptions", "");
             $rootScope.showLoader = false;
         });
 
     };
 
-    getAllPOs();
+    getAllReception();
 
-
-   function getAllWetProducts() {
-
-        $rootScope.showLoader = true;
-        promise2 = $http({
-            method: "POST",
-            url: "/api/Request/getAllWetProductTypes",
-            data: { sessionId: localStorage.getItem('session_id_ho') }
-        }).then(function (response) {
-
-            console.log(response);
-            $rootScope.showLoader = false;
-
-            if (response !== null && response !== undefined) {
-
-                if (response.data !== null && response.data !== undefined) {
-
-                    var result = JSON.parse(response.data);
-
-                    if (result.isSuccessStatusCode) {
-
-                        $scope.wetProductsList = result.resultData;
-
-                    } else {
-                        swal("Oops", "No drivers found", "");
-                    }
-
-                } else {
-                    swal("Oops", "No drivers found", "");
-                }
-
-            } else {
-                swal("Oops", "Failed getting drivers", "");
-            }
-
-
-        }, function (error) {
-            swal("Oops", "Failed getting drivers", "");
-            $rootScope.showLoader = false;
-        });
-
-    };
-
-    getAllWetProducts();
-
-
-    $q.all([promise1, promise2]).then(function (result) {
-        console.log($scope.poList);
-        console.log($scope.wetProductsList);
-
-        for (var i = 0; i < $scope.poList.length; i++) {
-
-            var po = $scope.poList[i];
-            po.wetProductName = "";
-            po.wetProductNames = [];
-
-            if (po.status === "INITIATED") { po.percentage = { height: "0%" } }
-            if (po.status === "IN_PROGRESS") { po.percentage = { height: "50%" } }
-            if (po.status === "DONE") { po.percentage = { height: "100%" } }
-
-            for (var j = 0; j < po.poDetail.length; j++) {
-
-                var truck = po.poDetail[j];
-
-                for (var z = 0; z < truck.poFuelAmountsDetail.length; z++) {
-
-                    var subtank = truck.poFuelAmountsDetail[z];
-
-                    for (var x = 0; x < $scope.wetProductsList.length; x++) {
-
-                        var wetProduct = $scope.wetProductsList[x];
-
-                        if (subtank.wetProductId === wetProduct.id) {
-
-                            var found = false;
-                                
-                            for (var y = 0; y < po.wetProductNames.length; y++) {
-                                if (po.wetProductNames[y] === wetProduct.name) found = true;
-                            }
-
-                            if (!found) {
-                                po.wetProductNames.push(wetProduct.name);
-                                po.wetProductName = po.wetProductName + wetProduct.name + ", "
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-
-
-    });
-
-    $scope.goCreateNewPurchasePage = function () {
+    $scope.goToReceptionPage = function () {
 
         $timeout(function () {
-            $state.go('HO_Index_POS.createpurchase');
-        })
-
-    };
-
-    $scope.goToPurchaseInfo = function (payload) {
-
-        $timeout(function () {
-            $state.go('HO_Index_POS.purchaseinfo', {
-                item: payload
-            });
-        })
-
-    };
-
-
-    $scope.goToPOHistory = function () {
-
-        $timeout(function () {
-            $state.go('HO_Index_POS.poHistory', {
+            $state.go('pos.receptionInfo', {
                 item: null
             });
         })
 
     };
+
+
+
 
 }]);
 

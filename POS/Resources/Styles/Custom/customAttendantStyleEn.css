@@ -1181,13 +1181,6 @@ button {
     max-width: 31% !important;
 }
 
-.input-login-ho:focus {
-    background: #f1f5f5 !important;
-    border-radius: 33px;
-    border: none;
-    padding: 38px 29px;
-    font-size: 22px;
-}
 
 .get-sales-summary-btn {
     border-radius: 6px;

@@ -1,7 +1,9 @@
 ﻿
 
 
-rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate", "$location", function ($scope, $rootScope, $http, $translate, $location) {
+rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate", "$location", "$state", function ($scope, $rootScope, $http, $translate, $location, $state) {
+
+    $scope.notifications = [];
 
     $scope.goToArabicLayout = function (lang) {
         localStorage.setItem('languageSM', 'ar');
@@ -28,8 +30,10 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
         $scope.addActiveWord = 'flag-icon-us';
     }
 
-    $rootScope.dollarRate = 100000;
-
+    //$rootScope.dollarRate = 100000;
+    $rootScope.dollarRate = localStorage.getItem('dollarRateSM');
+    if ($rootScope.dollarRate === null || $rootScope.dollarRate === undefined || $rootScope.dollarRate === "") $rootScope.dollarRate = 0;
+    
 
     $rootScope.trustUrlSrc = function (src) {
         return $sce.trustAsResourceUrl(src);
@@ -66,6 +70,84 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
         $(".navFMSItem").addClass('activeMenuItemSM');
     }
 
+
+    if (localStorage.getItem("notifications") !== null && localStorage.getItem("notifications") !== undefined && localStorage.getItem("notifications") !== "") {
+        $scope.notifications = JSON.parse(localStorage.getItem("notifications"));
+    }
+
+
+    var ws = new WebSocket("ws://localhost:8080/FPOS/sendingNotifications");
+
+    ws.onopen = function () {
+        console.log("connection established...");
+    };
+
+
+    ws.onmessage = function (evt) {
+        var received_msg = evt.data;
+
+        if (received_msg !== null && received_msg !== undefined) {
+            var result = JSON.parse(received_msg);
+
+            if (result.type === "CurrencyRatio") {
+
+                $rootScope.$apply(function () {
+
+                    var oldDollarRate = localStorage.getItem('dollarRateSM');
+                    console.log(oldDollarRate);
+
+                    if (oldDollarRate !== result.currencyRatio) {
+                        $rootScope.dollarRate = result.currencyRatio;
+                        localStorage.setItem('dollarRateSM', result.currencyRatio);
+
+                        $scope.notifications.push({
+                            title: "Dollar rate has changed",
+                            image: "",
+                            date: ""
+                        });
+
+                        localStorage.setItem("notifications", JSON.stringify($scope.notifications));
+
+                    }
+
+                });
+
+            } else if (result.type === "StationDeliveryOrder") {
+
+
+                $rootScope.$apply(function () {
+                    console.log(result.stationDo);
+                    result.stationDo.isDO = true;
+                    result.stationDo.statusStyle = "reception-item-status";
+                    var DOList = [];
+
+                    if (localStorage.getItem("stationDOs") !== null && localStorage.getItem("stationDOs") !== undefined && localStorage.getItem("stationDOs") !== "") {
+                        DOList = JSON.parse(localStorage.getItem("stationDOs"));
+                    }
+                    DOList.push(result.stationDo);
+                    localStorage.setItem("stationDOs", JSON.stringify(DOList));
+
+                    $scope.notifications.push({
+                        title: "You have an delivery order",
+                        image: "",
+                        date: ""
+                    });
+
+                    localStorage.setItem("notifications", JSON.stringify($scope.notifications));
+
+                    //$window.location.reload();
+                    $state.reload();
+
+                });
+            }
+
+        }
+    };
+
+    ws.onclose = function () {
+        // websocket is closed.
+        console.log("Connection is closed...");
+    };
 
 
 }]);

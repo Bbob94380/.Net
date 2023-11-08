@@ -1,4 +1,4 @@
-﻿rootModule.controller("mainPOSController", ["$scope", "$uibModal", "$http", "$rootScope", function ($scope, $uibModal, $http, $rootScope) {
+﻿rootModule.controller("mainPOSController", ["$scope", "$uibModal", "$http", "$rootScope", "$state", function ($scope, $uibModal, $http, $rootScope, $state) {
 
 
     $scope.addActiveItem1 = function(){
@@ -13,6 +13,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem2 = function () {
@@ -27,6 +29,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem3 = function () {
@@ -41,6 +45,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem4 = function () {
@@ -55,6 +61,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem5 = function () {
@@ -69,6 +77,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem6 = function () {
@@ -83,6 +93,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem7 = function () {
@@ -97,6 +109,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem8 = function () {
@@ -111,6 +125,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem9 = function () {
@@ -121,10 +137,12 @@
         $scope.classItemStyle5 = "";
         $scope.classItemStyle6 = "";
         $scope.classItemStyle7 = "";
-        $scope.classItemStyle8 = "activeItemDash";
-        $scope.classItemStyle9 = "";
+        $scope.classItemStyle8 = "";
+        $scope.classItemStyle9 = "activeItemDash";
         $scope.classItemStyle10 = "";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem10 = function () {
@@ -139,6 +157,8 @@
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "activeItemDash";
         $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
 
     $scope.addActiveItem11 = function () {
@@ -152,8 +172,44 @@
         $scope.classItemStyle8 = "";
         $scope.classItemStyle9 = "";
         $scope.classItemStyle10 = "";
-        $scope.classItemStyle11 = "v";
+        $scope.classItemStyle11 = "activeItemDash";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
     }
+
+    $scope.addActiveItem12 = function () {
+        $scope.classItemStyle1 = "";
+        $scope.classItemStyle2 = "";
+        $scope.classItemStyle3 = "";
+        $scope.classItemStyle4 = "";
+        $scope.classItemStyle5 = "";
+        $scope.classItemStyle6 = "";
+        $scope.classItemStyle7 = "";
+        $scope.classItemStyle8 = "";
+        $scope.classItemStyle9 = "";
+        $scope.classItemStyle10 = "";
+        $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "activeItemDash";
+        $scope.classItemStyle13 = "";
+    }
+
+    $scope.addActiveItem13 = function () {
+        $scope.classItemStyle1 = "";
+        $scope.classItemStyle2 = "";
+        $scope.classItemStyle3 = "";
+        $scope.classItemStyle4 = "";
+        $scope.classItemStyle5 = "";
+        $scope.classItemStyle6 = "";
+        $scope.classItemStyle7 = "";
+        $scope.classItemStyle8 = "";
+        $scope.classItemStyle9 = "";
+        $scope.classItemStyle10 = "";
+        $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "activeItemDash";
+    }
+
+
 
 
 }]);

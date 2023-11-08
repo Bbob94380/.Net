@@ -353,6 +353,12 @@ namespace POS.Controllers
                             payload.createTransObj.saleInvoice.saleDetails = new List<CreateSaleDetail>();
                         }
                     }
+
+                    if (payload.createTransObj.customerServiceTransaction.id == 0)
+                    {
+                        payload.createTransObj.customerServiceTransaction = null;
+                    }
+
                     var objAsJson = JsonConvert.SerializeObject(payload.createTransObj);
                     var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
 
@@ -423,6 +429,12 @@ namespace POS.Controllers
                             payload.createTransObj.saleInvoice.saleDetails = new List<CreateSaleDetail>();
                         }
                     }
+
+                    if (payload.createTransObj.customerServiceTransaction.id == 0)
+                    {
+                        payload.createTransObj.customerServiceTransaction = null;
+                    }
+
                     var objAsJson = JsonConvert.SerializeObject(payload.createTransObj);
                     var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
 
@@ -1705,6 +1717,7 @@ namespace POS.Controllers
         public string truckId { get; set; }
         public List<decimal> transactionsIds { get; set; }
         public CreateTransaction createTransObj { get; set; }
+        public CreateReception createReception { get; set; }
         public CreateService createServiceObj { get; set; }
         public CreateCustomer createCustomer { get; set; }
         public Service service { get; set; }

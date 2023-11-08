@@ -45,7 +45,7 @@
 
             <div class="row" style="padding: 1em;">
                 <label>Purchase Fuel Content</label>
-                <table class="table  text-nowrap transfer-popup-table">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info" ng-repeat="item in total">
                     <thead>
                         <tr>
                             <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
@@ -56,58 +56,16 @@
                     <tbody>
                         <tr>
                             <td><span class="transfer-half-rectangle2"></span></td>
-                            <td>Fuel 98</td>
-                            <td>500L</td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
-                            <th class="th-text">Type</th>
-                            <th class="th-text">AMOUNT</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="transfer-half-rectangle2"></span></td>
-                            <td>500L</td>
-                            <td>500L</td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
-                            <th class="th-text">Type</th>
-                            <th class="th-text">AMOUNT</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="transfer-half-rectangle2"></span></td>
-                            <td>Fuel 98</td>
-                            <td>500L</td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>
-                            <th class="th-text">Type</th>
-                            <th class="th-text">AMOUNT</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td>Fuel 98</td>
-                            <td>500L</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.amount}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <label>Trucks</label>
+            <label style="padding: 1em;">Trucks</label>
 
-            <div class="row" ng-repeat="truck in po.poDetail">
+            <div class="row" ng-repeat="truck in po.poDetail" style="padding: 1em;">
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header" style="border-bottom: none; background: #e0e2e4;" data-card-widget="collapse">
@@ -125,7 +83,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row" style="padding: 1em;">
-                                <table class="table  text-nowrap transfer-popup-table" ng-repeat="subtank in truck.poFuelAmountsDetail">
+                                <table class="table  text-nowrap transfer-popup-table reception-table-info" ng-repeat="subtank in truck.poFuelAmountsDetail">
                                     <thead>
                                         <tr>
                                             <th class="th-text">Type</th>
@@ -157,7 +115,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">CLOSE</button>
+                <!--<button type="button" class="btn btn-primary">CLOSE</button>-->
             </div>
         </div>
         

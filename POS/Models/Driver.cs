@@ -26,5 +26,6 @@ namespace POS.Models
         public string address { get; set; }
         public string creator { get; set; }
         public string creationDate { get; set; }
+        public List<File> driverFiles { get; set; }
     }
 }

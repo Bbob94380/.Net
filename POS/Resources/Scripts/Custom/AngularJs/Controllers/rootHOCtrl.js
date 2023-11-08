@@ -3,6 +3,9 @@
 
 rootHOModule.controller("rootHOCtrl", ["$scope", "$rootScope", "$http", "$translate", "$location", function ($scope, $rootScope, $http, $translate, $location) {
 
+    $scope.notifications = [];
+
+
     $scope.goToArabicLayout = function (lang) {
         localStorage.setItem('languageHO', 'ar');
         $scope.addActiveWord = 'flag-icon-de';
@@ -28,7 +31,9 @@ rootHOModule.controller("rootHOCtrl", ["$scope", "$rootScope", "$http", "$transl
         $scope.addActiveWord = 'flag-icon-us';
     }
 
-    $rootScope.dollarRate = 100000;
+    //$rootScope.dollarRate = 100000;
+    $rootScope.dollarRate = localStorage.getItem('dollarRateHO');
+    if ($rootScope.dollarRate === null || $rootScope.dollarRate === undefined || $rootScope.dollarRate === "") $rootScope.dollarRate = 0;
 
 
     $rootScope.trustUrlSrc = function (src) {
@@ -65,6 +70,57 @@ rootHOModule.controller("rootHOCtrl", ["$scope", "$rootScope", "$http", "$transl
     } else if (currentPageTemplate === "/inventory") {
         $(".navFMSItem").addClass('activeMenuItemSM');
     }
+
+    if (localStorage.getItem("notificationsHO") !== null && localStorage.getItem("notificationsHO") !== undefined && localStorage.getItem("notificationsHO") !== "") {
+        $scope.notifications = JSON.parse(localStorage.getItem("notificationsHO"));
+    }
+
+
+    var ws = new WebSocket("ws://localhost:8080/FPOS/sendingNotifications");
+
+    ws.onopen = function () {
+        console.log("connection established...");
+    };
+
+
+    ws.onmessage = function (evt) {
+        var received_msg = evt.data;
+
+        if (received_msg !== null && received_msg !== undefined) {
+            var result = JSON.parse(received_msg);
+
+            if (result.type === "CurrencyRatio") {
+
+                $rootScope.$apply(function () {
+
+                    var oldDollarRate = localStorage.getItem('dollarRateHO');
+                    console.log(oldDollarRate);
+
+                    if (oldDollarRate !== result.currencyRatio) {
+                        $rootScope.dollarRate = result.currencyRatio;
+                        localStorage.setItem('dollarRateHO', result.currencyRatio);
+
+                        $scope.notifications.push({
+                            title: "Dollar rate has changed",
+                            image: "",
+                            date: ""
+                        });
+
+                        localStorage.setItem("notificationsHO", JSON.stringify($scope.notifications));
+
+                    }
+
+                });
+
+            }
+
+        }
+    };
+
+    ws.onclose = function () {
+        // websocket is closed.
+        console.log("Connection is closed...");
+    };
 
 
 }]);

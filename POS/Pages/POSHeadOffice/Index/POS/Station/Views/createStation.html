@@ -1,0 +1,293 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card-header" style="border-bottom: none;">
+                <a ui-sref="" class="nav-link back-btn" >
+                    < Back
+                </a>
+                <h3 class="receiptInfo-title">Create Station</h3>
+            </div>
+        </div>
+
+
+        <div class="card modal-body" style="margin: 1.7em;">
+
+            <div class="row col-md-12" style="padding: 1em;">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="new-po-title">Station ID</label>
+                        <input class="form-control" disabled ng-model="stationId" />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="new-po-title">Station Manager Name</label>
+                        <input class="form-control" disabled ng-model="stationManagerName" />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="new-po-title">Creation Time</label>
+                        <input class="form-control" disabled ng-model="createdPO.creationTime" />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="new-po-title">Creation Date</label>
+                        <input type="date" class="form-control" ng-model="creationDate" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-md-12" style="padding: 1em;">
+                <div class="col-8">
+                    <div class="form-group">
+                        <label class="new-po-title">Head Office URL</label>
+                        <input class="form-control" disabled ng-model="officeUrl" />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="new-po-title">Sending Time</label>
+                        <input class="form-control" disabled ng-model="sendingTime" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding: 1em;">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header" style="border-bottom: none; background: #e0e2e4;">
+                            <h3 class="card-title">
+                                Wet Product
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row col-12" ng-repeat="item in wetProductAdded">
+                                <div>
+                                    <img style="cursor:pointer" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeWetProduct(item.id)" />
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="new-po-title">Wet Product</label>
+                                        <select class="form-control" ng-model="item1" ng-change="selectedWetProductChanged(item1, item)" ng-options="item1 as item1.name for item1 in wetProductsList">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="new-po-title">Wet Product Code</label>
+                                        <input class="form-control" ng-model="item.wetProductCode" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="new-po-title">Threshold Quantity</label>
+                                        <input class="form-control" ng-model="item.qty" />
+                                    </div>
+                                </div>
+                            </div>
+                            <img class="form-group add-btn" style="cursor:pointer" ng-click="addNewWetProduct()" src="/Resources/Images/add-btn.png" />
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="padding: 1em;">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header" style="border-bottom: none; background: #e0e2e4;">
+                            <h3 class="card-title">
+                                Tanks
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div ng-repeat="item2 in tanksAdded">
+                                <div class="row col-12">
+                                    <div>
+                                        <img style="cursor:pointer" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeTank(item2.id)" />
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Tank Number</label>
+                                            <input class="form-control" ng-model="item2.tankNumber" />
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Height</label>
+                                            <input class="form-control" ng-model="item2.height" />
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Volume</label>
+                                            <input class="form-control" ng-model="item2.volume" />
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Water Height</label>
+                                            <input class="form-control" ng-model="item2.waterHeight" />
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Water Volume</label>
+                                            <input class="form-control" ng-model="item2.waterVolume" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Extension Height</label>
+                                            <input class="form-control" ng-model="item2.extensionHeight" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Extension Radius</label>
+                                            <input class="form-control" ng-model="item2.extensionRadius" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row col-12" style="direction: rtl;">
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Wet Product</label>
+                                            <input class="form-control" ng-model="item2.wetProduct" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Threshold Quantity</label>
+                                            <input class="form-control" ng-model="item2.qty" />
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Temperature</label>
+                                            <input class="form-control" ng-model="item2.temperature" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Temperature Comp</label>
+                                            <input class="form-control" ng-model="item2.Comp" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <img class="form-group add-btn" style="cursor:pointer" ng-click="addNewTank()" src="/Resources/Images/add-btn.png" />
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding: 1em;">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header" style="border-bottom: none; background: #e0e2e4;">
+                            <h3 class="card-title">
+                                Dispensers
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <div ng-repeat="item3 in dispensersAdded">
+                                <div class="row col-12">
+                                    <div>
+                                        <img style="cursor:pointer" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeDispenser(item3.id)" />
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Dispenser Number</label>
+                                            <input class="form-control" ng-model="item3.dispenserNumber" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Dispenser ID</label>
+                                            <input class="form-control" ng-model="item3.dispenserId" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Nuzzle Number</label>
+                                            <input class="form-control" ng-model="item3.nuzzleNumber" ng-change="nuzzleNumberChanged(item3, item3.nuzzleNumber)" />
+                                        </div>
+                                    </div>
+                                    <div class="col-1" ng-repeat="item4 in tanksAdded">
+                                        <div class="" style="padding-left: 2em;">
+                                            <label class="new-po-title" style="visibility: hidden; display: block; height: 2em;">Nuzzle Number</label>
+                                            <input type="checkbox" class="form-check-input" ng-model="isDispenserTankChecked" ng-change="dispenserTankCheckBoxChanged(item3, isDispenserTankChecked, item4)">
+                                            <label class="form-check-label" for="exampleCheck1">Tank {{item4.tankNumber}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row col-12" ng-repeat="item5 in item3.nuzzles">
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Nuzzle ID</label>
+                                            <input class="form-control" ng-model="item5.nuzzleId" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Mode</label>
+                                            <select class="form-control" ng-model="item5.mode" ng-options="item6 as item6.name for item6 in modesList">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Wet Product</label>
+                                            <select class="form-control" ng-model="item5.wetProduct" ng-options="item7 as item7.name for item7 in wetProductsList">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label class="new-po-title">Littres Counter</label>
+                                            <select class="form-control" ng-model="item5.littres" ng-options="item8 as item8.name for item8 in littresList">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-1" ng-repeat="item9 in tanksAdded">
+                                        <div class="" style="padding-left: 1em;">
+                                            <label class="new-po-title" style="visibility: hidden; display: block; height: 2em;">Nuzzle Number</label>
+                                            <input class="form-check-input" type="radio" name="radio{{$parent.$parent.$index}}{{$parent.$index}}" ng-model="item5.hasTank" ng-true-value="true" ng-false-value="false" ng-change="nuzzleTankCheckBoxChanged(item5, item9)">
+                                            <label class="form-check-label" for="exampleCheck1">Tank {{item9.tankNumber}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <img class="form-group add-btn" style="cursor:pointer" ng-click="addNewDispenser()" src="/Resources/Images/add-btn.png" />
+                            <!--{{ stationsAdded }}-->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" style="background:#2A5699" ng-click="createDO()">Create DO</button>
+            </div>
+        </div>
+</section>

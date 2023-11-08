@@ -25,8 +25,38 @@ posAttendantRootModule.controller("posAttendantLoginCtrl", ["$scope", "$sce", "$
         return $sce.trustAsResourceUrl(src);
     }
 
+    $scope.filterValue = function ($event) {
+        if (isNaN(String.fromCharCode($event.keyCode))) {
+            $event.preventDefault();
+        }
+    };
 
     $scope.loginBtn = function (username, password) {
+
+
+        if ((username === undefined || username === null || username === "") && (password === undefined || password === null || password === "")) {
+            swal("Please fill the username and password fields", "", "warning");
+            return;
+        }
+
+
+        if (username === undefined || username === null || username === "") {
+            swal("Please fill the username field", "", "warning");
+            return;
+        }
+
+        if (password === undefined || password === null || password === "") {
+            swal("Please fill the password field", "", "warning");
+            return;
+        } else {
+
+            //if (password.trim().length !== 6) {
+            //    swal("Password should be just 6 digit", "", "warning");
+            //    return;
+            //}
+
+        }
+
 
         $rootScope.showLoader = true;
 

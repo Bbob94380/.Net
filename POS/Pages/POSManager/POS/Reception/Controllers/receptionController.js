@@ -1,11 +1,23 @@
 ﻿
 rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", function ($scope, $state, $timeout, $uibModal, $http, $rootScope) {
 
+    $rootScope.receptionsList = [];
+    $rootScope.stationDOsList = [];
+    var DOList = [];
+
+
+    //localStorage.setItem("notifications", "");
+    //localStorage.setItem("stationDOs", "");
+
+
+    if (localStorage.getItem("stationDOs") !== null && localStorage.getItem("stationDOs") !== undefined && localStorage.getItem("stationDOs") !== "") DOList = JSON.parse(localStorage.getItem("stationDOs"));
+    if (DOList !== null && DOList !== undefined && DOList !== "") $rootScope.stationDOsList = DOList;
+
     function rootFilter() {
 
         var itemSelector = ".item";
         var $checkboxes = $('.filter-item');
-        var $container = $('#transferProducts').isotope({ itemSelector: itemSelector, filter: '.example' });
+        var $container = $('#receptionItems').isotope({ itemSelector: itemSelector, filter: '.example' });
 
         //Ascending order
         var responsiveIsotope = [[480, 4], [720, 6]];
@@ -183,6 +195,52 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
     }
 
+
+    $scope.getAllWetProductTypes = function () {
+
+        $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/getAllWetProductTypes",
+            data: { sessionId: localStorage.getItem('session_id_ho') }
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.wetProductsList = result.resultData;
+
+
+                    } else {
+                        swal("Oops", "No drivers found", "");
+                    }
+
+                } else {
+                    swal("Oops", "No drivers found", "");
+                }
+
+            } else {
+                swal("Oops", "Failed getting drivers", "");
+            }
+
+
+        }, function (error) {
+            swal("Oops", "Failed getting drivers", "");
+            $rootScope.showLoader = false;
+        });
+
+    };
+
+    $scope.getAllWetProductTypes();
+
     function getAllReception() {
 
         $rootScope.showLoader = true;
@@ -203,27 +261,65 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
                     if (result.isSuccessStatusCode) {
 
-                        $scope.receptionsList = result.resultData;
+                        var list = result.resultData;
+
+                        for (var i = 0; i < list.length; i++) {
+
+                            var statusStyle = "";
+
+                            if (list[i].status === "FILLING") statusStyle = "reception-item-status-filling";
+                            if (list[i].status === "DELIVERED") statusStyle = "reception-item-status-delivered";
+
+                            $rootScope.receptionsList.push({
+                                hideFillingBtn: true,
+                                statusStyle: statusStyle,
+                                item: list[i],
+                                id: list[i].id,
+                                supplierName: list[i].supplierName,
+                                driverName: list[i].driverName,
+                                status: list[i].status,
+                                fuelAmounts: list[i].receivedSubTanks,
+                                creationDate: list[i].creationDate,
+                                creator: list[i].creator,
+                                deliveryDate: list[i].receptionDate,
+                            });
+                        }
+
+                        for (var j = 0; j < $rootScope.receptionsList.length; j++) {
+
+                            for (var z = 0; z < $rootScope.receptionsList[j].fuelAmounts.length; z++) {
+
+                                for (var x = 0; x < $scope.wetProductsList.length; x++) {
+
+                                    if ($rootScope.receptionsList[j].fuelAmounts[z].wetProductId === $scope.wetProductsList[x].id) {
+                                        $rootScope.receptionsList[j].fuelAmounts[z].wetProductType = $scope.wetProductsList[x].name;
+                                    }
+                                }
+                            }
+
+                        }
+
+                        $rootScope.receptionsList.push.apply($rootScope.receptionsList, $rootScope.stationDOsList);
 
                         setTimeout(function () {
                             rootFilter();
                         }, 1);
 
                     } else {
-                        swal("Oops", "Failed getting POs", "");
+                        swal("Oops", "Failed getting receptions", "");
                     }
 
                 } else {
-                    swal("Oops", "Failed getting POs", "");
+                    swal("Oops", "Failed getting receptions", "");
                 }
 
             } else {
-                swal("Oops", "Failed getting POs", "");
+                swal("Oops", "Failed getting receptions", "");
             }
 
 
         }, function (error) {
-            swal("Oops", "Failed getting POs", "");
+                swal("Oops", "Failed getting receptions", "");
             $rootScope.showLoader = false;
         });
 
@@ -231,15 +327,37 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
     getAllReception();
 
-    $scope.goToReceptionInfo = function (receptionId) {
+    $scope.goToReceptionPage = function (reception) {
+
+        if (reception.hideFillingBtn !== true) {
+
+            $timeout(function () {
+                $state.go('pos.createReception', {
+                    item: reception
+                });
+            })
+
+        } else {
+
+            $timeout(function () {
+                $state.go('pos.receptionInfo', {
+                    item: reception.item
+                });
+            })
+        }
+    };
+
+
+    $scope.goToHistoryPage = function () {
 
         $timeout(function () {
-            $state.go('pos.receptionInfo', {
-                item: receptionId
+            $state.go('pos.receptionHistory', {
+                item: null
             });
         })
 
     };
+
 
 }]);
 

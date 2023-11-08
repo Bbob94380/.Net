@@ -21,22 +21,28 @@
         <div class="card modal-body" style="margin: 1.7em;">
 
             <div class="row col-md-12" style="padding: 1em;">
-                <div class="col-4">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="new-po-title">PO ID</label>
                         <input class="form-control" disabled ng-model="createdPO.id" />
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="new-po-title">Sales Manager</label>
                         <input class="form-control" disabled ng-model="createdPO.creator" />
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="new-po-title">Creation Date</label>
                         <input class="form-control" disabled ng-model="createdPO.creationDate" />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="new-po-title">Delivery Date</label>
+                        <input type="date" class="form-control" ng-model="deliveryDate" />
                     </div>
                 </div>
             </div>
@@ -65,7 +71,7 @@
 
             <div class="row" style="padding: 1em;">
                 <label>Attachments</label>
-                <table class="table  text-nowrap transfer-popup-table">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
@@ -77,9 +83,15 @@
                     <tbody>
                         <tr>
                             <td></td>
-                            <td><input type="text" /></td>
-                            <td><input type="text" /></td>
-                            <td><input type="text" /></td>
+                            <td>
+                                <input style="width: 14em;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files, 0)" />
+                            </td>
+                            <td>
+                                <input style="width: 14em;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files, 1)" />
+                            </td>
+                            <td>
+                                <input style="width: 14em;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files, 2)" />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -87,7 +99,7 @@
 
             <div class="row" style="padding: 1em;">
                 <label>Subtank</label>
-                <table class="table  text-nowrap transfer-popup-table" style="margin-bottom: 0;" ng-repeat="subtank in truck.poFuelAmountsDetail">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info" style="margin-bottom: 0;" ng-repeat="subtank in truck.poFuelAmountsDetail">
                     <thead>
                         <tr>
                             <th class="th-rect2"><span class="transfer-half-rectangle-do"></span></th>
@@ -119,7 +131,7 @@
             <select class="form-control" ng-model="selectedStation" ng-change="selectedStationChanged(selectedStation)" ng-options="item as item.stationName for item in stationsList"></select>-->
                 </div>
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-primary" ng-click="addStation()" style=" margin-top: 2em; float: right; width: 11em; background: #232dbb;">Add Station</button>
+                    <button type="button" class="btn btn-primary" ng-click="addStation()" style=" margin-top: 2em; float: right; width: 11em; background: #2A5699;">Add Station</button>
                 </div>
             </div>
 
@@ -147,18 +159,19 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label class="new-po-title">Fuel Type</label>
-                                        <select class="form-control" ng-model="selectedWet" ng-change="selectedWetChanged(selectedWet, subtank)" ng-options="item as item.name for item in wetProductsList">
-                                            <option value="">-- Select Product Type --</option>
+                                        <label class="new-po-title">Subtank Number</label>
+                                        <select class="form-control" ng-model="subtank.subTankId" ng-change="selectedSubtankChanged(subtank)" ng-options="item.subTankNum as item.subTankNum for item in truck.poFuelAmountsDetail">
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label class="new-po-title">Subtank Number</label>
-                                        <select class="form-control" ng-model="selectedSubtank" ng-change="selectedSubtankChanged(selectedSubtank, subtank)" ng-options="item as item.subTankNum for item in truck.poFuelAmountsDetail">
-                                            <option value="">-- Select Product Type --</option>
-                                        </select>
+                                        <label class="new-po-title">Fuel Type</label>
+                                        <!--<select class="form-control" ng-model="subtank.wetProductId" ng-change="selectedWetChanged(selectedWet, subtank)" ng-options="item as item.name for item in wetProductsList">
+                                                <option value="">-- Select Product Type --</option>
+                                            </select>-->
+                                        <input class="form-control" ng-model="subtank.wetProductName" disabled />
+
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -170,7 +183,7 @@
                             </div>
                             <img class="form-group add-btn" style="cursor:pointer" ng-click="addNewSubtank($index)" src="/Resources/Images/add-btn.png" />
                             <div class="row" style="width: 100%; display: block;">
-                                <span ng-click="addStationToPO($index)" style=" background: #9fd965; border: none; padding: 3px 32px; float: right; color: #fff; border-radius: 4px;">Add Station To PO</span>
+                                <span ng-click="addStationToPO($index)" style=" background: #D80404; border: none; padding: 3px 32px; float: right; color: #fff; border-radius: 4px; cursor: pointer;">Add Station To PO</span>
                             </div>
 
                             <!--{{ stationsAdded }}-->
@@ -186,7 +199,7 @@
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="createDO()">Create DO</button>
+                <button type="button" class="btn btn-primary" style="background:#2A5699" ng-click="createDO()">Create DO</button>
             </div>
         </div>
 </section>

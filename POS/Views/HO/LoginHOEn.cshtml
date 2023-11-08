@@ -24,16 +24,17 @@
                                     <p class="signInLabel">Sign In to Your Account</p>
 
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="form2Example11" class="form-control input-login-ho"
+                                        <input type="text" id="form2Example11" ng-model="username" class="form-control input-login-ho"
                                                placeholder="Username or Email" />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="form2Example22" class="form-control input-login-ho" placeholder="Password" />
+                                        <input type="password" id="form2Example22" ng-model="password" class="form-control input-login-ho" placeholder="Password" />
+                                        @*<input  maxlength="6" ng-keypress="filterValue($event)" aria-label="6-digit code" type="password" id="form2Example22" ng-model="password" class="form-control input-login-ho" placeholder="Password" />*@
                                     </div>
 
                                     <div class="pt-1 pb-1">
-                                        <button ng-click="loginBtn()" class="btn btn-primary fa-lg gradient-custom-2 mb-3 login-span" type="button">
+                                        <button ng-click="loginBtn(username, password)" class="btn btn-primary fa-lg gradient-custom-2 mb-3 login-span" type="button">
                                             Login Now
                                         </button>
                                         <div class="custom-control custom-checkbox">

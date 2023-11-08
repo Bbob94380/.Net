@@ -2,6 +2,8 @@
 
 rootHOModule.controller('createNewTruckPopupController', function ($scope, $rootScope, $stateParams, $http, $filter, $uibModalInstance, data) {
 
+	$scope.imagesList = [];
+
 	$scope.supplierParam = data.supplier;
 
 	$scope.disableSupplier = false;
@@ -92,7 +94,8 @@ rootHOModule.controller('createNewTruckPopupController', function ($scope, $root
 			height: $scope.height,
 			width: $scope.width,
 			depth: $scope.depth,
-			subTanks: $scope.subtanks
+			subTanks: $scope.subtanks,
+			truckFiles: $scope.imagesList
 		}
 
 
@@ -115,7 +118,7 @@ rootHOModule.controller('createNewTruckPopupController', function ($scope, $root
 					if (result.isSuccessStatusCode) {
 
 						$scope.$parent.getAllTrucks();
-						$uibModalInstance.close();
+						$uibModalInstance.close(true);
 						swal("Created successfully", "", "success");
 
 					} else {
@@ -137,6 +140,38 @@ rootHOModule.controller('createNewTruckPopupController', function ($scope, $root
 		});
 
 	};
+
+
+	$scope.uploadFile = function (files, index) {
+
+		var base64 = getBase64(files[0], index);
+		console.log(base64);
+	};
+
+
+	function getBase64(file, index) {
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function () {
+
+			base64String = reader.result.replace("data:", "")
+				.replace(/^.+,/, "");
+
+			var imgObj = {
+				fileName: file.name,
+				size: file.size,
+				contentType: file.type,
+				base64encoded: base64String
+			}
+
+			$scope.imagesList[index] = imgObj;
+
+			console.log($scope.imagesList);
+		};
+		reader.onerror = function (error) {
+			console.log('Error: ', error);
+		};
+	}
 
 
 });

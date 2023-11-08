@@ -71,6 +71,22 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
             params: {
                 item: null
             },
+            templateUrl: "/Pages/POSManager/POS/Reception/Views/fuelReceptionInfo.html",
+            controller: "fuelReceptionInfoController"
+        })
+        .state("pos.receptionHistory", {
+            url: "/receptionHistory",
+            params: {
+                item: null
+            },
+            templateUrl: "/Pages/POSManager/POS/Reception/Views/receptionHistory.html",
+            controller: "receptionHistoryController"
+        })
+        .state("pos.createReception", {
+            url: "/createReception",
+            params: {
+                item: null
+            },
             templateUrl: "/Pages/POSManager/POS/Reception/Views/fuelReceptionStartFilling.html",
             controller: "fuelReceptionStartFillingController"
         })

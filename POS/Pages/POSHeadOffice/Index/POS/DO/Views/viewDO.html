@@ -10,11 +10,11 @@
 
         <div class="col-12">
             <div class="card-header" style="border-bottom: none;">
-                <a ui-sref="pos.receipts" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                <a ui-sref="pos.receipts" class="nav-link back-btn" >
                     < Back
                 </a>
-                <h3 class="receiptInfo-title">Reception</h3>
-                <span>R1234 -  Supplier Name - Driver Name - TN M123456</span>
+                <h3 class="receiptInfo-title">DO</h3>
+                <!--<span>R1234 -  Supplier Name - Driver Name - TN M123456</span>-->
             </div>
         </div>
 
@@ -47,7 +47,7 @@
 
             <div class="row" style="padding: 1em;">
                 <label>Attachments</label>
-                <table class="table  text-nowrap transfer-popup-table">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
@@ -69,7 +69,7 @@
 
             <div class="row" style="padding: 1em;">
                 <label>Subtank</label>
-                <table class="table  text-nowrap transfer-popup-table" style="margin-bottom: 0;" ng-repeat="subtank in truck.poFuelAmountsDetail">
+                <table class="table  text-nowrap transfer-popup-table reception-table-info" style="margin-bottom: 0;" ng-repeat="subtank in truck.poFuelAmountsDetail">
                     <thead>
                         <tr>
                             <th class="th-rect2"><span class="transfer-half-rectangle-do"></span></th>
@@ -100,7 +100,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header" style="border-bottom: none; background: #e0e2e4;" data-card-widget="collapse">
-                            <h3 class="card-title">{{station.stationName}} - {{station.stationManagerName}} - {{station.location}}  </h3>
+                            <h3 style="color: #000; font-family: 'rubikMedium';" class="card-title">{{station.stationName}} - {{station.stationManagerName}} - {{station.location}}  </h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -110,7 +110,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row" style="padding: 1em;">
-                                <table class="table  text-nowrap transfer-popup-table" ng-repeat="subtank in station.subTanks" style="margin-bottom: 0;">
+                                <table class="table  text-nowrap transfer-popup-table reception-table-info" ng-repeat="subtank in station.subTanks" style="margin-bottom: 0;">
                                     <thead>
                                         <tr>
                                             <th class="th-rect2"><span class="transfer-half-rectangle"></span></th>

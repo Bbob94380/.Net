@@ -1,24 +1,34 @@
 ﻿
 rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $filter, filterTableListService) {
 
-    $scope.receptionId = $stateParams.item; //getting fooVal
+    $scope.reception = $stateParams.item; 
 
-    $scope.tanksToBeFilled = [{
-        "tankId": "",
-        "subTankNumbers": [],
-        "volumeBeforeReception": 0,
-        "volumeSoldDuringReception": 0,
-        "estVolAfterReception": 0,
-        "actualVolAfterReception": 0,
-        "qantitiesDifferenceReason": ""
+    if ($scope.reception === undefined || $scope.reception === null || $scope.reception === "") {
+        $scope.reception = JSON.parse(localStorage.getItem("itemReceptionFillingData"));
+    } else {
+        localStorage.setItem("itemReceptionFillingData", JSON.stringify($scope.reception));
     }
-    ];
 
-    $scope.tankNumbers = [1,2,3,4,5,6]; // should replaced by an api to get these values
+
+    console.log($scope.reception);
+
+    //$scope.tanksToBeFilled = [{
+    //    "tankId": "",
+    //    "subTankNumbers": [],
+    //    "volumeBeforeReception": 0,
+    //    "volumeSoldDuringReception": 0,
+    //    "estVolAfterReception": 0,
+    //    "actualVolAfterReception": 0,
+    //    "qantitiesDifferenceReason": ""
+    //}
+    //];
 
 
     $scope.chkStatus = false;
     $scope.showhideprop = false;
+    $scope.transList = [];
+    $scope.imagesList = [];
+
     //$scope.missingAmount = [];
     //$scope.showhideprop2 = [false];
 
@@ -40,67 +50,17 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
         }
     }
 
-    $scope.subtanks = [];
+    $scope.getAllTanks = function () {
 
-   function getReceptionById() {
-
-        $rootScope.showLoader = true;
+        //$rootScope.showLoader = true;
         $http({
             method: "POST",
-            url: "/api/SmApi/getReceptionById",
-            data: { sessionId: localStorage.getItem('session_id_sm'), receptionId: $scope.receptionId }
-        }).then(function (response) {
-
-            console.log(response);
-            $rootScope.showLoader = false;
-
-            if (response !== null && response !== undefined) {
-
-                if (response.data !== null && response.data !== undefined) {
-
-                    var result = JSON.parse(response.data);
-
-                    if (result.isSuccessStatusCode) {
-
-                        if (result.resultData !== null && result.resultData !== "" && result.resultData !== undefined) {
-                            $scope.reception = result.resultData;
-                            $scope.getAllWetProductTypes();
-                        }
-
-
-                    } else {
-                        swal("Oops", "No reception found", "");
-                    }
-
-                } else {
-                    swal("Oops", "Failed getting reception", "");
-                }
-
-            } else {
-                swal("Oops", "Failed getting reception", "");
-            }
-
-
-        }, function (error) {
-                swal("Oops", "Failed getting reception", "");
-            $rootScope.showLoader = false;
-        });
-
-    };
-
-    getReceptionById();
-
-    $scope.getAllWetProductTypes = function () {
-
-        $rootScope.showLoader = true;
-        $http({
-            method: "POST",
-            url: "/api/Request/getAllWetProductTypes",
+            url: "/api/SmApi/getAllTanks",
             data: { sessionId: localStorage.getItem('session_id_sm') }
         }).then(function (response) {
 
             console.log(response);
-            $rootScope.showLoader = false;
+           // $rootScope.showLoader = false;
 
             if (response !== null && response !== undefined) {
 
@@ -110,46 +70,41 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
 
                     if (result.isSuccessStatusCode) {
 
-                        $scope.wetProductsList = result.resultData;
+                        $scope.tanks = result.resultData;
 
+                        //if (tanks !== null && tanks !== undefined && tanks !== "")
+                        //for (var i = 0; i < tanks.length; i++) {
 
-                        for (var i=0; i < $scope.reception.receivedSubTanks.length; i++) {
-
-                            var subtank = $scope.reception.receivedSubTanks[i];
-
-                                for (var z = 0; z < $scope.wetProductsList.length; z++) {
-
-                                    if (subtank.wetProductId === $scope.wetProductsList[z].id) {
-                                        subtank.wetProductName = $scope.wetProductsList[z].name
-                                    }
-
-                                }
-
-                            }
+                        //    $scope.tankNumbers.push(tanks[i].tankNumber);
+                        //}
 
                     } else {
-                        swal("Oops", "No drivers found", "");
+                        //swal("Oops", "No drivers found", "");
                     }
 
                 } else {
-                    swal("Oops", "No drivers found", "");
+                    //swal("Oops", "No drivers found", "");
                 }
 
             } else {
-                swal("Oops", "Failed getting drivers", "");
+               // swal("Oops", "Failed getting drivers", "");
             }
 
 
         }, function (error) {
-            swal("Oops", "Failed getting drivers", "");
-            $rootScope.showLoader = false;
+            //swal("Oops", "Failed getting drivers", "");
+            //$rootScope.showLoader = false;
         });
 
     };
 
+    $scope.getAllTanks();
+
+
     $scope.getNConfTypes = function () {
 
-        $rootScope.showLoader = true;
+        //$rootScope.showLoader = true;
+
         $http({
             method: "POST",
             url: "/api/SmApi/getNConfTypes",
@@ -157,7 +112,7 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
         }).then(function (response) {
 
             console.log(response);
-            $rootScope.showLoader = false;
+            //$rootScope.showLoader = false;
 
             if (response !== null && response !== undefined) {
 
@@ -170,26 +125,78 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
                         $scope.NConfTypes = result.resultData;
 
                     } else {
-                        swal("Oops", "No drivers found", "");
+                       // swal("Oops", "No drivers found", "");
                     }
 
                 } else {
-                    swal("Oops", "No drivers found", "");
+                   // swal("Oops", "No drivers found", "");
                 }
 
             } else {
-                swal("Oops", "Failed getting drivers", "");
+               // swal("Oops", "Failed getting drivers", "");
             }
 
 
         }, function (error) {
-            swal("Oops", "Failed getting drivers", "");
-            $rootScope.showLoader = false;
+            //swal("Oops", "Failed getting drivers", "");
+            //$rootScope.showLoader = false;
         });
 
     };
 
-    //$scope.getNConfTypes();
+    $scope.getNConfTypes();
+
+
+    function getAllTransactions() {
+
+       // $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/SmApi/GetAllTransactionsAsync",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
+        }).then(function (response) {
+
+            console.log(response);
+            //$rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        if (result.resultData !== undefined && result.resultData !== null && result.resultData !== "") {
+
+                            for (var i = 0; i < result.resultData.length; i++) {
+                                $scope.transList.push.apply($scope.transList, result.resultData[i].saleTransactions);
+
+                            }
+
+                        }
+
+                    } else {
+                        //swal("Oops", "Failed getting transactions", "");
+                    }
+
+                } else {
+                    //swal("Oops", "No transactions found", "");
+                }
+
+            } else {
+               // swal("Oops", "Failed getting transactions", "");
+            }
+
+
+        }, function (error) {
+           // swal("Oops", "Failed getting transactions", "error");
+            //$rootScope.showLoader = false;
+        });
+
+    };
+
+    getAllTransactions();
 
     $scope.sealTypes = [true,false];
 
@@ -216,26 +223,188 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
         $scope.conformities.splice(index, 1);
     };
 
+    $scope.tankNumberSelected = function (tankId, subTankId, addedAmount) {
+
+        var volume = 0;
+
+        for (var i = 0; i < $scope.tanks.length; i++) {
+            if ($scope.tanks[i].id === tankId) volume = $scope.tanks[i].volume;
+        }
+
+
+        for (var z = 0; z < $scope.reception.fuelAmounts.length; z++) {
+
+            var subtank = $scope.reception.fuelAmounts[z];
+
+            if ($scope.reception.fuelAmounts[z].subTankId === subTankId) {
+                subtank.volumeBeforeReception = volume;
+                subtank.estVolAfterReception = volume + parseFloat(addedAmount);
+
+            }
+        }
+
+    }
+
+    $scope.validateTankAddedAmount = function (addedAmount, subTankVolume, subTankId, beforeAmount) {
+
+        var subtank;
+
+        if (beforeAmount === undefined || beforeAmount === null) beforeAmount = 0;
+
+        for (var z = 0; z < $scope.reception.fuelAmounts.length; z++) {
+
+            if ($scope.reception.fuelAmounts[z].subTankId === subTankId) {
+                subtank = $scope.reception.fuelAmounts[z];
+            }
+        }
+
+
+        if (parseFloat(addedAmount) > parseFloat(subTankVolume)) {
+            swal("Added amount should not be greater than subtank volume", "", "warning");
+            subtank.volumeSoldDuringReception = 0;
+            subtank.estVolAfterReception = subtank.volumeSoldDuringReception + parseFloat(beforeAmount);
+
+        } else {
+            subtank.estVolAfterReception = parseFloat(addedAmount) + parseFloat(beforeAmount);
+        }
+
+    }
+
+
+    $scope.uploadFile = function (files, index) {
+
+        var base64 = getBase64(files[0], index);
+        console.log(base64);
+    };
+
+
+    function getBase64(file, index) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+
+            base64String = reader.result.replace("data:", "")
+                .replace(/^.+,/, "");
+
+            var imgObj = {
+                fileName: file.name,
+                size: file.size,
+                contentType: file.type,
+                base64encoded: base64String
+            }
+
+            $scope.imagesList[index] = imgObj;
+
+            console.log($scope.imagesList);
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
 
     $scope.createReception = function () {
 
+        var nonConf_DescriptionObj = {};
+
+        for (var i = 0; i < $scope.conformities.length; i++) {
+            var key = $scope.conformities[i].reason;
+            nonConf_DescriptionObj[key] = $scope.conformities[i].desc;
+        }
+
+
+        var receivedSubTanks = [];
+        var tanksIds = [];
+
+        for (var j = 0; j < $scope.reception.fuelAmounts.length; j++) {
+
+            var item = $scope.reception.fuelAmounts[j];
+            tanksIds.push(item.tankId);
+
+            var transId = null
+            if (item.fuel_below_indicator === true) { transId = item.selectedTrans.id}
+
+            receivedSubTanks.push({
+                wetProductId: item.wetProductId,
+                subTankNumber: item.subTankId,
+                volume: item.productVolume,
+                quantity: item.productVolume,
+                //quantityOBS: 520.2,
+                nonConformityExists: $scope.chkStatus,
+                seal_on_subTank_cover: item.seal_on_subTank_cover,
+                seal_on_valve: item.seal_on_valve,
+                subTankID_on_valve: item.subTankID_on_valve,
+                fuel_below_indicator: item.fuel_below_indicator,
+                fillingPayedByDriver: item.fillingPayedByDriver,
+                ncFillingTransactionId: transId
+            });
+        }
+
+
+        var tanksToBeFilled = [];
+
+        for (var x = 0; x < tanksIds.length; x++) {
+
+            var tank = {};
+            tank.tankId = tanksIds[x];
+            tank.subTankNumbers = [];
+            tank.addedAmouunt = 0;
+            tank.actualVolAfterReception = 0;
+            tank.estVolAfterReception = 0;
+            tank.missingAmount = 0;
+
+            for (var z = 0; z < $scope.reception.fuelAmounts.length; z++) {
+
+                var subTank = $scope.reception.fuelAmounts[z];
+
+                if (tanksIds[x] === subTank.tankId) {
+                    tank.subTankNumbers.push(subTank.subTankId);
+                    tank.volumeBeforeReception = parseFloat(subTank.volumeBeforeReception);
+                    tank.addedAmouunt += parseFloat(subTank.volumeSoldDuringReception);
+                    if (item.fuel_below_indicator === true) tank.missingAmount += parseFloat(subTank.selectedTrans.dispensedVolume);
+                }
+            }
+
+            tank.estVolAfterReception= tank.volumeBeforeReception + tank.addedAmouunt;
+            if (item.fuel_below_indicator === true) {
+                tank.actualVolAfterReception = tank.estVolAfterReception + tank.missingAmount; // hayde ba3den bada tenjeb men l pts
+            } else {
+                tank.actualVolAfterReception = tank.estVolAfterReception; // hayde ba3den bada tenjeb men l pts
+            }
+
+            tanksToBeFilled.push(tank);
+
+            //tanksToBeFilled.push({
+            //    "tankId": "",
+            //    "subTankNumbers": [],
+            //    "volumeBeforeReception": 0,
+            //    "volumeSoldDuringReception": 0,
+            //    "estVolAfterReception": 0,
+            //    "actualVolAfterReception": 0,
+            //    "qantitiesDifferenceReason": ""
+            //});
+
+        }
+
+
         var obj = {
             creator: $scope.reception.creator,
-            delivOrderID: $scope.reception.delivOrderID,
+            do_id: $scope.reception.do_id,
+            stationDo_id: $scope.reception.id,
             supplierName: $scope.reception.supplierName,
             driverName: $scope.driverName,
             truckNonConformityExists: $scope.chkStatus,
-            nonConf_Description : "",
-            receptionDate: $scope.reception.receptionDate,
+            nonConf_Description: nonConf_DescriptionObj,
+            receptionDate: $scope.reception.deliveryDate,
             status: "FILLING",
-            receivedSubTanks: $scope.reception.receivedSubTanks,
-            tanksToBeFilled: $scope.tanksToBeFilled,
+            receivedSubTanks: receivedSubTanks,
+            tanksToBeFilled: tanksToBeFilled,
+            files: $scope.imagesList
         }
 
         $rootScope.showLoader = true;
         $http({
             method: "POST",
-            url: "/api/SmApi/createReception",
+            url: "/api/SmApi/createReceptionAsync",
             data: { sessionId: localStorage.getItem('session_id_sm'), createReception: obj }
         }).then(function (response) {
 
@@ -250,25 +419,23 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
 
                     if (result.isSuccessStatusCode) {
 
-                        $scope.hideCreateDOBtn = false;
-                        $scope.createdPO = result.resultData;
-                        swal("PO created successfully", "", "success");
+                        swal("Reception created successfully", "", "success");
 
                     } else {
-                        swal("Oops", "PO creation failed", "");
+                        swal("Oops", "Reception creation failed", "");
                     }
 
                 } else {
-                    swal("Oops", "PO creation failed", "");
+                    swal("Oops", "Reception creation failed", "");
                 }
 
             } else {
-                swal("Oops", "PO creation failed", "");
+                swal("Oops", "Reception creation failed", "");
             }
 
 
         }, function (error) {
-            swal("Oops", "PO creation failed", "");
+                swal("Oops", "Reception creation failed", "");
             $rootScope.showLoader = false;
         });
 

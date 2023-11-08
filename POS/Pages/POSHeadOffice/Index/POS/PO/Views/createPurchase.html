@@ -66,7 +66,9 @@
                 <div class="col-2">
                     <div class="form-group">
                         <label class="new-po-title"></label>
-                        <input type="button" class="form-control" value="Add more trucks" ng-click="addMoreTrucks()" />
+                        <!--<input type="button" class="form-control" value="Add more trucks" ng-click="addMoreTrucks()" />-->
+                        <span ng-click="addMoreTrucks()" style="cursor: pointer" class="add-truck-btn">Add trucks</span>
+
                     </div>
                 </div>
             </div>
@@ -120,12 +122,12 @@
                                         <input class="form-control" disabled ng-model="truckItem.cheseNumber" />
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <!--<div class="col-3">
                                     <div class="form-group">
                                         <label class="new-po-title">Delivery Date</label>
                                         <input type="date" class="form-control"  ng-model="truckItem.deliveryDate" />
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
 
                             <!--<div class="row" style="padding: 1em;">
@@ -275,7 +277,7 @@
     </div>-->
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="createPO()">Create PO</button>
+                <button type="button" class="btn btn-primary" style="background:#2A5699" ng-click="createPO()">Create</button>
             </div>
         </div>
         

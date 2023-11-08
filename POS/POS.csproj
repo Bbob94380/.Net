@@ -190,6 +190,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DO.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\PO.cs" />
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\Reception.cs" />
@@ -253,6 +254,10 @@
     <Content Include="Pages\POSHeadOffice\Index\Inventory\Main\Views\mainInventory.html" />
     <Content Include="Pages\POSHeadOffice\Index\POS\DO\Controllers\createDOController.js" />
     <Content Include="Pages\POSHeadOffice\Index\POS\DO\Views\createDO.html" />
+    <Content Include="Pages\POSHeadOffice\Index\POS\PO\Controllers\poHistoryController.js" />
+    <Content Include="Pages\POSHeadOffice\Index\POS\PO\Views\poHistory.html" />
+    <Content Include="Pages\POSHeadOffice\Index\POS\Station\Controllers\createStationController.js" />
+    <Content Include="Pages\POSHeadOffice\Index\POS\Station\Views\createStation.html" />
     <Content Include="Pages\POSHeadOffice\Index\POS\Truck\Controllers\createNewTruckPopupController.js" />
     <Content Include="Pages\POSHeadOffice\Index\POS\Truck\Controllers\truckController.js" />
     <Content Include="Pages\POSHeadOffice\Index\POS\Truck\Views\createNewTruckPopup.html" />
@@ -351,6 +356,8 @@
     <Content Include="Pages\POSManager\POS\Receipts\Controllers\receiptsInfoController.js" />
     <Content Include="Pages\POSManager\POS\Receipts\Views\receiptsHistory.html" />
     <Content Include="Pages\POSManager\POS\Receipts\Views\receiptsInfo.html" />
+    <Content Include="Pages\POSManager\POS\Reception\Controllers\receptionHistoryController.js" />
+    <Content Include="Pages\POSManager\POS\Reception\Views\receptionHistory.html" />
     <Content Include="Pages\POSManager\POS\Refund\Controllers\dryRefundInfoPopupController.js" />
     <Content Include="Pages\POSManager\POS\Refund\Controllers\createNewfuelRefundPopupController.js" />
     <Content Include="Pages\POSManager\POS\Refund\Controllers\fuelRefundInfoPopupController.js" />
@@ -373,10 +380,10 @@
     <Content Include="Pages\POSManager\POS\Transaction\Views\dryTransactionInfoPopup.html" />
     <Content Include="Pages\POSManager\POS\Transaction\Views\fuelTransactionInfoPopup.html" />
     <Content Include="Pages\POSManager\POS\Transaction\Views\transaction.html" />
-    <Content Include="Pages\POSManager\POS\Reception\Controllers\dryReceptionInfoPopupController.js" />
+    <Content Include="Pages\POSManager\POS\Reception\Controllers\fuelReceptionInfoController.js" />
     <Content Include="Pages\POSManager\POS\Reception\Controllers\fuelReceptionStartFillingController.js" />
     <Content Include="Pages\POSManager\POS\Reception\Controllers\receptionController.js" />
-    <Content Include="Pages\POSManager\POS\Reception\Views\dryReceptionInfoPopup.html" />
+    <Content Include="Pages\POSManager\POS\Reception\Views\fuelReceptionInfo.html" />
     <Content Include="Pages\POSManager\POS\Reception\Views\fuelReceptionStartFilling.html" />
     <Content Include="Pages\POSManager\POS\Reception\Views\reception.html" />
     <Content Include="Pages\POSManager\POS\Transfer\Controllers\dryTransferInfoPopupController.js" />
@@ -404,6 +411,9 @@
     <Content Include="Resources\Images\attendant\dry\dry2.png" />
     <Content Include="Resources\Images\attendant\dry\dry3.png" />
     <Content Include="Resources\Images\attendant\employee\user2-160x160.jpg" />
+    <Content Include="Resources\Images\attendant\GAZ10.png" />
+    <Content Include="Resources\Images\attendant\GAZ12.png" />
+    <Content Include="Resources\Images\attendant\GAZ_EMPTY.png" />
     <Content Include="Resources\Images\attendant\Group12486.png" />
     <Content Include="Resources\Images\attendant\Group12487.png" />
     <Content Include="Resources\Images\attendant\Group12491.png" />

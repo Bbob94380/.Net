@@ -20,7 +20,7 @@
                                 <tbody>
                                     <tr ng-repeat="trans in transactionsList">
                                         <td>{{trans.id}}</td>
-                                        <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.qty + ' item(s)' }}</td>
+                                        <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }}</td>
                                         <td>{{trans.priceLL}} L.L (${{trans.priceDollar}})</td>
                                     </tr>
                                 </tbody>

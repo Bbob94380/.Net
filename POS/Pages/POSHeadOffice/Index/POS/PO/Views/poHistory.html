@@ -1,0 +1,105 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2" style=" margin-bottom: 1em !important; margin-left: 0.2em;">
+            <div class="col-sm-6">
+                <a ui-sref="pos.receipts" class="nav-link back-btn">
+                    < Back
+                </a>
+                <h1 class="pos-section-title">Purchase History</h1>
+            </div>
+        </div>
+        <div class="row col-sm-12" style="padding-right: 0;margin-top:4em;margin-bottom:1em;">
+            <div class="col-sm-8">
+                <label class="date-filter-label">From </label>
+                <input class="date-filter-input" type="text" id="min" name="min">
+
+                <label class="date-filter-label">To </label>
+                <input class="date-filter-input" type="text" id="max" name="max">
+
+                <span ng-click="openCreateNewReceiptPopup()" class="history-clear-btn">Clear</span>
+            </div>
+            <!--<div class="col-sm-4" style="padding-right: 0;">
+                <div class="input-group input-group-sm input-group-receipts">
+                    <div class="form-group has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input id="CustomSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content ff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-table-trans">
+                    <div class="card-body table-responsive p-0">
+                        <table id="dataTableId" table-jquery class="table table-condensed text-nowrap" style=" background: none;overflow: hidden;">
+                            <thead style="visibility:hidden">
+                                <tr>
+                                    <th>
+                                        ID
+                                    </th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in ReceiptsList" ng-click="" style="border: 1px solid #000; width: 100%; display: flex; padding: 2em 0 2em 0 ; margin: 1em 0; background: #fff;">
+                                    <td style="display:block;" width="100%"  class="full">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h2 style="display: inline; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100;">
+                                                    {{item.id}} -   {{item.supplierName}} - {{item.numOfTrucks}}
+                                                </h2>
+                                                <table class="table reception-item-table">
+                                                    <tr>
+                                                        <th style="text-align:left">
+                                                            TYPE
+                                                        </th>
+                                                        <th>
+                                                            Creation Date
+                                                        </th>
+                                                        <th>
+                                                            Number Of Trucks
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:left; color: red">
+                                                            {{item.wetProductName}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.date}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.numOfTrucks}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="barcontainer">
+                                                    <div class="bar" ng-style="{{item.percentage}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                            
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
