@@ -49,10 +49,14 @@ namespace POS.Controllers
                     responseData.statusCode = response.StatusCode.ToString();
                     responseData.resultData = loginResponse;
 
-                    HttpCookie cookie = new HttpCookie("loginCookie");
-                    cookie.Values.Add("projectType", "sm");
-                    cookie.Values.Add("sessionId", loginResponse.sessionId);
-                    HttpContext.Current.Response.SetCookie(cookie);
+                    HttpCookie loginCookie = new HttpCookie("loginCookie");
+                    loginCookie.Values.Add("projectType", "sm");
+                    loginCookie.Values.Add("sessionId", loginResponse.sessionId);
+                    HttpContext.Current.Response.SetCookie(loginCookie);
+
+                    HttpCookie sessionIdCookie = new HttpCookie("session_id", sessionId.Substring(11));
+                    HttpContext.Current.Response.Cookies.Add(sessionIdCookie);
+
                     //FormsAuthentication.SetAuthCookie(loginResponse.sessionId, false);
                 }
                 else
