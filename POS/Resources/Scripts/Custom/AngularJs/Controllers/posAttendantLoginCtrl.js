@@ -17,9 +17,12 @@ posAttendantRootModule.controller("posAttendantLoginCtrl", ["$scope", "$sce", "$
     //}
 
     //add here the default language
-    localStorage.setItem('language', 'en');
-    $translate.use('en');
+    //if (localStorage.getItem('language') === null || localStorage.getItem('language') === undefined || localStorage.getItem('language') === "") {
+    //    localStorage.setItem('language', 'en');
+    //    $translate.use('en');
+    //}
 
+    $translate.use('en');
 
     $rootScope.trustUrlSrc = function (src) {
         return $sce.trustAsResourceUrl(src);
@@ -80,14 +83,18 @@ posAttendantRootModule.controller("posAttendantLoginCtrl", ["$scope", "$sce", "$
                     localStorage.setItem('employeeRoles', JSON.stringify(result.resultData.roles));
                     //localStorage.setItem('username', result.resultData.sessionId);
                     if (localStorage.getItem('language') === 'en') {
-                        window.location.href = "/Attendant/IndexAttendantEn#!/main2";
+                        window.location.href = "/Attendant/IndexAttendantEn#!/main2/wetMenu";
                         $translate.use('en');
+                        document.cookie = "languagePOS=en";
                     } else if (localStorage.getItem('language') === 'ar') {
-                        window.location.href = "/Attendant/IndexAttendantAr#!/main2";
+                        window.location.href = "/Attendant/IndexAttendantAr#!/main2/wetMenu";
                         $translate.use('ar');
+                        document.cookie = "languagePOS=ar";
                     } else {
-                        window.location.href = "/Attendant/IndexAttendantEn#!/main2";
+                        window.location.href = "/Attendant/IndexAttendantEn#!/main2/wetMenu";
+                        localStorage.setItem('language', 'en');
                         $translate.use('en');
+                        document.cookie = "languagePOS=en";
                     }
 
                 } else {

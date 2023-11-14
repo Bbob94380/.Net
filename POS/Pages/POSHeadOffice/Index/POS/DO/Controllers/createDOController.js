@@ -13,11 +13,11 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
     $scope.truck = item.truck;
     $scope.createdPO = item.createdPO;
     $scope.driverName = item.driverName;
+    $scope.supplierName = item.supplierName;
     $scope.driverId = item.driverId;
     $scope.deliveryDate = "";
     $scope.counter = 1;
     $scope.stationsAddedToPO = [];
-    $scope.imagesList = [];
 
 
     $scope.stationsAdded = [{
@@ -214,6 +214,16 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
             }
         }
         $scope.stationsAdded.splice(index, 1);
+
+        var index2 = -1;
+        for (var j = 0; j < $scope.stationsAddedToPO.length; j++) {
+            if ($scope.stationsAddedToPO[j].stationId === id) {
+                index2 = j;
+                break;
+            }
+        }
+        $scope.stationsAddedToPO.splice(index2, 1);
+
     };
 
     $scope.removeSubtank = function (indexSt, id) {
@@ -230,36 +240,7 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
     };
 
 
-    $scope.uploadFile = function (files, index) {
 
-        var base64 = getBase64(files[0], index);
-        console.log(base64);
-    };
-
-
-    function getBase64(file, index) {
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-
-            base64String = reader.result.replace("data:", "")
-                .replace(/^.+,/, "");
-
-            var imgObj = {
-                fileName: file.name,
-                size: file.size,
-                contentType: file.type,
-                base64encoded: base64String
-            }
-
-            $scope.imagesList[index] = imgObj;
-
-            console.log($scope.imagesList);
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-    }
 
     $scope.addStationToPO = function (index) {
 
@@ -296,7 +277,15 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
 
                     if (result.isSuccessStatusCode) {
 
-                        $scope.stationsAddedToPO.push($scope.stationsAdded[index]);
+                        var found = false;
+                        for (var i = 0; i < $scope.stationsAddedToPO.length; i++) {
+
+                            if ($scope.stationsAddedToPO[i].stationId === $scope.stationsAdded[index].stationId) { found = true; }
+                        }
+
+                        if (!found) $scope.stationsAddedToPO.push($scope.stationsAdded[index]);
+
+
                         swal("Station added successfully", "", "success");
 
                     } else {
@@ -322,6 +311,17 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
 
     $scope.createDO = function () {
 
+
+        if ($scope.stationsAddedToPO === null || $scope.stationsAddedToPO === undefined || $scope.stationsAddedToPO === "") {
+            swal("Please add at least one station to po", "", "warning");
+            return;
+        }
+
+        if ($scope.stationsAddedToPO.length <= 0) {
+            swal("Please add at least one station to po", "", "warning");
+            return;
+        }
+
         var stationIds = [];
 
         for (var i = 0; i < $scope.stationsAddedToPO.length; i++) {
@@ -335,9 +335,12 @@ rootHOModule.controller("createDOController", ["$scope", "$location", "$statePar
             po_id: $scope.createdPO.id,
             truckId: $scope.truck.truckId,
             driverId: $scope.driverId,
+            driverName: $scope.driverName,
+            supplierName: $scope.supplierName,
             deliveryDate: $scope.deliveryDate,
             status: "INITIATED",
-            stationIds: stationIds
+            stationIds: stationIds,
+            //files: $scope.imagesList
         }
 
 

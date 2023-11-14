@@ -819,6 +819,7 @@ button {
     border-color: #DEDEDE;
     opacity: 1;
     cursor: not-allowed !important;
+    border-right: 2px solid #D0D0D0 !important;
 }
 
 .form-control-lg-pay {

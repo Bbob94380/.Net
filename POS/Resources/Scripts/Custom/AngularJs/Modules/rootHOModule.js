@@ -43,12 +43,12 @@ rootHOModule.config(['$stateProvider', '$urlRouterProvider', function ($statePro
             controller: "mainInventoryController"
         })
         .state("HO_Index_POS.transaction", {
-            url: "",
+            url: "/transaction",
             templateUrl: "/Pages/POSHeadOffice/Index/POS/Transaction/Views/transaction.html",
             controller: "transactionController",
         })
         .state("HO_Index_POS.refund", {
-            url: "",
+            url: "/refund",
             templateUrl: "/Pages/POSHeadOffice/Index/POS/Refund/Views/refund.html",
             controller: "refundController"
         })
@@ -76,7 +76,7 @@ rootHOModule.config(['$stateProvider', '$urlRouterProvider', function ($statePro
             controller: "receiptsInfoController"
         })
         .state("HO_Index_POS.supplier", {
-            url: "",
+            url: "/supplier",
             templateUrl: "/Pages/POSHeadOffice/Index/POS/Supplier/Views/supplier.html",
             controller: "supplierController"
         })

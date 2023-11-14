@@ -1,6 +1,7 @@
 ﻿
 posAttendantRootModule.controller('oilChangePopupController', function ($scope, $rootScope, $http, $uibModalInstance, data) {
 
+ 
 
     //Initialization
     $scope.selectedServicesList = [];
@@ -115,16 +116,19 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
                     if (result.isSuccessStatusCode) {
 
                         if (result.resultData !== undefined && result.resultData !== null) { 
+
+                            $scope.customersList.push({
+                                id: -1,
+                                name: "Create new customer"
+                            });
+
                             for (var i = 0; i < result.resultData.length; i++  ) {
                                 var customer = result.resultData[i];
                                 customer.name = customer.firstName + " " + customer.middleName + " " + customer.lastName;
                                 $scope.customersList.push(customer);
                             }
                         }
-                        $scope.customersList.push({
-                            id: -1,
-                            name: "Create new customer"
-                        });
+                       
 
                     } else {
                         swal("Failed getting customers", "Please try again", "error");
@@ -270,6 +274,7 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
             $scope.displayCounterResult[5] = 0;
             $scope.displayCounterResult[6] = 0;
             $scope.displayCounterResult[1] = 0;
+            $scope.customer.hasAmanaCard = false;
             return;
         } else {
             $scope.showCarField = false;

@@ -3,6 +3,7 @@ using POS.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,7 +19,8 @@ using System.Web.Security;
 namespace POS.Controllers
 {
     [RoutePrefix("api/HOApi")]
-    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://http://13.38.219.110:8080/", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     public class HOAPIController : ApiController
     {
 
@@ -27,7 +29,7 @@ namespace POS.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:8080/");
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
@@ -89,7 +91,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -145,7 +147,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -204,7 +206,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -260,7 +262,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -320,7 +322,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -377,7 +379,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -434,7 +436,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -490,7 +492,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -549,7 +551,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -606,7 +608,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -668,7 +670,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -725,7 +727,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -782,7 +784,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -839,7 +841,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -896,7 +898,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -953,7 +955,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1010,7 +1012,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1070,7 +1072,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1127,7 +1129,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1184,7 +1186,7 @@ namespace POS.Controllers
                 //http request
                 using (HttpClient client = new HttpClient(handler))
                 {
-                    client.BaseAddress = new Uri("http://localhost:8080/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));

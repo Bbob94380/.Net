@@ -14,6 +14,13 @@ rootModule.controller("fuelReceptionInfoController", ["$scope", "$location", "$s
 
     for (var i = 0; i < $scope.reception.receivedSubTanks.length; i++) {
 
+        if ($scope.reception.receivedSubTanks[i].fillingPayedByDriver === true) {
+            $scope.reception.receivedSubTanks[i].isPayed = "Paid by the Driver";
+        } else {
+            $scope.reception.receivedSubTanks[i].isPayed = "Not Paid by the Driver";
+        }
+
+
         for (var j = 0; j < $scope.reception.tanksToBeFilled.length; j++) {
 
             if ($scope.reception.tanksToBeFilled[j].subTankNumbers.includes($scope.reception.receivedSubTanks[i].subTankNumber)) {

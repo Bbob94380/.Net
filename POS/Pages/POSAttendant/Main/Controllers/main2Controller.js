@@ -72,7 +72,7 @@
             //alert("5 seconds of inactivity");
             localStorage.setItem("isEmployeeLoggedIn", "false");
             $rootScope.OpenEmployeeLoginPopup();
-        }, 40000);
+        }, 300000);
     }
     window.addEventListener("mousemove", userDidSomething, false);
     window.addEventListener("keydown", userDidSomething, false);
@@ -355,20 +355,6 @@
         var totalLL = 0;
         var totalDollar = 0;
 
-        //for (let i = 0; i < $rootScope.transactionsList.length; i++) {
-        //    if ($rootScope.transactionsList[i].priceLL === undefined || $rootScope.transactionsList[i].priceLL === null
-        //        || $rootScope.transactionsList[i].priceLL === 0 || $rootScope.transactionsList[i].priceLL === '0' || $rootScope.transactionsList[i].priceLL === "") {
-
-        //        $rootScope.transactionsList[i].priceLL = $rootScope.transactionsList[i].priceDollar * 100000;
-        //    }
-
-        //    if ($rootScope.transactionsList[i].priceDollar === undefined || $rootScope.transactionsList[i].priceDollar === null
-        //        || $rootScope.transactionsList[i].priceDollar === 0 || $rootScope.transactionsList[i].priceDollar === '0' || $rootScope.transactionsList[i].priceDollar === "") {
-
-        //        $rootScope.transactionsList[i].priceDollar = $rootScope.transactionsList[i].priceLL/100000;
-        //    }
-        //}
-
         localStorage.setItem("transList", JSON.stringify($rootScope.transactionsList));
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
@@ -377,7 +363,7 @@
         }
         totalLeb = totalLL;
         totalDol = totalDollar;
-        $scope.transTotalLebanese = totalLL + " L.L";
+        $scope.transTotalLebanese = totalLL;
         $scope.transTotalDollar = "$" + totalDollar ;
         $rootScope.totalLabelDryAndWet = "showTotalLabelDryAndWet";
     }
@@ -479,10 +465,13 @@
 
             modalInstance.result.then(function (Result) {
                 //when $uibModalInstance.close() fct executed
-                $rootScope.transactionsList = [];
-                $scope.transTotalLebanese = "";
-                $scope.transTotalDollar = "";
-                $rootScope.totalLabelDryAndWet = "hideTotalLabelDryAndWet";
+                if (Result === 'Succeeded') {
+                    $rootScope.transactionsList = [];
+                    localStorage.setItem("transList", JSON.stringify($rootScope.transactionsList));
+                    $scope.transTotalLebanese = "";
+                    $scope.transTotalDollar = "";
+                    $rootScope.totalLabelDryAndWet = "hideTotalLabelDryAndWet";
+                }
 
             }, function () {
                 //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)

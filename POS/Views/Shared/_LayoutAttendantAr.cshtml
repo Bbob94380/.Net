@@ -15,23 +15,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <link rel="stylesheet" href="~/Resources/Styles/Plugins/adminlte/adminlteAr.css">
     <link rel="stylesheet" href="~/Resources/Styles/Custom/customAttendantStyleAr.css">
+    @RenderSection("stylesAttendantLoginAr", false)
+
 
 </head>
 <body ng-app="posAttendantRootModule" class="hold-transition layout-top-nav">
 
     <div class="" ng-controller="posAttendantRootCtrl">
-        @Html.Partial("_navbarAttendant")
-
 
         <div class="content-wrapper">
+
             @RenderBody()
+
         </div>
-
-
     </div>
-
-    @Scripts.Render("~/bundles/angular")
-
 
     @Scripts.Render("~/bundles/angular")
 
@@ -57,20 +54,30 @@
     <script src="~/Resources/Scripts/Custom/AngularJs/Modules/posAttendantRootModule.js"></script>
     <script src="~/Resources/Scripts/Custom/AngularJs/translationAttendant.js"></script>
     <script src="~/Resources/Scripts/Custom/AngularJs/Controllers/posAttendantRootCtrl.js"></script>
-    <script src="~/Pages/POSAttendant/Main/Controllers/mainController.js"></script>
+    <script src="~/Resources/Scripts/Custom/AngularJs/Controllers/posAttendantLoginCtrl.js"></script>
     <script src="~/Pages/POSAttendant/Main/Controllers/main2Controller.js"></script>
     <script src="~/Pages/POSAttendant/Fuel/Controllers/wetMenuController.js"></script>
     <script src="~/Pages/POSAttendant/Fuel/Controllers/wetTransactionPopupController.js"></script>
     <script src="~/Pages/POSAttendant/Main/Controllers/wetWayOfPaymentPopupController.js"></script>
     <script src="~/Pages/POSAttendant/Dry/Controllers/dryMenuController.js"></script>
     <script src="~/Pages/POSAttendant/Dry/Controllers/searchDryBarcodePopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Dry/Controllers/oilChangePopupController.js"></script>
     <script src="~/Pages/POSAttendant/Main/Controllers/editTransactionsPopupController.js"></script>
     <script src="~/Pages/POSAttendant/CarWash/Controllers/carWashMenuController.js"></script>
     <script src="~/Pages/POSAttendant/CarWash/Controllers/carWashTransactionPopupController.js"></script>
     <script src="~/Pages/POSAttendant/Main/Controllers/createReceiptPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/couponPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/employeeLoginPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/Main/Controllers/pinCodePopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/dollarRateChangedPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/closeSessionPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/openShiftPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/closeShiftPopupController.js"></script>
+    <script src="~/Pages/POSAttendant/ShiftAndSession/Controllers/loginManagerPermissionPopupController.js"></script>
 
     <div class="CustomLoader" ng-show="showLoader"></div>
     <div class="ui-loader-background" ng-show="showLoader"> </div>
+
 
 </body>
 </html>

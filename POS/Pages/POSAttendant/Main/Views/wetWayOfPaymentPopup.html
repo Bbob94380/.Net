@@ -128,7 +128,8 @@
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Code</label>
-                            <input ng-focus="FirstCardCodeFieldFocus()" ng-blur="FirstCardCodeFieldBlur(codeCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="codeCardFirst">
+                            <input ng-attr-type="{{ showPassword ? 'text':'password'}}" ng-focus="FirstCardCodeFieldFocus()" ng-blur="FirstCardCodeFieldBlur(codeCardFirst)" ng-disabled="!checked" type="password" class="form-control payInputField" ng-model="codeCardFirst">
+                            <div  ng-click="toggleShowPassword()" ng-class="{'fa fa-eye': showPassword,'fa fa-eye-slash': !showPassword}" style="cursor: pointer;position: absolute;right: 0.7em;top: 2.35em;"></div>
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCardFields">
@@ -142,7 +143,9 @@
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Code</label>
-                            <input ng-focus="FirstNourCardCodeFieldFocus()" ng-blur="FirstNourCardCodeFieldBlur(codeNourCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="codeNourCardFirst">
+                            <input ng-attr-type="{{ showPassword2 ? 'text':'password'}}" ng-focus="FirstNourCardCodeFieldFocus()" ng-blur="FirstNourCardCodeFieldBlur(codeNourCardFirst)" ng-disabled="!checked" type="password" class="form-control payInputField" ng-model="codeNourCardFirst">
+                            <div ng-click="toggleShowPassword2()" ng-class="{'fa fa-eye': showPassword2,'fa fa-eye-slash': !showPassword2}" style="cursor: pointer;position: absolute;right: 0.7em;top: 2.35em;"></div>
+
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showNourCardFields">
@@ -187,7 +190,9 @@
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Code</label>
-                            <input ng-focus="SecondCardCodeFieldFocus()" ng-blur="SecondCardCodeFieldBlur(codeCardSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="codeCardSecond">
+                            <input ng-attr-type="{{ showPassword3 ? 'text':'password'}}" ng-focus="SecondCardCodeFieldFocus()" ng-blur="SecondCardCodeFieldBlur(codeCardSecond)" ng-disabled="!checked2" type="password" class="form-control payInputField" ng-model="codeCardSecond">
+                            <div ng-click="toggleShowPassword3()" ng-class="{'fa fa-eye': showPassword3,'fa fa-eye-slash': !showPassword3}" style="cursor: pointer;position: absolute;right: 0.7em;top: 2.35em;"></div>
+
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCardFields2">
@@ -201,7 +206,9 @@
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">Code</label>
-                            <input ng-focus="SecondNourCardCodeFieldFocus()" ng-blur="SecondNourCardCodeFieldBlur(codeNourCardSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="codeNourCardSecond">
+                            <input ng-attr-type="{{ showPassword4 ? 'text':'password'}}" ng-focus="SecondNourCardCodeFieldFocus()" ng-blur="SecondNourCardCodeFieldBlur(codeNourCardSecond)" ng-disabled="!checked2" type="password" class="form-control payInputField" ng-model="codeNourCardSecond">
+                            <div ng-click="toggleShowPassword4()" ng-class="{'fa fa-eye': showPassword4,'fa fa-eye-slash': !showPassword4}" style="cursor: pointer;position: absolute;right: 0.7em;top: 2.35em;"></div>
+
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showNourCardFields2">

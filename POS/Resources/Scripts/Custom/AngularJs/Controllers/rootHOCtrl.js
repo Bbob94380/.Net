@@ -48,6 +48,7 @@ rootHOModule.controller("rootHOCtrl", ["$scope", "$rootScope", "$http", "$transl
         }).then(function (response) {
 
             localStorage.setItem('session_id_ho', '');
+            localStorage.setItem("activeItemDash", "");
             window.location.href = '/HO/LoginHOEn';
 
         }, function (error) {
@@ -63,11 +64,11 @@ rootHOModule.controller("rootHOCtrl", ["$scope", "$rootScope", "$http", "$transl
     });
 
     var currentPageTemplate = $location.path();
-    if (currentPageTemplate === "/dashboard") {
+    if (currentPageTemplate.includes("/HO_Index_Dashboard")) {
         $(".navDashItem").addClass('activeMenuItemSM');
-    } else if (currentPageTemplate === "/pos") {
+    } else if (currentPageTemplate.includes("/HO_Index_POS")) {
         $(".navPOSItem").addClass('activeMenuItemSM');
-    } else if (currentPageTemplate === "/inventory") {
+    } else if (currentPageTemplate.includes("/HO_Index_Inventory")) {
         $(".navFMSItem").addClass('activeMenuItemSM');
     }
 

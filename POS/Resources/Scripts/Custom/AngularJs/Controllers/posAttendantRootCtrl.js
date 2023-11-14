@@ -1,15 +1,33 @@
 ﻿
 
 
-posAttendantRootModule.controller("posAttendantRootCtrl", ["$scope", "$sce", "$rootScope", "$http", "$translate", function ($scope, $sce, $rootScope, $http, $translate) {
+posAttendantRootModule.controller("posAttendantRootCtrl", ["$scope", "$sce", "$rootScope", "$http", "$translate", "$location", function ($scope, $sce, $rootScope, $http, $translate, $location) {
+
+
+    if (localStorage.getItem('language') === "ar") {
+        $scope.selectedLanguage = "AR";
+        $translate.use('ar');
+        document.cookie = "languagePOS=ar";
+    } else if (localStorage.getItem('language') === "en") {
+        $scope.selectedLanguage = "EN";
+        $translate.use('en');
+        document.cookie = "languagePOS=en";
+    }
+
 
     $scope.goToArabicLayout = function (lang) {
         localStorage.setItem('language', 'ar');
+        document.cookie = "languagePOS=ar";
+        $scope.selectedLanguage = "AR";
+        $translate.use('ar');
         window.location.href = "/Attendant/IndexAttendantAr#!/main2";
     }
 
     $scope.goToEnglishLayout = function (lang) {
         localStorage.setItem('language', 'en');
+        document.cookie = "languagePOS=en";
+        $scope.selectedLanguage = "EN";
+        $translate.use('en');
         window.location.href = "/Attendant/IndexAttendantEn#!/main2";
     }
 

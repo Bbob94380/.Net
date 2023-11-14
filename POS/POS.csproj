@@ -1045,6 +1045,7 @@
     <Content Include="Resources\Scripts\Plugins\Js\datatables\vfs_fonts.js" />
     <Content Include="Resources\Scripts\Plugins\Js\jquery.js" />
     <Content Include="Resources\Scripts\Plugins\Js\jquery.min.js" />
+    <Content Include="Resources\Styles\Custom\customStyleAttendantLoginAr.css" />
     <Content Include="Resources\Styles\Custom\customStyleHOAr.css" />
     <Content Include="Resources\Styles\Custom\customAttendantStyleAr.css" />
     <Content Include="Resources\Styles\Custom\customStyleAttendantLoginEn.css" />
@@ -1127,6 +1128,9 @@
     <Content Include="Views\Attendant\LoginAttendantEn.cshtml" />
     <Content Include="Views\SM\LoginSMAr.cshtml" />
     <Content Include="Views\SM\LoginSMEn.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\itcherry-001-site7 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\itcherry-001-site7 - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

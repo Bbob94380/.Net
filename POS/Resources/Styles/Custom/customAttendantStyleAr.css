@@ -1,6 +1,7 @@
 ﻿body {
     background: #EBEBEB;
     font-size: 1.5rem;
+    direction: rtl;
 }
 
 .content-wrapper {
@@ -36,13 +37,6 @@
     direction: rtl;
 }
 
-    .main-row-wetMenu span {
-        font-size: 24px;
-        border-top: 1px solid #000;
-        width: 100%;
-        padding: 0.5em;
-        margin-top: 0.5em;
-    }
 
     .main-row-wetMenu .carWashMenuSpan {
         font-size: 24px;
@@ -68,19 +62,11 @@
     display: grid;
 }
 
-.main-card-wetMenu {
-    height: 19rem;
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    box-shadow: 0px 6px 9px 0px rgb(0 0 0 / 22%);
-}
 
-    .main-card-wetMenu .card-body {
-        width: 100%;
-    }
+
+.main-card-wetMenu .card-body {
+    width: 100%;
+}
 
 .card-title {
     font-size: 2.1rem;
@@ -133,12 +119,12 @@
     }
 
 .main2-left-card {
-    height: 34rem;
+    height: 32rem;
     display: flex;
     position: relative;
     align-items: start;
     justify-content: start;
-    padding: 1em 1em 1em 0.3em;
+    padding: 1em 0.6em 1em 0.6em;
     font-size: 21px;
     border-radius: 12px;
 }
@@ -163,6 +149,8 @@
 .menu-row div {
     padding: 0 !important;
     margin: 0;
+    flex-grow: 1;
+    border-radius: 0;
 }
 
 .navbar-attendant {
@@ -256,11 +244,26 @@
     font-size: 1.3rem;
     line-height: 1.5;
     border-radius: 12px;
+    direction: rtl;
 }
+
+.form-group {
+    margin-bottom: 1rem;
+    direction: rtl;
+    text-align: right;
+}
+
 
 button {
     height: 60px;
     font-size: 2rem !important;
+}
+
+.custom-checkbox-text {
+    margin-top: 12px;
+    color: #C9002D;
+    font-weight: 400 !important;
+    font-size: 16px !important;
 }
 
 .equal-sign {
@@ -324,6 +327,7 @@ button {
     height: 1.9em;
     bottom: 0;
     position: absolute;
+    right: 0;
 }
 
 .wetTransPopupFooter {
@@ -464,7 +468,7 @@ button {
     width: auto;
     margin: 0 auto;
     position: relative;
-    padding-left: 6em;
+    padding-left: 1em;
 }
 /* Arrows */
 .slick-prev,
@@ -635,11 +639,6 @@ button {
     direction: rtl;
 }
 
-.dry-row-lang {
-    float: right;
-    direction: rtl;
-}
-
 .slick-slide {
     display: none;
     float: right;
@@ -654,31 +653,12 @@ button {
     padding-top: 0;
 }
 
-.dry-item-img {
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    padding: 1em 0em 1em 0.2em;
-    height: 75%;
+.dry-row-lang {
+    float: none;
+    direction: rtl;
 }
 
-.dry-item-title {
-    font-size: 14px;
-    border-top: 1px solid #E6E6E6;
-    width: 100%;
-    padding: 0;
-}
 
-.dry-item-title2 {
-    font-size: 12px;
-    width: 100%;
-    padding: 0;
-    text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    /* width: 100px; */
-}
 
 .nav-tabs {
     border-bottom: none;
@@ -690,7 +670,6 @@ button {
     width: 100%;
     margin-top: 1em;
     margin-bottom: 0em;
-    direction: rtl;
 }
 
     .dry-table th, .dry-table td {
@@ -732,8 +711,9 @@ button {
 .dryTotal2Label {
     color: #6F6F6F;
     font-size: 20px;
-    margin: 0 4em 0em 8em;
+    margin: 0 1em 0em -1em;
     display: inline;
+    float: right;
 }
 
 .dryClearBtn {
@@ -761,7 +741,7 @@ button {
 .dryTotalValue {
     float: right;
     font-size: 20px;
-    margin-right: 2.5em;
+    margin-right: 3.5em;
 }
 
 .hideTotalLabelDryAndWet {
@@ -773,6 +753,7 @@ button {
     clear: both;
     float: right;
     visibility: visible;
+    direction: rtl;
 }
 
 .hideTotalLabelDry {
@@ -855,6 +836,7 @@ button {
     border-color: #DEDEDE;
     opacity: 1;
     cursor: not-allowed !important;
+    border-right: 2px solid #D0D0D0 !important;
 }
 
 .form-control-lg-pay {
@@ -987,6 +969,373 @@ button {
     left: 50%;
 }
 
+/*add to arabic changes*/
+
+
+.modal-dialog:has(#custom-modal-1) {
+    transform: none;
+    margin: 2em auto;
+    max-width: 40% !important;
+}
+
+.modal-dialog:has(#custom-modal-pincode) {
+    transform: none;
+    margin: 6em auto;
+    max-width: 40% !important;
+}
+
+.modal-dialog:has(#custom-modal-employee-login) {
+    transform: none;
+    margin: 2.2em auto;
+    max-width: 95% !important;
+}
+
+    .modal-dialog:has(#custom-modal-employee-login) .modal-content {
+        height: 91vh;
+    }
+
+.dollarRateChangedTitle {
+    font-size: 42px;
+    color: #e20b0b;
+}
+
+.dollarRateChangedInput {
+    background: #e1dbdb;
+    padding: 1.7em;
+    border-radius: 51px;
+    font-size: 22px;
+    color: #000;
+}
+
+.close-session-btn {
+    background: #e20b0b;
+    border-radius: 50px;
+    padding: 0.6em 4em;
+    color: #fff;
+    display: block;
+    font-size: 27px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.close-session-blocked-label {
+    color: #e20b0b;
+    margin-top: 1em;
+    display: block;
+    text-align: left;
+}
+
+.closeSessionLine {
+    display: block;
+    height: 2px;
+    background: #efe8e8;
+    margin: 5em 0px 0em 1.4em;
+    clear: both;
+}
+
+.closeShiftLine {
+    display: block;
+    height: 2px;
+    background: #efe8e8;
+    margin: 3em 0px 0em 1.4em;
+    clear: both;
+}
+
+
+.close-shift-edit-btn {
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    font-size: 19px !important;
+    background: #D80404;
+    color: #fff;
+    padding: 10px 1em;
+}
+
+.transfer-popup-table td, .transfer-popup-table th {
+    border: none !important;
+    padding: 0 0.75rem !important;
+}
+
+.transfer-half-rectangle {
+    height: 37px;
+    width: 100%;
+    position: relative;
+    display: block;
+    border-bottom: 2px solid #EAEAEA;
+    border-left: 2px solid #EAEAEA;
+}
+
+.transfer-half-rectangle2 {
+    height: 60px;
+    width: 100%;
+    position: relative;
+    display: block;
+    border-bottom: none;
+    border-left: 2px solid #EAEAEA;
+}
+
+.th-rect {
+    width: 40%;
+}
+
+.th-text {
+    width: 12em;
+    font-size: 22px;
+}
+
+.th-text2 {
+    color: #bfc3c6;
+    font-size: 20px;
+}
+
+.close-session-table .th-text {
+    border-bottom: none;
+}
+
+.close-session-table {
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+    .close-session-table th {
+        color: #bfc3c6;
+        font-size: 20px;
+    }
+
+
+.pincode-title {
+    margin-top: 6rem;
+    font-size: 2em;
+    color: #C9002D;
+    padding-left: 1.5rem;
+    text-align: center;
+    padding: 0;
+}
+
+
+.input-login-ho {
+    background: #F7F9F9;
+    border-radius: 33px;
+    border: none;
+    padding: 34px 29px;
+    font-size: 20px;
+    margin-top: 1.5em;
+    width: 90%;
+}
+
+.input-pincode {
+    background: #f1f5f5;
+    border-radius: 33px;
+    border: none;
+    padding: 38px 29px;
+    font-size: 27px;
+}
+
+    .input-pincode:focus {
+        background-color: #f1f5f5 !important;
+    }
+
+
+.login-span {
+    background: #FFC532;
+    border-radius: 40px;
+    border: none;
+    color: #C9002D;
+    padding: 9px 36px;
+    font-size: 22px !important;
+}
+
+.pincode-btn {
+    background: #FFC532;
+    border-radius: 40px;
+    border: none;
+    color: #C9002D;
+    padding: 9px 36px;
+    font-size: 27px !important;
+    height: 2.5em;
+}
+
+.custom-checkbox-text {
+    margin-top: 12px;
+    color: #C9002D;
+    font-weight: 400 !important;
+}
+
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+}
+
+.custom-control-input {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    width: 1rem;
+    height: 1.25rem;
+    opacity: 0;
+}
+
+.lostAndRegister {
+    color: #C9002D;
+    display: block;
+    font-size: 21px;
+}
+
+.custom-checkbox {
+    display: inline;
+    margin-left: 1rem;
+    position: relative;
+}
+
+.custom-control-input-danger:checked ~ .custom-control-label::before {
+    border-color: #dc3545;
+    background-color: #dc3545;
+}
+
+.modal-dialog:has(#custom-modal-2) {
+    transform: none;
+    margin: 2em auto;
+    max-width: 31% !important;
+}
+
+
+.get-sales-summary-btn {
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    font-size: 19px !important;
+    background: #3976e9;
+    color: #fff;
+    padding: 10px 1em;
+    margin: 0 10px;
+}
+
+
+.main-row-wetMenu span {
+    font-size: 24px;
+    border-top: 1px solid #cdc7c7;
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    padding-right: 30px;
+}
+
+.main-card-wetMenu {
+    height: 19rem;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0px 7px 9px 1px rgb(169 163 163 / 23%);
+}
+
+.item-filter-dry {
+    background: #fff;
+    border: 1px solid #e3d9d9;
+    border-radius: 3px;
+    padding: 0;
+    margin: 5px 8px;
+    display: inline-block;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #495057;
+    background-color: #D80404;
+    border: #e3d9d9;
+    color: #fff;
+}
+
+.item-filter-dry a {
+    color: #6F6F6F;
+}
+
+
+.dry-item-img {
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    padding: 1.5em 0em 0.5em 0.2em;
+    height: 75%;
+}
+
+.dry-item-title {
+    font-size: 14px;
+    border-top: 1px solid #b9b7b7;
+    width: 100%;
+    padding: 3px 0;
+}
+
+.dry-item-title2 {
+    font-size: 12px;
+    width: 100%;
+    padding: 0;
+    text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    /* width: 100px; */
+}
+
+
+.serviceGreen {
+    background-color: #72C75D;
+}
+
+.menu-row div {
+    padding: 0 !important;
+    margin: 0;
+    flex-grow: 1;
+    border-radius: 0;
+}
+
+.barcode-img-body {
+    display: block !important;
+    float: left;
+    width: 6.7em !important;
+    height: 9.4em;
+    position: relative;
+    border-radius: 18px;
+    box-shadow: 0px 3px 4px 0px rgb(0 0 0 / 22%);
+    margin: 0 10em;
+    padding-top: 0;
+}
+
+.dry-ul-scroll {
+    width: 35em;
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: auto;
+    max-width: 100%;
+    margin: 0 0 1em;
+    white-space: nowrap;
+    margin-left: 2em;
+}
+
+
+
+.signInLabel {
+    margin-top: 6rem;
+    font-size: 32px;
+    color: #C9002D;
+    padding-left: 1.5rem;
+}
+
+.login-icon-span {
+    font-size: 27px;
+    padding-top: 3px;
+    color: #2F2C2C;
+}
+
+.navbar-ar {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+/*end*/
 @-webkit-keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);

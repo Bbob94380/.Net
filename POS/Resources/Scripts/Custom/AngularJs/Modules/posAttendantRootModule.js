@@ -13,17 +13,17 @@ posAttendantRootModule.config(['$stateProvider', '$urlRouterProvider', function 
             controller: "main2Controller"
         })
         .state("main2.wetMenu", {
-            url: "",
+            url: "/wetMenu",
             templateUrl: "/Pages/POSAttendant/Fuel/Views/wetMenu.html",
             controller: "wetMenuController",
         })
         .state("main2.dryMenu", {
-            url: "",
+            url: "/dryMenu",
             templateUrl: "/Pages/POSAttendant/Dry/Views/dryMenu.html",
             controller: "dryMenuController",
         })
         .state("main2.carWashMenu", {
-            url: "",
+            url: "/carWashMenu",
             templateUrl: "/Pages/POSAttendant/CarWash/Views/carWashMenu.html",
             controller: "carWashMenuController",
         })

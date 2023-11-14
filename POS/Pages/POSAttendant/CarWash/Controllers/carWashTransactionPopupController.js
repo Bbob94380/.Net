@@ -16,14 +16,41 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
     $scope.totalDollar = 0;
     $scope.totalLL = 0;
 
-    $scope.addCarWashOption = function (id, name, priceLL, priceDollar) {
+    $scope.addCarWashOption = function (id, name, priceLL, priceDollar, item) {
+            
+        if (item.hasStyle === true) {
+            item.styleClass = "";
+            item.hasStyle = false;
+            $scope.carWashOptionsList = removeObjectWithId($scope.carWashOptionsList, id);
 
-        $scope.carWashOptionsList.push({ option: name, priceMc: priceLL, priceSc: priceDollar})
-        $scope.washSubCategoriesId.push(id)
+            const index = $scope.washSubCategoriesId.indexOf(id);
+            if (index > -1) { // only splice array when item is found
+                $scope.washSubCategoriesId.splice(index, 1); // 2nd parameter means remove one item only
+            }
 
-        $scope.totalDollar += priceDollar;
-        $scope.totalLL += priceLL;
+            $scope.totalDollar = $scope.totalDollar - priceDollar;
+            $scope.totalLL = $scope.totalLL - priceLL;
 
+        } else {
+            item.styleClass = "serviceGreen";
+            item.hasStyle = true;
+            $scope.carWashOptionsList.push({ id: id, option: name, priceMc: priceLL, priceSc: priceDollar })
+            $scope.washSubCategoriesId.push(id);
+
+            $scope.totalDollar += priceDollar;
+            $scope.totalLL += priceLL;
+        }
+
+    }
+
+    function removeObjectWithId(arr, id) {
+        const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
+
+        if (objWithIdIndex > -1) {
+            arr.splice(objWithIdIndex, 1);
+        }
+
+        return arr;
     }
 
     $scope.clearWashTable = function () {
@@ -33,6 +60,17 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
     }
 
     $scope.next = function () {
+
+        if ($scope.washSubCategoriesId !== null && $scope.washSubCategoriesId !== undefined && $scope.washSubCategoriesId !== "") {
+            if ($scope.washSubCategoriesId.length <= 0) {
+                swal("Please add at least one car categrory", "", "warning");
+                return;
+            }
+        } else {
+            swal("Please add at least one car categrory", "", "warning");
+            return;
+        }
+
         var carWashResultObj = {
             id: 0,
             currencyRatio: localStorage.getItem("dollarRate"),
@@ -69,6 +107,7 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
                     if (result.isSuccessStatusCode) {
 
                         $scope.optionsList = result.resultData;
+                        console.log($scope.optionsList);
 
                     } else {
                         swal("Failed getting car was options", "Please try again", "error");

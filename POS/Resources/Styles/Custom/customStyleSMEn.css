@@ -1331,7 +1331,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .reception-item-status-filling {
     background-color: rgb(251 151 0 / 20%);
     padding: 4px 15px;
-    color: #ffc720 !important;
+    color: #df960b !important;
     font-size: 14px;
     margin-left: 3em;
 }

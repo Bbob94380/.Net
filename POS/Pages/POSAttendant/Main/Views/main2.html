@@ -12,30 +12,30 @@
                             <table class="trans-table table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>TRAN.ID</th>
-                                        <th>AMOUNT</th>
-                                        <th>TOTAL</th>
+                                        <th>{{'transId' | translate}}</th>
+                                        <th>{{'amount' | translate}}</th>
+                                        <th>{{'total' | translate}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="trans in transactionsList">
                                         <td>{{trans.id}}</td>
-                                        <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }}</td>
-                                        <td>{{trans.priceLL}} L.L (${{trans.priceDollar}})</td>
+                                        <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }} </td>
+                                        <td>{{trans.priceLL}} {{'LL' | translate}} ({{'$' | translate}}{{trans.priceDollar}})</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="total-table">
                                 <tr  ng-class="totalLabelDryAndWet">
-                                    <td>Total</td>
+                                    <td>{{'totalAll' | translate}}</td>
                                     <td>
-                                        <span>{{transTotalLebanese}}</span>
+                                        <span>{{transTotalLebanese}} {{'LL' | translate}}</span>
                                         <br />
-                                        <span>{{transTotalDollar}}</span>
+                                        <span style="float:inline-start;">{{transTotalDollar}} </span>
                                     </td>
                                 </tr>
                             </table>
-                            <button class="edit-btn" ng-click="displayEditTransactionsPopup()">Edit</button>
+                            <button class="edit-btn" ng-click="displayEditTransactionsPopup()">{{'editBtn' | translate}}</button>
                         </div>
                     </div>
                     <div class="calculator card ">
@@ -45,8 +45,8 @@
                         <div class="calculator-keys calculator-keys2">
 
                             <button type="button" class="all-clear function btn btn-danger btn-sm c-btn" ng-click="dryClearFocusedField()" value="all-clear">C</button>
-                            <button type="button" class="decimal function btn btn-secondary cal-grey-btn" ng-click="dryAddDecimal('.')" value=".">.</button>
-                            <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
+                            <button type="button" class="decimal function btn btn-secondary cal-grey-btn"  ng-click="dryAddDecimal('.')" value=".">.</button>
+                            <button type="button" class="operator btn btn-info cal-grey-b-btn" style="background:#F6F6F6" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
                             <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>
 
                             <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('1')">1</button>

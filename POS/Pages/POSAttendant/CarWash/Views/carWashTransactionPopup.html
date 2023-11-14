@@ -4,7 +4,7 @@
 
             <form>
                 <div class="card-body">
-                    <span class="carWashOptionSpan" ng-repeat="item in optionsList" ng-click="addCarWashOption(item.id, item.name, item.priceMc, item.priceSc)">{{item.name}}</span>
+                    <span class="carWashOptionSpan {{item.styleClass}}" ng-repeat="item in optionsList" ng-click="addCarWashOption(item.id, item.name, item.priceMc, item.priceSc, item)">{{item.name}}</span>
                 </div>
             </form>
         </div>

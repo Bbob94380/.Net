@@ -205,6 +205,14 @@
 
 
         for (let i = 0; i < $rootScope.dryItemsList.length; i++) {
+
+
+            if ($rootScope.dryItemsList[i].qtyItem === 0 || $rootScope.dryItemsList[i].qtyItem === "0" || $rootScope.dryItemsList[i].qtyItem === undefined || $rootScope.dryItemsList[i].qtyItem === null || $rootScope.dryItemsList[i].qtyItem === "") {
+                swal("Please add item qty", "", "warning");
+                return;
+            }
+
+
             dryTotalQty += parseInt($rootScope.dryItemsList[i].qtyItem);
             dryTotalPriceLL = parseInt(dryTotalPriceLL) + (parseInt($rootScope.dryItemsList[i].totalIt) * parseFloat(localStorage.getItem('dollarRate')));
             dryTotalPriceDollar += parseInt($rootScope.dryItemsList[i].totalIt);
@@ -220,6 +228,7 @@
                 products: $rootScope.dryItemsList
             }
         )
+
 
         $rootScope.transactionsList.push.apply($rootScope.transactionsList, dryTranList);
         $rootScope.calculateTotal();

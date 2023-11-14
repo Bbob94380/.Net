@@ -105,8 +105,8 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label class="new-po-title">Driver</label>
-                                        <select class="form-control" ng-model="selectedDriver" ng-change="selectedDriverChanged(selectedDriver, truckItem)" ng-options="item as item.name for item in driversList">
-                                            <option value="">-- Select Driver --</option>
+                                        <select id="driverIdDropdown" class="form-control" ng-model="selectedDriver" ng-change="selectedDriverChanged(selectedDriver, truckItem)" ng-options="item as item.name for item in driversList">
+                                            <option value="">-- Select a Driver --</option>
                                         </select>
                                     </div>
                                 </div>
@@ -187,7 +187,6 @@
                                             <div class="form-group">
                                                 <label class="new-po-title">Product Type</label>
                                                 <select class="form-control" ng-model="selectedWet" ng-change="selectedWetChanged(selectedWet, subtank)" ng-options="item as item.name for item in wetProductsList">
-                                                    <option value="">-- Select Product Type --</option>
                                                 </select>
                                             </div>
                                         </div>

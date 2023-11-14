@@ -11,10 +11,10 @@ namespace POS
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            var enableCorsAttribute = new EnableCorsAttribute("*",
-                                               "Origin, Content-Type, Accept",
-                                               "GET, PUT, POST, DELETE, OPTIONS");
-            config.EnableCors(enableCorsAttribute);
+            //var enableCorsAttribute = new EnableCorsAttribute("*",
+            //                                   "Origin, Content-Type, Accept",
+            //                                   "GET, PUT, POST, DELETE, OPTIONS");
+            //config.EnableCors(enableCorsAttribute);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -14,78 +14,191 @@ namespace POS.Controllers
         {
             bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieAttendant"];
-            
+            var lang = "";
+            if(Request.Cookies["languagePOS"] !=null) lang = Request.Cookies["languagePOS"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
                 if (projectType == "pos")
                 {
-                    return Redirect("/Attendant/IndexAttendantEn");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/Attendant/IndexAttendantAr");
+                    }
+                    else
+                    {
+                        return Redirect("/Attendant/IndexAttendantEn");
+                    }
                 }
                 else
                 {
-                    return View();
+                    if (lang == "ar")
+                    {
+                        return Redirect("/Attendant/LoginAttendantAr");
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
             }
-            return View();
+
+            if (lang == "ar")
+            {
+                return Redirect("/Attendant/LoginAttendantAr");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult LoginAttendantAr()
         {
             bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieAttendant"];
+            var lang = "";
+            if (Request.Cookies["languagePOS"] != null) lang = Request.Cookies["languagePOS"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
                 if (projectType == "pos")
                 {
-                    return Redirect("/Attendant/IndexAttendantAr");
+
+                    if (lang == "en")
+                    {
+                        return Redirect("/Attendant/IndexAttendantEn");
+                    }
+                    else
+                    {
+                        return Redirect("/Attendant/IndexAttendantAr");
+                    }
                 }
                 else
                 {
-                    return View();
+                    if (lang == "en")
+                    {
+                        return Redirect("/Attendant/LoginAttendantEn");
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
             }
-            return View();
+
+            if (lang == "en")
+            {
+                return Redirect("/Attendant/LoginAttendantEn");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult IndexAttendantEn()
         {
             bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieAttendant"];
+            var lang = "";
+            if (Request.Cookies["languagePOS"] != null) lang = Request.Cookies["languagePOS"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
-                if (projectType == "pos")
+                if (projectType == "pos") //loggedIn
                 {
-                    return View();
+
+                    if (lang == "ar") {
+                        return Redirect("/Attendant/IndexAttendantAr");
+                    }
+                    else
+                    {
+                        Request.Cookies["languagePOS"].Value = "en";
+                        //System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                        return View();
+                    }
+                    
                 }
                 else
                 {
-                    return Redirect("/Attendant/LoginAttendantEn");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/Attendant/LoginAttendantAr");
+                    }
+                    else
+                    {
+                        return Redirect("/Attendant/LoginAttendantEn");
+
+                    }
                 }
             }
-            return Redirect("/Attendant/LoginAttendantEn");
+
+
+            if (lang == "ar")
+            {
+                return Redirect("/Attendant/LoginAttendantAr");
+            }
+            else
+            {
+                return Redirect("/Attendant/LoginAttendantEn");
+
+            }
+
         }
         public ActionResult IndexAttendantAr()
         {
             bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieAttendant"];
+            var lang = "";
+            if (Request.Cookies["languagePOS"] != null) lang = Request.Cookies["languagePOS"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
-                if (projectType == "pos")
+                if (projectType == "pos") //loggedIn
                 {
-                    return View();
+
+                    if (lang == "en")
+                    {
+                        return Redirect("/Attendant/IndexAttendantEn");
+                    }
+                    else
+                    {
+                        Request.Cookies["languagePOS"].Value = "ar";
+                        //System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                        return View();
+                    }
+
                 }
                 else
                 {
-                    return Redirect("/Attendant/LoginAttendantAr");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/Attendant/LoginAttendantEn");
+                    }
+                    else
+                    {
+                        return Redirect("/Attendant/LoginAttendantAr");
+
+                    }
                 }
             }
-            return Redirect("/Attendant/LoginAttendantAr");
+
+            if (lang == "en")
+            {
+                return Redirect("/Attendant/LoginAttendantEn");
+            }
+            else
+            {
+                return Redirect("/Attendant/LoginAttendantAr");
+
+            }
         }
     }
 }

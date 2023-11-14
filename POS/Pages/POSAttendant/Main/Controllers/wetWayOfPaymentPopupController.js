@@ -1,5 +1,5 @@
 ﻿
-posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($uibModal, $scope, $rootScope, $http, $uibModalInstance, data) {
+posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($uibModal, $scope, $rootScope, $http, $uibModalInstance, data, $document) {
 
 
     $scope.displayCouponPopup = function () {
@@ -47,7 +47,39 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
     $scope.totalPayDollar = 0;
     $scope.totalPayLL = 0;
+
+   
     //events
+
+    function showCashFieldBydefault() {
+        $scope.checked = true;
+        $scope.selectedPaymentType = "Cash";
+        $scope.showCashFields = true;
+        $scope.showCardFields = false;
+        $scope.showNourCardFields = false;
+    }
+
+    showCashFieldBydefault();
+
+    $scope.params = {};
+
+    $scope.showPassword = false;
+    $scope.showPassword2 = false;
+    $scope.showPassword3 = false;
+    $scope.showPassword4 = false;
+
+    $scope.toggleShowPassword = function () {
+        $scope.showPassword = !$scope.showPassword;
+    }
+    $scope.toggleShowPassword2 = function () {
+        $scope.showPassword2 = !$scope.showPassword2;
+    }
+    $scope.toggleShowPassword3 = function () {
+        $scope.showPassword3 = !$scope.showPassword3;
+    }
+    $scope.toggleShowPassword4 = function () {
+        $scope.showPassword4 = !$scope.showPassword4;
+    }
 
 
     var firstCashDollar = 0;
@@ -510,14 +542,14 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
         var secondCardCodeValue = null;
 
 
-        if ($scope.selectedPaymentType !== "Cash") {
+        if ($scope.selectedPaymentType !== "Cash" && $scope.selectedPaymentType !== undefined && $scope.selectedPaymentType !== null && $scope.selectedPaymentType !== "") {
             firstCardType = $scope.selectedPaymentType;
             firstCardCurrency = "USD";
             if ($scope.selectedPaymentType === "LOCAL") { firstCardDollarValue = firstCardDollar; firstCardCodeValue = $scope.codeCardFirst;   }
             if ($scope.selectedPaymentType === "NOUR") { firstCardDollarValue = firstNourCardDollar; firstCardCodeValue = $scope.codeNourCardFirst;  }
         }
 
-        if ($scope.selectedSecondPaymentType !== "Cash") {
+        if ($scope.selectedSecondPaymentType !== "Cash" && $scope.selectedSecondPaymentType !== undefined && $scope.selectedSecondPaymentType !== null && $scope.selectedSecondPaymentType !== "") {
             secondCardType = $scope.selectedSecondPaymentType;
             secondCardCurrency = "USD";
             if ($scope.selectedSecondPaymentType === "LOCAL") { secondCardDollarValue = secondCardDollar; secondCardCodeValue = $scope.codeCardSecond; }
@@ -606,7 +638,9 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
             (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0) &&
             (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0) &&
             (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0) &&
-            (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0)) {
+            (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0) &&
+            (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0) &&
+            (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
 
             swal("Oops", "Please enter your payment method information", "warning");
             return;
@@ -618,7 +652,8 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
             if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0) &&
                 (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0) &&
-                (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0)) {
+                (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0) &&
+                (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0)) {
 
                 swal("Oops", "Please enter your payment method information", "warning");
                 return;
@@ -629,7 +664,8 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
             if ((secondCashLL === undefined || secondCashLL === null || secondCashLL === 0) &&
                 (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0) &&
-                (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0)) {
+                (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0) &&
+                (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
 
                 swal("Oops", "Please enter your payment method information", "warning");
                 return;
@@ -733,14 +769,14 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
         var secondCardCodeValue = null;
 
 
-        if ($scope.selectedPaymentType !== "Cash") {
+        if ($scope.selectedPaymentType !== "Cash" && $scope.selectedPaymentType !== undefined && $scope.selectedPaymentType !== null && $scope.selectedPaymentType !== "") {
             firstCardType = $scope.selectedPaymentType;
             firstCardCurrency = "USD";
             if ($scope.selectedPaymentType === "LOCAL") { firstCardDollarValue = firstCardDollar; firstCardCodeValue = $scope.codeCardFirst;}
             if ($scope.selectedPaymentType === "NOUR") { firstCardDollarValue = firstNourCardDollar; firstCardCodeValue = $scope.codeNourCardFirst;}
         }
 
-        if ($scope.selectedSecondPaymentType !== "Cash") {
+        if ($scope.selectedSecondPaymentType !== "Cash" && $scope.selectedSecondPaymentType !== undefined && $scope.selectedSecondPaymentType !== null && $scope.selectedSecondPaymentType !== "") {
             secondCardType = $scope.selectedSecondPaymentType;
             secondCardCurrency = "USD";
             if ($scope.selectedSecondPaymentType === "LOCAL") { secondCardDollarValue = secondCardDollar; secondCardCodeValue = $scope.codeCardSecond; }

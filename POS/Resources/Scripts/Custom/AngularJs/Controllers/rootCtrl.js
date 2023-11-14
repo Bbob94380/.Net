@@ -47,6 +47,7 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
         }).then(function (response) {
 
             localStorage.setItem('session_id_sm', '');
+            localStorage.setItem("activeItemDash", "");
             window.location.href = '/SM/LoginSMEn';
 
         }, function (error) {
@@ -62,11 +63,12 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
     });
 
     var currentPageTemplate = $location.path();
-    if (currentPageTemplate === "/dashboard") {
+    console.log(currentPageTemplate);
+    if (currentPageTemplate.includes("/dashboard")) {
         $(".navDashItem").addClass('activeMenuItemSM');
-    } else if (currentPageTemplate === "/pos") {
+    } else if (currentPageTemplate.includes("/pos")) {
         $(".navPOSItem").addClass('activeMenuItemSM');
-    } else if (currentPageTemplate === "/inventory") {
+    } else if (currentPageTemplate.includes("/inventory")) {
         $(".navFMSItem").addClass('activeMenuItemSM');
     }
 

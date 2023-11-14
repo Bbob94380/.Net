@@ -4,13 +4,13 @@
             <div class="row dry-row-lang">
                 <ul class="nav nav-tabs dry-ul-scroll" id="myTab" role="tablist">
                     <li class="nav-item item-filter-dry ">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="" data-target="#cat0" role="tab" aria-controls="home" aria-selected="true">All</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="" data-target="#cat0" role="tab" aria-controls="home" aria-selected="true">{{'All' | translate}}</a>
                     </li>
                     <li class="nav-item item-filter-dry" ng-repeat="item in dryProducts">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="" data-target="#cat{{$index+1}}" role="tab" aria-controls="profile" aria-selected="false">{{item.cat_name}}</a>
                     </li>
                 </ul>
-                <input type="button" value="Search" ng-click="searchProductByBarcode()" style=" border-radius: 6px; background: #32ACD1; color: #fff; border: none; padding: 0px 21px; height: 2.2em; margin-top: 7px;" />
+                <input type="button" value="{{'search' | translate}}" ng-click="searchProductByBarcode()" style=" border-radius: 6px; background: #32ACD1; color: #fff; border: none; padding: 0px 21px; height: 2.2em; margin-top: 7px;" />
                 
                 <div class="container tab-content" id="myTabContent">
                     <div class="container tab-pane fade show active" id="cat0" role="tabpanel" aria-labelledby="home-tab">
@@ -77,16 +77,16 @@
                 </table>
             </div>
             <div class="row" style="" ng-class="totalLabelDry">
-                <span class="dryTotalLabel">Total</span>
+                <span class="dryTotalLabel">{{'total2' | translate}}</span>
                 <span class="drylineTotal"></span>
             </div>
             <div class="row" style="" ng-class="totalLabelDry">
                 <div>
-                    <span class="dryTotal2Label">Total in Lebanese LIra</span>
+                    <span class="dryTotal2Label">{{'totalInLL' | translate}}</span>
                     <span class="dryTotalValue">{{totalLL}}</span>
                 </div>
                 <div>
-                    <span class="dryTotal2Label">Total in Dollar</span>
+                    <span class="dryTotal2Label">{{'totalInDollar' | translate}}</span>
                     <span class="dryTotalValue">{{totalDollar}}</span>
                 </div>
             </div>

@@ -26,6 +26,8 @@ namespace POS.Models
         public decimal po_id { get; set; }
         public decimal truckId { get; set; }
         public string driverId { get; set; }
+        public string driverName { get; set; }
+        public string supplierName { get; set; }
         public string deliveryDate { get; set; }
         public string creator { get; set; }
         public string status { get; set; }

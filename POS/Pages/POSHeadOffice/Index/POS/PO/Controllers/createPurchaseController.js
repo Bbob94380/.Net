@@ -51,6 +51,7 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
         var payload = {
             driverName: $scope.driverName,
             driverId: $scope.driverId,
+            supplierName: $scope.supplierName,
             truck: $scope.trucks[index],
             //deliveryDate: $scope.trucks[index].deliveryDate,
             createdPO: $scope.createdPO,
@@ -374,6 +375,8 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
 
     $scope.selectedTruckChanged = function (truck, index) {
 
+        if (truck === null || truck === undefined) { $scope.trucks[index].plateNumber = ""; $scope.trucks[index].cheseNumber = ""; $scope.trucks[index].selectedDriver = ''; return; }
+
         for (var i = 0; i < truck.subTanks.length; i++) {
             truck.subTanks[i].wetProductId = "";
             truck.subTanks[i].productVolume = "";
@@ -425,6 +428,49 @@ rootHOModule.controller("createPurchaseController", ["$scope", "$location", "$st
     //};
 
     $scope.createPO = function () {
+
+        if ($scope.numberOfTrucks === null || $scope.numberOfTrucks === undefined || $scope.numberOfTrucks === 0 || $scope.numberOfTrucks === "") {
+            swal("Please add one truck at least", "", "warning");
+            return;
+        }
+
+        if ($scope.trucks === null || $scope.trucks === undefined || $scope.trucks === 0 || $scope.trucks === "") {
+            swal("Please add one truck at least", "", "warning");
+            return;
+        }
+
+        if ($scope.trucks.length <=0) {
+            swal("Please add one truck at least", "", "warning");
+            return;
+        }
+
+        for (var i = 0; i < $scope.trucks.length; i++) {
+
+
+            if ($scope.trucks[i].plateNumber === undefined || $scope.trucks[i].plateNumber === null || $scope.trucks[i].plateNumber === "") {
+                swal("Please select a truck plate number", "", "warning");
+                return;
+            }
+
+
+            if ($scope.trucks[i].driverId === undefined || $scope.trucks[i].driverId === null || $scope.trucks[i].driverId === "") {
+                swal("Please select a driver", "", "warning");
+                return;
+            } 
+
+            for (var j = 0; j < $scope.trucks[i].poFuelAmountsDetail.length; j++) {
+                if ($scope.trucks[i].poFuelAmountsDetail[j].wetProductId === null || $scope.trucks[i].poFuelAmountsDetail[j].wetProductId === undefined || $scope.trucks[i].poFuelAmountsDetail[j].wetProductId === "") {
+                    swal("Please select a wet type", "", "warning");
+                    return;
+                }
+
+                if ($scope.trucks[i].poFuelAmountsDetail[j].productVolume === null || $scope.trucks[i].poFuelAmountsDetail[j].productVolume === 0 || $scope.trucks[i].poFuelAmountsDetail[j].productVolume === undefined || $scope.trucks[i].poFuelAmountsDetail[j].productVolume === "") {
+                    swal("Please add wet product amount", "", "warning");
+                    return;
+                }
+            }
+
+        }
 
 
         var poObj = {
