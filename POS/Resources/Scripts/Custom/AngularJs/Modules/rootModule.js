@@ -100,6 +100,16 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
             templateUrl: "/Pages/POSManager/POS/Generator/Views/generator.html",
             controller: "generatorController"
         })
+        .state("pos.generatorHistory", {
+            url: "/generatorHistory",
+            templateUrl: "/Pages/POSManager/POS/Generator/Views/generatorHistory.html",
+            controller: "generatorHistoryController"
+        })
+        .state("pos.generatorInvoices", {
+            url: "/generatorInvoices",
+            templateUrl: "/Pages/POSManager/POS/Generator/Views/generatorInvoices.html",
+            controller: "generatorInvoicesController"
+        })
         .state("pos.eod", {
             url: "/eod",
             templateUrl: "/Pages/POSManager/POS/EOD/Views/eod.html",
@@ -142,10 +152,3 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
 rootModule.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }]);
-
-
-
-
-
-
-

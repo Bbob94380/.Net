@@ -7,16 +7,16 @@
             </div>
         </div>
         <div class="row col-sm-12" style="margin-top: 2em;">
-            <div class="col-sm-4">
-                    <span ng-click="allClicked()" class="receipt-all-box" id="clear-filters"><span id="allTab" class=" fa-times-circle "></span>&nbsp;All</span>
-                    <label ng-click="kwClicked()" class="generator-checkbox-label" id="wet-filters"><input id="transfer-checkbox" type="checkbox" value="corncob" class="filter-item " />KW</label>&nbsp;&nbsp;
-                    <label ng-click="ampereClicked()" class="generator-checkbox-label" id="dry-filters"><input type="checkbox" value="rebar" class="filter-item transfer-checkbox" />Ampere</label>
+            <div class="col-sm-3">
+                    <button class="generator-filter-button" ng-click="filterTable($event, '')" id="clear-filters">All</button>
+                    <button class="generator-filter-button" ng-click="filterTable($event, 'kw')" id="kw-filter">KW</button>
+                    <button class="generator-filter-button" ng-click="filterTable($event, 'ampere')"  id="ampere-filter">Ampere</button>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <div class="input-group input-group-sm input-group-receipts">
-                    <span ng-click="goToHistoryPage()" style="cursor: pointer;background:#32ACD1" class="receipts-history-btn">Invoice</span>
-                    <span ng-click="goToHistoryPage()" style="cursor: pointer;background:#0E8019" class="receipts-history-btn">Add Invoice</span>
-                    <span ng-click="openCreateNewCustomerPopup()" style="cursor: pointer" class="receipts-create-btn">Create New Customer</span>
+                    <span ng-click="goToInvoicesPage()" style="cursor: pointer;background:#32ACD1" class="receipts-history-btn">Invoice</span>
+                    <span ng-click="addInvoice()" style="cursor: pointer;background:#0E8019" class="receipts-history-btn">Add Invoice</span>
+                    <span ng-click="openCreateNewCustomerPopup()" style="cursor: pointer" class="receipts-create-btn">Create New Subscription</span>
                     <span ng-click="goToHistoryPage()" style="cursor: pointer" class="receipts-history-btn">History</span>
                     <div class="form-group has-search">
                         <span class="fa fa-search form-control-feedback"></span>
@@ -38,27 +38,13 @@
                         <table id="dataTableId" table-jquery  class="table table-hover  table-condensed text-nowrap table-trans">
                             <thead>
                                 <tr>
-                                    <th style="width: 10%">
-                                        ID
-                                    </th>
-                                    <th style="width: 15%">
-                                        CUSTOMERS
-                                    </th>
-                                    <th style="width: 15%">
-                                        TYPE
-                                    </th>
-                                    <th style="width: 15%">
-                                        MOBILE
-                                    </th>
-                                    <th style="width: 15%">
-                                        INVOICES
-                                    </th>
-                                    <th style="width: 15%">
-                                        Unpaid Invoicies
-                                    </th>
-                                    <th style="width: 15%">
-                                        Total Amount
-                                    </th>
+                                    <th style="width: 10%">ID</th>
+                                    <th style="width: 15%">CUSTOMERS</th>
+                                    <th style="width: 15%">TYPE</th>
+                                    <th style="width: 15%">MOBILE</th>
+                                    <th style="width: 15%">INVOICES</th>
+                                    <th style="width: 15%">Unpaid Invoicies</th>
+                                    <th style="width: 15%">Total Amount</th>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in GeneratorList" ng-click="goToCustomerInvoices(item)">

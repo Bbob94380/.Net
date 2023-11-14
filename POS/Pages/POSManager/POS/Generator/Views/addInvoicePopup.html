@@ -1,0 +1,89 @@
+﻿<div class="modal-header" style="background: #F3F3F3;">
+    <div class="popUpHeader">
+        <h5 class="modal-title">Adding Invoice</h5>
+        <h6 class="modal-title">&lt;Invoice ID&gt; - Adding Invoice</h6>
+    </div>
+    <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" style="padding: 2rem;">
+
+    <div class="row" style="padding: 1em; border-bottom: 1px solid #E6E6E6; margin-bottom: 4em;">
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">Invoice ID</span> <br>
+            <h6>&lt;Invoice ID&gt;</h6>
+        </div>
+        <div class="col-2" style="padding-left: 1em;">
+            <span class="PopUpFuelHeaderTitleSpan">Station Manager</span> <br>
+            <h6>&lt;Station Manager Name&gt;</h6>
+        </div>
+        <div class="col-7">
+            From: <input class="date-filter-input generator-medium-input-field" type="text" id="min" name="min">
+            To: <input class="date-filter-input generator-medium-input-field" type="text" id="max" name="max">
+            <span ng-click="applyfilter()" style="cursor: pointer" class="receipts-create-btn">Filter</span>
+        </div>
+        <div class="col-1">
+              Kw <input class="generator-small-input-field" type="text" value="2.5$">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-header" style="padding-left: 0;">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="generator-filter-button" ng-click="filterTable($event, 'kw')" id="popup-kw-filter">KW</span>
+                        <span class="generator-filter-button" ng-click="filterTable($event, 'ampere')" id="popup-ampere-filter">AM</span>
+                    </div>
+                    <div class="col-3 has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input id="generatorInvoicesSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                    </div>
+                    <div class="col-3">
+                        <span class="generator-filter-button display-inline-block" id="generator-invoice-currency-switch-btn">Invoice in $</span>
+                        <span class="generator-publish-btn display-inline-block" id="generator-invoices-publish-btn">Publish</span>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="">
+
+                <div class="card-body table-responsive p-0">
+                    <table id="dataTableCustomerInvoicesId" customerinvoices-table class="table table-hover  table-condensed text-nowrap table-invoices">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%">Customer ID</th>
+                                <th style="width: 15%">Customer Name</th>
+                                <th style="width: 10%">Range</th>
+                                <th style="width: 10%">Monthly Fees</th>
+                                <th style="width: 5%"></th>
+                                <th style="width: 10%">Consuming</th>
+                                <th style="width: 10%">Total</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="invoice in invoicesList" ng-click="item.isPaid == 'unPaid'? showInvoiceDetailUnPaid() : showInvoiceDetailPaid()">
+                                <td>{{invoice.customer_id}}</td>
+                                <td>{{invoice.custome_name}}</td>
+                                <td>{{invoice.range}}</td>
+                                <td>{{invoice.monthly_fees}}</td>
+                                <td>
+                                    <span ng-show="item.isPaid == 'unPaid'" class="receipt-add-btn" ng-click="payInvoice(item)">
+                                        <input type="checkbox"></input>
+                                    </span>
+                                </td>
+                                <td>{{item.consuming}}</td>
+                                <td>{{item.total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+</div>

@@ -31,6 +31,10 @@
 
         }
 
+        allFuntinos.test = function() {
+            console.log("Factory test is successful");
+        }
+
         return allFunctions;
 
-    }); 
+});

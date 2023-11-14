@@ -1,9 +1,9 @@
 ﻿<div class="modal-header" style="background: #F3F3F3;">
     <div class="popUpHeader">
-        <h5 class="modal-title">Creating a New Customer</h5>
+        <h5 class="modal-title">Creating a New Subscription</h5>
         <h6 class="modal-title">G1234 - Customer ID  - Customer Name </h6>
     </div>
-    <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close">
+    <button id="close-cross-button" type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -12,19 +12,19 @@
         <div class="col-4">
             <div class="form-group">
                 <label >Customer Name*</label>
-                <input class="form-control" />
+                <input class="form-control" ng-model="customerNameInputfield" ng-blur="checkIfCustomerExists(customerNameInputfield)"/>
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
                 <label>Customer ID</label>
-                <input class="form-control" />
+                <input class="form-control" ng-model="customer_id" disabled/>
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
                 <label>Mobile</label>
-                <input class="form-control" />
+                <input class="form-control" ng-model="phone_number" ng-disabled="shouldDisablePhoneNumber"/>
             </div>
         </div>
     </div>
@@ -32,19 +32,16 @@
         <div class="col-4">
             <div class="form-group">
                 <label>Generator Type</label>
-                <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                <select id="serviceType" class="form-control" ng-model="serviceType">
+                    <option>OPEN_USAGE</option>
+                    <option>PAY_AS_YOU_GO</option>
                 </select>
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
                 <label>Ampere Size</label>
-                <input class="form-control" />
+                <input id="ampsSize" class="form-control" type="number"/>
             </div>
         </div>
         <div class="col-4">
@@ -56,6 +53,6 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default generator-cancel-btn" data-dismiss="modal">CANCEL</button>
-    <button type="button" class="btn btn-primary generator-create-btn">CREATE</button>
+    <button id="cancel-button" type="button" class="btn btn-default generator-cancel-btn" data-dismiss="modal" ng-click="closeModal()">CANCEL</button>
+    <button id="create-button" type="button" class="btn btn-primary generator-create-btn" ng-click="createNewSubscription()">CREATE</button>
 </div>

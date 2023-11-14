@@ -330,12 +330,15 @@
     <Content Include="Pages\POSManager\POS\EOD\Views\shiftFuelPopup.html" />
     <Content Include="Pages\POSManager\POS\EOD\Views\eodForm.html" />
     <Content Include="Pages\POSManager\POS\EOD\Views\eod.html" />
+    <Content Include="Pages\POSManager\POS\Generator\Controllers\addInvoicePopupController.js" />
+    <Content Include="Pages\POSManager\POS\Generator\Controllers\generatorInvoicesController.js" />
     <Content Include="Pages\POSManager\POS\Generator\Controllers\showInvoiceDetailsUnPaidPopupController.js" />
     <Content Include="Pages\POSManager\POS\Generator\Controllers\showInvoiceDetailsPaidPopupController.js" />
     <Content Include="Pages\POSManager\POS\Generator\Controllers\customerInvoicesPopupController.js" />
+    <Content Include="Pages\POSManager\POS\Generator\Views\generatorInvoices.html" />
     <Content Include="Pages\POSManager\POS\Generator\Views\showInvoiceDetailsUnPaidPopup.html" />
     <Content Include="Pages\POSManager\POS\Generator\Views\showInvoiceDetailsPaidPopup.html" />
-    <Content Include="Pages\POSManager\POS\Generator\Views\customerInvoicesPopup.html" />
+    <Content Include="Pages\POSManager\POS\Generator\Views\addInvoicePopup.html" />
     <Content Include="Pages\POSManager\POS\Invoice\Controllers\invoiceController.js" />
     <Content Include="Pages\POSManager\POS\Invoice\Views\invoice.html" />
     <Content Include="Pages\POSManager\POS\Main\Controllers\mainPOSController.js" />
@@ -1150,7 +1153,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50969</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44346/</IISUrl>
+          <IISUrl>http://localhost:44346/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
