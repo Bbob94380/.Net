@@ -1,4 +1,4 @@
-﻿rootModule.controller("generatorHistoryController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService) {
+﻿rootModule.controller("generatorInvoicesController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService) {
 
 	function unselectAllfilters() {
 		var filtersIds = ["clear-filters", "kw-filter", "ampere-filter"];
@@ -19,6 +19,14 @@
 			.draw();
 		selectFilter($event.srcElement.id);
 	}
+
+	$scope.goToHistoryPage = function (person) {
+		$timeout(function () {
+			console.log("Viewing generator history page.")
+			$state.go('pos.generatorHistory');
+		})
+
+	};
 
 	minDate = new DateTime('#min', {
 		format: 'MMMM Do YYYY'

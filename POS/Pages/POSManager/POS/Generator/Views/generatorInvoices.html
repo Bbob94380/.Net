@@ -6,26 +6,23 @@
                 <a ui-sref="pos.generator" class="nav-link back-btn" href="#!/pos/generator">
                     &lt; Back
                 </a>
-                <h1 class="pos-section-title">Generator</h1>
-                <span class="history-subtitle">Generator History</span>
+                <h1 class="pos-section-title">Generator Invoices</h1>
             </div>
         </div>
         <div class="row col-sm-12" style="margin-top: 2em;">
-            <div class="col-sm-3">
-                <button class="generator-filter-button" ng-click="filterTable($event, '')" id="clear-filters">All</button>
-                <button class="generator-filter-button" ng-click="filterTable($event, 'kw')" id="kw-filter">KW</button>
-                <button class="generator-filter-button" ng-click="filterTable($event, 'ampere')" id="ampere-filter">Ampere</button>
+            <div class="col-sm-4">
+                    <button class="generator-filter-button" ng-click="filterTable($event, '')" id="clear-filters">All</button>
+                    <button class="generator-filter-button" ng-click="filterTable($event, 'kw')" id="kw-filter">KW</button>
+                    <button class="generator-filter-button" ng-click="filterTable($event, 'ampere')"  id="ampere-filter">Ampere</button>
             </div>
-            <div class="col-sm-6">
-                <div class="input-group input-group-sm">
-                    From: <input class="date-filter-input" type="text" id="min" name="min">
-                    To: <input class="date-filter-input" type="text" id="max" name="max">
-                    <span ng-click="applyfilter()" style="cursor: pointer" class="primary-red-btn">Filter</span>
+            <div class="col-sm-8">
+                <div class="input-group input-group-sm input-group-receipts">
+                    <span ng-click="goToHistoryPage()" style="cursor: pointer" class="receipts-history-btn">History</span>
+                    <div class="form-group has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input id="generatorSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3 form-group has-search">
-                <span class="fa fa-search form-control-feedback"></span>
-                <input id="addInvoiceSearchField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -38,17 +35,17 @@
             <div class="col-12">
                 <div class="card-table-generator">
                     <div class="card-body table-responsive p-0">
-                        <table id="dataTableId" table-jquery class="table table-hover  table-condensed text-nowrap table-trans">
+                        <table id="dataTableId" table-jquery  class="table table-hover  table-condensed text-nowrap table-trans">
                             <thead>
                                 <tr>
                                     <th style="width: 10%">ID</th>
                                     <th style="width: 15%">CUSTOMERS</th>
                                     <th style="width: 15%">TYPE</th>
                                     <th style="width: 15%">MOBILE</th>
-                                    <th style="width: 15%">FROM - TO</th>
-                                    <th style="width: 15%">UNPAID INVOICES</th>
-                                    <th style="width: 15%">TOTAL AMOUNT</th>
-                            </thead>
+                                    <th style="width: 15%">INVOICES</th>
+                                    <th style="width: 15%">Total Amount</th>
+                                    <th style="width: 15%">STATUS</th>
+</thead>
                             <tbody>
                                 <tr ng-repeat="item in GeneratorList" ng-click="goToCustomerInvoices(item)">
                                     <td>{{item.id}}</td>
@@ -73,3 +70,5 @@
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
+
