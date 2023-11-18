@@ -253,6 +253,62 @@ namespace POS.Controllers
             return JsonConvert.SerializeObject(responseData);
         }
 
+        [HttpPost]
+        public async Task<string> getLastFiveTransactions(Payload payload)
+        {
+            //variables
+            List<Transaction> transactions = null;
+            ResponseData<List<Transaction>> responseData = new ResponseData<List<Transaction>>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/transaction/getLastFiveTransactions");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        transactions = await response.Content.ReadAsAsync<List<Transaction>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = transactions;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = null;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
 
         [HttpPost]
         public async Task<string> getTransactionsWithoutReceiptWithinTwoDays(Payload payload)
@@ -1061,6 +1117,362 @@ namespace POS.Controllers
 
             return JsonConvert.SerializeObject(responseData);
         }
+
+
+         [HttpPost]
+        public async Task<string> getAllEODAsync(Payload payload)
+        {
+            //variables
+            List<EOD> eodList = null;
+            ResponseData<List<EOD>> responseData = new ResponseData<List<EOD>>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/eod/findAll");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        eodList = await response.Content.ReadAsAsync<List<EOD>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = eodList;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = null;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+        [HttpPost]
+        public async Task<string> getEod(Payload payload)
+        {
+            //variables
+            EOD eodObj = new EOD();
+            ResponseData<EOD> responseData = new ResponseData<EOD>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                    var objAsJson = JsonConvert.SerializeObject(payload.eodPaylod);
+                    var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync("FPOS/rest/eod/getEod", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        eodObj = await response.Content.ReadAsAsync<EOD>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = eodObj;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.errorMsg = response.ReasonPhrase.ToString();
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                //responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+        [HttpPost]
+        public async Task<string> getEodId(Payload payload)
+        {
+            //variables
+            decimal eodId = 0;
+            ResponseData<decimal> responseData = new ResponseData<decimal>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/eod/getEodId");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        eodId = await response.Content.ReadAsAsync<decimal>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = eodId;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = 0;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = 0;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+
+        [HttpPost]
+        public async Task<string> createEODAsync(Payload payload)
+        {
+            //variables
+            ResponseData<int> responseData = new ResponseData<int>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var objAsJson = JsonConvert.SerializeObject(payload.eodObj);
+                    var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync("FPOS/rest/eod/create", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.errorMsg = response.ReasonPhrase.ToString();
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                //responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+
+        [HttpPost]
+        public async Task<string> GetAllShiftsAsync(Payload payload)
+        {
+            //variables
+            List<ShiftPayload> shifts = null;
+            ResponseData<List<ShiftPayload>> responseData = new ResponseData<List<ShiftPayload>>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/employeeShift/findAll");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        shifts = await response.Content.ReadAsAsync<List<ShiftPayload>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = shifts;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = null;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+        [HttpPost]
+        public async Task<string> getShiftsHistory(Payload payload)
+        {
+            //variables
+            List<ShiftPayload> shifts = null;
+            ResponseData<List<ShiftPayload>> responseData = new ResponseData<List<ShiftPayload>>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                    var objAsJson = JsonConvert.SerializeObject(payload.historyPayload);
+                    var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync("FPOS/rest/employeeShift/findWitinTwoDays", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        shifts = await response.Content.ReadAsAsync<List<ShiftPayload>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = shifts;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.errorMsg = response.ReasonPhrase.ToString();
+                        responseData.resultData = null;
+
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
     }
 
 }

@@ -3,7 +3,7 @@ rootModule.controller("eodController", ["$scope", "$state", "$timeout", "$uibMod
 
     var itemSelector = ".item";
     var $checkboxes = $('.filter-item');
-    var $container = $('#transferProducts').isotope({ itemSelector: itemSelector, filter: '.example' });
+    var $container = $('#eodProducts').isotope({ itemSelector: itemSelector, filter: '.example' });
 
 
     //Ascending order
@@ -171,7 +171,13 @@ rootModule.controller("eodController", ["$scope", "$state", "$timeout", "$uibMod
     });
 
 
-    $scope.goToEODForm = function (type) {
+    $scope.goToEODForm = function () {
+
+        localStorage.setItem("isShiftOneFinished", false);
+        localStorage.setItem("isShiftTwoFinished", false);
+        localStorage.setItem("isShiftThreeFinished", false);
+        localStorage.setItem("isKaredHassanFinished", false);
+        localStorage.setItem("isEPaymentFinished", false);
 
         $timeout(function () {
             $state.go('pos.eodForm');
@@ -179,6 +185,53 @@ rootModule.controller("eodController", ["$scope", "$state", "$timeout", "$uibMod
 
     };
 
+    $scope.eodList = [];
+
+    function getAllEOD() {
+
+        $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/SmApi/getAllEODAsync",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                       
+                        $scope.eodList = result.resultData;
+
+
+                    } else {
+                        //swal("Oops", "Failed getting receipts", "");
+                    }
+
+                } else {
+                    //swal("Oops", "No receipts found", "");
+                }
+
+            } else {
+                //swal("Oops", "Failed getting receipts", "");
+            }
+
+
+        }, function (error) {
+            //swal("Oops", "Failed getting receipts", "error");
+            $rootScope.showLoader = false;
+        });
+
+    };
+
+    getAllEOD();
 
 
 }]);

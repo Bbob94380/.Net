@@ -1437,6 +1437,15 @@ input[type="search"]::-webkit-search-cancel-button {
                 margin-right: 3em;
             }
 
+
+.styleShiftFinished {
+    background: #e9e4e4;
+}
+
+.modal-dialog:has(#custom-modal-shift) {
+    max-width: 48% !important;
+}
+
 /*end*/
 
 .col-1 {

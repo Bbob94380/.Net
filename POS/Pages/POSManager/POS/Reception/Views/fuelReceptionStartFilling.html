@@ -154,7 +154,7 @@
                     </div>
                     <div class="row col-md-12">
                         <div class="col-md-3 conformity-check form-check">
-                            <input type="checkbox" class="form-check-input" ng-model="item.fuel_below_indicator" >
+                            <input type="checkbox" class="form-check-input" ng-model="item.fuel_below_indicator" ng-change="missingBoxChanged(item.fuel_below_indicator, item)" >
                             <label class="form-check-label" for="exampleCheck1">Missing Amount</label>
                         </div>
                         <div class="col-md-3 form-check">
@@ -166,13 +166,13 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">Sale Transaction</label>
-                                <select class="form-control"  ng-model="item.selectedTrans" ng-options="item5.id +' - '+ item5.dispensedVolume + ' L - '+ item5.nozzleNumber for item5 in transList">
+                                <select class="form-control" ng-model="item.selectedTrans" ng-options="item5.id +' - '+ item5.dispensedVolume + ' L - '+ item5.nozzleNumber for item5 in transList">
                                 </select>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Missing Amount in Tank Truck</label>
+                                <label class="label-reception-info">Missing Amount</label>
                                 <input class="form-control" disabled value="{{item.selectedTrans.dispensedVolume}}" />
                             </div>
                         </div>
@@ -191,7 +191,13 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="label-reception-info">ADDED AMOUNT PRICE</label>
-                                <input class="form-control" disabled  value="{{item.selectedTrans.netTotalMc}} L.L/$ {{item.selectedTrans.netTotalSc}}"/>
+                                <input class="form-control" disabled value="{{item.selectedTrans.netTotalMc}} L.L/$ {{item.selectedTrans.netTotalSc}}" />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="label-reception-info">Difference Reason</label>
+                                <input class="form-control" type="text" ng-model="item.qantitiesDifferenceReason" />
                             </div>
                         </div>
                     </div>

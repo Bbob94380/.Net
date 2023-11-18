@@ -14,6 +14,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "1");
     }
 
@@ -31,6 +32,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "2");
     }
 
@@ -48,6 +50,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "3");
     }
 
@@ -65,6 +68,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "4");
     }
 
@@ -82,6 +86,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "5");
     }
 
@@ -99,6 +104,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "6");
     }
 
@@ -116,6 +122,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "7");
     }
 
@@ -133,6 +140,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "8");
     }
 
@@ -150,6 +158,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "9");
     }
 
@@ -167,6 +176,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "10");
     }
 
@@ -184,6 +194,7 @@
         $scope.classItemStyle11 = "activeItemDash";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "11");
     }
 
@@ -201,6 +212,7 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "activeItemDash";
         $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash", "12");
     }
 
@@ -218,7 +230,26 @@
         $scope.classItemStyle11 = "";
         $scope.classItemStyle12 = "";
         $scope.classItemStyle13 = "activeItemDash";
+        $scope.classItemStyle14 = "";
         localStorage.setItem("activeItemDash","13");
+    }
+
+    $scope.addActiveItem14 = function () {
+        $scope.classItemStyle1 = "";
+        $scope.classItemStyle2 = "";
+        $scope.classItemStyle3 = "";
+        $scope.classItemStyle4 = "";
+        $scope.classItemStyle5 = "";
+        $scope.classItemStyle6 = "";
+        $scope.classItemStyle7 = "";
+        $scope.classItemStyle8 = "";
+        $scope.classItemStyle9 = "";
+        $scope.classItemStyle10 = "";
+        $scope.classItemStyle11 = "";
+        $scope.classItemStyle12 = "";
+        $scope.classItemStyle13 = "";
+        $scope.classItemStyle14 = "activeItemDash";
+        localStorage.setItem("activeItemDash", "14");
     }
 
 
@@ -238,6 +269,7 @@
         if (number === "11") $scope.addActiveItem11();
         if (number === "12") $scope.addActiveItem12();
         if (number === "13") $scope.addActiveItem13();
+        if (number === "14") $scope.addActiveItem14();
     }
 
 }]);

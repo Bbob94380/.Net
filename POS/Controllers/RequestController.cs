@@ -1722,6 +1722,8 @@ namespace POS.Controllers
         public CreateReception createReception { get; set; }
         public CreateService createServiceObj { get; set; }
         public CreateCustomer createCustomer { get; set; }
+        public EodPaylod eodPaylod { get; set; }
+        public EOD eodObj { get; set; }
         public Service service { get; set; }
         public Supplier supplier { get; set; }
         public CreateSupplier createSupplier { get; set; }
@@ -1738,9 +1740,15 @@ namespace POS.Controllers
         public Shift shift { get; set; }
         public CloseShift closeShift { get; set; }
         public CloseSession closeSession { get; set; }
+        public HistoryPayload historyPayload { get; set; }
         public List<NozzleCounter> nozzleCounters { get; set; }
     }
 
+    public class HistoryPayload
+    {
+        public string fromDate { get; set; }
+        public string toDate { get; set; }
+    }
 
     public class LoginResponse
     {

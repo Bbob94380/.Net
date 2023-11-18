@@ -1,0 +1,86 @@
+﻿<div class="modal-header"  id="custom-modal-1" >
+    <div class="row col-md-12" style="padding: 1em;">
+        <div class="col-2">
+            <span class="popUp-span-title">EOD ID</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{eodId}}</span>
+        </div>
+        <div class="col-3">
+            <span class="popUp-span-title">CREATED BY</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{stationManagerName}}</span>
+        </div>
+
+        <div class="col-3">
+            <span class="popUp-span-title">CREATION DATE</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{creationDate}}</span>
+        </div>
+        <div class="col-2">
+            <span class="popUp-span-title">SHIFT</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">Shift 1</span>
+        </div>
+    </div>
+    <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" style="margin-right:1em;display: contents;">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <label style="margin-top:2em;">Table containing cash from bank Alkared Alhassan</label>
+    <div class="row" style="padding: 1em;">
+        <table class="table text-nowrap tableTransPopupDry">
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>ACCOUNT NUMBER</th>
+                    <th>RECEIPT NUMBER</th>
+                    <th>CHECK NUMBER</th>
+                    <th>CURRENCY CHECK</th>
+                    <th>CHECK VALUE</th>
+                    <th>DESCRIPTION</th>
+                    <th>USD AMOUNT</th>
+                    <th>LBP AMOUNT</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in choices">
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.name" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.accountNumber" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.receiptNumber" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.checkNumber" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.currencyCheck" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.checkValue" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.description" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.usdAmount" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="item.lbpAmount" />
+                    </td>
+                    <td>
+                        <img style="cursor:pointer" class="form-group remove-icon remove-icon-po-truck" src="/Resources/Images/remove-icon.png" ng-click="removeChoice(item.id)" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <img class="form-group add-btn" style="cursor:pointer" ng-click="addNewChoice()" src="/Resources/Images/add-btn.png" />
+    </div>
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn printBtn-trans" style="background:#2A5699" ng-click="done()">Done</button>
+</div>

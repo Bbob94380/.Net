@@ -147,12 +147,12 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
     $scope.getNConfTypes();
 
 
-    function getAllTransactions() {
+    function getLastFiveTransactions() {
 
        // $rootScope.showLoader = true;
         $http({
             method: "POST",
-            url: "/api/SmApi/GetAllTransactionsAsync",
+            url: "/api/SmApi/getLastFiveTransactions",
             data: { sessionId: localStorage.getItem('session_id_sm') }
         }).then(function (response) {
 
@@ -196,7 +196,7 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
 
     };
 
-    getAllTransactions();
+    getLastFiveTransactions();
 
     $scope.sealTypes = [true,false];
 
@@ -270,6 +270,14 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
 
     }
 
+    $scope.missingBoxChanged = function (value, item) {
+
+        if (!value) {
+            item.selectedTrans = null;
+            item.qantitiesDifferenceReason = "";
+        }
+
+    }
 
     $scope.uploadFile = function (files, index) {
 
@@ -330,11 +338,11 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
                 quantity: item.productVolume,
                 //quantityOBS: 520.2,
                 nonConformityExists: $scope.chkStatus,
-                seal_on_subTank_cover: item.seal_on_subTank_cover,
-                seal_on_valve: item.seal_on_valve,
-                subTankID_on_valve: item.subTankID_on_valve,
-                fuel_below_indicator: item.fuel_below_indicator,
-                fillingPayedByDriver: item.fillingPayedByDriver,
+                seal_on_subTank_cover: item.seal_on_subTank_cover ? item.seal_on_subTank_cover : false,
+                seal_on_valve: item.seal_on_valve ? item.seal_on_valve : false,
+                subTankID_on_valve: item.subTankID_on_valve ? item.subTankID_on_valve : false,
+                fuel_below_indicator: item.fuel_below_indicator ? item.fuel_below_indicator : false,
+                fillingPayedByDriver: item.fillingPayedByDriver ? item.fillingPayedByDriver : false,
                 ncFillingTransactionId: transId
             });
         }
@@ -351,6 +359,7 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
             tank.actualVolAfterReception = 0;
             tank.estVolAfterReception = 0;
             tank.missingAmount = 0;
+            tank.qantitiesDifferenceReason = "";
 
             for (var z = 0; z < $scope.reception.fuelAmounts.length; z++) {
 
@@ -360,6 +369,7 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
                     tank.subTankNumbers.push(subTank.subTankId);
                     tank.volumeBeforeReception = parseFloat(subTank.volumeBeforeReception);
                     tank.addedAmouunt += parseFloat(subTank.volumeSoldDuringReception);
+                    tank.qantitiesDifferenceReason = tank.qantitiesDifferenceReason + " / " + subTank.qantitiesDifferenceReason;
                     if (item.fuel_below_indicator === true) tank.missingAmount += parseFloat(subTank.selectedTrans.dispensedVolume);
                 }
             }

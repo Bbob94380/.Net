@@ -5,37 +5,70 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
 
     $scope.type = $stateParams.type; //getting fooVal
 
-    console.log($scope.receipt);
-   
-    $scope.selectOptions = ["Mobile",
-        "Office",
-        "Home"
-    ];
+    $scope.isShiftOneFinished = false;
+    $scope.isShiftTwoFinished = false;
+    $scope.isShiftThreeFinished = false;
+    $scope.isKaredHassanFinished = false;
+    $scope.isEPaymentFinished = false;
+    $scope.eodId = 0;
 
-    $scope.choices = [{ "id": 1, "type": "Mobile", "name": "" },
-    { "id": 2, "type": "Mobile", "name": "" }];
+    if (localStorage.getItem("isShiftOneFinished") === "true") {
+        $scope.styleShiftFinishedOne = "styleShiftFinished";
+        $scope.isShiftOneFinished = true;
 
-    $scope.index = $scope.choices.length;
+    }
 
-    $scope.addNewChoice = function () {
-        var newItemNo = ++$scope.index;
-        $scope.choices.push({ 'id': newItemNo, "type": "Mobile", "name": newItemNo });
-    };
+    if (localStorage.getItem("isShiftTwoFinished") === "true") {
+        $scope.styleShiftFinishedTwo = "styleShiftFinished";
+        $scope.isShiftTwoFinished = true;
 
-    $scope.removeChoice = function (id) {
+    }
 
-        var index = -1;
-        var comArr = eval($scope.choices);
-        for (var i = 0; i < comArr.length; i++) {
-            if (comArr[i].id === id) {
-                index = i;
-                break;
-            }
+    if (localStorage.getItem("isShiftThreeFinished") === "true") {
+        $scope.styleShiftFinishedThree = "styleShiftFinished";
+        $scope.isShiftThreeFinished = true;
+
+    }
+
+    if (localStorage.getItem("isKaredHassanFinished") === "true") {
+        $scope.styleShiftFinishedKared = "styleShiftFinished";
+        $scope.isKaredHassanFinished = true;
+
+    }
+
+    if (localStorage.getItem("isEPaymentFinished") === "true") {
+        $scope.styleShiftFinishedPayment = "styleShiftFinished";
+        $scope.isEPaymentFinished = true;
+
+    }
+
+
+    $scope.shiftFuelClicked = function (shiftNumber) {
+
+        if (shiftNumber === 1 && localStorage.getItem("isShiftOneFinished") === "true") return;
+        if (shiftNumber === 2 && localStorage.getItem("isShiftTwoFinished") === "true") return;
+        if (shiftNumber === 3 && localStorage.getItem("isShiftThreeFinished") === "true") return;
+
+        if (shiftNumber === 1) {
+            if ($scope.eodObj.numberOfEmployeesShift1 === 0) { swal("There is no employees found", "", "warning"); return; }
         }
-        $scope.choices.splice(index, 1);
-    };
 
-    $scope.shiftFuelClicked = function () {
+        if (shiftNumber === 2) {
+            if ($scope.eodObj.numberOfEmployeesShift2 === 0) { swal("There is no employees found", "", "warning"); return; }
+        }
+
+        if (shiftNumber === 3) {
+            if ($scope.eodObj.numberOfEmployeesShift3 === 0) { swal("There is no employees found", "", "warning"); return; }
+        }
+
+
+
+        var index = 0;
+
+        if (shiftNumber === 1) index = 0;
+        if (shiftNumber === 2) index = 1;
+        if (shiftNumber === 3) index = 2;
+
 
         var modalInstance;
 
@@ -47,73 +80,400 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
             windowClass: 'show',
             resolve: {
                 data: function () {
-                    return { transactionItem: "11" };
+                    return { shiftObj: $scope.eodObj.shifts[index], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: shiftNumber  };
                 }
             }
         });
 
         modalInstance.result.then(function (Result) {
-            //when $uibModalInstance.close() fct executed
+
+                var modalInstance;
+
+                modalInstance = $uibModal.open({
+                    animate: true,
+                    templateUrl: '/Pages/POSManager/POS/EOD/Views/shiftDryPopup.html',
+                    controller: 'shiftDryPopupController',
+                    scope: $scope,
+                    windowClass: 'show',
+                    resolve: {
+                        data: function () {
+                            return { shiftObj: $scope.eodObj.shifts[0], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (Result) {
+
+                    var modalInstance2;
+
+                    modalInstance2 = $uibModal.open({
+                        animate: true,
+                        templateUrl: '/Pages/POSManager/POS/EOD/Views/shiftCarWashPopup.html',
+                        controller: 'shiftCarWashPopupController',
+                        scope: $scope,
+                        windowClass: 'show',
+                        resolve: {
+                            data: function () {
+                                return { shiftObj: $scope.eodObj.shifts[0], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
+                            }
+                        }
+                    });
+
+                    modalInstance2.result.then(function (Result) {
+
+
+                        var modalInstance3;
+
+                        modalInstance3 = $uibModal.open({
+                            animate: true,
+                            templateUrl: '/Pages/POSManager/POS/EOD/Views/shiftMoneyTypePopup.html',
+                            controller: 'shiftMoneyTypePopupController',
+                            scope: $scope,
+                            windowClass: 'show',
+                            resolve: {
+                                data: function () {
+                                    return { shiftObj: $scope.eodObj.shifts[0], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
+                                }
+                            }
+                        });
+
+                        modalInstance3.result.then(function (Result) {
+
+                            if (Result === 1) {
+                                $scope.isShiftOneFinished = true;
+                                $scope.styleShiftFinishedOne = "styleShiftFinished";
+                                localStorage.setItem("isShiftOneFinished", "true")
+                            }
+
+                            if (Result === 2) {
+                                $scope.isShiftTwoFinished = true;
+                                $scope.styleShiftFinishedTwo = "styleShiftFinished";
+                                localStorage.setItem("isShiftTwoFinished", "true")
+                            }
+
+                            if (Result === 3) {
+                                $scope.isShiftThreeFinished = true;
+                                $scope.styleShiftFinishedThree = "styleShiftFinished";
+                                localStorage.setItem("isShiftThreeFinished", "true")
+
+                            }
+
+                        }, function () {
+                            //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
+                        });
+
+
+                    }, function () {
+                        //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
+                    });
+
+
+                }, function () {
+                    //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
+                });
 
 
         }, function () {
             //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
         });
-
     }
 
 
-    $scope.goToShiftCash = function () {
+    $scope.goToKaredAlHassan = function () {
+
+
+        if (localStorage.getItem("isKaredHassanFinished") === "true") { return; }
+
 
         var modalInstance;
 
         modalInstance = $uibModal.open({
             animate: true,
-            templateUrl: '/Pages/POSManager/POS/EOD/Views/shiftCashPopup.html',
-            controller: 'shiftCashPopupController',
+            templateUrl: '/Pages/POSManager/POS/EOD/Views/karedAlHassanPopup.html',
+            controller: 'karedAlHassanPopupController',
             scope: $scope,
             windowClass: 'show',
             resolve: {
                 data: function () {
-                    return { transactionItem: "11" };
+                    return { creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId };
                 }
             }
         });
 
         modalInstance.result.then(function (Result) {
-            //when $uibModalInstance.close() fct executed
 
+            $scope.isKaredHassanFinished = true;
+            $scope.karedHassanObj = Result;
+            localStorage.setItem("karedHassanData", JSON.stringify($scope.karedHassanObj));
+            $scope.styleShiftFinishedKared = "styleShiftFinished";
+            localStorage.setItem("isKaredHassanFinished", "true");
 
         }, function () {
             //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
         });
     }
 
-    $scope.goToShiftMoneyType = function () {
+    $scope.goToEPayment = function () {
+
+        if (localStorage.getItem("isEPaymentFinished") === "true") { return; }
+
 
         var modalInstance;
 
         modalInstance = $uibModal.open({
             animate: true,
-            templateUrl: '/Pages/POSManager/POS/EOD/Views/shiftMoneyTypePopup.html',
-            controller: 'shiftMoneyTypePopupController',
+            templateUrl: '/Pages/POSManager/POS/EOD/Views/EPaymentPopup.html',
+            controller: 'EPaymentPopupController',
             scope: $scope,
             windowClass: 'show',
             resolve: {
                 data: function () {
-                    return { transactionItem: "11" };
+                    return { creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId};
                 }
             }
         });
 
         modalInstance.result.then(function (Result) {
-            //when $uibModalInstance.close() fct executed
 
+            $scope.isEPaymentFinished = true;
+            $scope.ePaymentObj = Result;
+            localStorage.setItem("EPaymentData", JSON.stringify($scope.ePaymentObj));
+            $scope.styleShiftFinishedPayment = "styleShiftFinished";
+            localStorage.setItem("isEPaymentFinished", "true");
 
         }, function () {
             //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
         });
+    }
 
+    function getCurrentDateAndTime() {
+
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1; // Months start at 0!
+        let dd = today.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        const formattedToday = dd + '/' + mm + '/' + yyyy;
+
+        $scope.creationDate = formattedToday;
+        $scope.creationTime = today.toLocaleTimeString();
+
+        return formattedToday;
+
+    }
+
+    function getStationManagerName() {
+
+        //$rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/getStationManagerName",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
+        }).then(function (response) {
+
+            console.log(response);
+            //$rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.stationManagerName = result.resultData;
+
+                    } else {
+                        //swal("Failed getting station manager name", "Please try again", "error");
+                        //console.log(result.errorMsg);
+                    }
+
+                } else {
+                    //swal("Failed getting station manager name", "Please try again", "error");
+                }
+
+            } else {
+                //swal("Failed getting station manager name", "Please try again", "error");
+            }
+
+
+        }, function (error) {
+            //swal("Failed getting station manager name", "Please try again", "error");
+            //$rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
+
+    function getEodId() {
+
+        //$rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/SmApi/getEodId",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
+        }).then(function (response) {
+
+            console.log(response);
+            //$rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.eodId = result.resultData;
+
+                    } else {
+                        //swal("Failed getting station manager name", "Please try again", "error");
+                        //console.log(result.errorMsg);
+                    }
+
+                } else {
+                    //swal("Failed getting station manager name", "Please try again", "error");
+                }
+
+            } else {
+                //swal("Failed getting station manager name", "Please try again", "error");
+            }
+
+
+        }, function (error) {
+            //swal("Failed getting station manager name", "Please try again", "error");
+            //$rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
+
+    getEodId();
+    getStationManagerName();
+    getCurrentDateAndTime();
+
+    function getEod() {
+
+        var payload = {
+            date: getCurrentDateAndTime()
+        }
+
+
+        $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/SmApi/getEod",
+            data: { sessionId: localStorage.getItem('session_id_sm'), eodPaylod: payload }
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.eodObj = result.resultData;
+
+                    } else {
+                        //swal("Oops", "Failed getting receipts", "");
+                    }
+
+                } else {
+                    //swal("Oops", "No receipts found", "");
+                }
+
+            } else {
+                //swal("Oops", "Failed getting receipts", "");
+            }
+
+
+        }, function (error) {
+            //swal("Oops", "Failed getting receipts", "error");
+            $rootScope.showLoader = false;
+        });
+    };
+
+    getEod();
+
+
+    $scope.createEOD = function() {
+
+        $scope.eodObj.id = $scope.eodId;
+        $scope.eodObj.kardHasanPayments = JSON.parse(localStorage.getItem("karedHassanData"));
+        $scope.eodObj.ePayments = JSON.parse(localStorage.getItem("EPaymentData"));
+
+
+        $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/SmApi/createEODAsync",
+            data: { sessionId: localStorage.getItem('session_id_sm'), eodObj: $scope.eodObj }
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+
+                    } else {
+                        swal("Oops", "Operation failed", "error");
+                    }
+
+                } else {
+                    swal("Oops", "Operation failed", "error");
+                }
+
+            } else {
+                swal("Oops", "Operation failed", "error");
+            }
+
+
+        }, function (error) {
+                swal("Oops", "Operation failed", "error");
+            $rootScope.showLoader = false;
+        });
+    };
+
+    $scope.clear = function () {
+
+        $scope.isShiftOneFinished = false;
+        $scope.isShiftTwoFinished = false;
+        $scope.isShiftThreeFinished = false;
+        $scope.isKaredHassanFinished = false;
+        $scope.isEPaymentFinished = false;
+
+        localStorage.setItem("isShiftOneFinished", "false")
+        localStorage.setItem("isShiftTwoFinished", "false")
+        localStorage.setItem("isShiftThreeFinished", "false")
+        localStorage.setItem("isKaredHassanFinished", "false");
+        localStorage.setItem("isEPaymentFinished", "false");
+
+
+        $scope.styleShiftFinishedOne = "";
+        $scope.styleShiftFinishedTwo = "";
+        $scope.styleShiftFinishedThree = "";
+        $scope.styleShiftFinishedKared = "";
+        $scope.styleShiftFinishedPayment = "";
+
+        localStorage.setItem("karedHassanData", "");
+        localStorage.setItem("EPaymentData", "");
 
     }
 

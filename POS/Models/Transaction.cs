@@ -115,6 +115,7 @@ namespace POS.Models
         public decimal currencyRatio { get; set; }
         public decimal wetProductId { get; set; }
         public decimal dispensedVolume { get; set; }
+        public bool gas { get; set; }
         public int pumpNumber { get; set; }
         public int nozzleNumber { get; set; }
         public decimal firstCardTypeAmount { get; set; }

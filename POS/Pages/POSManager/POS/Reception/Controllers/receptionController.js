@@ -198,7 +198,7 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
     $scope.getAllWetProductTypes = function () {
 
-        $rootScope.showLoader = true;
+        //$rootScope.showLoader = true;
         $http({
             method: "POST",
             url: "/api/Request/getAllWetProductTypes",
@@ -206,7 +206,7 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
         }).then(function (response) {
 
             console.log(response);
-            $rootScope.showLoader = false;
+            //$rootScope.showLoader = false;
 
             if (response !== null && response !== undefined) {
 
@@ -220,21 +220,21 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
 
                     } else {
-                        swal("Oops", "No drivers found", "");
+                        //swal("Oops", "No drivers found", "");
                     }
 
                 } else {
-                    swal("Oops", "No drivers found", "");
+                    //swal("Oops", "No drivers found", "");
                 }
 
             } else {
-                swal("Oops", "Failed getting drivers", "");
+                //swal("Oops", "Failed getting drivers", "");
             }
 
 
         }, function (error) {
-            swal("Oops", "Failed getting drivers", "");
-            $rootScope.showLoader = false;
+            //swal("Oops", "Failed getting drivers", "");
+            //$rootScope.showLoader = false;
         });
 
     };

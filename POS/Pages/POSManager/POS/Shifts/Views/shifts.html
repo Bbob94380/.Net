@@ -1,0 +1,74 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row col-sm-12">
+            <div class="col-sm-5">
+                <h1 class="pos-section-title">Shifts</h1>
+            </div>
+            <div class="col-sm-7">
+                <div class="input-group input-group-sm input-group-receipts">
+                    <span ng-click="goToHistoryPage()" style="cursor: pointer" class="receipts-history-btn">{{'history' | translate}}</span>
+                    <div class="form-group has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input id="CustomSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="{{'search' | translate}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content ff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-table-trans">
+                    <div class="card-body table-responsive p-0">
+                        <table id="dataTableId" table-jquery  class="table table-condensed text-nowrap table-trans">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        SHIFT ID
+                                    </th>
+                                    <th>
+                                        SHIFT NUMBER
+                                    </th>
+                                    <th>
+                                        EMPLOYEE
+                                    </th>
+                                    <th>
+                                        NOZZLE
+                                    </th>
+                                    <th>
+                                        TIME And DATE
+                                    </th>
+                                    <th>
+                                        TOTAL
+                                    </th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in shiftsList" ng-click="goToShiftInfo(item)">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.numberOfTransactions}}</td>
+                                    <td>{{item.employeeName}}</td>
+                                    <td>{{item.nozzleCounter.length}}</td>
+                                    <td>{{item.dateOfCreation}}</td>
+                                    <td>{{item.totalLbp}} L.L <br /> {{item.totalUsd}} $</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+

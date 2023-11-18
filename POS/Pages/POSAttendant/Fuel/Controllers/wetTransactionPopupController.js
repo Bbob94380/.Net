@@ -15,9 +15,11 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
     $scope.priceScOfLitre = data.priceSc;
     $scope.dollarRate = parseInt(localStorage.getItem("dollarRate"));
     $scope.disableField = false;
+    $scope.isGas = false;
 
     if ($scope.wetType === "GAZ10" || $scope.wetType === "GAZ12" || $scope.wetType === "GAZ_EMPTY") {
         $scope.disableField = true;
+        $scope.isGas = true;
     }
 
     //events
@@ -141,6 +143,7 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
             priceDollar: dd,
             productType: "Fuel",
             wetId: $scope.wetId,
+            gas: $scope.isGas,
             priceMcOfLitre: $scope.priceMcOfLitre,
             priceScOfLitre: $scope.priceScOfLitre,
         }

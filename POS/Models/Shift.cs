@@ -5,6 +5,71 @@ using System.Web;
 
 namespace POS.Models
 {
+
+    public class ShiftPayload
+    {
+        public string id { get; set; }
+        public string employeeName { get; set; }
+        public string employeeId { get; set; }
+        public string dateOfCreation { get; set; }
+        public string timeOfCreation { get; set; }
+        public string closeTime { get; set; }
+        public decimal totalLbp { get; set; }
+        public decimal totalUsd { get; set; }
+        public decimal wetProductTotalLbp { get; set; }
+        public decimal wetProductTotalUsd { get; set; }
+        public int numberOfItems { get; set; }
+        public decimal dryProductTotalLbp { get; set; }
+        public decimal dryProductTotalUsd { get; set; }
+        public int numberOfVehicles { get; set; }
+        public decimal carWashTotalLbp { get; set; }
+        public decimal carWashTotalUsd { get; set; }
+        public int numberOfStationServices { get; set; }
+        public decimal stationServicesTotalLbp { get; set; }
+        public decimal stationServicesTotalUsd { get; set; }
+        public int numberOfRefunds { get; set; }
+        public decimal refundTotalLbp { get; set; }
+        public decimal refundTotalUsd { get; set; }
+        public List<NozzleCounterShift> nozzleCounter { get; set; }
+        public List<WetProductShift> wetProductSales { get; set; }
+        public List<MoneyAmountsShift> moneyAmounts { get; set; }
+    }
+
+
+    public class NozzleCounterShift
+    {
+        public decimal id { get; set; }
+        public decimal nozzleId { get; set; }
+        public decimal wetProductId { get; set; }
+        public int nozzleNumber { get; set; }
+        public string startDateTime { get; set; }
+        public string endDateTime { get; set; }
+        public decimal litersCounterStart { get; set; }
+        public decimal litersCounterEnd { get; set; }
+        public decimal totalLbp { get; set; }
+        public decimal totalUsd { get; set; }
+
+    }
+
+    public class WetProductShift
+    {
+        public decimal id { get; set; }
+        public decimal wetProductId { get; set; }
+        public decimal liters { get; set; }
+        public string name { get; set; }
+        public decimal amountLbp { get; set; }
+        public decimal amountUsd { get; set; }
+    }
+
+    public class MoneyAmountsShift
+    {
+        public decimal id { get; set; }
+        public int quantity { get; set; }
+        public string currencyCardUsd { get; set; }
+        public string currencyCardLbp { get; set; }
+
+    }
+
     public class Shift
     {
         public string employeeName { get; set; }

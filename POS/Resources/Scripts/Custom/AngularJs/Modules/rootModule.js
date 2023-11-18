@@ -123,6 +123,22 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
             templateUrl: "/Pages/POSManager/POS/EOD/Views/eodForm.html",
             controller: "eodFormController"
         })
+        .state("pos.shifts", {
+            url: "/shifts",
+            params: {
+                item: null
+            },
+            templateUrl: "/Pages/POSManager/POS/Shifts/Views/shifts.html",
+            controller: "shiftsController"
+        })
+        .state("pos.shiftHistory", {
+            url: "/shiftHistory",
+            params: {
+                item: null
+            },
+            templateUrl: "/Pages/POSManager/POS/Shifts/Views/shiftsHistory.html",
+            controller: "shiftsHistoryController"
+        })
         .state("pos.money", {
             url: "/money",
             templateUrl: "/Pages/POSManager/POS/MoneyDelivery/Views/moneyDelivery.html",

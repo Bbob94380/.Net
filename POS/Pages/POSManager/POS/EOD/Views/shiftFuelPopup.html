@@ -2,20 +2,20 @@
     <div class="row col-md-12" style="padding: 1em;">
         <div class="col-2">
             <span class="popUp-span-title">EOD ID</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">0</span>
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{eodId}}</span>
         </div>
         <div class="col-3">
             <span class="popUp-span-title">CREATED BY</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">rwer</span>
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{stationManagerName}}</span>
         </div>
 
         <div class="col-3">
             <span class="popUp-span-title">CREATION DATE</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">rwerw</span>
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{creationDate}}</span>
         </div>
         <div class="col-2">
-            <span class="popUp-span-title">SHIFT-1</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">rwerwe</span>
+            <span class="popUp-span-title">SHIFT</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">Shift 1</span>
         </div>
     </div>
     <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" style="margin-right:1em;display: contents;">
@@ -25,187 +25,64 @@
 <div class="modal-body">
 
     <label>Fuel Sales</label>
-    <div class="row col-md-12" style="padding: 2em 0em 1em 1em;">
-        <span style=" width: 100%;">Octane 98</span>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">NUZZLE NUMBER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TANK NUMBER</span>  <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">INITIAL COUNTER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">FINAL COUNTER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TOTAL LITRES SOLD</span>  <br />
-            <span class="titleValue">0</span>
-
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES REDTURNED</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES SOLD ON ACCOUNT</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES SOLD ON CASH</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">UNIT PRICE OF LITER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">TOTAL CASH AMOUNT</span> <br />
-            <span class="titleValue">0</span>
-        </div>
+    <div class="row col-md-12" style="padding: 2em 0em 1em 1em;" ng-repeat="wet in shiftObj.wetProductSummaries">
+        <span style=" width: 100%;font-family: 'rubikMedium'; font-size: 13px;">{{wet.wetProductName}}</span>
+        <table class="table table-hover text-nowrap dryShiftTable">
+            <thead>
+                <tr>
+                    <th>NUZZLE NUMBER</th>
+                    <th>TANK NUMBER</th>
+                    <th>INITIAL COUNTER</th>
+                    <th>FINAL COUNTER</th>
+                    <th>TOTAL LITERS SOLD</th>
+                    <th>LITERS RETURNED</th>
+                    <th>LITERS SOLD ON CASH</th>
+                    <th>UNIT PRICE OF LITER</th>
+                    <th>TOTAL CASH AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="nozzle in wet.nozzleSummaries">
+                    <td>{{nozzle.nozzleNumber}}</td>
+                    <td>{{nozzle.tankNumber}}</td>
+                    <td>{{nozzle.initialCounter}}</td>
+                    <td>{{nozzle.finalCounter}}</td>
+                    <td>{{nozzle.totalLittersSold}}</td>
+                    <td>{{nozzle.littersReturned}}</td>
+                    <td>{{nozzle.totalLittersSoldCash}}</td>
+                    <td>{{nozzle.currentUnitPriceOfLitterLbp}} L.L/ $ {{nozzle.currentUnitPriceOfLitterUsd}}</td>
+                    <td>{{nozzle.totalCashAmountLbp}} L.L/ $ {{nozzle.totalCashUsd}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="row col-md-12" style="padding: 2em 0em 1em 1em;">
-        <span style=" width: 100%;">Octane 98</span>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">NUZZLE NUMBER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TANK NUMBER</span>  <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">INITIAL COUNTER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">FINAL COUNTER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TOTAL LITRES SOLD</span>  <br />
-            <span class="titleValue">0</span>
 
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES REDTURNED</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES SOLD ON ACCOUNT</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES SOLD ON CASH</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">UNIT PRICE OF LITER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">TOTAL CASH AMOUNT</span> <br />
-            <span class="titleValue">0</span>
-        </div>
+    <label>Gas Sales</label>
+    <div class="row col-md-12" style="padding: 2em 0em 1em 1em;">
+        <table class="table table-hover text-nowrap dryShiftTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th class="col-3">QUANTITY SOLD ON CASH</th>
+                    <th>TOTAL CASH</th>
+                    <th>CURRENT PRICE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in shiftObj.gazProductSummaries">
+                    <td>{{item.productId}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.quantitySaledCash}}</td>
+                    <td>{{item.totalCashLbp}} L.L/ $ {{item.totalCashUSd}}</td>
+                    <td>{{item.currentPriceLbp}} L.L/ $ {{item.currentPriceUsd}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="row col-md-12" style="padding: 2em 0em 1em 1em;">
-        <span style=" width: 100%;">Octane 98</span>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">NUZZLE NUMBER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TANK NUMBER</span>  <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">INITIAL COUNTER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">FINAL COUNTER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TOTAL LITRES SOLD</span>  <br />
-            <span class="titleValue">0</span>
-
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES REDTURNED</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES SOLD ON ACCOUNT</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES SOLD ON CASH</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">UNIT PRICE OF LITER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">TOTAL CASH AMOUNT</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-    </div>
-
-    <div class="row col-md-12" style="padding: 2em 0em 1em 1em;">
-        <span style=" width: 100%;">Octane 98</span>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">NUZZLE NUMBER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TANK NUMBER</span>  <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">INITIAL COUNTER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">FINAL COUNTER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TOTAL LITRES SOLD</span>  <br />
-            <span class="titleValue">0</span>
-
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES REDTURNED</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES SOLD ON ACCOUNT</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">LITRES SOLD ON CASH</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">UNIT PRICE OF LITER</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">TOTAL CASH AMOUNT</span> <br />
-            <span class="titleValue">0</span>
-        </div>
-    </div>
-
-    <label style="margin-top:2em;">Fuel Transaction Done By card</label>
+    <!--<label style="margin-top:2em;">Fuel Transaction Done By card</label>
     <div class="row" style="padding: 1em;">
         <table class="table table-hover text-nowrap tableTransPopupDry">
             <thead>
@@ -277,11 +154,11 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div>-->
 
 
-    <label style="margin-top:2em;">Employee Inside this Shift</label>
-    <div class="row" style="padding: 1em;">
+    <label style="margin-top:2em;">Employees Inside this Shift</label>
+    <!--<div class="row" style="padding: 1em;">
         <div class="col-md-12">
             <table class="table text-nowrap shiftTable">
                 <thead>
@@ -665,8 +542,31 @@
             </table>
 
         </div>
-    </div>
+    </div>-->
 
+    <div class="row" style="padding: 1em;" ng-repeat="employee in shiftObj.employeeWetProductSummaries">
+        <label style="display: block; width:100%">Employee {{$index + 1}}: {{employee.employeeName}}</label>
+        <br />
+        <label style="display: block;margin-left:1em;">Wet Product</label>
+        <table class="table  text-nowrap transfer-popup-table" ng-repeat="wetProduct in employee.employeeWetProducts" style="margin-left:1em;margin-bottom: 0 !important;">
+            <thead>
+                <tr>
+                    <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                    <th class="th-text">Type</th>
+                    <th class="th-text">LITERS</th>
+                    <th class="th-text">TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="transfer-half-rectangle2"></span></td>
+                    <td>{{wetProduct.wetProductName}}</td>
+                    <td>{{wetProduct.littersAmount}} L</td>
+                    <td>{{wetProduct.totalLbp}} L.L/ $ {{wetProduct.totalUsd}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 <div class="modal-footer">

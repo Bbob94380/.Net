@@ -190,6 +190,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DO.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\EOD.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\PO.cs" />
     <Compile Include="Models\Receipt.cs" />
@@ -316,16 +317,20 @@
     <Content Include="Pages\POSManager\Dashboard\Main\Views\mainDashboard.html" />
     <Content Include="Pages\POSManager\Inventory\Main\Controllers\mainInventoryController.js" />
     <Content Include="Pages\POSManager\Inventory\Main\Views\mainInventory.html" />
+    <Content Include="Pages\POSManager\POS\EOD\Controllers\EPaymentPopupController.js" />
     <Content Include="Pages\POSManager\POS\EOD\Controllers\shiftDryPopupController.js" />
     <Content Include="Pages\POSManager\POS\EOD\Controllers\shiftCarWashPopupController.js" />
     <Content Include="Pages\POSManager\POS\EOD\Controllers\shiftCashPopupController.js" />
+    <Content Include="Pages\POSManager\POS\EOD\Controllers\karedAlHassanPopupController.js" />
     <Content Include="Pages\POSManager\POS\EOD\Controllers\shiftMoneyTypePopupController.js" />
     <Content Include="Pages\POSManager\POS\EOD\Controllers\shiftFuelPopupController.js" />
     <Content Include="Pages\POSManager\POS\EOD\Controllers\eodFormController.js" />
     <Content Include="Pages\POSManager\POS\EOD\Controllers\eodController.js" />
+    <Content Include="Pages\POSManager\POS\EOD\Views\EPaymentPopup.html" />
     <Content Include="Pages\POSManager\POS\EOD\Views\shiftDryPopup.html" />
     <Content Include="Pages\POSManager\POS\EOD\Views\shiftCarWashPopup.html" />
     <Content Include="Pages\POSManager\POS\EOD\Views\shiftCashPopup.html" />
+    <Content Include="Pages\POSManager\POS\EOD\Views\karedAlHassanPopup.html" />
     <Content Include="Pages\POSManager\POS\EOD\Views\shiftMoneyTypePopup.html" />
     <Content Include="Pages\POSManager\POS\EOD\Views\shiftFuelPopup.html" />
     <Content Include="Pages\POSManager\POS\EOD\Views\eodForm.html" />
@@ -355,6 +360,12 @@
     <Content Include="Pages\POSManager\POS\MoneyDelivery\Controllers\moneyDeliveryController.js" />
     <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyForm.html" />
     <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyDelivery.html" />
+    <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsController.js" />
+    <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsHistoryController.js" />
+    <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsInfoPopupController.js" />
+    <Content Include="Pages\POSManager\POS\Shifts\Views\shifts.html" />
+    <Content Include="Pages\POSManager\POS\Shifts\Views\shiftsHistory.html" />
+    <Content Include="Pages\POSManager\POS\Shifts\Views\shiftsInfoPopup.html" />
     <Content Include="Pages\POSManager\POS\Receipts\Controllers\receiptsHistoryController.js" />
     <Content Include="Pages\POSManager\POS\Receipts\Controllers\receiptsInfoController.js" />
     <Content Include="Pages\POSManager\POS\Receipts\Views\receiptsHistory.html" />
@@ -1153,7 +1164,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50969</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44346/</IISUrl>
+          <IISUrl>https://localhost:44346/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

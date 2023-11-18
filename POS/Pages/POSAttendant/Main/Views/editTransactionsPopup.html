@@ -13,7 +13,7 @@
                     <tbody>
                         <tr ng-repeat="trans in transactionsList">
                             <td>{{trans.id}}</td>
-                            <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.qty + ' item(s)' }}</td>
+                            <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }} </td>
                             <td>{{trans.priceLL}} L.L ({{trans.priceDollar}}$)</td>
                             <td style="border-right: none !important;">
                                 <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTrans(trans.id, trans.productType);">Delete</button>

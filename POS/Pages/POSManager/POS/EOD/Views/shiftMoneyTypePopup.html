@@ -1,21 +1,21 @@
-﻿<div class="modal-header"  id="custom-modal-1" >
+﻿<div class="modal-header" id="custom-modal-1">
     <div class="row col-md-12" style="padding: 1em;">
         <div class="col-2">
             <span class="popUp-span-title">EOD ID</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">0</span>
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{eodId}}</span>
         </div>
         <div class="col-3">
             <span class="popUp-span-title">CREATED BY</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">rwer</span>
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{stationManagerName}}</span>
         </div>
 
         <div class="col-3">
             <span class="popUp-span-title">CREATION DATE</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">rwerw</span>
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{creationDate}}</span>
         </div>
         <div class="col-2">
-            <span class="popUp-span-title">SHIFT-1</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">rwerwe</span>
+            <span class="popUp-span-title">SHIFT</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">Shift 2</span>
         </div>
     </div>
     <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" style="margin-right:1em;display: contents;">
@@ -25,7 +25,9 @@
 <div class="modal-body">
 
 
-    <div class="row" style="padding: 1em;">
+    <div class="row" style="padding: 1em;" ng-repeat="employee in shiftObj.employeeMoneyAmounts">
+        <label style="display: block; width:100%">Employee {{$index + 1}}: {{employee.employeeName}}</label>
+
         <div class="col-md-12">
             <!--<label style="margin-top:2em;">First of the Day Cash</label>-->
             <table class="table text-nowrap shiftTable">
@@ -36,46 +38,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>100</td>
+                    <tr ng-repeat="item in employee.moneyAmounts">
+                        <td>{{item.currencyCardUsd}}</td>
                         <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>50</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>20</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>TOTAL USD</td>
-                        <td>
-                            43242
+                            <input type="text" class="form-control" disabled value="{{item.quantity}}" />
                         </td>
                     </tr>
                 </tbody>
@@ -89,142 +55,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1000000</td>
+                    <tr ng-repeat="item in employee.moneyAmounts">
+                        <td>{{item.currencyCardLbp}}</td>
                         <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>50000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>20000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>TOTAL LBP</td>
-                        <td>
-                            43242
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!--<label style="margin-top:2em;">End of Day Cash</label>-->
-
-            <table class="table text-nowrap shiftTable">
-                <thead>
-                    <tr>
-                        <th class="th-text">LBP CLASS</th>
-                        <th class="th-text">QUANTITY</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1000000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>50000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>20000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table class="table text-nowrap  shiftTable">
-                <thead>
-                    <tr>
-                        <th class="th-text">LBP CLASS</th>
-                        <th class="th-text">QUANTITY</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1000000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>50000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>20000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5000</td>
-                        <td>
-                            <input type="text" class="form-control " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1000</td>
-                        <td>
-                            <input type="text" class="form-control " />
+                            <input type="text" class="form-control" disabled value="{{item.quantity}}" />
                         </td>
                     </tr>
                 </tbody>
@@ -236,5 +70,5 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn printBtn-trans" style="background:#2A5699" ng-click="goToDryShift()">Next</button>
+    <button type="button" class="btn printBtn-trans" style="background:#2A5699" ng-click="closeShift1()">Finish</button>
 </div>
