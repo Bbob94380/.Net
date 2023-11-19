@@ -589,7 +589,7 @@
 
                         console.log(result.resultData);
                         if (result.resultData) {
-                            swal("You already have an open session", "", "warning");
+                            swal("You have already opened a shift today", "", "warning");
 
                         } else {
 

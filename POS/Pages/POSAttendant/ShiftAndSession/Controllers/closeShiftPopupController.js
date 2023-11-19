@@ -5,6 +5,8 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
     $scope.isOpenBtnHide = false;
     $scope.isSaveBtnHide = true;
     $scope.hideSummary = true;
+    $scope.showSummaryBtnSection = false;
+    $scope.nuzzlesList = [];
     var isFieldFocus = [];
     var isNewFieldFocus = [];
     var isMoneyFieldFocus = [];
@@ -260,6 +262,7 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
                             $scope.displayCounterResult[i] = '0';
                             $scope.displayNewCounterResult[i] = '0';
                         }
+                        if ($scope.nuzzlesList.length > 0) $scope.showSummaryBtnSection = true;
 
 
                     } else {

@@ -12,6 +12,14 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
     $scope.isEPaymentFinished = false;
     $scope.eodId = 0;
 
+    $scope.eodObj = {
+        cashUsd: 0,
+        cashLbp: 0,
+        numberOfEmployeesShift1: 0,
+        numberOfEmployeesShift2: 0,
+        numberOfEmployeesShift3: 0,
+    }
+
     if (localStorage.getItem("isShiftOneFinished") === "true") {
         $scope.styleShiftFinishedOne = "styleShiftFinished";
         $scope.isShiftOneFinished = true;
@@ -267,7 +275,7 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
 
     function getStationManagerName() {
 
-        //$rootScope.showLoader = true;
+        $rootScope.showLoader = true;
         $http({
             method: "POST",
             url: "/api/Request/getStationManagerName",
@@ -275,7 +283,7 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
         }).then(function (response) {
 
             console.log(response);
-            //$rootScope.showLoader = false;
+            $rootScope.showLoader = false;
 
             if (response !== null && response !== undefined) {
 
@@ -303,7 +311,7 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
 
         }, function (error) {
             //swal("Failed getting station manager name", "Please try again", "error");
-            //$rootScope.showLoader = false;
+            $rootScope.showLoader = false;
             console.log(error);
         });
 
@@ -403,10 +411,26 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
     getStationManagerName();
     getCurrentDateAndTime();
 
-    function getEod() {
+
+    function changeDateFormat(date) {
+
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1; // Months start at 0!
+        let dd = date.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        const formattedToday = dd + '/' + mm + '/' + yyyy;
+
+        return formattedToday;
+
+    }
+
+    $scope.getEod = function (dateOfEod) {
 
         var payload = {
-            date: getCurrentDateAndTime()
+            date: changeDateFormat(dateOfEod) //getCurrentDateAndTime()
         }
 
 
@@ -431,31 +455,42 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
                         $scope.eodObj = result.resultData;
 
                     } else {
-                        //swal("Oops", "Failed getting receipts", "");
+                        swal("Error", "", "error");
                     }
 
                 } else {
-                    //swal("Oops", "No receipts found", "");
+                    swal("Error", "", "error");
                 }
 
             } else {
-                //swal("Oops", "Failed getting receipts", "");
+                swal("Error", "", "error");
             }
 
 
         }, function (error) {
-            //swal("Oops", "Failed getting receipts", "error");
+                swal("Error", "", "error");
             $rootScope.showLoader = false;
         });
     };
 
-    getEod();
+    //getEod();
 
 
     $scope.createEOD = function() {
 
+        if ($scope.dateOfEod === null || $scope.dateOfEod === undefined) {
+            swal("Please select EOD date", "", "warning");
+            return;
+        }
+
+        if ($scope.eodObj.numberOfEmployeesShift1 === 0 && $scope.eodObj.numberOfEmployeesShift2 === 0 && $scope.eodObj.numberOfEmployeesShift3 === 0) {
+            swal("There is no shifts to create an eod", "", "warning");
+            return;
+        }
+
         $scope.eodObj.id = $scope.eodId;
         $scope.eodObj.creator = $scope.creator;
+        $scope.eodObj.dateOfEod = $scope.dateOfEod;
 
         if (localStorage.getItem("karedHassanData") !== null && localStorage.getItem("karedHassanData") !== undefined && localStorage.getItem("karedHassanData") !=="") {
             $scope.eodObj.kardHasanPayments = JSON.parse(localStorage.getItem("karedHassanData"));
@@ -511,6 +546,16 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
     };
 
     $scope.clear = function () {
+
+        $scope.dateOfEod = null;
+
+        $scope.eodObj = {
+            cashUsd: 0,
+            cashLbp: 0,
+            numberOfEmployeesShift1: 0,
+            numberOfEmployeesShift2: 0,
+            numberOfEmployeesShift3: 0,
+        }
 
         $scope.isShiftOneFinished = false;
         $scope.isShiftTwoFinished = false;

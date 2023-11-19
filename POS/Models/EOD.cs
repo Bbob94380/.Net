@@ -10,6 +10,7 @@ namespace POS.Models
         public decimal id { get; set; }
         public string currencyRatio { get; set; }
         public string creator { get; set; }
+        public string dateOfEod { get; set; }
         public int numberOfEmployeesShift1 { get; set; }
         public int numberOfEmployeesShift2 { get; set; }
         public int numberOfEmployeesShift3 { get; set; }

@@ -520,7 +520,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
                     currencyRatio: parseFloat(localStorage.getItem('dollarRate')),
                     netTotalMc: $rootScope.transactionsList[i].priceLL,
                     netTotalSc: $rootScope.transactionsList[i].priceDollar,
-                    vehiceType: "CAR",
+                    vehiceType: $rootScope.transactionsList[i].vehiceType,
                     washSubCategoriesId: $rootScope.transactionsList[i].washSubCategoriesId
                 }
 
@@ -748,7 +748,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
                     currencyRatio: parseFloat(localStorage.getItem('dollarRate')),
                     netTotalMc: $rootScope.transactionsList[i].priceLL,
                     netTotalSc: $rootScope.transactionsList[i].priceDollar,
-                    vehiceType: "CAR",
+                    vehiceType: $rootScope.transactionsList[i].vehiceType,
                     washSubCategoriesId: $rootScope.transactionsList[i].washSubCategoriesId
                 }
 

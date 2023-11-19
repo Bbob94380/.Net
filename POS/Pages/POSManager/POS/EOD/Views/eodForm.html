@@ -27,6 +27,7 @@
                             <th>EOD ID</th>
                             <th class="col-3">CREATED BY</th>
                             <th>CREATION DATE</th>
+                            <th>Select Date Of EOD</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,9 @@
                             <td>{{eodId}}</td>
                             <td>{{stationManagerName}}</td>
                             <td>{{creationDate}}</td>
+                            <td>
+                                    <input class="form-control col-8" type="date" ng-model="dateOfEod" ng-change="getEod(dateOfEod)" />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -60,6 +64,7 @@
                             <label style="display: block; margin-top: 2em; font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">Creation Time</label>
                             <input class="form-control" disabled value="{{creationTime}}" />
                         </div>
+                       
                     </div>
                     <div class="col-4" style="margin-left: 2em;">
                         <div class="form-group shift-box {{styleShiftFinishedOne}}" ng-click="shiftFuelClicked(1)">
@@ -106,7 +111,7 @@
             </div>
 
             <div class="col-12 " style="margin-right: 2em; ">
-                <div style=" display: block; width: 100%; text-align: end;">
+                <div style=" display: block; width: 100%; text-align: end;padding-right: 2em;">
                     <span style=" display: inline-block; color: #b3afaf; font-size: 14px;">USD</span>
                     <span style=" color: red; font-size: 14px; font-weight: bold;margin-right: 2em;">$ {{eodObj.cashUsd}}</span>
                     <span style=" display: inline-block; color: #b3afaf; font-size: 14px;">LBP</span>

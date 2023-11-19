@@ -1775,6 +1775,7 @@ namespace POS.Controllers
         public string stationId { get; set; }
         public string driverId { get; set; }
         public string truckId { get; set; }
+        public string shiftId { get; set; }
         public List<decimal> transactionsIds { get; set; }
         public CreateTransaction createTransObj { get; set; }
         public CreateReception createReception { get; set; }

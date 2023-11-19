@@ -1473,6 +1473,63 @@ namespace POS.Controllers
             return JsonConvert.SerializeObject(responseData);
         }
 
+        [HttpPost]
+        public async Task<string> findShiftById(Payload payload)
+        {
+            //variables
+            ShiftPayload shift = new ShiftPayload();
+            ResponseData<ShiftPayload> responseData = new ResponseData<ShiftPayload>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/employeeShift/findShiftById/" + payload.shiftId);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        shift = await response.Content.ReadAsAsync<ShiftPayload>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = shift;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = null;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
     }
 
 }

@@ -11,6 +11,7 @@ namespace POS.Models
         public string id { get; set; }
         public string employeeName { get; set; }
         public string employeeId { get; set; }
+        public string shiftNumber { get; set; }
         public string dateOfCreation { get; set; }
         public string timeOfCreation { get; set; }
         public string closeTime { get; set; }
@@ -27,6 +28,9 @@ namespace POS.Models
         public int numberOfStationServices { get; set; }
         public decimal stationServicesTotalLbp { get; set; }
         public decimal stationServicesTotalUsd { get; set; }
+        public int numberOfPostPaidCoupons { get; set; }
+        public decimal postPaidCouponsTotalLbp { get; set; }
+        public decimal postPaidCouponsTotalUSd { get; set; }
         public int numberOfRefunds { get; set; }
         public decimal refundTotalLbp { get; set; }
         public decimal refundTotalUsd { get; set; }
