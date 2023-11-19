@@ -1,4 +1,4 @@
-﻿rootModule.factory('commonHelper', function () {
+﻿rootModule.factory('commonHelper', ["$http", function ($http) {
         var allFunctions = {};
 
 
@@ -31,10 +31,23 @@
 
         }
 
-        allFuntinos.test = function() {
+        allFunctions.test = function() {
             console.log("Factory test is successful");
         }
 
+    allFunctions.createRequest = function (method, url, data = {}) {
+        return $http({
+            method: method,
+            url: "http://localhost:8080" + url,
+            withCredentials: true,
+            dataType: "json",
+            headers: {
+                "Access-Control-Allow-Origin": "http://localhost:44346",
+                'Content-Type': 'application/json'
+            },
+            data: data
+        });
+    }
         return allFunctions;
 
-});
+}]);

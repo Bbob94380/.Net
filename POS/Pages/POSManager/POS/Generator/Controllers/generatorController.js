@@ -1,17 +1,6 @@
 ﻿
 
-rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService) {
-
-	function createRequest(method, url) {
-		return $http({
-			method: method,
-			url: "http://localhost:8080" + url,
-			withCredentials: true,
-			headers: {
-				"Access-Control-Allow-Origin": "http://localhost:44346",
-			},
-		});
-	}
+rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", "commonHelper", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService, $common_helper) {
 
 	function unselectAllfilters() {
 		var filtersIds = ["clear-filters", "kw-filter", "ampere-filter"];
@@ -25,20 +14,34 @@ rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$
 
 	$rootScope.showLoader = true;
 	$("#generatorSearchTextField").on('keyup', function () {
-		$('#dataTableId').dataTable().fnFilter(this.value);
+		$('#customersTable').dataTable().fnFilter(this.value);
 	});
 
 	selectFilter("clear-filters");
 
-	createRequest("GET", "/FPOS/rest/generatorCustomer/findAll")
+	$common_helper.createRequest("GET", "/FPOS/rest/generatorCustomer/findAll")
 	.then(function (response) {
-		console.log("Data = ", response.data);
-		$scope.GeneratorList = response.data;
+		$scope.customerList = response.data;
+		$scope.customerList.forEach((customer) => {
+			console.log("Finding unpaid subs for customer: ", customer.id);
+			customer.totalAmount = 0;
+			$common_helper.createRequest("GET", "/FPOS/rest/generatorSubscription/findUnpaidByCustomerId/" + customer.id)
+				.then(function (response) {
+					console.log("Unpaid data: ", response.data);
+					unpaidInvoices = response.data;
+					customer.unpaidInvoicesCount = unpaidInvoices.length;
+					console.log("Found Unpaid Subscriptions: ", customer.unpaidInvoicesCount);
+					unpaidInvoices.forEach((invoice) => {
+						customer.totalAmount = customer.totalAmount + invoice.monthlyFees;
+					});
+				});
+		});
+		
 	});
 
 	$scope.filterTable = function ($event, criteria) {
 		unselectAllfilters();
-		$('#dataTableId').DataTable().column(2)
+		$('#customersTable').DataTable().column(2)
 			.search(criteria)
 			.draw();
 		selectFilter($event.srcElement.id);
@@ -68,12 +71,8 @@ rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$
 
 		modalInstance.result.then(function (Result) {
 			//when $uibModalInstance.close() fct executed
-			$uibModal.close();
-			$uibModal.dismiss();
 		}, function () {
-			//enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
-			$uibModal.close();
-			$uibModal.dismiss();
+			//enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed
 		});
 
 
@@ -137,6 +136,24 @@ rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$
 		});
 
 		modalInstance.result.then(function (Result) {}, function () {});
+	}
+
+	$scope.openSubscriptionPopup = function (customer) {
+		console.log("customer was passed: ", customer);
+		var modalInstance;
+
+		modalInstance = $uibModal.open({
+			animate: true,
+			templateUrl: '/Pages/POSManager/POS/Generator/Views/createNewSubscriptionPopup.html',
+			controller: 'createNewSubscriptionPopupController',
+			scope: $scope,
+			windowClass: 'show',
+			resolve: {
+				data: function () {
+					return { transactionItem: "11", "customer": customer };
+				}
+			}
+		});
 	}
 
 	$rootScope.showLoader = false;

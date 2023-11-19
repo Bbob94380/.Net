@@ -1,4 +1,4 @@
-﻿rootModule.controller("generatorHistoryController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService) {
+﻿rootModule.controller("generatorHistoryController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", "commonHelper", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService, $common_helper) {
 
 	function unselectAllfilters() {
 		var filtersIds = ["clear-filters", "kw-filter", "ampere-filter"];
@@ -14,7 +14,7 @@
 
 	$scope.filterTable = function ($event, criteria) {
 		unselectAllfilters();
-		$('#dataTableCustomerInvoicesId').DataTable().column(2)
+		$('#customersHistoryTable').DataTable().column(2)
 			.search(criteria)
 			.draw();
 		selectFilter($event.srcElement.id);
@@ -26,6 +26,12 @@
 	maxDate = new DateTime('#max', {
 		format: 'MMMM Do YYYY'
 	});
+
+	$common_helper.createRequest("GET", "/FPOS/rest/generatorCustomer/history")
+		.then(function (response) {
+			$scope.customerList = response.data;
+			$('#customersHistoryTable').DataTable().column(2).draw();
+		});
 
 
 }]);
