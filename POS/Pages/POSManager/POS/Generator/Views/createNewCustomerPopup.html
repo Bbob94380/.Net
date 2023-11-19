@@ -1,7 +1,6 @@
 ﻿<div class="modal-header" style="background: #F3F3F3;">
     <div class="popUpHeader">
-        <h5 class="modal-title">Creating a New Subscription</h5>
-        <h6 class="modal-title">G1234 - Customer ID  - Customer Name </h6>
+        <h5 class="modal-title">Creating a New Customer</h5>
     </div>
     <button id="close-cross-button" type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
         <span aria-hidden="true">&times;</span>
@@ -9,50 +8,21 @@
 </div>
 <div class="modal-body">
     <div class="row generator-new-customer-row" style="padding: 1em;">
-        <div class="col-4">
+        <div class="col-6">
             <div class="form-group">
                 <label >Customer Name*</label>
-                <input class="form-control" ng-model="customerNameInputfield" ng-blur="checkIfCustomerExists(customerNameInputfield)"/>
+                <input class="form-control" ng-model="customerNameInputfield"/>
             </div>
         </div>
-        <div class="col-4">
-            <div class="form-group">
-                <label>Customer ID</label>
-                <input class="form-control" ng-model="customer_id" disabled/>
-            </div>
-        </div>
-        <div class="col-4">
+        <div class="col-6">
             <div class="form-group">
                 <label>Mobile</label>
-                <input class="form-control" ng-model="phone_number" ng-disabled="shouldDisablePhoneNumber"/>
-            </div>
-        </div>
-    </div>
-    <div class="row generator-new-customer-row" style="padding: 1em; border-bottom: 1px solid #dee2e6;">
-        <div class="col-4">
-            <div class="form-group">
-                <label>Generator Type</label>
-                <select id="serviceType" class="form-control" ng-model="serviceType">
-                    <option>OPEN_USAGE</option>
-                    <option>PAY_AS_YOU_GO</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="form-group">
-                <label>Ampere Size</label>
-                <input id="ampsSize" class="form-control" type="number"/>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="form-group">
-                <label>Monthly Fees</label>
-                <input class="form-control" />
+                <input class="form-control" ng-model="phone_number"/>
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
     <button id="cancel-button" type="button" class="btn btn-default generator-cancel-btn" data-dismiss="modal" ng-click="closeModal()">CANCEL</button>
-    <button id="create-button" type="button" class="btn btn-primary generator-create-btn" ng-click="createNewSubscription()">CREATE</button>
+    <button id="create-button" type="button" class="btn btn-primary generator-create-btn" ng-click="createCustomer()">CREATE</button>
 </div>
