@@ -1123,8 +1123,8 @@ namespace POS.Controllers
         public async Task<string> getAllEODAsync(Payload payload)
         {
             //variables
-            List<EOD> eodList = null;
-            ResponseData<List<EOD>> responseData = new ResponseData<List<EOD>>();
+            List<EODAll> eodList = null;
+            ResponseData<List<EODAll>> responseData = new ResponseData<List<EODAll>>();
 
             try
             {
@@ -1150,7 +1150,7 @@ namespace POS.Controllers
                     HttpResponseMessage response = await client.GetAsync("FPOS/rest/eod/findAll");
                     if (response.IsSuccessStatusCode)
                     {
-                        eodList = await response.Content.ReadAsAsync<List<EOD>>();
+                        eodList = await response.Content.ReadAsAsync<List<EODAll>>();
                         responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
                         responseData.statusCode = response.StatusCode.ToString();
                         responseData.resultData = eodList;
@@ -1442,7 +1442,7 @@ namespace POS.Controllers
                     var objAsJson = JsonConvert.SerializeObject(payload.historyPayload);
                     var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage response = await client.PostAsync("FPOS/rest/employeeShift/findWitinTwoDays", content);
+                    HttpResponseMessage response = await client.PostAsync("FPOS/rest/employeeShift/findBetweenTwoDates", content);
                     if (response.IsSuccessStatusCode)
                     {
                         shifts = await response.Content.ReadAsAsync<List<ShiftPayload>>();

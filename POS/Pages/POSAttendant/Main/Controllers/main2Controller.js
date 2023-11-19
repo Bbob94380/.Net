@@ -196,7 +196,7 @@
 
     function getCurrencyRatio(){
 
-        $rootScope.showLoader = true;
+        //$rootScope.showLoader = true;
         $http({
             method: "POST",
             url: "/api/Request/GetCurrencyRatio",
@@ -204,7 +204,7 @@
         }).then(function (response) {
 
             console.log(response);
-            $rootScope.showLoader = false;
+            //$rootScope.showLoader = false;
 
             if (response !== null && response !== undefined) {
 
@@ -234,7 +234,7 @@
 
         }, function (error) {
             swal("Failed getting currency ratio", "", "error");
-            $rootScope.showLoader = false;
+            //$rootScope.showLoader = false;
             console.log(error);
         });
 
@@ -458,7 +458,7 @@
                 windowClass: 'show',
                 resolve: {
                     data: function () {
-                        return { totalLL: totalLeb, totalDollar: totalDol };
+                        return { totalLL: totalLeb, totalDollar: totalDol, employeeName: $scope.employeeName, employeeId: $scope.employeeId };
                     }
                 }
             });
@@ -516,33 +516,126 @@
 
     };
 
+
+    function getCurrentUser() {
+
+        $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/GetCurrentUser",
+            data: { sessionId: localStorage.getItem('session_id') }
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.employeeName = result.resultData.name;
+                        $scope.employeeId = result.resultData.id;
+
+                    } else {
+                        swal("Failed getting user info", "Please try again", "error");
+                        console.log(result.errorMsg);
+                    }
+
+                } else {
+                    swal("Failed getting user info", "Please try again", "error");
+                }
+
+            } else {
+                swal("Failed getting user info", "Please try again", "error");
+            }
+
+
+        }, function (error) {
+            swal("Failed getting user info", "Please try again", "error");
+            $rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
+
+    getCurrentUser();
+
+
     $scope.openShiftPopup = function () {
 
-        var modalInstance;
 
-        modalInstance = $uibModal.open({
-            animate: true,
-            templateUrl: '/Pages/POSAttendant/ShiftAndSession/Views/openShiftPopup.html',
-            controller: 'openShiftPopupController',
-            scope: $scope,
-            windowClass: 'show',
-            resolve: {
-                data: function () {
-                    return { id: "1" };
+        $rootScope.showLoader = true;
+
+        $http({
+            method: "POST",
+            url: "/api/Request/checkIfEmployeeHasOpenSession",
+            data: { sessionId: localStorage.getItem('session_id'), employeeId: $scope.employeeId }
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        console.log(result.resultData);
+                        if (result.resultData) {
+                            swal("You already have an open session", "", "warning");
+
+                        } else {
+
+                            var modalInstance;
+
+                            modalInstance = $uibModal.open({
+                                animate: true,
+                                templateUrl: '/Pages/POSAttendant/ShiftAndSession/Views/openShiftPopup.html',
+                                controller: 'openShiftPopupController',
+                                scope: $scope,
+                                windowClass: 'show',
+                                resolve: {
+                                    data: function () {
+                                        return { id: "1" };
+                                    }
+                                }
+                            });
+
+                            modalInstance.result.then(function (Result) {
+                                //when $uibModalInstance.close() fct executed
+
+                            }, function () {
+                                //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
+                            });
+                        }
+
+                    } else {
+                        swal("Oops", "Failed checking if employee has an open session id", "");
+                    }
+
+                } else {
+                    swal("Oops", "Failed checking if employee has an open session id", "");
                 }
+
+            } else {
+                swal("Oops", "Failed checking if employee has an open session id", "");
             }
+
+
+        }, function (error) {
+                swal("Oops", "Failed checking if employee has an open session id", "");
+            $rootScope.showLoader = false;
         });
 
-        modalInstance.result.then(function (Result) {
-            //when $uibModalInstance.close() fct executed
 
-        }, function () {
-            //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
-        });
 
-        modalInstance.opened.then(function () {
-            //alert('hi');
-        });
     }
 
     $scope.closeShiftPopup = function () {

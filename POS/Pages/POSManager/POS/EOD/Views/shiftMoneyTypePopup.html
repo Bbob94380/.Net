@@ -38,9 +38,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in employee.moneyAmounts">
-                        <td>{{item.currencyCardUsd}}</td>
-                        <td>
+                    <tr ng-repeat="item in employee.moneyAmounts" >
+                        <td ng-show="item.isDollar== true">{{item.currencyCardUsd}}</td>
+                        <td ng-show="item.isDollar== true">
                             <input type="text" class="form-control" disabled value="{{item.quantity}}" />
                         </td>
                     </tr>
@@ -55,10 +55,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in employee.moneyAmounts">
-                        <td>{{item.currencyCardLbp}}</td>
-                        <td>
-                            <input type="text" class="form-control" disabled value="{{item.quantity}}" />
+                    <tr ng-repeat="item2 in employee.moneyAmounts" >
+                        <td ng-show="item2.isLL== true">{{item2.currencyCardLbp}}</td>
+                        <td ng-show="item2.isLL == true">
+                            <input type="text" class="form-control" disabled value="{{item2.quantity}}" />
                         </td>
                     </tr>
                 </tbody>

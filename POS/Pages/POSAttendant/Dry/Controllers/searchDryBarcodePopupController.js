@@ -1,10 +1,10 @@
 ﻿
-posAttendantRootModule.controller('searchDryBarcodePopupController', function ($scope, $rootScope, $document, $http, $uibModalInstance, data) {
+posAttendantRootModule.controller('searchDryBarcodePopupController', function ($scope, $rootScope, $document, $http, $uibModalInstance, data, $filter) {
 
     var isQtyFocus = false;
     var isBarcodeFocus = false;
 
-    $scope.displayBarcodeResult = "11318678641564";
+    $scope.displayBarcodeResult = "";
     $scope.displayQtyResult = "";
     $scope.product = {};
     $scope.showImage = false;
@@ -57,20 +57,20 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
                             $scope.product.image = "https://picsum.photos/200/300";
 
                         } else {
-                            swal("Oops", "Failed getting product", "");
+                            //swal("Oops", "Failed getting product", "");
                         }
 
                     } else {
-                        swal("Oops", "Product not found", "");
+                        //swal("Oops", "Product not found", "");
                     }
 
                 } else {
-                    swal("Oops", "Failed getting product", "");
+                    //swal("Oops", "Failed getting product", "");
                 }
 
 
             }, function (error) {
-                    swal("Oops", "Failed getting product", "");
+                    //swal("Oops", "Failed getting product", "");
                 //$rootScope.showLoader = false;
             });
 
@@ -84,13 +84,13 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
 
         if ($scope.displayBarcodeResult === undefined || $scope.displayBarcodeResult === null || $scope.displayBarcodeResult === "" || $scope.displayBarcodeResult === 0 || $scope.displayBarcodeResult === "0") {
 
-            swal("Please fill the barcode field", "", "warning");
+            swal($filter('translate')('fillBarcodeField'), "", "warning");
 
         } else {
 
             if ($scope.displayQtyResult === undefined || $scope.displayQtyResult === null || $scope.displayQtyResult === "" || $scope.displayQtyResult === 0 || $scope.displayQtyResult === "0") {
 
-                swal("Please fill the quantity field", "", "warning");
+                swal($filter('translate')('fillQuantityField'), "", "warning");
 
             } else {
                 $rootScope.dryItemClicked($scope.product, parseInt($scope.displayQtyResult));

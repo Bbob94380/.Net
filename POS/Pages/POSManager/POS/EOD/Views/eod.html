@@ -32,36 +32,35 @@
                             <div class="row">
                                 <div class="col-9">
                                     <h2 style="display: inline; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100;">
-                                        {{item.id}} -  {{item.supplierName}} -  {{item.driverName}}
+                                        {{item.id}} -  {{stationManagerName}} -  {{item.creationDate}}
                                     </h2>
-                                    <span class="reception-item-status-init">INITIATED</span>
                                     <table class="table reception-item-table">
                                         <tr>
                                             <th style="text-align:left">
-                                                TYPE
+                                                CREATION DATE
                                             </th>
                                             <th>
-                                                Creation Date
+                                                CREATED BY
                                             </th>
                                             <th>
-                                                Sended By
+                                                TOTAL IN LEBANESE LIREA
                                             </th>
                                             <th style="border:none;">
-                                                Receiving Date
+                                                TOTAL IN DOLLAR
                                             </th>
                                         </tr>
                                         <tr>
                                             <td style="text-align:left">
-                                                Fuel 98, Fuel 95, Diesel Red and Diesel Green
+                                                {{item.creationDate}}
                                             </td>
                                             <td>
-                                                6/3/2020 4:32 AM
+                                                {{item.creator}}
                                             </td>
                                             <td>
-                                                Purchase Manager
+                                                {{item.cashLbp}} L.L
                                             </td>
                                             <td style="border:none;">
-                                                10/3/2020 4:32 AM
+                                                $ {{item.cashUsd}}
                                             </td>
                                         </tr>
                                     </table>

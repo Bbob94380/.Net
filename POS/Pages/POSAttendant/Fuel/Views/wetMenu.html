@@ -3,10 +3,10 @@
         <div class="container">
             <div class="row main-row-wetMenu">
                 <div class="col-lg-4" ng-repeat="item in wetProductTypes">
-                    <div class="card main-card-wetMenu" ng-click="displayWetTransactionPopup(item.name, item.id, item.priceMc, item.priceSc, item.type)">
+                    <div class="card main-card-wetMenu" ng-click="displayWetTransactionPopup(item.nameLang, item.id, item.priceMc, item.priceSc, item.type)">
                         <div class="card-body">
                             <img class="wet-menu-img" src="/Resources/Images/attendant/{{item.type}}.png" />
-                            <span class="card-title">{{item.name}}</span>
+                            <span class="card-title">{{item.nameLang}}</span>
                         </div>
                     </div>
                 </div>

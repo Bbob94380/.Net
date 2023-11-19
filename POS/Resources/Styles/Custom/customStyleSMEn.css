@@ -1446,6 +1446,41 @@ input[type="search"]::-webkit-search-cancel-button {
     max-width: 48% !important;
 }
 
+.closeShiftLine {
+    display: block;
+    height: 2px;
+    background: #efe8e8;
+    margin: 3em 0px 0em 1.4em;
+    clear: both;
+}
+
+.paytotalLabel {
+    display: block;
+}
+
+.paytotalLabelLLAndDolar {
+    display: block;
+    clear: both;
+}
+
+.payDryTotal2Label {
+    color: #6F6F6F;
+    font-size: 16px;
+    display: inline;
+}
+
+.payDryTotalValue {
+    font-size: 16px;
+    margin-right: 0.5em;
+}
+
+.paytotalLabelLLAndDolar div {
+    float: right;
+    display: block;
+    width: 100%;
+    text-align: end;
+}
+
 /*end*/
 
 .col-1 {

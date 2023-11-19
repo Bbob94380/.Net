@@ -1,5 +1,5 @@
 ﻿
-rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope) {
+rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$timeout", "$state", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $timeout, $state) {
 
    
 
@@ -97,7 +97,7 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
                     windowClass: 'show',
                     resolve: {
                         data: function () {
-                            return { shiftObj: $scope.eodObj.shifts[0], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
+                            return { shiftObj: $scope.eodObj.shifts[index], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
                         }
                     }
                 });
@@ -114,7 +114,7 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
                         windowClass: 'show',
                         resolve: {
                             data: function () {
-                                return { shiftObj: $scope.eodObj.shifts[0], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
+                                return { shiftObj: $scope.eodObj.shifts[index], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
                             }
                         }
                     });
@@ -132,7 +132,7 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
                             windowClass: 'show',
                             resolve: {
                                 data: function () {
-                                    return { shiftObj: $scope.eodObj.shifts[0], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
+                                    return { shiftObj: $scope.eodObj.shifts[index], creationDate: $scope.creationDate, creationTime: $scope.creationTime, eodId: $scope.eodId, shiftNumber: Result };
                                 }
                             }
                         });
@@ -309,6 +309,52 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
 
     };
 
+    function getCurrentUser() {
+
+        //$rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/GetCurrentUser",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
+        }).then(function (response) {
+
+            console.log(response);
+            //$rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.creator = result.resultData.name;
+
+                    } else {
+                        swal("Failed getting user info", "Please try again", "error");
+                        console.log(result.errorMsg);
+                    }
+
+                } else {
+                    swal("Failed getting user info", "Please try again", "error");
+                }
+
+            } else {
+                swal("Failed getting user info", "Please try again", "error");
+            }
+
+
+        }, function (error) {
+            swal("Failed getting user info", "Please try again", "error");
+            //$rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
+
+    getCurrentUser();
+
     function getEodId() {
 
         //$rootScope.showLoader = true;
@@ -409,8 +455,15 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
     $scope.createEOD = function() {
 
         $scope.eodObj.id = $scope.eodId;
-        $scope.eodObj.kardHasanPayments = JSON.parse(localStorage.getItem("karedHassanData"));
-        $scope.eodObj.ePayments = JSON.parse(localStorage.getItem("EPaymentData"));
+        $scope.eodObj.creator = $scope.creator;
+
+        if (localStorage.getItem("karedHassanData") !== null && localStorage.getItem("karedHassanData") !== undefined && localStorage.getItem("karedHassanData") !=="") {
+            $scope.eodObj.kardHasanPayments = JSON.parse(localStorage.getItem("karedHassanData"));
+        }
+
+        if (localStorage.getItem("EPaymentData") !== null && localStorage.getItem("EPaymentData") !== undefined && localStorage.getItem("EPaymentData") !== "") {
+            $scope.eodObj.ePayments = JSON.parse(localStorage.getItem("EPaymentData"));
+        }
 
 
         $rootScope.showLoader = true;
@@ -431,6 +484,12 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
 
                     if (result.isSuccessStatusCode) {
 
+                          swal("Operation succeeded", "", "success");
+                            $timeout(function () {
+                                $state.go('pos.eod', {
+                                    item: null
+                                });
+                            })
 
                     } else {
                         swal("Oops", "Operation failed", "error");

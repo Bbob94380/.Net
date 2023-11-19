@@ -25,6 +25,30 @@
 
                         $scope.wetProductTypes = result.resultData;
 
+                        for (var i = 0; $scope.wetProductTypes.length; i++) {
+
+                            if (localStorage.getItem('language') === 'en') {
+
+                                if ($scope.wetProductTypes[i].type === "BENZENE95") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+                                if ($scope.wetProductTypes[i].type === "BENZENE98") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+                                if ($scope.wetProductTypes[i].type === "DIESEL1") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+                                if ($scope.wetProductTypes[i].type === "DIESEL2") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+                                if ($scope.wetProductTypes[i].type === "GAZ12") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+                                if ($scope.wetProductTypes[i].type === "GAZ10") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+                                if ($scope.wetProductTypes[i].type === "GAZ_EMPTY") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+
+                            } else if (localStorage.getItem('language') === 'ar') {
+
+                                if ($scope.wetProductTypes[i].type === "BENZENE95") $scope.wetProductTypes[i].nameLang = "بنزين 95";
+                                if ($scope.wetProductTypes[i].type === "BENZENE98") $scope.wetProductTypes[i].nameLang = "بنزين 98";
+                                if ($scope.wetProductTypes[i].type === "DIESEL1") $scope.wetProductTypes[i].nameLang = "ديزل أخضر";
+                                if ($scope.wetProductTypes[i].type === "DIESEL2") $scope.wetProductTypes[i].nameLang = "ديزل أحمر";
+                                if ($scope.wetProductTypes[i].type === "GAZ12") $scope.wetProductTypes[i].nameLang = "غاز 12 كلغ";
+                                if ($scope.wetProductTypes[i].type === "GAZ10") $scope.wetProductTypes[i].nameLang = "غاز 10 كلغ";
+                                if ($scope.wetProductTypes[i].type === "GAZ_EMPTY") $scope.wetProductTypes[i].nameLang = "غاز";
+                            }
+                        }
+
                     } else {
                         $rootScope.showLoader = false;
                         swal("Failed getting wet product types", "Please try again", "error");

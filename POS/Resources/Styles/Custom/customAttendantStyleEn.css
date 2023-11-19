@@ -40,7 +40,7 @@
     border-top: 1px solid #000;
     width: 100%;
     padding: 0.5em;
-    margin-top: 3.5em;
+    margin-top: 2.5em;
 }
 
 .main-center-row {
@@ -176,7 +176,7 @@
     position: relative;
     display: flex;
     padding: 0em 0em 0em 0em;
-    height: 2.4em;
+    height: 3.6em;
     margin-top: 3em;
 }
 
@@ -1310,6 +1310,13 @@ button {
     font-size: 27px;
     padding-top: 3px;
     color: #2F2C2C;
+}
+
+.eyeStyle {
+    cursor: pointer;
+    position: absolute;
+    right: 0.7em;
+    top: 2.35em;
 }
 
 /*end*/

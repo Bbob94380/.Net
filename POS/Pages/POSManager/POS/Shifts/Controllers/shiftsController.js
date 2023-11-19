@@ -87,7 +87,7 @@ rootModule.controller("shiftsController", ["$scope", "$state", "$timeout", "$uib
 			windowClass: 'show',
 			resolve: {
 				data: function () {
-					return { item: item };
+					return { shift: item };
 				}
 			}
 		});

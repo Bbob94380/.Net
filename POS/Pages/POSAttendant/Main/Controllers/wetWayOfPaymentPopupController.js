@@ -1,5 +1,5 @@
 ﻿
-posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($uibModal, $scope, $rootScope, $http, $uibModalInstance, data, $document) {
+posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($uibModal, $scope, $rootScope, $http, $uibModalInstance, data, $document, $filter) {
 
 
     $scope.displayCouponPopup = function () {
@@ -33,8 +33,12 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
 
     //Initialization
-    $scope.totalLL = data.totalLL + " L.L";
+    $scope.totalLL = data.totalLL + " " +$filter('translate')('LL');
     $scope.totalDollar = data.totalDollar + "$";
+
+    $rootScope.employeeName = data.employeeName;
+    $rootScope.employeeId = data.employeeId;
+
 
     $scope.paymentTypes = ["Cash", "LOCAL", "NOUR"];
 
@@ -93,52 +97,52 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
     console.log($rootScope.transactionsList);
 
-    function getCurrentUser() {
+    //function getCurrentUser() {
 
-        $rootScope.showLoader = true;
-        $http({
-            method: "POST",
-            url: "/api/Request/GetCurrentUser",
-            data: { sessionId: localStorage.getItem('session_id') }
-        }).then(function (response) {
+    //    $rootScope.showLoader = true;
+    //    $http({
+    //        method: "POST",
+    //        url: "/api/Request/GetCurrentUser",
+    //        data: { sessionId: localStorage.getItem('session_id') }
+    //    }).then(function (response) {
 
-            console.log(response);
-            $rootScope.showLoader = false;
+    //        console.log(response);
+    //        $rootScope.showLoader = false;
 
-            if (response !== null && response !== undefined) {
+    //        if (response !== null && response !== undefined) {
 
-                if (response.data !== null && response.data !== undefined) {
+    //            if (response.data !== null && response.data !== undefined) {
 
-                    var result = JSON.parse(response.data);
+    //                var result = JSON.parse(response.data);
 
-                    if (result.isSuccessStatusCode) {
+    //                if (result.isSuccessStatusCode) {
 
-                        $rootScope.employeeName = result.resultData.name;
-                        $rootScope.employeeId = result.resultData.id;
+    //                    $rootScope.employeeName = result.resultData.name;
+    //                    $rootScope.employeeId = result.resultData.id;
 
-                    } else {
-                        swal("Failed getting user info", "Please try again", "error");
-                        console.log(result.errorMsg);
-                    }
+    //                } else {
+    //                    swal("Failed getting user info", "Please try again", "error");
+    //                    console.log(result.errorMsg);
+    //                }
 
-                } else {
-                    swal("Failed getting user info", "Please try again", "error");
-                }
+    //            } else {
+    //                swal("Failed getting user info", "Please try again", "error");
+    //            }
 
-            } else {
-                swal("Failed getting user info", "Please try again", "error");
-            }
+    //        } else {
+    //            swal("Failed getting user info", "Please try again", "error");
+    //        }
 
 
-        }, function (error) {
-            swal("Failed getting user info", "Please try again", "error");
-            $rootScope.showLoader = false;
-            console.log(error);
-        });
+    //    }, function (error) {
+    //        swal("Failed getting user info", "Please try again", "error");
+    //        $rootScope.showLoader = false;
+    //        console.log(error);
+    //    });
 
-    };
+    //};
 
-    getCurrentUser();
+    //getCurrentUser();
 
 
     function getTransactionMainId() {

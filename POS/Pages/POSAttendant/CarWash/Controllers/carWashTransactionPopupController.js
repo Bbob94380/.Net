@@ -1,5 +1,5 @@
 ﻿
-posAttendantRootModule.controller('carWashTransactionPopupController', function ($scope, $rootScope, $http, $uibModalInstance, data) {
+posAttendantRootModule.controller('carWashTransactionPopupController', function ($scope, $rootScope, $filter, $http, $uibModalInstance, data, $translate) {
 
 
     //Initialization
@@ -10,6 +10,7 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
     console.log(data.carWashType);
 
     $scope.carWashType = data.carWashType;
+    $scope.carTypeLang = data.carTypeLang;
     //$scope.carWashTypePriceLL = data.carWashTypePriceLL;
     //$scope.carWashTypePriceDollar = data.carWashTypePriceDollar;
 
@@ -55,19 +56,25 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
 
     $scope.clearWashTable = function () {
         $scope.carWashOptionsList = [];
+        $scope.washSubCategoriesId = [];
         $scope.totalDollar =0;
         $scope.totalLL = 0;
+
+        for (var i = 0; i < $scope.optionsList.length; i++) {
+            $scope.optionsList[i].styleClass = "";
+            $scope.optionsList[i].hasStyle = false;
+        }
     }
 
     $scope.next = function () {
 
         if ($scope.washSubCategoriesId !== null && $scope.washSubCategoriesId !== undefined && $scope.washSubCategoriesId !== "") {
             if ($scope.washSubCategoriesId.length <= 0) {
-                swal("Please add at least one car categrory", "", "warning");
+                swal($filter('translate')('carWashOptionNotFound'), "", "warning");
                 return;
             }
         } else {
-            swal("Please add at least one car categrory", "", "warning");
+            swal($filter('translate')('carWashOptionNotFound'), "", "warning");
             return;
         }
 

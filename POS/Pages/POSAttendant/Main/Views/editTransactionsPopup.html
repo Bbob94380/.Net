@@ -4,9 +4,9 @@
                 <table class="edit-table table  text-nowrap">
                     <thead>
                         <tr>
-                            <th>TRAN.ID</th>
-                            <th>AMOUNT</th>
-                            <th>TOTAL</th>
+                            <th>{{ 'transId' | translate}}</th>
+                            <th>{{ 'amount' | translate}}</th>
+                            <th>{{ 'totalAll' | translate}}</th>
                             <th style="border-right: none !important;"></th>
                         </tr>
                     </thead>
@@ -14,9 +14,9 @@
                         <tr ng-repeat="trans in transactionsList">
                             <td>{{trans.id}}</td>
                             <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }} </td>
-                            <td>{{trans.priceLL}} L.L ({{trans.priceDollar}}$)</td>
+                            <td>{{trans.priceLL}} {{'LL' | translate}}  ($ {{trans.priceDollar}})</td>
                             <td style="border-right: none !important;">
-                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTrans(trans.id, trans.productType);">Delete</button>
+                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTrans(trans.id, trans.productType);">{{ 'delete' | translate}}</button>
                             </td>
                         </tr>
                     </tbody>
@@ -27,15 +27,15 @@
                     </thead>
                     <thead ng-show="showTotal">
                         <tr>
-                            <td style="visibility:hidden" >Total</td>
-                            <td>Total</td>
+                            <td style="visibility:hidden">{{ 'total2' | translate}}</td>
+                            <td>{{ 'total2' | translate}}</td>
                             <td style="text-align: left !important;">
                                 <span>{{transTotalLebanese}}</span>
                                 <br />
                                 <span>{{transTotalDollar}}</span>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-default delete-edit-btn" style="padding: 0px 31px;" ng-click="deleteAllTrans();">Delete All</button>
+                                <button type="button" class="btn btn-default delete-edit-btn" style="padding: 0px 31px;" ng-click="deleteAllTrans();">{{ 'deleteAll' | translate}}</button>
                             </td>
                         </tr>
                     </thead>
@@ -44,6 +44,6 @@
     </div>
 </div>
 <div class="modal-footer wetTransPopupFooter editPoppupFooter"  ng-init="load()">
-    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="cancel()">CANCEL</button>
-    <button type="button" class="btn btn-primary nextbtn" ng-click="done()">DONE</button>
+    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="cancel()">{{'cancel' | translate}}</button>
+    <button type="button" class="btn btn-primary nextbtn" ng-click="done()">{{'done' | translate}}</button>
 </div>
