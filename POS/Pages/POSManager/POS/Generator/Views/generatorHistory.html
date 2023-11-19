@@ -38,26 +38,26 @@
             <div class="col-12">
                 <div class="card-table-generator">
                     <div class="card-body table-responsive p-0">
-                        <table id="dataTableId" table-jquery class="table table-hover  table-condensed text-nowrap table-trans">
+                        <table id="customersHistoryTable" table-jquery class="table table-hover  table-condensed text-nowrap table-trans">
                             <thead>
                                 <tr>
                                     <th style="width: 10%">ID</th>
-                                    <th style="width: 15%">CUSTOMERS</th>
+                                    <th style="width: 15%">CUSTOMER</th>
                                     <th style="width: 15%">TYPE</th>
                                     <th style="width: 15%">MOBILE</th>
-                                    <th style="width: 15%">FROM - TO</th>
-                                    <th style="width: 15%">UNPAID INVOICES</th>
-                                    <th style="width: 15%">TOTAL AMOUNT</th>
+                                    <th style="width: 15%">INVOICES</th>
+                                    <th style="width: 15%">Unpaid Invoicies</th>
+                                    <th style="width: 15%">Total Amount</th>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="item in GeneratorList" ng-click="goToCustomerInvoices(item)">
-                                    <td>{{item.id}}</td>
-                                    <td>{{item.Customer}}</td>
-                                    <td>{{item.Type}}</td>
-                                    <td>{{item.Mobile}}</td>
-                                    <td>{{item.Invoice}}</td>
-                                    <td>{{item.unPaid}}</td>
-                                    <td>{{item.total}}</td>
+                                <tr ng-repeat="customer in customerList" ng-click="goToCustomerInvoices(item)">
+                                    <td>{{customer.id}}</td>
+                                    <td>{{customer.name}}</td>
+                                    <td>{{customer.Type}}</td>
+                                    <td>{{customer.mobileNum}}</td>
+                                    <td>{{customer.numOfInvoices}}</td>
+                                    <td>{{customer.unPaid}}</td>
+                                    <td>{{customer.numOfInvoices}}</td>
                                 </tr>
                             </tbody>
                         </table>
