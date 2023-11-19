@@ -9,6 +9,23 @@ namespace POS.Models
     {
         public decimal id { get; set; }
         public string currencyRatio { get; set; }
+        public string creator { get; set; }
+        public int numberOfEmployeesShift1 { get; set; }
+        public int numberOfEmployeesShift2 { get; set; }
+        public int numberOfEmployeesShift3 { get; set; }
+        public decimal cashUsd { get; set; }
+        public decimal cashLbp { get; set; }
+        public List<ShiftEOD> shifts { get; set; }
+        public List<KardHasanPayments> kardHasanPayments { get; set; }
+        public List<EPayments> ePayments { get; set; }
+    }
+
+    public class EODAll
+    {
+        public decimal id { get; set; }
+        public string creator { get; set; }
+        public string creationDate { get; set; }
+        public string currencyRatio { get; set; }
         public int numberOfEmployeesShift1 { get; set; }
         public int numberOfEmployeesShift2 { get; set; }
         public int numberOfEmployeesShift3 { get; set; }
@@ -44,7 +61,7 @@ namespace POS.Models
     public class CarWashSummariy
     {
         public string name { get; set; }
-        //public VehicleType vehiceType;//which is the predefined enum {	CAR, MOTO_CYCLE, TRUCK,RANGE,BUS}
+        public string vehiceType { get; set; } //which is the predefined enum {	CAR, MOTO_CYCLE, TRUCK,RANGE,BUS}
         public decimal currentPriceLbp { get; set; }
         public decimal currentPriceUsd { get; set; }
         public int quantityWashedCash { get; set; }
@@ -166,8 +183,8 @@ namespace POS.Models
     public class MoneyAmount
     {
         public int quantity { get; set; }
-        public int currencyCardUsd { get; set; }
-        public int currencyCardLbp { get; set; }
+        public string currencyCardUsd { get; set; }
+        public string currencyCardLbp { get; set; }
     }
 
     public class KardHasanPayments

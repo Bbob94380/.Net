@@ -43,7 +43,7 @@
         border-top: 1px solid #000;
         width: 100%;
         padding: 0.5em;
-        margin-top: 3.5em;
+        margin-top: 2.5em;
     }
 
 .main-center-row {
@@ -180,8 +180,8 @@
     position: relative;
     display: flex;
     padding: 0em 0em 0em 0em;
-    height: 2.4em;
-    margin-top: 3em;
+    height: 3.6em;
+    margin-top: 2.5em;
 }
 
 .main2-wrapper {
@@ -251,6 +251,13 @@
     margin-bottom: 1rem;
     direction: rtl;
     text-align: right;
+}
+
+.paymentRow {
+    margin-top: 0em;
+    margin-right: 2em;
+    float: inline-start;
+    width: 26em;
 }
 
 
@@ -341,16 +348,17 @@ button {
         color: #fff;
         height: 45px;
         border-radius: 6px;
+        float: left;
     }
 
     .wetTransPopupFooter .clearbtn {
         background: #D80404;
-        float: left;
+        float: right;
     }
 
     .wetTransPopupFooter .nextbtn {
         background: #2A5699;
-        float: right;
+        float: left;
     }
 
 .editPoppupFooter {
@@ -423,12 +431,14 @@ button {
     display: block;
     padding-left: 6px;
     margin-bottom: 1em;
+    float: right;
+    clear: both;
 }
 
 .form-check-input {
     position: relative;
     margin-top: 0.3rem;
-    width: 2em;
+    width: 2.5em;
     height: 0.8em;
 }
 
@@ -779,17 +789,21 @@ button {
 .paytotalLabelLLAndDolar {
     display: block;
     clear: both;
+    float: inline-start;
+    margin-right: 1em;
 }
 
 .payDryTotal2Label {
     color: #6F6F6F;
     font-size: 20px;
     display: inline;
+    float: right;
 }
 
 .payDryTotalValue {
     font-size: 20px;
-    margin-right: 0.5em;
+    margin-left: 0.5em;
+    float: right;
 }
 
 .paytotalLabelLLAndDolar div {
@@ -1333,6 +1347,17 @@ button {
 .navbar-ar {
     margin-right: auto !important;
     margin-left: 0 !important;
+}
+
+.eyeStyle {
+    cursor: pointer;
+    position: absolute;
+    left: 0.7em;
+    top: 2.35em;
+}
+
+.oilRow {
+    margin-top: 3em;
 }
 
 /*end*/

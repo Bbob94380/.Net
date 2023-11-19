@@ -121,8 +121,8 @@
                                 <td></td>
                                 <td><span class="transfer-half-rectangle2"></span></td>
                                 <td>{{item.name}}</td>
-                                <td>{{item.liters}}</td>
-                                <td>{{item.amountLbp}} L.L/ {{item.amountUsd}} $</td>
+                                <td>{{item.liters}} L</td>
+                                <td>{{item.amountLbp}} L.L/ $ {{item.amountUsd}} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -144,7 +144,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfVehicles}}</td>
-                                <td>{{salesSummary.carWashTotalLbp}} L.L/ {{salesSummary.carWashTotalUsd}} $</td>
+                                <td>{{salesSummary.carWashTotalLbp}} L.L/ $ {{salesSummary.carWashTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -166,7 +166,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfItems}}</td>
-                                <td>{{salesSummary.dryProductTotalLbp}} L.L/ {{salesSummary.dryProductTotalUsd}} $</td>
+                                <td>{{salesSummary.dryProductTotalLbp}} L.L/ $ {{salesSummary.dryProductTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -188,7 +188,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfStationServices}}</td>
-                                <td>{{salesSummary.stationServicesTotalLbp}} L.L/ {{salesSummary.stationServicesTotalUsd}} $</td>
+                                <td>{{salesSummary.stationServicesTotalLbp}} L.L/ $ {{salesSummary.stationServicesTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -197,11 +197,11 @@
                 <div class="row  paytotalLabelLLAndDolar" ng-hide="hideSummary">
                     <div>
                         <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
-                        <span class="col-md-3 payDryTotalValue">{{salesSummary.totalLbp}}</span>
+                        <span class="col-md-3 payDryTotalValue">{{salesSummary.totalLbp}} L.L</span>
                     </div>
                     <div style="float:right;">
                         <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
-                        <span class="col-md-3 payDryTotalValue">{{salesSummary.totalUsd}}</span>
+                        <span class="col-md-3 payDryTotalValue">$ {{salesSummary.totalUsd}}</span>
                     </div>
                     <!--<div style="float:right;margin-top:1em;">
             <span class="col-md-3 payDryTotal2Label">Total</span>
@@ -310,11 +310,11 @@
                 <div class="row  paytotalLabelLLAndDolar" ng-hide="hideSummary">
                     <div>
                         <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
-                        <span class="col-md-3 payDryTotalValue">{{TotalLBPAdded}}</span>
+                        <span class="col-md-3 payDryTotalValue">{{TotalLBPAdded}} L.L</span>
                     </div>
                     <div style="float:right;">
                         <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
-                        <span class="col-md-3 payDryTotalValue">{{TotalUSDAdded}}</span>
+                        <span class="col-md-3 payDryTotalValue">$ {{TotalUSDAdded}}</span>
                     </div>
                     <!--<div style="float:right;margin-top:1em;">
             <span class="col-md-3 payDryTotal2Label">Total</span>
@@ -340,7 +340,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfPostPaidCoupons}}</td>
-                                <td>{{salesSummary.postPaidCouponsTotalLbp}} L.L/ {{salesSummary.postPaidCouponsTotalUSd}} $ </td>
+                                <td>{{salesSummary.postPaidCouponsTotalLbp}} L.L/ $ {{salesSummary.postPaidCouponsTotalUSd}} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -362,7 +362,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfRefunds}}</td>
-                                <td>{{salesSummary.refundTotalLbp}} L.L/ {{salesSummary.refundTotalUsd}} $ </td>
+                                <td>{{salesSummary.refundTotalLbp}} L.L/ $ {{salesSummary.refundTotalUsd}} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -435,8 +435,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{item.usdAmount}}</td>
-                                    <td>{{item.lbpAmount}}</td>
+                                    <td>$ {{item.usdAmount}}</td>
+                                    <td>{{item.lbpAmount}} L.L</td>
                                 </tr>
                             </tbody>
                         </table>

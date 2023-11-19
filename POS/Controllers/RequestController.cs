@@ -1695,6 +1695,64 @@ namespace POS.Controllers
             return JsonConvert.SerializeObject(responseData);
         }
 
+
+        [HttpPost]
+        public async Task<string> checkIfEmployeeHasOpenSession(Payload payload)
+        {
+
+            //variables
+            bool hasOpenShift = false;
+            ResponseData<bool> responseData = new ResponseData<bool>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/employeeShift/checkIfEmployeeHasOpenSession/" + payload.employeeId);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        hasOpenShift = await response.Content.ReadAsAsync<bool>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = hasOpenShift;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = false;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = false;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
     }
 
 

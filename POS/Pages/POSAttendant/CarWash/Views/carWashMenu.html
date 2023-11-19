@@ -3,53 +3,53 @@
     <div class="container">
         <div class="row main-row-wetMenu">
             <div class="col-lg-4">
-                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('CAR')">
+                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('CAR','car' | translate)">
                     <div class="card-body">
                         <img class="carwash-menu-img" src="/Resources/Images/attendant/carWash/car.png" />
-                        <span class="card-title carWashMenuSpan">Car</span>
+                        <span class="card-title carWashMenuSpan">{{'car' | translate}}</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('RANGE')">
+                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('RANGE', 'range' | translate)">
                     <div class="card-body">
                         <img class="carwash-menu-img" src="/Resources/Images/attendant/carWash/jeep.png" />
-                        <span class="card-title carWashMenuSpan">Range</span>
+                        <span class="card-title carWashMenuSpan">{{'range' | translate}}</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('BUS')">
+                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('BUS', 'bus' | translate)">
                     <div class="card-body">
                         <img class="carwash-menu-img" src="/Resources/Images/attendant/carWash/bus.png" />
-                        <span class="card-title carWashMenuSpan">Bus</span>
+                        <span class="card-title carWashMenuSpan">{{'bus' | translate}}</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('TRUCK')">
+                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('TRUCK', 'truck' | translate)">
                     <div class="card-body">
                         <img class="carwash-menu-img" src="/Resources/Images/attendant/carWash/trunk.png" />
-                        <span class="card-title carWashMenuSpan">Truck</span>
+                        <span class="card-title carWashMenuSpan">{{'truck' | translate}}</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('MOTO_CYCLE')">
+                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('MOTO_CYCLE', 'motorcycle' | translate)">
                     <div class="card-body">
                         <img class="carwash-menu-img" src="/Resources/Images/attendant/carWash/moto.png" />
-                        <span class="card-title carWashMenuSpan">Motorcycle</span>
+                        <span class="card-title carWashMenuSpan">{{'motorcycle' | translate}}</span>
                     </div>
                 </div>
             </div>
-            <!--<div class="col-lg-4">
-                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('Other')">
+            <div class="col-lg-4">
+                <div class="card main-card-wetMenu" ng-click="displayCarWashTransactionPopup('Other', 'other'|translate)">
                     <div class="card-body">
                         <img class="carwash-menu-img" src="/Resources/Images/attendant/carWash/other.png" />
-                        <span class="card-title carWashMenuSpan">Other</span>
+                        <span class="card-title carWashMenuSpan">{{'other' | translate}}</span>
                     </div>
                 </div>
-            </div>-->
+            </div>
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->

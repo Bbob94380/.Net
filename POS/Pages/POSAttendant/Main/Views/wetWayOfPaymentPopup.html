@@ -5,23 +5,23 @@
             <form>
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="field-info-label-pay">Transaction ID</label>
+                        <label class="field-info-label-pay">{{'transId2' | translate }}</label>
                         <input ng-model="mainTransId" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
-                        <label class="field-info-label-pay">Employee Name</label>
+                        <label class="field-info-label-pay">{{'employeeName' | translate }}</label>
                         <input ng-model="employeeName" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
-                        <label class="field-info-label-pay">Employee ID</label>
+                        <label class="field-info-label-pay">{{'employeeId' | translate }}</label>
                         <input ng-model="employeeId" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
-                        <label class="field-info-label-pay">Creation Date</label>
+                        <label class="field-info-label-pay">{{'creationDate' | translate }}</label>
                         <input ng-model="creationDate" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
-                        <label class="field-info-label-pay">Creation Time</label>
+                        <label class="field-info-label-pay">{{'creationTime' | translate }}</label>
                         <input ng-model="creationTime" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                 </div>
@@ -61,19 +61,19 @@
                 <table class="trans-table-wop table table-hover text-nowrap">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>TRANSACTIONS</th>
-                            <th>AMOUNT</th>
+                            <th>{{ 'transId' | translate}}</th>
+                            <th>{{ 'transactions' | translate}}</th>
+                            <th>{{ 'amount' | translate}}</th>
                             <!--<th>PRICE</th>-->
-                            <th>TOTAL</th>
+                            <th>{{ 'totalAll' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="trans in transactionsList">
                             <td>{{trans.id}}</td>
                             <td>{{trans.productType}}</td>
-                            <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.qty + ' item(s)' }}</td>
-                            <td>{{trans.priceLL + ' L.L'}} ({{trans.priceDollar + '$'}})</td>
+                            <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }} </td>
+                            <td>{{trans.priceLL}} {{ 'LL' | translate}} ($ {{trans.priceDollar}})</td>
                         </tr>
                     </tbody>
                 </table>
@@ -81,16 +81,16 @@
                 <span class="payDrylineAfterRable"></span>
 
                 <div class="row paytotalLabel">
-                    <span class="dryTotalLabel">Total</span>
+                    <span class="dryTotalLabel">{{'total2' | translate}}</span>
                     <span class="payDrylineTotal"></span>
                 </div>
                 <div class="row  paytotalLabelLLAndDolar">
                     <div>
-                        <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
-                        <span class="col-md-3 payDryTotalValue">{{totalLL}}</span>
+                        <span class="col-md-3 payDryTotal2Label">{{'totalInLL' | translate}}</span>
+                        <span class="col-md-4 payDryTotalValue">{{totalLL}}</span>
                     </div>
                     <div style="float:right;">
-                        <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
+                        <span class="col-md-3 payDryTotal2Label">{{'totalInDollar' | translate}}</span>
                         <span class="col-md-3 payDryTotalValue">{{totalDollar}}</span>
                     </div>
                 </div>
@@ -99,13 +99,13 @@
             <div class="card-body">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" ng-model="checked">
-                    <label class="form-check-label">First way of payment</label>
+                    <label class="form-check-label">{{'firstWayOfPayment' | translate}}</label>
                 </div>
-                <div class="row">
+                <div class="row paymentRow" >
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Payment Type</label>
+                            <label class="label-dropdown">{{'paymentType' | translate}}</label>
                             <select ng-disabled="!checked" class="form-control payment-dropdown" ng-model="selectedPaymentType" ng-options="x for x in paymentTypes" ng-change="firstPaymentTypeChanged(selectedPaymentType)">
                             </select>
                         </div>
@@ -113,45 +113,45 @@
                     <div class="col-sm-4" ng-show="showCashFields">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Dollar USD </label>
+                            <label class="label-dropdown">{{'dollarUsd' | translate}}</label>
                             <input ng-focus="FirstCashDollarFieldFocus()" ng-blur="FirstCashDollarFieldBlur(dollarCashFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="dollarCashFirst" ng-change="calculateTotalOfCashAndCard('dollar', dollarCashFirst,'firstCashDollar')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCashFields">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Lebanese L.L</label>
+                            <label class="label-dropdown">{{'LebaneseLL' | translate}}</label>
                             <input ng-focus="FirstCashLebaneseFieldFocus()" ng-blur="FirstCashLebaneseFieldBlur(lebaneseCashFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="lebaneseCashFirst" ng-change="calculateTotalOfCashAndCard('cash', lebaneseCashFirst, 'firstCashLL')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCardFields">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Code</label>
+                            <label class="label-dropdown">{{'code' | translate}}</label>
                             <input ng-attr-type="{{ showPassword ? 'text':'password'}}" ng-focus="FirstCardCodeFieldFocus()" ng-blur="FirstCardCodeFieldBlur(codeCardFirst)" ng-disabled="!checked" type="password" class="form-control payInputField" ng-model="codeCardFirst">
-                            <div  ng-click="toggleShowPassword()" ng-class="{'fa fa-eye': showPassword,'fa fa-eye-slash': !showPassword}" style="cursor: pointer;position: absolute;right: 0.7em;top: 2.35em;"></div>
+                            <div  ng-click="toggleShowPassword()" class="eyeStyle" ng-class="{'fa fa-eye': showPassword,'fa fa-eye-slash': !showPassword} "></div>
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCardFields">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Dollar</label>
+                            <label class="label-dropdown">{{'dollarUsd' | translate}}</label>
                             <input ng-focus="FirstCardDollarFieldFocus()" ng-blur="FirstCardDollarFieldBlur(dollarCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="dollarCardFirst" ng-change="calculateTotalOfCashAndCard('dollar', dollarCardFirst, 'firstCardDollar')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showNourCardFields">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Code</label>
+                            <label class="label-dropdown">{{'code' | translate}}</label>
                             <input ng-attr-type="{{ showPassword2 ? 'text':'password'}}" ng-focus="FirstNourCardCodeFieldFocus()" ng-blur="FirstNourCardCodeFieldBlur(codeNourCardFirst)" ng-disabled="!checked" type="password" class="form-control payInputField" ng-model="codeNourCardFirst">
-                            <div ng-click="toggleShowPassword2()" ng-class="{'fa fa-eye': showPassword2,'fa fa-eye-slash': !showPassword2}" style="cursor: pointer;position: absolute;right: 0.7em;top: 2.35em;"></div>
+                            <div ng-click="toggleShowPassword2()" ng-class="{'fa fa-eye': showPassword2,'fa fa-eye-slash': !showPassword2}" class="eyeStyle"></div>
 
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showNourCardFields">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Dollar</label>
+                            <label class="label-dropdown">{{'dollarUsd' | translate}}</label>
                             <input ng-focus="FirstNourCardDollarFieldFocus()" ng-blur="FirstNourCardDollarFieldBlur(dollarNourCardFirst)" ng-disabled="!checked" type="text" class="form-control payInputField" ng-model="dollarNourCardFirst" ng-change="calculateTotalOfCashAndCard('dollar', dollarNourCardFirst, 'firstNourCardDollar')">
                         </div>
                     </div>
@@ -161,13 +161,13 @@
             <div class="card-body">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" ng-model="checked2">
-                    <label class="form-check-label">Second way of payment</label>
+                    <label class="form-check-label">{{'secondWayOfPayment' | translate}}</label>
                 </div>
-                <div class="row">
+                <div class="row paymentRow">
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Payment Type</label>
+                            <label class="label-dropdown">{{'paymentType' | translate}}</label>
                             <select ng-disabled="!checked2" class="form-control payment-dropdown" ng-model="selectedSecondPaymentType" ng-options="x for x in paymentTypes" ng-change="secondPaymentTypeChanged(selectedSecondPaymentType)">
                             </select>
                         </div>
@@ -175,46 +175,46 @@
                     <div class="col-sm-4" ng-show="showCashFields2">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Dollar USD</label>
+                            <label class="label-dropdown">{{'dollarUsd' | translate}}</label>
                             <input ng-focus="SecondCashDollarFieldFocus()" ng-blur="SecondCashDollarFieldBlur(dollarCashSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="dollarCashSecond" ng-change="calculateTotalOfCashAndCard('dollar', dollarCashSecond, 'secondCashDollar')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCashFields2">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Lebanese L.L</label>
+                            <label class="label-dropdown">{{'LebaneseLL' | translate}}</label>
                             <input ng-focus="SecondCashLebaneseFieldFocus()" ng-blur="SecondCashLebaneseFieldBlur(lebaneseCashSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="lebaneseCashSecond" ng-change="calculateTotalOfCashAndCard('cash', lebaneseCashSecond, 'secondCashLL')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCardFields2">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Code</label>
+                            <label class="label-dropdown">{{'code' | translate}}</label>
                             <input ng-attr-type="{{ showPassword3 ? 'text':'password'}}" ng-focus="SecondCardCodeFieldFocus()" ng-blur="SecondCardCodeFieldBlur(codeCardSecond)" ng-disabled="!checked2" type="password" class="form-control payInputField" ng-model="codeCardSecond">
-                            <div ng-click="toggleShowPassword3()" ng-class="{'fa fa-eye': showPassword3,'fa fa-eye-slash': !showPassword3}" style="cursor: pointer;position: absolute;right: 0.7em;top: 2.35em;"></div>
+                            <div ng-click="toggleShowPassword3()" ng-class="{'fa fa-eye': showPassword3,'fa fa-eye-slash': !showPassword3}" class="eyeStyle"></div>
 
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showCardFields2">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Dollar</label>
+                            <label class="label-dropdown">{{'dollarUsd' | translate}}</label>
                             <input ng-focus="SecondCardDollarFieldFocus()" ng-blur="SecondCardDollarFieldBlur(dollarCardSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="dollarCardSecond" ng-change="calculateTotalOfCashAndCard('dollar', dollarCardSecond, 'secondCardDollar')">
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showNourCardFields2">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Code</label>
+                            <label class="label-dropdown">{{'code' | translate}}</label>
                             <input ng-attr-type="{{ showPassword4 ? 'text':'password'}}" ng-focus="SecondNourCardCodeFieldFocus()" ng-blur="SecondNourCardCodeFieldBlur(codeNourCardSecond)" ng-disabled="!checked2" type="password" class="form-control payInputField" ng-model="codeNourCardSecond">
-                            <div ng-click="toggleShowPassword4()" ng-class="{'fa fa-eye': showPassword4,'fa fa-eye-slash': !showPassword4}" style="cursor: pointer;position: absolute;right: 0.7em;top: 2.35em;"></div>
+                            <div ng-click="toggleShowPassword4()" ng-class="{'fa fa-eye': showPassword4,'fa fa-eye-slash': !showPassword4}" class="eyeStyle"></div>
 
                         </div>
                     </div>
                     <div class="col-sm-4" ng-show="showNourCardFields2">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Dollar</label>
+                            <label class="label-dropdown">{{'dollarUsd' | translate}}</label>
                             <input ng-focus="SecondNourCardDollarFieldFocus()" ng-blur="SecondNourCardDollarFieldBlur(dollarNourCardSecond)" ng-disabled="!checked2" type="text" class="form-control payInputField" ng-model="dollarNourCardSecond" ng-change="calculateTotalOfCashAndCard('dollar', dollarNourCardSecond, 'secondNourCardDollar')">
                         </div>
                     </div>
@@ -222,11 +222,11 @@
             </div>
             <div class="row  paytotalLabelLLAndDolar">
                 <div>
-                    <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
+                    <span class="col-md-3 payDryTotal2Label">{{'totalInLL' | translate}}</span>
                     <span class="col-md-3 payDryTotalValue">{{totalPayLL}}</span>
                 </div>
                 <div style="float:right;">
-                    <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
+                    <span class="col-md-3 payDryTotal2Label">{{'totalInDollar' | translate}}</span>
                     <span class="col-md-3 payDryTotalValue">{{totalPayDollar}}</span>
                 </div>
             </div>
@@ -234,9 +234,9 @@
     </div>
 </div>
 <div class="modal-footer wetTransPopupFooter payFooterPopup" ng-init="load()">
-    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal">Clear</button>
-    <button type="button" class="btn btn-primary nextbtn" ng-click="payDone()">Done</button>
-    <button type="button" class="btn btn-primary payCreateReceipt" ng-click="createRecipetForOneTransaction()">CREATE RECEIPT & PRINT </button>
-    <button type="button" class="btn btn-primary payCreateReceipt" style="background:#000 !important;" ng-click="displayCouponPopup()">COUPON </button>
+    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal">{{'clear' | translate}}</button>
+    <button type="button" class="btn btn-primary nextbtn" ng-click="payDone()">{{'done' | translate}}</button>
+    <button type="button" class="btn btn-primary payCreateReceipt" ng-click="createRecipetForOneTransaction()">{{'createReceiptAndPrint' | translate}}</button>
+    <button type="button" class="btn btn-primary payCreateReceipt" style="background:#000 !important;" ng-click="displayCouponPopup()">{{'coupon' | translate}} </button>
 
 </div>

@@ -2,7 +2,7 @@
 
 	$rootScope.dryItemsList = [];
 
-	$scope.displayCarWashTransactionPopup = function (carWashType) {
+	$scope.displayCarWashTransactionPopup = function (carWashType, carTypeLang) {
 
 		var modalInstance;
 
@@ -14,7 +14,7 @@
 			windowClass: 'show',
 			resolve: {
 				data: function () {
-					return { carWashType: carWashType};
+					return { carWashType: carWashType, carTypeLang: carTypeLang };
 				}
 			}
 		});
