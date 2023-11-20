@@ -5,23 +5,23 @@
             <form>
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="field-info-label-pay">Station Manager</label>
+                        <label class="field-info-label-pay">{{'stationManager' | translate }}</label>
                         <input ng-model="stationManagerName" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
-                        <label class="field-info-label-pay">Employee Name</label>
+                        <label class="field-info-label-pay">{{'employeeName' | translate }}</label>
                         <input ng-model="employeeName" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
-                        <label class="field-info-label-pay">Creation Date</label>
+                        <label class="field-info-label-pay">{{'creationDate' | translate }}</label>
                         <input ng-model="creationDate" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
-                        <label class="field-info-label-pay">Creation Time</label>
+                        <label class="field-info-label-pay">{{'creationTime' | translate }}</label>
                         <input ng-model="creationTime" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                     <div class="form-group">
-                        <label class="field-info-label-pay">Dollar Rate</label>
+                        <label class="field-info-label-pay">{{'dollarRate' | translate }}</label>
                         <input ng-model="dollarRate" disabled class="form-control form-control-lg form-control-lg-pay">
                     </div>
                 </div>
@@ -30,30 +30,28 @@
             <div class="calculator card">
                 <!--<input type="text" class="calculator-screen calculator-screen2 z-depth-1" value="" disabled />-->
 
-                <div class="calculator-keys calculator-keys2 calculator-keys-pay col-md-12">
-
-                    <button type="button" class="all-clear function btn btn-danger btn-sm c-btn" ng-click="ClearFocusedField()" value="all-clear">C</button>
-                    <button type="button" class="decimal function btn-light waves-effect cal-grey-btn" ng-click="addDecimal('.')" value=".">.</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>
+                <div class="calculator-keys calculator-keys2">
 
                     <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('1')">1</button>
                     <button type="button" value="2" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('2')">2</button>
                     <button type="button" value="3" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('3')">3</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('-')" value="-" disabled>-</button>
 
                     <button type="button" value="4" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('4')">4</button>
                     <button type="button" value="5" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('5')">5</button>
                     <button type="button" value="6" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('6')">6</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn " ng-click="addOperator('*')" value="*" disabled>&times;</button>
 
 
                     <button type="button" value="7" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('7')">7</button>
                     <button type="button" value="8" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('8')">8</button>
                     <button type="button" value="9" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('9')">9</button>
-                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-b-btn" ng-click="addNumber('0')">0</button>
+
+                    <button type="button" value="00" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('00')">00</button>
+                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('0')">0</button>
+                    <button type="button" class="all-clear function btn btn-danger btn-sm cal-grey-btn" style="background: #D7060E; color: #fff; font-family: cursive; " ng-click="ClearFocusedField()" value="all-clear"><</button>
+
 
                 </div>
+
             </div>
         </div>
         <div class="col-7">
@@ -64,56 +62,56 @@
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Nozzle Number</label>
+                            <label class="label-dropdown">{{'nozzleNumber' | translate }}</label>
                             <input type="text" class="form-control payInputField" disabled value="{{item.number}}" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Fuel Type</label>
+                            <label class="label-dropdown">{{'fuelType' | translate }}</label>
                             <input type="text" class="form-control payInputField" disabled value="{{item.wetProductName}}" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">Old Nuzzle-Counter</label>
+                            <label class="label-dropdown">{{'oldNuzzleCounter' | translate }}</label>
                             <input type="text" class="form-control payInputField" ng-disabled="isCounterDisabled" value="{{item.litersCounterEnd}}" ng-model="displayCounterResult[$index]" ng-focus="CounterFocus($index)" ng-blur="CounterBlur(displayCounterResult[$index])" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
-                            <label class="label-dropdown">New Nuzzle-Counter</label>
+                            <label class="label-dropdown">{{'newNuzzleCounter' | translate }}</label>
                             <input type="text" class="form-control payInputField" ng-model="displayNewCounterResult[$index]" ng-focus="NewCounterFocus($index)" ng-blur="NewCounterBlur(displayNewCounterResult[$index])" />
                         </div>
                     </div>
                 </div>
 
-                <div class="row" style="margin-top:1em;margin-left:1em;" ng-show="showSummaryBtnSection">
+                <div class="row" style="margin-top:1em;margin-left:1em;" ng-show="showSummaryBtnSection" >
                     <div class="col-sm-6">
                         <input class="form-check-input" type="checkbox" ng-model="isChecked" ng-change="validateByManager()">
-                        <label class="form-check-label">PROBLEM IN COUNTERS</label>
+                        <label class="form-check-label">{{'problemInCounter' | translate }}</label>
                     </div>
                     <div class="col-sm-6">
                         <span class="close-shift-edit-btn" ng-click="updateNozzleCounters()" ng-hide="isSaveBtnHide">SAVE</span>
-                        <span class="get-sales-summary-btn" ng-click="getSalesSummary()">Get Sales Summary</span>
+                        <span class="get-sales-summary-btn" ng-click="getSalesSummary()">{{'getSalesSummary' | translate }}</span>
                     </div>
                 </div>
 
                 <span class="closeShiftLine" ng-show="showSummaryBtnSection"></span>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
-                    <label>Wet Product</label>
+                    <label>{{'wetproduct' | translate }}</label>
                     <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in salesSummary.wetProductDtos">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                                <th class="th-text">Type</th>
-                                <th class="th-text">LITRES</th>
-                                <th class="th-text">AMOUNT</th>
+                                <th class="th-text">{{'type' | translate }}</th>
+                                <th class="th-text">{{'LITERS' | translate }}</th>
+                                <th class="th-text">{{'amount' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,22 +119,22 @@
                                 <td></td>
                                 <td><span class="transfer-half-rectangle2"></span></td>
                                 <td>{{item.name}}</td>
-                                <td>{{item.liters}} L</td>
-                                <td>{{item.amountLbp}} L.L/ $ {{item.amountUsd}} </td>
+                                <td>{{item.liters}} {{'Litre' | translate }}</td>
+                                <td>{{item.amountLbp}} {{'LL' | translate }}/ $ {{item.amountUsd}} </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
-                    <label>Car Wash</label>
+                    <label>{{'carwash' | translate }}</label>
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                                <th class="th-text">NUMBER OF CARS</th>
-                                <th class="th-text">AMOUNT</th>
+                                <th class="th-text">{{'numberOfCars' | translate }}</th>
+                                <th class="th-text">{{'amount' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,21 +142,21 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfVehicles}}</td>
-                                <td>{{salesSummary.carWashTotalLbp}} L.L/ $ {{salesSummary.carWashTotalUsd}}</td>
+                                <td>{{salesSummary.carWashTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.carWashTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
-                    <label>Dry Product</label>
+                    <label>{{'dryproduct' | translate }}</label>
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                                <th class="th-text">NUMBER OF ITEMS</th>
-                                <th class="th-text">AMOUNT</th>
+                                <th class="th-text">{{'numberOfItems' | translate }}</th>
+                                <th class="th-text">{{'amount' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -166,21 +164,21 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfItems}}</td>
-                                <td>{{salesSummary.dryProductTotalLbp}} L.L/ $ {{salesSummary.dryProductTotalUsd}}</td>
+                                <td>{{salesSummary.dryProductTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.dryProductTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
-                    <label>Oil Services</label>
+                    <label>{{'oilServices' | translate }}</label>
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                                <th class="th-text">NUMBER OF SERVICES</th>
-                                <th class="th-text">AMOUNT</th>
+                                <th class="th-text">{{'numberOfServices' | translate }}</th>
+                                <th class="th-text">{{'amount' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -188,7 +186,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfStationServices}}</td>
-                                <td>{{salesSummary.stationServicesTotalLbp}} L.L/ $ {{salesSummary.stationServicesTotalUsd}}</td>
+                                <td>{{salesSummary.stationServicesTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.stationServicesTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -196,11 +194,11 @@
 
                 <div class="row  paytotalLabelLLAndDolar" ng-hide="hideSummary">
                     <div>
-                        <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
-                        <span class="col-md-3 payDryTotalValue">{{salesSummary.totalLbp}} L.L</span>
+                        <span class="col-md-3 payDryTotal2Label">{{'totalInLL' | translate }}</span>
+                        <span class="col-md-4 payDryTotalValue">{{salesSummary.totalLbp}} L.L</span>
                     </div>
                     <div style="float:right;">
-                        <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
+                        <span class="col-md-3 payDryTotal2Label">{{'totalInDollar' | translate }}</span>
                         <span class="col-md-3 payDryTotalValue">$ {{salesSummary.totalUsd}}</span>
                     </div>
                     <!--<div style="float:right;margin-top:1em;">
@@ -209,12 +207,12 @@
         </div>-->
                 </div>
 
-                <div class="row" style="padding: 1em;" ng-hide="hideSummary">
+                <div class="row tableDollar" style="padding: 1em;" ng-hide="hideSummary">
                     <table class="table text-nowrap close-session-table col-md-5">
                         <thead>
                             <tr>
-                                <th class="th-text">USD CLASS</th>
-                                <th class="th-text">QUANTITY</th>
+                                <th class="th-text">{{'usdClass' | translate }}</th>
+                                <th class="th-text">{{'qty' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -262,8 +260,8 @@
                     <table class="table text-nowrap close-session-table  col-md-5">
                         <thead>
                             <tr>
-                                <th class="th-text">LBP CLASS</th>
-                                <th class="th-text">QUANTITY</th>
+                                <th class="th-text">{{'lbpClass' | translate }}</th>
+                                <th class="th-text">{{'qty' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -309,11 +307,11 @@
 
                 <div class="row  paytotalLabelLLAndDolar" ng-hide="hideSummary">
                     <div>
-                        <span class="col-md-3 payDryTotal2Label">Total in Lebanese LIra</span>
-                        <span class="col-md-3 payDryTotalValue">{{TotalLBPAdded}} L.L</span>
+                        <span class="col-md-3 payDryTotal2Label">{{'totalInLL' | translate }}</span>
+                        <span class="col-md-4 payDryTotalValue">{{TotalLBPAdded}} {{'LL' | translate }}</span>
                     </div>
                     <div style="float:right;">
-                        <span class="col-md-3 payDryTotal2Label">Total in Dollar</span>
+                        <span class="col-md-3 payDryTotal2Label">{{'totalInDollar' | translate }}</span>
                         <span class="col-md-3 payDryTotalValue">$ {{TotalUSDAdded}}</span>
                     </div>
                     <!--<div style="float:right;margin-top:1em;">
@@ -325,14 +323,14 @@
                 <span class="closeShiftLine" ng-hide="hideSummary"></span>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
-                    <label>Post Paid</label>
+                    <label>{{'postPaid' | translate }}</label>
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                                <th class="th-text">COUNT</th>
-                                <th class="th-text">AMOUNT</th>
+                                <th class="th-text">{{'COUNT' | translate }}</th>
+                                <th class="th-text">{{'amount' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -340,21 +338,21 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfPostPaidCoupons}}</td>
-                                <td>{{salesSummary.postPaidCouponsTotalLbp}} L.L/ $ {{salesSummary.postPaidCouponsTotalUSd}} </td>
+                                <td>{{salesSummary.postPaidCouponsTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.postPaidCouponsTotalUSd}} </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
-                    <label>Refunds</label>
+                    <label>{{'Refunds' | translate }}</label>
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                                <th class="th-text">COUNT</th>
-                                <th class="th-text">AMOUNT</th>
+                                <th class="th-text">{{'COUNT' | translate }}</th>
+                                <th class="th-text">{{'amount' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -362,7 +360,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfRefunds}}</td>
-                                <td>{{salesSummary.refundTotalLbp}} L.L/ $ {{salesSummary.refundTotalUsd}} </td>
+                                <td>{{salesSummary.refundTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.refundTotalUsd}} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -371,14 +369,14 @@
                 <span class="closeShiftLine" ng-hide="hideSummary"></span>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
-                    <label>Calibration</label>
+                    <label>{{'Calibration' | translate }}</label>
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
-                                <th class="th-text2">STATION MANAGER</th>
-                                <th class="th-text2">LITRES</th>
-                                <th class="th-text2">FUEL TYPE</th>
-                                <th class="th-text2">NUZZLE NUMBER</th>
+                                <th class="th-text2">{{'stationManager' | translate }}</th>
+                                <th class="th-text2">{{'LITERS' | translate }}</th>
+                                <th class="th-text2">{{'fuelType' | translate }}</th>
+                                <th class="th-text2">{{'nozzleNumber' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -407,15 +405,15 @@
                 </div>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
-                    <label>Sessions</label>
+                    <label>{{'Sessions' | translate }}</label>
                     <div class="row" ng-repeat="item in salesSummary.employeeSessionDtos">
-                        <label style="margin-left: 0.5em;">session {{$index+1}}</label>
+                        <label style="margin-left: 0.5em;">{{'session' | translate }} {{$index+1}}</label>
                         <table class="table  text-nowrap transfer-popup-table" ng-repeat="nozzle in item.nozzleCounterArchives">
                             <thead>
                                 <tr>
-                                    <th class="th-text2">Nuzzle Number</th>
-                                    <th class="th-text2">Start Counter</th>
-                                    <th class="th-text2">Close Counter</th>
+                                    <th class="th-text2">{{'nozzleNumber' | translate }}</th>
+                                    <th class="th-text2">{{'startCounter' | translate }}</th>
+                                    <th class="th-text2">{{'closeCounter' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -429,14 +427,14 @@
                         <table class="table  text-nowrap transfer-popup-table">
                             <thead>
                                 <tr>
-                                    <th class="th-text2" style="width:8em;">USD Overall</th>
-                                    <th class="th-text2">LLB Overall</th>
+                                    <th class="th-text2" style="width:8em;">{{'usdOverall' | translate }}</th>
+                                    <th class="th-text2">{{'lbpOverall' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>$ {{item.usdAmount}}</td>
-                                    <td>{{item.lbpAmount}} L.L</td>
+                                    <td>{{item.lbpAmount}} {{'LL' | translate }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -450,6 +448,6 @@
 </div>
 <div class="modal-footer wetTransPopupFooter payFooterPopup" style="border-top: 2px solid #E6E6E6; display: flex !important" ng-init="load()">
     <!--<button type="button" class="btn btn-primary clearbtn">EDIT</button>-->
-    <button type="button" class="btn btn-primary nextbtn" ng-disabled="isOpenBtnHide" ng-click="closeEmployeeShift()">CLOSE SHIFT</button>
+    <button type="button" class="btn btn-primary nextbtn" ng-disabled="isOpenBtnHide" ng-click="closeEmployeeShift()">{{'closeShift' | translate }}</button>
 
 </div>

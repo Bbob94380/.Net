@@ -20,7 +20,7 @@
                                 <tbody>
                                     <tr ng-repeat="trans in transactionsList">
                                         <td>{{trans.id}}</td>
-                                        <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }} </td>
+                                        <td>{{trans.productType == 'Fuel'? trans.qty + ('Litre' | translate): trans.productType == 'Service'?  trans.qty + (' service(s)' | translate )  : trans.productType == 'Car wash'? trans.qty + ( 'carwashTrans' | translate ) : trans.qty + ( 'items' | translate )}} </td>
                                         <td>{{trans.priceLL}} {{'LL' | translate}} ({{'$' | translate}}{{trans.priceDollar}})</td>
                                     </tr>
                                 </tbody>
@@ -44,26 +44,30 @@
 
                         <div class="calculator-keys calculator-keys2">
 
-                            <button type="button" class="all-clear function btn btn-danger btn-sm c-btn" ng-click="dryClearFocusedField()" value="all-clear">C</button>
-                            <button type="button" class="decimal function btn btn-secondary cal-grey-btn"  ng-click="dryAddDecimal('.')" value=".">.</button>
-                            <button type="button" class="operator btn btn-info cal-grey-b-btn" style="background:#F6F6F6" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
-                            <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>
+                            <!--<button type="button" class="decimal function btn btn-secondary cal-grey-btn" ng-click="dryAddDecimal('.')" value=".">.</button>
+    <button type="button" class="operator btn btn-info cal-grey-b-btn" style="background:#F6F6F6" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
+    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>-->
 
                             <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('1')">1</button>
                             <button type="button" value="2" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('2')">2</button>
                             <button type="button" value="3" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('3')">3</button>
-                            <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('-')" value="-" disabled>-</button>
 
                             <button type="button" value="4" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('4')">4</button>
                             <button type="button" value="5" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('5')">5</button>
                             <button type="button" value="6" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('6')">6</button>
-                            <button type="button" class="operator btn btn-info cal-grey-b-btn " ng-click="addOperator('*')" value="*" disabled>&times;</button>
 
 
                             <button type="button" value="7" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('7')">7</button>
                             <button type="button" value="8" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('8')">8</button>
                             <button type="button" value="9" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('9')">9</button>
-                            <button type="button" value="0" class="btn btn-light waves-effect cal-grey-b-btn" ng-click="dryAddNumber('0')">0</button>
+
+                            <button type="button" value="00" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('00')">00</button>
+                            <button type="button" value="0" class="btn btn-light waves-effect cal-grey-btn" ng-click="dryAddNumber('0')">0</button>
+                            <button type="button" class="all-clear function btn btn-danger btn-sm cal-grey-btn" style="background: #D7060E; color: #fff; font-family: cursive; " ng-click="dryClearFocusedField()" value="all-clear"><</button>
+
+                            <!--<button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('-')" value="-" disabled>-</button>
+
+    <button type="button" class="operator btn btn-info cal-grey-b-btn " ng-click="addOperator('*')" value="*" disabled>&times;</button>-->
 
 
                         </div>
@@ -126,7 +130,7 @@
             </div>
         </div>
         <div class="" ng-show="showMenuDry">
-            <div class="card fuel-menu-card" style="background:#2B2C2C" ng-click="displayOilChangePopup()">
+            <div class="card fuel-menu-card" style="background:#71C75D" ng-click="displayOilChangePopup()">
                 <div class="card-body">
                     <span class="card-title">{{'oilChange' | translate}}</span>
                 </div>
@@ -140,14 +144,14 @@
         </div>
     </div>-->
         <div class="">
-            <div class="card fuel-menu-card" style="background:#D7060E" ng-click="openShiftPopup()">
+            <div class="card fuel-menu-card" style="background: #2B2C2C" ng-click="openShiftPopup()">
                 <div class="card-body">
                     <span class="card-title">{{'openshift' | translate}}</span>
                 </div>
             </div>
         </div>
         <div class="">
-            <div class="card  fuel-menu-card" style="background:#2B2C2C" ng-click="closeShiftPopup()">
+            <div class="card  fuel-menu-card" style="background:#D7060E" ng-click="closeShiftPopup()">
                 <div class="card-body">
                     <span class="card-title">{{'closeshift' | translate}}</span>
                 </div>

@@ -222,14 +222,14 @@ rootHOModule.controller("purchaseController", ["$scope", "$state", "$timeout", "
                                     }, 1);
 
                                 } else {
-                                    swal("No Purchases Found", " ", "warning");
+                                    //swal("No Purchases Found", " ", "warning");
                                 }
                             } else {
-                                swal("No Purchases Found", " ", "warning");
+                                //swal("No Purchases Found", " ", "warning");
                             }
 
                         } else {
-                            swal("No Purchases Found", " ", "warning");
+                            //swal("No Purchases Found", " ", "warning");
                         }
 
                     } else {

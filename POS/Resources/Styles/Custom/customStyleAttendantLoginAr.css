@@ -56,6 +56,7 @@
     display: block;
     position: relative;
     color: #ACACAC;
+    text-align: right;
 }
 
 .custom-checkbox {
@@ -79,6 +80,9 @@
 .div-icons {
     margin-top: 1.5em;
     padding: 4px;
+    float: right;
+    display: block;
+    width: 100%;
 }
 
 .login-icon {

@@ -21,10 +21,10 @@
             <span class="PopUpFuelHeaderTitleSpan">Amount</span> <br />
             <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.amount}}</span>
         </div>
-        <div class="col-2" style="border-right: 1px solid #dee2e6;">
+        <!--<div class="col-2" style="border-right: 1px solid #dee2e6;">
             <span class="PopUpFuelHeaderTitleSpan">Way of payment</span> <br />
             <span class="PopUpFuelHeaderTitleSpanValue">{{wop}}</span>
-        </div>
+        </div>-->
         <div class="col-3" style="padding-left: 15px;">
             <span class="PopUpFuelHeaderTitleSpan">Creation date</span> <br />
             <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.creationDate}}</span>
@@ -64,26 +64,26 @@
         </div>
         <div class="col-1">
             <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{dollarCredit}}</span>
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCardDollar}}</span>
         </div>
         <div class="col-2" style="border-right: 1px solid #dee2e6;">
             <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{LebaneseCredit}}</span>
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCardLL}}</span>
         </div>
         <div class="col-1">
             <span class="PopUpFuelHeaderTitleSpanBold">CASH</span>
         </div>
         <div class="col-1">
             <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.cachAmountSc}}</span>
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCashDollar}}</span>
         </div>
         <div class="col-2" style="border-right: 1px solid #dee2e6;">
             <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.cachAmountMc}}</span>
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCashLL}}</span>
         </div>
         <div class="col-2">
             <span class="PopUpFuelHeaderTitleSpan">TOTAL</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.netTotalMc}} L.L/{{transactionItem.netTotalSc}} $</span>
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransTotalLL}} L.L/{{transactionItem.bigTransTotalDollar}} $</span>
         </div>
     </div>
 </div>

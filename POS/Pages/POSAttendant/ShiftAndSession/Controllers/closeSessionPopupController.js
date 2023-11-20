@@ -12,7 +12,7 @@ posAttendantRootModule.controller('closeSessionPopupController', function ($scop
     $scope.displayNewCounterResult = [];
     $scope.dollarCashFirst = 0;
     $scope.lebaneseCashFirst = 0;
-
+    $scope.nuzzlesList = [];
 
     function getCurrencyRatio() {
 

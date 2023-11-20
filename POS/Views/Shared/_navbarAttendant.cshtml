@@ -26,19 +26,19 @@
         </li>
 
         <li class="nav-item">
-            <span class="nav-link dollarRate">1$= {{dollarRate}} L.L</span>
+            <span class="nav-link dollarRate">1$= {{dollarRate}} {{ 'LL' | translate}}</span>
         </li>
 
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <span style=" background-color: #D80404; color: white; padding: 10px 25px; font-size: 24px; border: none; border-radius: 46px;">  </span>
+                <span style="background-color: #D80404; color: white; padding: 10px 14px; font-size: 29px; border: none; border-radius: 46px;"> {{profileName}}  </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right p-0">
                 <a ng-click="SignOut()" class="dropdown-item active">
-                    Log out
+                    {{'logOut' | translate }}
                 </a>
                 <a ng-click="lockScreen()" class="dropdown-item">
-                    Lock Screen
+                    {{'lockScreen' | translate }}
                 </a>
             </div>
         </li>

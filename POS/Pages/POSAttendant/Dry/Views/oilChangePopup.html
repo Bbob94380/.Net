@@ -2,7 +2,7 @@
 
     <div class="card-body">
         <div class="form-check">
-            <label class="form-check-label">CUSTOMER SECTION</label>
+            <label class="form-check-label">{{ 'customerSection' | translate}}</label>
         </div>
         <div class="row oilRow">
             <div class="col-sm-3">
@@ -17,35 +17,35 @@
             <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">{{ 'firstName' | translate}}</label>
+                    <label class="label-dropdown">{{ 'firstName' | translate}} *</label>
                     <input type="text" class="form-control payInputField" ng-model="firstName">
                 </div>
             </div>
             <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Middle Name</label>
+                    <label class="label-dropdown">{{ 'middleName' | translate}} *</label>
                     <input type="text" class="form-control payInputField" ng-model="middleName">
                 </div>
             </div>
             <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Last Name</label>
+                    <label class="label-dropdown">{{ 'lastName' | translate}}  *</label>
                     <input type="text" class="form-control payInputField" ng-model="lastName">
                 </div>
             </div>
             <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Address</label>
+                    <label class="label-dropdown">{{ 'address' | translate}}  *</label>
                     <input type="text" class="form-control payInputField" ng-model="address">
                 </div>
             </div>
             <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Phone Number</label>
+                    <label class="label-dropdown">{{ 'phone' | translate}}  *</label>
                     <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="displayCounterResult[1]" ng-focus="CounterFocus(1)" ng-blur="CounterBlur(displayCounterResult[1])" />
                     <!--<input type="text" class="form-control payInputField" ng-model="customer.mobileNum" ng-disabled="isExistCustomer">-->
                 </div>
@@ -53,7 +53,7 @@
             <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Amana Member</label>
+                    <label class="label-dropdown">{{ 'amanaMember' | translate}}  *</label>
                     <select class="form-control payInputField" ng-model="customer.hasAmanaCard" ng-options="x for x in boolList" ng-change="" disabled>
                     </select>
                 </div>
@@ -61,7 +61,7 @@
             <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Customer Car</label>
+                    <label class="label-dropdown">{{ 'customerCar' | translate}}  *</label>
                     <select class="form-control payInputField" ng-model="customerCar" ng-options="item2 as item2.type for item2 in customer.cars" ng-show="!showCarField" ng-change="customerCarChanged(customerCar)">
                     </select>
                     <input type="text" class="form-control payInputField" ng-show="showCarField" ng-disabled="isExistCustomer" ng-model="displayCounterResult[2]" ng-focus="CounterFocus(2)" ng-blur="CounterBlur(displayCounterResult[2])" />
@@ -71,7 +71,7 @@
             <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Car Plate</label>
+                    <label class="label-dropdown">{{ 'carPlate' | translate}}  *</label>
                     <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="displayCounterResult[3]" ng-focus="CounterFocus(3)" ng-blur="CounterBlur(displayCounterResult[3])" />
                     <!--<input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="customerCar.carPlate">-->
                 </div>
@@ -81,7 +81,7 @@
             <div class="col-sm-3">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Plate Number</label>
+                    <label class="label-dropdown">{{ 'plateNumber' | translate}}  *</label>
                     <input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="displayCounterResult[4]" ng-focus="CounterFocus(4)" ng-blur="CounterBlur(displayCounterResult[4])" />
                     <!--<input type="text" class="form-control payInputField" ng-disabled="isExistCustomer" ng-model="customerCar.plateNumber">-->
                 </div>
@@ -89,7 +89,7 @@
             <div class="col-sm-3" ng-show="isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Old KM</label>
+                    <label class="label-dropdown">{{ 'oldKM' | translate}}  *</label>
                     <input type="text" class="form-control payInputField" ng-model="displayCounterResult[5]" ng-focus="CounterFocus(5)" ng-blur="CounterBlur(displayCounterResult[5])" />
                     <!--<input type="text" class="form-control payInputField" ng-model="oldKM">-->
                 </div>
@@ -97,7 +97,7 @@
             <div class="col-sm-3" ng-show="isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">New KM</label>
+                    <label class="label-dropdown">{{ 'newKM' | translate}}  *</label>
                     <input type="text" class="form-control payInputField" ng-model="displayCounterResult[6]" ng-focus="CounterFocus(6)" ng-blur="CounterBlur(displayCounterResult[6])" />
                     <!--<input type="text" class="form-control payInputField" ng-model="newKM">-->
                 </div>
@@ -105,21 +105,21 @@
             <div class="col-sm-3" ng-show="isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Current Date</label>
+                    <label class="label-dropdown">{{ 'currentDate' | translate}}  *</label>
                     <input type="text" class="form-control payInputField" disabled ng-model="creationDate">
                 </div>
             </div>
             <div class="col-sm-3" ng-show="isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown">Due Date</label>
+                    <label class="label-dropdown">{{ 'dueDate' | translate}}  *</label>
                     <input type="date" class="form-control payInputField" ng-model="dueDate">
                 </div>
             </div>
             <div class="col-sm-3" ng-show="!isExistCustomer">
                 <!-- select -->
                 <div class="form-group">
-                    <label class="label-dropdown" style="visibility:hidden">Due Date</label>
+                    <label class="label-dropdown" style="visibility:hidden">{{ 'dueDate' | translate}}  *</label>
                     <input type="button" style="background: #2A5699;color:#fff" class="form-control payInputField" ng-click="createCustomer()" value="Create customer">
                 </div>
             </div>
@@ -138,28 +138,25 @@
             <div class="calculator card">
                 <!--<input type="text" class="calculator-screen calculator-screen2 z-depth-1" value="" disabled />-->
 
-                <div class="calculator-keys calculator-keys2 calculator-keys-pay col-md-12">
-
-                    <button type="button" class="all-clear function btn btn-danger btn-sm c-btn" ng-click="ClearFocusedField()" value="all-clear">C</button>
-                    <button type="button" class="decimal function btn-light waves-effect cal-grey-btn" ng-click="addDecimal('.')" value=".">.</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>
+                <div class="calculator-keys calculator-keys2">
 
                     <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('1')">1</button>
                     <button type="button" value="2" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('2')">2</button>
                     <button type="button" value="3" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('3')">3</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('-')" value="-" disabled>-</button>
 
                     <button type="button" value="4" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('4')">4</button>
                     <button type="button" value="5" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('5')">5</button>
                     <button type="button" value="6" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('6')">6</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn " ng-click="addOperator('*')" value="*" disabled>&times;</button>
 
 
                     <button type="button" value="7" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('7')">7</button>
                     <button type="button" value="8" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('8')">8</button>
                     <button type="button" value="9" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('9')">9</button>
-                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-b-btn" ng-click="addNumber('0')">0</button>
+
+                    <button type="button" value="00" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('00')">00</button>
+                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('0')">0</button>
+                    <button type="button" class="all-clear function btn btn-danger btn-sm cal-grey-btn" style="background: #D7060E; color: #fff; font-family: cursive; " ng-click="ClearFocusedField()" value="all-clear"><</button>
+
 
                 </div>
             </div>
@@ -168,18 +165,18 @@
         <div class="col-7">
             <div class="card-body">
                 <div class="form-check">
-                    <label class="form-check-label">OIL SECTION</label>
+                    <label class="form-check-label">{{ 'oilSection' | translate}}</label>
                 </div>
                 <table class="trans-table-wop table-responsive table table-hover text-nowrap">
                     <thead>
                         <tr>
-                            <th>ITEM ID</th>
-                            <th>ITEM NAME</th>
-                            <th>QUANTITY</th>
-                            <th>DISCOUNT</th>
-                            <th>PRICE</th>
-                            <th>TOTAL</th>
-                            <th>UsedInService</th>
+                            <th>{{ 'itemId' | translate}}</th>
+                            <th>{{ 'itemName' | translate}}</th>
+                            <th>{{ 'qty' | translate}}</th>
+                            <th>{{ 'discount' | translate}}</th>
+                            <th>{{ 'price' | translate}}</th>
+                            <th>{{ 'total2' | translate}}</th>
+                            <th>{{ 'UsedInService' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -199,7 +196,7 @@
     </div>
 </div>
 <div class="modal-footer wetTransPopupFooter payFooterPopup" ng-init="load()">
-    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="clearWashTable()">CLEAR</button>
-    <button type="button" class="btn btn-primary nextbtn" ng-click="done()">Done</button>
+    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="clearWashTable()">{{ 'clear' | translate}}</button>
+    <button type="button" class="btn btn-primary nextbtn" ng-click="done()">{{ 'done' | translate}}</button>
 
 </div>

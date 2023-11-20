@@ -39,7 +39,7 @@
                                 <td>{{item.wop}}</td>
                                 <td>{{item.creationDate}}</td>
                                 <td>{{item.currency}}</td>
-                                <td>{{item.netTotalMc}} L.L / {{item.netTotalSc}} $ </td>
+                                <td>{{item.netTotalMc}} L.L / $ {{item.netTotalSc}}  </td>
                                 <td>
                                     <span class="receipt-add-btn" ng-click="addTransToReceipt(item)">+</span>
                                 </td>
@@ -68,7 +68,7 @@
             <tbody>
                 <tr ng-repeat="item in listOfAddedTransToReceipt">
                     <td>{{item.id}}</td>
-                    <td>{{item.netTotalMc }} L.L/{{ item.netTotalSc}} $</td>
+                    <td>{{item.netTotalMc }} L.L/ $ {{ item.netTotalSc}} </td>
                     <td ng-click="removeTransFromReceipt(item.id)"><img src="/Resources/Images/remove-icon.png" /></td>
                 </tr>
             </tbody>

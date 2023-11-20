@@ -30,28 +30,25 @@
             <div class="calculator card">
                 <!--<input type="text" class="calculator-screen calculator-screen2 z-depth-1" value="" disabled />-->
 
-                <div class="calculator-keys calculator-keys2 calculator-keys-pay col-md-12">
-
-                    <button type="button" class="all-clear function btn btn-danger btn-sm c-btn" ng-click="ClearFocusedField()" value="all-clear">C</button>
-                    <button type="button" class="decimal function btn-light waves-effect cal-grey-btn" ng-click="addDecimal('.')" value=".">.</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('/')" value="/" disabled>&divide;</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('+')" value="+" disabled>+</button>
+                <div class="calculator-keys calculator-keys2">
 
                     <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('1')">1</button>
                     <button type="button" value="2" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('2')">2</button>
                     <button type="button" value="3" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('3')">3</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn" ng-click="addOperator('-')" value="-" disabled>-</button>
 
                     <button type="button" value="4" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('4')">4</button>
                     <button type="button" value="5" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('5')">5</button>
                     <button type="button" value="6" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('6')">6</button>
-                    <button type="button" class="operator btn btn-info cal-grey-b-btn " ng-click="addOperator('*')" value="*" disabled>&times;</button>
 
 
                     <button type="button" value="7" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('7')">7</button>
                     <button type="button" value="8" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('8')">8</button>
                     <button type="button" value="9" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('9')">9</button>
-                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-b-btn" ng-click="addNumber('0')">0</button>
+
+                    <button type="button" value="00" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('00')">00</button>
+                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('0')">0</button>
+                    <button type="button" class="all-clear function btn btn-danger btn-sm cal-grey-btn" style="background: #D7060E; color: #fff; font-family: cursive; " ng-click="ClearFocusedField()" value="all-clear"><</button>
+
 
                 </div>
             </div>
@@ -65,7 +62,7 @@
                             <th>{{ 'transactions' | translate}}</th>
                             <th>{{ 'amount' | translate}}</th>
                             <!--<th>PRICE</th>-->
-                            <th>{{ 'totalAll' | translate}}</th>
+                            <th>{{ 'total' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>

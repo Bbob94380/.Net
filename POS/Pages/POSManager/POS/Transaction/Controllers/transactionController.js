@@ -55,6 +55,12 @@
 								trans.saleInvoice.amount = trans.saleInvoice.saleDetails.length + " item(s)";
 								trans.saleInvoice.creationDate = trans.creationDate;
 								trans.saleInvoice.creator = trans.creator;
+								trans.saleInvoice.bigTransCashLL = trans.cachAmountMc;
+								trans.saleInvoice.bigTransCashDollar = trans.cachAmountSc;
+								trans.saleInvoice.bigTransCardLL = trans.invoiceAmountMc;
+								trans.saleInvoice.bigTransCardDollar = trans.invoiceAmountSc;
+								trans.saleInvoice.bigTransTotalLL = trans.netTotalMc;
+								trans.saleInvoice.bigTransTotalDollar = trans.netTotalSc;
 								$scope.saleTransList.push(trans.saleInvoice);
 							}
 
@@ -64,6 +70,12 @@
 									trans.saleTransactions[j].amount = trans.saleTransactions[j].dispensedVolume + " L";
 									trans.saleTransactions[j].creationDate = trans.creationDate;
 									trans.saleTransactions[j].creator = trans.creator;
+									trans.saleTransactions[j].bigTransCashLL = trans.cachAmountMc;
+									trans.saleTransactions[j].bigTransCashDollar = trans.cachAmountSc;
+									trans.saleTransactions[j].bigTransCardLL = trans.invoiceAmountMc;
+									trans.saleTransactions[j].bigTransCardDollar = trans.invoiceAmountSc;
+									trans.saleTransactions[j].bigTransTotalLL = trans.netTotalMc;
+									trans.saleTransactions[j].bigTransTotalDollar = trans.netTotalSc;
 									$scope.saleTransList.push(trans.saleTransactions[j]);
 								}
 							}

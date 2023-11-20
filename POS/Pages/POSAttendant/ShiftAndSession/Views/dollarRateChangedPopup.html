@@ -14,7 +14,7 @@
                                 </div>
 
                                 <form style="margin-top: 3em; text-align: center;">
-                                    <p class="dollarRateChangedTitle">Dollar Rate is Changed</p>
+                                    <p class="dollarRateChangedTitle">{{'dollarChanged' | translate }}</p>
 
                                     <div class="form-outline mb-4">
                                         <input type="text" ng-model="oldRate" class="form-control dollarRateChangedInput"
@@ -28,10 +28,10 @@
 
                                     <div class="pt-1 pb-1">
                                         <span ng-click="closeSession()" class="close-session-btn">
-                                            CLOSE SESSION
+                                            {{'closeSession' | translate }}
                                         </span>
                                         <span class="close-session-blocked-label">
-                                            The System is Blocked Unless you close this session
+                                            {{'systemBlocked' | translate }}
                                         </span>
                                     </div>
                                 </form>

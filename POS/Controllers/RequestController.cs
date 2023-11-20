@@ -66,6 +66,9 @@ namespace POS.Controllers
                     cookie.Values.Add("projectType", "pos");
                     cookie.Values.Add("sessionId", loginResponse.sessionId);
                     HttpContext.Current.Response.SetCookie(cookie);
+
+                    HttpCookie sessionIdCookie = new HttpCookie("session_id", sessionId.Substring(11));
+                    HttpContext.Current.Response.Cookies.Add(sessionIdCookie);
                 }
                 else
                 {

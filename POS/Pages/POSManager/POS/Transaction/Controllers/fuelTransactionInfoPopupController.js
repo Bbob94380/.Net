@@ -26,7 +26,7 @@ rootModule.controller('fuelTransactionInfoPopupController', function ($scope, $r
     if ($scope.transactionItem.secondCardTypeAmount !== 0 && $scope.transactionItem.secondCardTypeAmount !== null) {
 
         isCardPaid = true;
-
+            
         if ($scope.transactionItem.secondCardCurrency === "USD") {
             $scope.dollarCredit = $scope.dollarCredit + $scope.transactionItem.secondCardTypeAmount;
         }

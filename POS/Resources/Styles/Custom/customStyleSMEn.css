@@ -1128,12 +1128,15 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table
 .history-clear-btn {
     background: #D80404;
     color: #fff;
-    padding: 11px 3.2em;
-    height: 2.7em;
+    padding: 8px 3.2em;
+    height: 2.6em;
     font-family: 'rubikMedium';
     border-radius: 4px;
     font-size: 14px;
     margin-right: 1em;
+    margin-top: 2.3em;
+    position: relative;
+    display: table-caption;
 }
 
 .popUp-span-title {

@@ -1,5 +1,5 @@
 ﻿
-posAttendantRootModule.controller('oilChangePopupController', function ($scope, $rootScope, $http, $uibModalInstance, data) {
+posAttendantRootModule.controller('oilChangePopupController', function ($scope, $rootScope, $http, $uibModalInstance, data, $filter) {
 
  
 
@@ -119,7 +119,7 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
 
                             $scope.customersList.push({
                                 id: -1,
-                                name: "Create new customer"
+                                name: $filter('translate')('createNewCustomer')
                             });
 
                             for (var i = 0; i < result.resultData.length; i++  ) {

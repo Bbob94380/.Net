@@ -213,7 +213,7 @@
     background-color: #F6F6F6;
     border: none;
     color: #313136;
-    border-right: 2px solid #D0D0D0 !important;
+    border-right: 1px solid #D0D0D0 !important;
 }
 
 .calculator-screen {
@@ -228,10 +228,17 @@
     font-size: 4rem;
 }
 
-.calculator-keys button {
+/*.calculator-keys button {
     height: 3em;
     width: 3em;
     margin-left: -13px;
+}*/
+
+.calculator-keys button {
+    height: 3em;
+    width: 3.2em;
+    margin-left: 0px;
+    margin-bottom: -7px;
 }
 
 .form-control-lg {
@@ -267,14 +274,22 @@ button {
     width: fit-content;
 }
 
-.calculator-keys2 {
+/*.calculator-keys2 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 13px;
     padding: 15px 15px;
     width: fit-content;
-}
+}*/
 
+.calculator-keys2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+    padding: 0px 22px;
+    width: fit-content;
+    /* margin: 0 2em; */
+}
 
 .trans-table {
     border-collapse: collapse;
@@ -1317,6 +1332,13 @@ button {
     position: absolute;
     right: 0.7em;
     top: 2.35em;
+}
+
+
+.payDryTotalValue3 {
+    font-size: 20px;
+    margin-left: 0.5em;
+    float: right;
 }
 
 /*end*/

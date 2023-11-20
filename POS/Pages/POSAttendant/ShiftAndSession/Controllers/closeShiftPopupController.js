@@ -16,6 +16,9 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
     $scope.displayCounterResult = [];
     $scope.displayNewCounterResult = [];
     $scope.displayMoneyResult = [];
+    $scope.TotalLBPAdded = 0;
+    $scope.TotalUSDAdded = 0;
+
 
     for (var i = 0; i < 13; i++) {
         isMoneyFieldFocus[i] = false;

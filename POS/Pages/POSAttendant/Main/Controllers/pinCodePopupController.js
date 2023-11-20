@@ -32,6 +32,7 @@ posAttendantRootModule.controller('pinCodePopupController', function ($scope, $r
                     localStorage.setItem('session_id', result.resultData.sessionId);
                     localStorage.setItem('isEmployeeLoggedIn', "true");
                     localStorage.setItem('username', data.username);
+                    $rootScope.profileName = data.username.slice(0, 2).toUpperCase();
                     localStorage.setItem('employeeRoles', JSON.stringify(result.resultData.roles));
                     $uibModalInstance.close(true)
 

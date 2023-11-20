@@ -1,4 +1,4 @@
-﻿posAttendantRootModule.controller("main2Controller", ["$scope", "$uibModal", "$http", "$rootScope", "$translate", function ($scope, $uibModal, $http, $rootScope, $translate) {
+﻿posAttendantRootModule.controller("main2Controller", ["$scope", "$uibModal", "$http", "$rootScope", "$translate", "commonAttendantHelper", function ($scope, $uibModal, $http, $rootScope, $translate, $common_helper) {
 
     var modalInstanceRate = null;
     var totalLeb = 0;
@@ -539,6 +539,7 @@
 
                         $scope.employeeName = result.resultData.name;
                         $scope.employeeId = result.resultData.id;
+                        $rootScope.profileName = $scope.employeeName.slice(0, 2).toUpperCase();
 
                     } else {
                         swal("Failed getting user info", "Please try again", "error");
@@ -564,6 +565,19 @@
 
     getCurrentUser();
 
+
+    //$common_helper.createRequest("GET", "/FPOS/rest/user/getCurrentUser")
+    //    .then(function (response) {
+    //        console.log(response.data);
+
+    //        if (response.data !== null && response.data !== undefined && response.data !== "") {
+    //            $scope.employeeName = response.data.name;
+    //            $scope.employeeId = response.data.id;
+    //            $rootScope.profileName = $scope.employeeName.slice(0, 2).toUpperCase();
+    //        } else {
+    //            swal("Failed getting user info", "", "error");
+    //        }
+    //    });
 
     $scope.openShiftPopup = function () {
 

@@ -1021,6 +1021,7 @@
     <Content Include="Resources\Scripts\Custom\AngularJs\Controllers\rootCtrl.js" />
     <Content Include="Resources\Scripts\Custom\AngularJs\Directives\tableJqueryHO.js" />
     <Content Include="Resources\Scripts\Custom\AngularJs\Directives\tableJquery.js" />
+    <Content Include="Resources\Scripts\Custom\AngularJs\Factory\commonAttendantHelper.js" />
     <Content Include="Resources\Scripts\Custom\AngularJs\Factory\commonHelper.js" />
     <Content Include="Resources\Scripts\Custom\AngularJs\Modules\posAttendantRootModule.js" />
     <Content Include="Resources\Scripts\Custom\AngularJs\Modules\rootHOModule.js" />
