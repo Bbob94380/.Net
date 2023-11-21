@@ -5,30 +5,40 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
 
     $scope.notifications = [];
 
+
+    if (localStorage.getItem('languageSM') === 'en') {
+        $scope.selectedLanguage = "EN";
+        $translate.use('en');
+        document.cookie = "languageSM=en";
+    } else if (localStorage.getItem('languageSM') === 'ar') {
+        $scope.selectedLanguage = "AR";
+        $translate.use('ar');
+        document.cookie = "languageSM=ar";
+    } else {
+        $scope.selectedLanguage = "EN";
+        $translate.use('en');
+        document.cookie = "languageSM=en";
+    }
+
+
     $scope.goToArabicLayout = function (lang) {
         localStorage.setItem('languageSM', 'ar');
-        $scope.addActiveWord = 'flag-icon-de';
+        document.cookie = "languageSM=ar";
+        $translate.use('ar');
+        $scope.selectedLanguage = "AR";
         window.location.href = "/SM/IndexAr";
         //window.location.href = "/SM/IndexAr#!/main2";
     }
 
     $scope.goToEnglishLayout = function (lang) {
         localStorage.setItem('languageSM', 'en');
-        $scope.addActiveWord = 'flag-icon-us';
+        document.cookie = "languageSM=en";
+        $scope.selectedLanguage = "EN";
+        $translate.use('en');
         window.location.href = "/SM/IndexEn";
     }
 
 
-    if (localStorage.getItem('languageSM') === 'en') {
-        $translate.use('en');
-        $scope.addActiveWord = 'flag-icon-us';
-    } else if (localStorage.getItem('languageSM') === 'ar') {
-        $translate.use('ar');
-        $scope.addActiveWord = 'flag-icon-de';
-    } else {
-        $translate.use('en');
-        $scope.addActiveWord = 'flag-icon-us';
-    }
 
     //$rootScope.dollarRate = 100000;
     $rootScope.dollarRate = localStorage.getItem('dollarRateSM');
@@ -47,7 +57,6 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
         }).then(function (response) {
 
             localStorage.setItem('session_id_sm', '');
-            localStorage.setItem("activeItemDash", "");
             window.location.href = '/SM/LoginSMEn';
 
         }, function (error) {

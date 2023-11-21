@@ -27,17 +27,19 @@
         <!-- Language Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="flag-icon  {{addActiveWord}}"></i>
+                {{selectedLanguage}}
             </a>
             <div class="dropdown-menu dropdown-menu-right p-0">
-                <a ng-click="goToEnglishLayout()" class="dropdown-item ">
-                    <i class="flag-icon flag-icon-us mr-2"></i> English
+                <a ng-click="goToEnglishLayout('en')" class="dropdown-item active">
+                    EN
                 </a>
-                <a ng-click="goToArabicLayout()" class="dropdown-item">
-                    <i class="flag-icon flag-icon-de mr-2"></i> Arabic
+                <a ng-click="goToArabicLayout('ar')" class="dropdown-item">
+                    AR
                 </a>
             </div>
         </li>
+
+
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">

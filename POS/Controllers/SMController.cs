@@ -12,81 +12,189 @@ namespace POS.Controllers
     {
         public ActionResult LoginSMEn()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookie"];
+            var lang = "";
+            if (Request.Cookies["languageSM"] != null) lang = Request.Cookies["languageSM"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
                 if (projectType == "sm")
                 {
-                    return Redirect("/SM/IndexEn");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/SM/IndexAr");
+                    }
+                    else
+                    {
+                        return Redirect("/SM/IndexEn");
+                    }
                 }
                 else
                 {
-                    return View();
+                    if (lang == "ar")
+                    {
+                        return Redirect("/SM/LoginSMAr");
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
             }
 
-            return View();
+            if (lang == "ar")
+            {
+                return Redirect("/SM/LoginSMAr");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult LoginSMAr()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookie"];
+            var lang = "";
+            if (Request.Cookies["languageSM"] != null) lang = Request.Cookies["languageSM"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
                 if (projectType == "sm")
                 {
-                    return Redirect("/SM/IndexAr");
+
+                    if (lang == "en")
+                    {
+                        return Redirect("/SM/IndexEn");
+                    }
+                    else
+                    {
+                        return Redirect("/SM/IndexAr");
+                    }
                 }
                 else
                 {
-                    return View();
+                    if (lang == "en")
+                    {
+                        return Redirect("/SM/LoginSMEn");
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
             }
 
-            return View();
+            if (lang == "en")
+            {
+                return Redirect("/SM/LoginSMEn");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult IndexEn()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookie"];
+            var lang = "";
+            if (Request.Cookies["languageSM"] != null) lang = Request.Cookies["languageSM"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
-                if (projectType == "sm")
+                if (projectType == "sm") //loggedIn
                 {
-                    return View();
+
+                    if (lang == "ar")
+                    {
+                        return Redirect("/SM/IndexAr");
+                    }
+                    else
+                    {
+                        Request.Cookies["languageSM"].Value = "en";
+                        //System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                        return View();
+                    }
+
                 }
                 else
                 {
-                    return Redirect("/SM/LoginSMEn");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/SM/LoginSMAr");
+                    }
+                    else
+                    {
+                        return Redirect("/SM/LoginSMEn");
+
+                    }
                 }
             }
-            return Redirect("/SM/LoginSMEn");
+
+
+            if (lang == "ar")
+            {
+                return Redirect("/SM/LoginSMAr");
+            }
+            else
+            {
+                return Redirect("/SM/LoginSMEn");
+
+            }
         }
         public ActionResult IndexAr()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookie"];
+            var lang = "";
+            if (Request.Cookies["languageSM"] != null) lang = Request.Cookies["languageSM"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
-                if (projectType == "sm")
+                if (projectType == "sm") //loggedIn
                 {
-                    return View();
+
+                    if (lang == "en")
+                    {
+                        return Redirect("/SM/IndexEn");
+                    }
+                    else
+                    {
+                        Request.Cookies["languageSM"].Value = "ar";
+                        //System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                        return View();
+                    }
+
                 }
                 else
                 {
-                    return Redirect("/SM/LoginSMAr");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/SM/LoginSMEn");
+                    }
+                    else
+                    {
+                        return Redirect("/SM/LoginSMAr");
+
+                    }
                 }
             }
-            return Redirect("/SM/LoginSMAr");
+
+            if (lang == "en")
+            {
+                return Redirect("/SM/LoginSMEn");
+            }
+            else
+            {
+                return Redirect("/SM/LoginSMAr");
+
+            }
 
         }
     }

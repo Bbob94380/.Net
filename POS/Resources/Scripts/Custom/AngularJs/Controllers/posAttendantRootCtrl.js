@@ -12,6 +12,10 @@ posAttendantRootModule.controller("posAttendantRootCtrl", ["$scope", "$sce", "$r
         $scope.selectedLanguage = "EN";
         $translate.use('en');
         document.cookie = "languagePOS=en";
+    } else {
+        $scope.selectedLanguage = "EN";
+        $translate.use('en');
+        document.cookie = "languagePOS=en";
     }
 
 

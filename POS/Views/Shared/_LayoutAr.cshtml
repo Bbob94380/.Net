@@ -15,17 +15,17 @@
     <link rel="stylesheet" href="~/Resources/Styles/Plugins/datatables/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="~/Resources/Styles/Plugins/adminlte/adminlteAr.css">
     <link rel="stylesheet" href="~/Resources/Styles/Custom/customStyleSMAr.css">
+    @RenderSection("stylesSMLoginAr", false)
 
 </head>
 <body ng-app="rootModule" class="hold-transition sidebar-mini">
 
     <div class="" ng-controller="rootCtrl">
-        @Html.Partial("_navbar")
 
-        @Html.Partial("_sidebar")
+        <div>
 
-        <div class="content-wrapper" style="margin-right: 4.6em;">
             @RenderBody()
+
         </div>
 
 
@@ -58,8 +58,10 @@
     <!-- Custom -->
     <script src="~/Resources/Scripts/Custom/AngularJs/Modules/rootModule.js"></script>
     <script src="~/Resources/Scripts/Custom/AngularJs/Controllers/rootCtrl.js"></script>
+    <script src="~/Resources/Scripts/Custom/AngularJs/Controllers/smLoginCtrl.js"></script>
     <script src="~/Resources/Scripts/Custom/AngularJs/translation.js"></script>
     <script src="~/Resources/Scripts/Custom/AngularJs/Services/filterTableListService.js"></script>
+    <script src="~/Resources/Scripts/Custom/AngularJs/Factory/commonHelper.js"></script>
 
     <!-- Dashboard-->
     <script src="~/Pages/POSManager/Dashboard/Main/Controllers/mainDashboardController.js"></script>

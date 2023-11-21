@@ -909,7 +909,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    //client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -934,6 +934,7 @@ namespace POS.Controllers
             }
             catch (Exception e)
             {
+                System.Diagnostics.Debug.WriteLine(e.Message + "/" +e.StackTrace);
                 responseData.isSuccessStatusCode = false;
                 responseData.errorMsg = e.Message;
                 responseData.resultData = null;

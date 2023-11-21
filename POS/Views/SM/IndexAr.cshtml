@@ -3,6 +3,11 @@
     Layout = "~/Views/Shared/_LayoutAr.cshtml";
 }
 
+@Html.Partial("_navbar")
 
-<div ui-view></div>
+@Html.Partial("_sidebar")
 
+<div class="content-wrapper" style="margin-left: 4.6em;">
+
+    <div ui-view style="position:relative"></div>
+</div>

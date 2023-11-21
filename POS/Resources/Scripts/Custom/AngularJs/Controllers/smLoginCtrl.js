@@ -17,7 +17,6 @@ rootModule.controller("smLoginCtrl", ["$scope", "$sce", "$rootScope", "$http", "
     //}
 
     //add here the default language
-    localStorage.setItem('languageSM', 'en');
     $translate.use('en');
 
 
@@ -81,12 +80,16 @@ rootModule.controller("smLoginCtrl", ["$scope", "$sce", "$rootScope", "$http", "
                     if (localStorage.getItem('languageSM') === 'en') {
                         window.location.href = "/SM/IndexEn#!/pos";
                         $translate.use('en');
+                        document.cookie = "languageSM=en";
                     } else if (localStorage.getItem('languageSM') === 'ar') {
                         window.location.href = "/SM/IndexAr#!/pos";
                         $translate.use('ar');
+                        document.cookie = "languageSM=ar";
                     } else {
                         window.location.href = "/SM/IndexEn#!/pos";
+                        localStorage.setItem('language', 'en');
                         $translate.use('en');
+                        document.cookie = "languageSM=en";
                     }
 
                 } else {

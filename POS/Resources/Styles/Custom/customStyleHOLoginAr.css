@@ -1,0 +1,87 @@
+﻿body {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient( to top, white 0%, white 50%, #C9002D 50%, #C9002D 100% );
+}
+
+.content-wrapper{
+    background:none !important;
+}
+
+.gradient-custom-2 {
+    background: #F7F9F9;
+}
+
+.signInLabel {
+    margin-top: 6rem;
+    font-size: 22px;
+    color: #C9002D;
+    padding-left: 1.5rem;
+}
+
+.input-login-ho {
+    background: #F7F9F9;
+    border-radius: 33px;
+    border: none;
+    padding: 26px 29px;
+    font-size: 14px;
+}
+
+.input-login-ho:focus {
+    background-color: #F7F9F9;
+}
+
+.login-span {
+    background: #FFC532;
+    border-radius: 40px;
+    border: none;
+    color: #C9002D;
+    padding: 10px 31px;
+}
+
+.custom-checkbox {
+    display: inline;
+    margin-left: 1rem;
+    position: relative;
+}
+
+.custom-checkbox-text {
+    margin-top: 12px;
+    color: #C9002D;
+    font-weight: 400 !important;
+}
+
+.lostAndRegister {
+    color: #C9002D;
+    display: block;
+    font-size: 14px;
+}
+
+.div-icons {
+    margin-top: 1.5em;
+    padding: 4px;
+}
+
+.login-icon {
+    float: left;
+    margin-right: 12px;
+    width: 2.8em;
+}
+
+.login-icon-span {
+    font-size: 18px;
+    padding-top: 3px;
+    color: #2F2C2C;
+}
+
+.login-icon-span2 {
+    font-size: 12px;
+    margin-top: -4px;
+    display: block;
+    position: relative;
+    color: #ACACAC;
+}
+
+.touch {
+    margin-top: 5em;
+}
