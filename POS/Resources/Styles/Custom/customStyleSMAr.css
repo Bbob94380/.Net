@@ -53,9 +53,10 @@ body:not(.layout-fixed) .main-sidebar-custom-root {
 
 body:not(.layout-fixed) .main-sidebar {
     /* height: inherit; */
-    min-height: 100%;
-    position: absolute;
+    height: auto;
+    position: fixed;
     top: auto !important;
+    z-index: 0;
 }
 
 .navbar-root {
@@ -63,6 +64,10 @@ body:not(.layout-fixed) .main-sidebar {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 0px 1px rgba(0, 0, 0, 0.2);
     padding: 1em 0 0.4em 0;
     margin-right: 0em !important;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
 }
 
 .navBarPos {
@@ -676,7 +681,7 @@ body:not(.layout-fixed) .main-sidebar {
 }
 
 .content-header {
-    padding: 2em 1.2rem 0em 1.2rem;
+    padding: 3em 1.2rem 0em 1.2rem;
 }
 
 .pos-section-title {

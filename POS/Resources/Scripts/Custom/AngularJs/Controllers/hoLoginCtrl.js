@@ -3,21 +3,8 @@
 
 rootHOModule.controller("hoLoginCtrl", ["$scope", "$sce", "$rootScope", "$http", "$translate", function ($scope, $sce, $rootScope, $http, $translate) {
 
-    //if the language changed at level of login page
-    //$scope.goToArabicLayout = function (lang) {
-    //    localStorage.setItem('language', 'ar');
-    //    window.location.href = "/Home/IndexAttendantAr#!/main2";
-    //    $translate.use(lang);
-    //}
-
-    //$scope.goToEnglishLayout = function (lang) {
-    //    localStorage.setItem('language', 'en');
-    //    window.location.href = "/Home/IndexAttendantEn#!/main2";
-    //    $translate.use(lang);
-    //}
 
     //add here the default language
-    localStorage.setItem('languageHO', 'en');
     $translate.use('en');
 
 
@@ -80,12 +67,15 @@ rootHOModule.controller("hoLoginCtrl", ["$scope", "$sce", "$rootScope", "$http",
                     if (localStorage.getItem('languageHO') === 'en') {
                         window.location.href = "/HO/MainScreenHOEn";
                         $translate.use('en');
+                        document.cookie = "languageHO=en";
                     } else if (localStorage.getItem('languageHO') === 'ar') {
                         window.location.href = "/HO/MainScreenHOAr";
                         $translate.use('ar');
+                        document.cookie = "languageHO=ar";
                     } else {
                         window.location.href = "/HO/MainScreenHOEn";
                         $translate.use('en');
+                        document.cookie = "languageHO=en";
                     }
 
                 } else {

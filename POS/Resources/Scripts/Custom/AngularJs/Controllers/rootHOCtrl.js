@@ -6,30 +6,36 @@ rootHOModule.controller("rootHOCtrl", ["$scope", "$rootScope", "$http", "$transl
     $scope.notifications = [];
 
 
+    if (localStorage.getItem('languageHO') === 'en') {
+        $scope.selectedLanguage = "EN";
+        $translate.use('en');
+        document.cookie = "languageHO=en";
+    } else if (localStorage.getItem('languageHO') === 'ar') {
+        $scope.selectedLanguage = "AR";
+        $translate.use('ar');
+        document.cookie = "languageHO=ar";
+    } else {
+        $scope.selectedLanguage = "EN";
+        $translate.use('en');
+        document.cookie = "languageHO=en";
+    }
+
+
     $scope.goToArabicLayout = function (lang) {
         localStorage.setItem('languageHO', 'ar');
-        $scope.addActiveWord = 'flag-icon-de';
+        document.cookie = "languageHO=ar";
+        $scope.selectedLanguage = "AR";
+        $translate.use('ar');
         window.location.href = "/HO/IndexHOAr";
-        //window.location.href = "/SM/IndexAr#!/main2";
     }
 
     $scope.goToEnglishLayout = function (lang) {
         localStorage.setItem('languageHO', 'en');
-        $scope.addActiveWord = 'flag-icon-us';
+        document.cookie = "languageHO=en";
+        $scope.selectedLanguage = "EN";
         window.location.href = "/HO/IndexHOEn";
     }
 
-
-    if (localStorage.getItem('languageHO') === 'en') {
-        $translate.use('en');
-        $scope.addActiveWord = 'flag-icon-us';
-    } else if (localStorage.getItem('languageHO') === 'ar') {
-        $translate.use('ar');
-        $scope.addActiveWord = 'flag-icon-de';
-    } else {
-        $translate.use('en');
-        $scope.addActiveWord = 'flag-icon-us';
-    }
 
     //$rootScope.dollarRate = 100000;
     $rootScope.dollarRate = localStorage.getItem('dollarRateHO');
@@ -48,7 +54,6 @@ rootHOModule.controller("rootHOCtrl", ["$scope", "$rootScope", "$http", "$transl
         }).then(function (response) {
 
             localStorage.setItem('session_id_ho', '');
-            localStorage.setItem("activeItemDash", "");
             window.location.href = '/HO/LoginHOEn';
 
         }, function (error) {

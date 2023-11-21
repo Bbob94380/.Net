@@ -57,6 +57,7 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
         }).then(function (response) {
 
             localStorage.setItem('session_id_sm', '');
+            localStorage.setItem("activeItemDash", "");
             window.location.href = '/SM/LoginSMEn';
 
         }, function (error) {
@@ -160,5 +161,103 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
         console.log("Connection is closed...");
     };
 
+
+
+    $scope.getCheckedInUsers = function () {
+
+        $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/getCheckedInUsers",
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    //if (result.isSuccessStatusCode) {
+
+                    //    $scope.employeesList = result.resultData;
+
+                    //} else {
+                    //    swal("Failed getting car was options", "Please try again", "error");
+                    //    console.log(result.errorMsg);
+                    //}
+
+                    $scope.employeesList = [
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        },
+                        {
+                            employee: "admin@gsm.com"
+                        }
+
+                    ];
+
+                } else {
+                    swal("Failed getting car was options", "Please try again", "error");
+                }
+
+            } else {
+                swal("Failed getting car was options", "Please try again", "error");
+            }
+
+
+        }, function (error) {
+            swal("Failed getting car was options", "Please try again", "error");
+            $rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    }
+
+    $scope.getCheckedInUsers();
 
 }]);

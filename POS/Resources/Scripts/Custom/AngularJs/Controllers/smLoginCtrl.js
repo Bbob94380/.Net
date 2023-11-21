@@ -81,12 +81,15 @@ rootModule.controller("smLoginCtrl", ["$scope", "$sce", "$rootScope", "$http", "
                         window.location.href = "/SM/IndexEn#!/pos";
                         $translate.use('en');
                         document.cookie = "languageSM=en";
+                        localStorage.setItem("activeItemDash", "");
                     } else if (localStorage.getItem('languageSM') === 'ar') {
                         window.location.href = "/SM/IndexAr#!/pos";
                         $translate.use('ar');
                         document.cookie = "languageSM=ar";
+                        localStorage.setItem("activeItemDash", "");
                     } else {
                         window.location.href = "/SM/IndexEn#!/pos";
+                        localStorage.setItem("activeItemDash", "");
                         localStorage.setItem('language', 'en');
                         $translate.use('en');
                         document.cookie = "languageSM=en";

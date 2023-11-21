@@ -1067,6 +1067,7 @@
     <Content Include="Resources\Styles\Custom\customAttendantStyleAr.css" />
     <Content Include="Resources\Styles\Custom\customStyleAttendantLoginEn.css" />
     <Content Include="Resources\Styles\Custom\customStyleHOLoginAr.css" />
+    <Content Include="Resources\Styles\Custom\customStyleHOMainScreenAr.css" />
     <Content Include="Resources\Styles\Custom\customStyleSMAr.css" />
     <Content Include="Resources\Styles\Custom\customAttendantStyleEn.css" />
     <Content Include="Resources\Styles\Custom\customStyleHOMainScreenEn.css" />

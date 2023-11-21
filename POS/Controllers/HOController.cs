@@ -11,122 +11,291 @@ namespace POS.Controllers
 
         public ActionResult LoginHOEn()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieHO"];
+            var lang = "";
+            if (Request.Cookies["languageHO"] != null) lang = Request.Cookies["languageHO"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
                 if (projectType == "ho")
                 {
-                    return Redirect("/HO/IndexHOEn");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/HO/IndexHOAr");
+                    }
+                    else
+                    {
+                        return Redirect("/HO/IndexHOEn");
+                    }
                 }
                 else
                 {
-                    return View();
+                    if (lang == "ar")
+                    {
+                        return Redirect("/HO/LoginHOAr");
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
             }
 
-            return View();
+            if (lang == "ar")
+            {
+                return Redirect("/HO/LoginHOAr");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult LoginHOAr()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieHO"];
+            var lang = "";
+            if (Request.Cookies["languageHO"] != null) lang = Request.Cookies["languageHO"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
                 if (projectType == "ho")
                 {
-                    return Redirect("/HO/IndexHOAr");
+
+                    if (lang == "en")
+                    {
+                        return Redirect("/HO/IndexHOEn");
+                    }
+                    else
+                    {
+                        return Redirect("/HO/IndexHOAr");
+                    }
                 }
                 else
                 {
-                    return View();
+                    if (lang == "en")
+                    {
+                        return Redirect("/HO/LoginHOEn");
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
             }
 
-            return View();
+            if (lang == "en")
+            {
+                return Redirect("/HO/LoginHOEn");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult IndexHOEn()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieHO"];
+            var lang = "";
+            if (Request.Cookies["languageHO"] != null) lang = Request.Cookies["languageHO"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
-                if (projectType == "ho")
+                if (projectType == "ho") //loggedIn
                 {
-                    return View();
+
+                    if (lang == "ar")
+                    {
+                        return Redirect("/HO/IndexHOAr");
+                    }
+                    else
+                    {
+                        Request.Cookies["languageHO"].Value = "en";
+                        //System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                        return View();
+                    }
+
                 }
                 else
                 {
-                    return Redirect("/HO/LoginHOEn");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/HO/LoginHOAr");
+                    }
+                    else
+                    {
+                        return Redirect("/HO/LoginHOEn");
+
+                    }
                 }
             }
-            return Redirect("/HO/LoginHOEn");
+
+
+            if (lang == "ar")
+            {
+                return Redirect("/HO/LoginHOAr");
+            }
+            else
+            {
+                return Redirect("/HO/LoginHOEn");
+
+            }
         }
         public ActionResult IndexHOAr()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieHO"];
+            var lang = "";
+            if (Request.Cookies["languageHO"] != null) lang = Request.Cookies["languageHO"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
-                if (projectType == "ho")
+                if (projectType == "ho") //loggedIn
                 {
-                    return View();
+
+                    if (lang == "en")
+                    {
+                        return Redirect("/HO/IndexHOEn");
+                    }
+                    else
+                    {
+                        Request.Cookies["languageHO"].Value = "ar";
+                        //System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                        return View();
+                    }
+
                 }
                 else
                 {
-                    return Redirect("/HO/LoginHOAr");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/HO/LoginHOEn");
+                    }
+                    else
+                    {
+                        return Redirect("/HO/LoginHOAr");
+
+                    }
                 }
             }
-            return Redirect("/HO/LoginHOAr");
+
+            if (lang == "en")
+            {
+                return Redirect("/HO/LoginHOEn");
+            }
+            else
+            {
+                return Redirect("/HO/LoginHOAr");
+
+            }
 
         }
 
         public ActionResult MainScreenHOEn()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieHO"];
+            var lang = "";
+            if (Request.Cookies["languageHO"] != null) lang = Request.Cookies["languageHO"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
-                if (projectType == "ho")
+                if (projectType == "ho") //loggedIn
                 {
-                    return View();
+
+                    if (lang == "ar")
+                    {
+                        return Redirect("/HO/MainScreenHOAr");
+                    }
+                    else
+                    {
+                        Request.Cookies["languageHO"].Value = "en";
+                        //System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                        return View();
+                    }
+
                 }
                 else
                 {
-                    return Redirect("/HO/LoginHOEn");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/HO/LoginHOAr");
+                    }
+                    else
+                    {
+                        return Redirect("/HO/LoginHOEn");
+
+                    }
                 }
             }
-            return Redirect("/HO/LoginHOEn");
+
+
+            if (lang == "ar")
+            {
+                return Redirect("/HO/LoginHOAr");
+            }
+            else
+            {
+                return Redirect("/HO/LoginHOEn");
+
+            }
         }
 
         public ActionResult MainScreenHOAr()
         {
-            bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             var cookie = Request.Cookies["loginCookieHO"];
+            var lang = "";
+            if (Request.Cookies["languageHO"] != null) lang = Request.Cookies["languageHO"].Value;
+
             if (cookie != null)
             {
                 var projectType = cookie.Values["projectType"].ToString();
 
-                if (projectType == "ho")
+                if (projectType == "ho") //loggedIn
                 {
-                    return View();
+
+                    if (lang == "en")
+                    {
+                        return Redirect("/HO/MainScreenHOEn");
+                    }
+                    else
+                    {
+                        Request.Cookies["languageHO"].Value = "ar";
+                        //System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                        return View();
+                    }
+
                 }
                 else
                 {
-                    return Redirect("/HO/LoginHOAr");
+                    if (lang == "ar")
+                    {
+                        return Redirect("/HO/LoginHOEn");
+                    }
+                    else
+                    {
+                        return Redirect("/HO/LoginHOAr");
+
+                    }
                 }
             }
-            return Redirect("/HO/LoginHOAr");
+
+            if (lang == "en")
+            {
+                return Redirect("/HO/LoginHOEn");
+            }
+            else
+            {
+                return Redirect("/HO/LoginHOAr");
+
+            }
         }
 
     }
