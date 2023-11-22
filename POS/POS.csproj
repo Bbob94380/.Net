@@ -362,6 +362,8 @@
     <Content Include="Pages\POSManager\POS\MoneyDelivery\Controllers\moneyDeliveryController.js" />
     <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyForm.html" />
     <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyDelivery.html" />
+    <Content Include="Pages\POSManager\POS\Nuzzle\Controllers\nuzzleController.js" />
+    <Content Include="Pages\POSManager\POS\Nuzzle\Views\nuzzle.html" />
     <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsController.js" />
     <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsHistoryController.js" />
     <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsInfoPopupController.js" />

@@ -35,6 +35,20 @@
             console.log("Factory test is successful");
         }
 
+    //allFunctions.createRequest = function (method, url, data = {}) {
+    //    return $http({
+    //        method: method,
+    //        url: "http://35.181.42.111:8080" + url,
+    //        withCredentials: true,
+    //        dataType: "json",
+    //        headers: {
+    //            "Access-Control-Allow-Origin": "http://itcherry-001-site7.atempurl.com/",
+    //            'Content-Type': 'application/json'
+    //        },
+    //        data: data
+    //    });
+    //}
+
     allFunctions.createRequest = function (method, url, data = {}) {
         return $http({
             method: method,

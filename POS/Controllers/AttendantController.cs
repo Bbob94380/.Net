@@ -118,7 +118,7 @@ namespace POS.Controllers
                     }
                     else
                     {
-                        Request.Cookies["languagePOS"].Value = "en";
+                        if (Request.Cookies["languagePOS"] != null)  Request.Cookies["languagePOS"].Value = "en";
                         //System.Web.HttpContext.Current.Response.SetCookie(cookie);
                         return View();
                     }
@@ -170,7 +170,7 @@ namespace POS.Controllers
                     }
                     else
                     {
-                        Request.Cookies["languagePOS"].Value = "ar";
+                        if (Request.Cookies["languagePOS"] != null)  Request.Cookies["languagePOS"].Value = "ar";
                         //System.Web.HttpContext.Current.Response.SetCookie(cookie);
                         return View();
                     }

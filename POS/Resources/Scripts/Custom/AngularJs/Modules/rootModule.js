@@ -110,6 +110,11 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
             templateUrl: "/Pages/POSManager/POS/Generator/Views/generatorInvoices.html",
             controller: "generatorInvoicesController"
         })
+        .state("pos.nuzzle", {
+            url: "/nuzzle",
+            templateUrl: "/Pages/POSManager/POS/Nuzzle/Views/nuzzle.html",
+            controller: "nuzzleController"
+        })
         .state("pos.eod", {
             url: "/eod",
             templateUrl: "/Pages/POSManager/POS/EOD/Views/eod.html",
@@ -168,3 +173,21 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
 rootModule.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }]);
+
+
+rootModule.run(function ($window, $rootScope) {
+    $rootScope.online = navigator.onLine;
+    $window.addEventListener("offline", function () {
+        $rootScope.$apply(function () {
+            $rootScope.online = false;
+            alert('offline');
+        });
+    }, false);
+
+    $window.addEventListener("online", function () {
+        $rootScope.$apply(function () {
+            $rootScope.online = true;
+            alert('online');
+        });
+    }, false);
+});
