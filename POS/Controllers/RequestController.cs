@@ -19,7 +19,7 @@ using System.Web.Security;
 namespace POS.Controllers
 {
     [RoutePrefix("api/Request")]
-    //[EnableCors(origins: "http://http://13.38.219.110:8080/", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://35.181.42.111:8080", headers: "*", methods: "*")]
     //[EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     public class RequestController : ApiController
     {
@@ -104,6 +104,9 @@ namespace POS.Controllers
                 {
                     var sessionId = response.Headers.GetValues("Set-Cookie").First(x => x.StartsWith("session_id"));
                     loginResponse.sessionId = sessionId.Substring(11);
+
+                    //HttpCookie sessionIdCookie = new HttpCookie("session_id", sessionId.Substring(11));
+                    //HttpContext.Current.Response.Cookies.Add(sessionIdCookie);
 
                     loginResponse.roles = await response.Content.ReadAsAsync<List<string>>();
                     responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
@@ -898,7 +901,7 @@ namespace POS.Controllers
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
                 handler.UseCookies = true;
-                handler.UseDefaultCredentials = true;
+                //handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
                 clientCookie.Path = "/";
@@ -909,7 +912,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    //client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -976,6 +979,64 @@ namespace POS.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         nozzles = await response.Content.ReadAsAsync<List<Nozzle>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = nozzles;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = null;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+        [HttpPost]
+        public async Task<string> findAvailableNozzles(Payload payload)
+        {
+
+            //variables
+            List<NozzleAvailable> nozzles = null;
+            ResponseData<List<NozzleAvailable>> responseData = new ResponseData<List<NozzleAvailable>>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = true;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/nozzle/findAvailableNozzles");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        nozzles = await response.Content.ReadAsAsync<List<NozzleAvailable>>();
                         responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
                         responseData.statusCode = response.StatusCode.ToString();
                         responseData.resultData = nozzles;

@@ -126,20 +126,20 @@ rootModule.controller('createNewReceiptPopupController', function ($scope, $root
 						}
 
 					} else {
-						swal("Oops", "Failed getting refunds", "");
+						//swal("Oops", "Failed getting refunds", "");
 					}
 
 				} else {
-					swal("Oops", "No refunds found", "");
+					//swal("Oops", "No refunds found", "");
 				}
 
 			} else {
-				swal("Oops", "Failed getting refunds", "");
+				//swal("Oops", "Failed getting refunds", "");
 			}
 
 
 		}, function (error) {
-			swal("Oops", "eee", "error");
+			//swal("Oops", "eee", "error");
 			$rootScope.showLoader = false;
 		});
 

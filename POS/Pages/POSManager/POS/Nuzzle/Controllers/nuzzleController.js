@@ -1,23 +1,18 @@
 ﻿
-rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", function ($scope, $state, $timeout, $uibModal, $http, $rootScope) {
-
-    $rootScope.receptionsList = [];
-    $rootScope.stationDOsList = [];
-    var DOList = [];
+rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$q", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $q) {
 
 
-    //localStorage.setItem("notifications", "");
-    //localStorage.setItem("stationDOs", "");
-
-
-    if (localStorage.getItem("stationDOs") !== null && localStorage.getItem("stationDOs") !== undefined && localStorage.getItem("stationDOs") !== "") DOList = JSON.parse(localStorage.getItem("stationDOs"));
-    if (DOList !== null && DOList !== undefined && DOList !== "") $rootScope.stationDOsList = DOList;
+    var promise1;
+    var promise2;
+    $scope.employeesList = [];
+    $scope.employeeNuzzlesList = [];
+    $scope.availableNuzzlesList = [];
 
     function rootFilter() {
 
         var itemSelector = ".item";
         var $checkboxes = $('.filter-item');
-        var $container = $('#receptionItems').isotope({ itemSelector: itemSelector, filter: '.example' });
+        var $container = $('#empProducts').isotope({ itemSelector: itemSelector, filter: '.example' });
 
         //Ascending order
         var responsiveIsotope = [[480, 4], [720, 6]];
@@ -192,21 +187,32 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
         //    setPagination();
         //    goToPage(1);
         //});
-
+        links = document.querySelectorAll(".pager")
+        links.forEach(function (item) {
+            item.addEventListener('click', function () {
+                //reset the color of other links
+                links.forEach(function (item) {
+                    item.style.backgroundColor = '#fff'
+                    item.style.color = '#000'
+                })
+                // apply the style to the link
+                this.style.backgroundColor = '#D80404'
+                this.style.color = '#fff'
+            });
+        })
     }
 
+  
+    function getCheckedInUsers() {
 
-    $scope.getAllWetProductTypes = function () {
-
-        //$rootScope.showLoader = true;
-        $http({
+        $rootScope.showLoader = true;
+        promise1 = $http({
             method: "POST",
-            url: "/api/Request/getAllWetProductTypes",
-            data: { sessionId: localStorage.getItem('session_id_ho') }
+            url: "/api/Request/getCheckedInUsers",
         }).then(function (response) {
 
             console.log(response);
-            //$rootScope.showLoader = false;
+            $rootScope.showLoader = false;
 
             if (response !== null && response !== undefined) {
 
@@ -214,44 +220,86 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
                     var result = JSON.parse(response.data);
 
-                    if (result.isSuccessStatusCode) {
+                    //if (result.isSuccessStatusCode) {
 
-                        $scope.wetProductsList = result.resultData;
+                    //    $scope.employeesList = result.resultData;
 
+                    //} else {
+                    //    swal("Failed getting car was options", "Please try again", "error");
+                    //    console.log(result.errorMsg);
+                    //}
 
-                    } else {
-                        //swal("Oops", "No drivers found", "");
-                    }
+                    $scope.employeesList = [
+                        {
+                            employeeId: 1,
+                            employeeName: "admin@gsm.com"
+                        },
+                        {
+                            employeeId: 2,
+                            employeeName: "admin@gsm.com"
+                        },
+                        {
+                            employeeId: 3,
+                            employeeName: "admin@gsm.com"
+                        },
+                        {
+                            employeeId: 4,
+                            employeeName: "admin@gsm.com"
+                        },
+                        {
+                            employeeId: 5,
+                            employeeName: "admin@gsm.com"
+                        },
+                        {
+                            employeeId: 6,
+                            employeeName: "admin@gsm.com"
+                        },
+                        {
+                            employeeId: 7,
+                            employeeName: "admin@gsm.com"
+                        },
+                        {
+                            employeeId: 8,
+                            employeeName: "admin@gsm.com"
+                        }
+
+                    ];
+
+                    setTimeout(function () {
+                        rootFilter();
+                    }, 1);
 
                 } else {
-                    //swal("Oops", "No drivers found", "");
+                    //swal("Failed getting car was options", "Please try again", "error");
                 }
 
             } else {
-                //swal("Oops", "Failed getting drivers", "");
+                //swal("Failed getting car was options", "Please try again", "error");
             }
 
 
         }, function (error) {
-            //swal("Oops", "Failed getting drivers", "");
-            //$rootScope.showLoader = false;
+            //swal("Failed getting car was options", "Please try again", "error");
+            $rootScope.showLoader = false;
+            console.log(error);
         });
 
-    };
+    }
 
-    $scope.getAllWetProductTypes();
+    getCheckedInUsers();
 
-    function getAllReception() {
 
-        $rootScope.showLoader = true;
-        $http({
+    function findAvailableNozzles() {
+
+        //$rootScope.showLoader = true;
+        promise2 = $http({
             method: "POST",
-            url: "/api/SmApi/getAllReception",
+            url: "/api/Request/findAvailableNozzles",
             data: { sessionId: localStorage.getItem('session_id_sm') }
         }).then(function (response) {
 
             console.log(response);
-            $rootScope.showLoader = false;
+            //$rootScope.showLoader = false;
 
             if (response !== null && response !== undefined) {
 
@@ -261,103 +309,147 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
                     if (result.isSuccessStatusCode) {
 
-                        var list = result.resultData;
-
-                        for (var i = 0; i < list.length; i++) {
-
-                            var statusStyle = "";
-
-                            if (list[i].status === "FILLING") statusStyle = "reception-item-status-filling";
-                            if (list[i].status === "DELIVERED") statusStyle = "reception-item-status-delivered";
-
-                            $rootScope.receptionsList.push({
-                                hideFillingBtn: true,
-                                statusStyle: statusStyle,
-                                item: list[i],
-                                id: list[i].id,
-                                supplierName: list[i].supplierName,
-                                driverName: list[i].driverName,
-                                status: list[i].status,
-                                fuelAmounts: list[i].receivedSubTanks,
-                                creationDate: list[i].creationDate,
-                                creator: list[i].creator,
-                                deliveryDate: list[i].receptionDate,
-                            });
-                        }
-
-                        for (var j = 0; j < $rootScope.receptionsList.length; j++) {
-
-                            for (var z = 0; z < $rootScope.receptionsList[j].fuelAmounts.length; z++) {
-
-                                for (var x = 0; x < $scope.wetProductsList.length; x++) {
-
-                                    if ($rootScope.receptionsList[j].fuelAmounts[z].wetProductId === $scope.wetProductsList[x].id) {
-                                        $rootScope.receptionsList[j].fuelAmounts[z].wetProductType = $scope.wetProductsList[x].name;
-                                    }
-                                }
-                            }
-
-                        }
-
-                        $rootScope.receptionsList.push.apply($rootScope.receptionsList, $rootScope.stationDOsList);
-
-                        setTimeout(function () {
-                            rootFilter();
-                        }, 1);
+                        $scope.availableNuzzlesList = result.resultData;
+                        console.log($scope.availableNuzzlesList);
 
                     } else {
-                        //swal("Oops", "Failed getting receptions", "");
+                        //swal("Failed getting station manager name", "Please try again", "error");
+                        //console.log(result.errorMsg);
                     }
 
                 } else {
-                    //swal("Oops", "Failed getting receptions", "");
+                    //swal("Failed getting station manager name", "Please try again", "error");
                 }
 
             } else {
-                //swal("Oops", "Failed getting receptions", "");
+                //swal("Failed getting station manager name", "Please try again", "error");
             }
 
 
         }, function (error) {
-                //swal("Oops", "Failed getting receptions", "");
-            $rootScope.showLoader = false;
+            //swal("Failed getting station manager name", "Please try again", "error");
+            //$rootScope.showLoader = false;
+            console.log(error);
         });
 
     };
 
-    getAllReception();
+    findAvailableNozzles();
 
-    $scope.goToReceptionPage = function (reception) {
 
-        if (reception.hideFillingBtn !== true) {
 
-            $timeout(function () {
-                $state.go('pos.createReception', {
-                    item: reception
+    $q.all([promise1, promise2]).then(function (result) {
+        dd();
+    });
+
+
+    function dd() {
+
+        var chain = $q.when();
+        angular.forEach($scope.employeesList, function (item) {
+            chain = chain.then(function () {
+                return $http({
+                    method: "POST",
+                    url: "/api/Request/findNozzlesAccordingToEmployee",
+                    data: { sessionId: localStorage.getItem('session_id_sm'), employeeId: item.employeeId }
+                }).then(function (response) {
+
+                    if (response !== null && response !== undefined) {
+
+                        if (response.data !== null && response.data !== undefined) {
+
+                            var result = JSON.parse(response.data);
+
+                            if (result.isSuccessStatusCode) {
+
+                                var obj = {
+                                    nuzzles : result.resultData,
+                                    employee: item,
+                                }
+
+                                $scope.employeeNuzzlesList.push(obj);
+
+                            }
+
+                        }
+
+                    }
+
+
+                }, function (error) {
+                    console.log(error);
                 });
-            })
-
-        } else {
-
-            $timeout(function () {
-                $state.go('pos.receptionInfo', {
-                    item: reception.item
-                });
-            })
-        }
-    };
-
-
-    $scope.goToHistoryPage = function () {
-
-        $timeout(function () {
-            $state.go('pos.receptionHistory', {
-                item: null
             });
-        })
+        });
 
-    };
+        // the final chain object will resolve once all the posts have completed.
+        chain.then(function () {
+            console.log('all done!');
 
+            console.log($scope.employeeNuzzlesList);
+
+
+            for (var i = 0; i < $scope.availableNuzzlesList.length; i++) {
+
+                var av = $scope.availableNuzzlesList[i];
+                av.isAvailable = true;
+
+                for (var j = 0; j < $scope.employeeNuzzlesList.length; j++) {
+
+                    if (av.id === $scope.employeeNuzzlesList[j].id) {
+                        av.isAvailable = false;
+                        break;
+                    }
+
+                }
+            }
+
+            $scope.ff = [];
+            $scope.mm = [];
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+            $scope.mm.push($scope.availableNuzzlesList[0]);
+
+
+            var index = 0;
+
+            for (var z = 0; z < $scope.mm.length; z++) {
+
+                var nuzzles = [];
+                var d = {};
+                
+                nuzzles.push($scope.mm[z]);
+
+                if (z % 4 === 0) {
+
+                    d = {
+                        id: index,
+                        nuzzles: nuzzles
+                    };
+                    $scope.ff.push(d);
+                    index++;
+                }
+
+            }
+
+
+            
+
+            console.log($scope.ff);
+
+
+        });
+
+    }
 
 }]);
 
