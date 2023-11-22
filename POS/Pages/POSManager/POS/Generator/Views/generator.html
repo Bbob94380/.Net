@@ -14,8 +14,7 @@
             </div>
             <div class="col-sm-9">
                 <div class="input-group input-group-sm input-group-receipts">
-                    <span ng-click="goToInvoicesPage()" style="cursor: pointer;background:#32ACD1" class="receipts-history-btn">Invoice</span>
-                    <span ng-click="addInvoice()" style="cursor: pointer;background:#0E8019" class="receipts-history-btn">Add Invoice</span>
+                    <span ng-click="goToInvoicesPage()" style="cursor: pointer;background:#32ACD1" class="receipts-history-btn">Subscriptions</span>
                     <span ng-click="openCreateNewCustomerPopup()" style="cursor: pointer" class="receipts-create-btn">Create New Customer</span>
                     <span ng-click="goToHistoryPage()" style="cursor: pointer" class="receipts-history-btn">History</span>
                     <div class="form-group has-search">
@@ -39,13 +38,13 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10%">ID</th>
-                                    <th style="width: 15%">CUSTOMER</th>
+                                    <th style="width: 10%">CUSTOMER</th>
                                     <th style="width: 10%">TYPE</th>
-                                    <th style="width: 15%">MOBILE</th>
+                                    <th style="width: 10%">MOBILE</th>
                                     <th style="width: 10%">INVOICES</th>
                                     <th style="width: 10%">Unpaid Invoicies</th>
                                     <th style="width: 10%">Total Amount</th>
-                                    <th style="width: 20%"></th>
+                                    <th style="width: 15%"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,7 +57,7 @@
                                     <td>{{customer.unpaidInvoicesCount}}</td>
                                     <td>{{customer.totalAmount}}</td>
                                     <td>
-                                        <span ng-click="openSubscriptionPopup(customer)" style="cursor: pointer" class="receipts-create-btn">Create Subscription</span>
+                                        <span ng-click="openSubscriptionPopup(customer)" style="cursor: pointer; background:#0E8019" class="receipts-create-btn">Create Subscription</span>
                                     </td>
                                 </tr>
                             </tbody>

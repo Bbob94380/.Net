@@ -14,11 +14,13 @@ rootModule.controller('createNewSubscriptionPopupController', function ($scope, 
 			"beginCounter": 0.0
 		}
 		commonHelper.createRequest("POST", "/FPOS/rest/generatorSubscription/create", subscriptionData).then(function (response) {
+			subscription_id = response.data.id;
 			$scope.closeModal();
 		});
 	}
 
 	$scope.handleServiceTypeChanged = function ($event) {
+		// TODO/
 		if ($event.srcElement.value == "OPEN_USAGE") {
 			$scope.ampPrice = 25;
 		} else {

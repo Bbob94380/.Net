@@ -20,6 +20,11 @@
 		selectFilter($event.srcElement.id);
 	}
 
+
+	$("#customersSearchField").on('keyup', function () {
+		$('#customersHistoryTable').dataTable().fnFilter(this.value);
+	});
+
 	minDate = new DateTime('#min', {
 		format: 'MMMM Do YYYY'
 	});
@@ -30,9 +35,22 @@
 	$common_helper.createRequest("GET", "/FPOS/rest/generatorCustomer/history")
 		.then(function (response) {
 			$scope.customerList = response.data;
-			$('#customersHistoryTable').DataTable().column(2).draw();
 		});
-
+	$scope.openSubscriptionPopup = function (customer) {
+		
+		var modalInstance = $uibModal.open({
+			animate: true,
+			templateUrl: '/Pages/POSManager/POS/Generator/Views/createNewSubscriptionPopup.html',
+			controller: 'createNewSubscriptionPopupController',
+			scope: $scope,
+			windowClass: 'show',
+			resolve: {
+				data: function () {
+					return { transactionItem: "11", "customer": customer };
+				}
+			}
+		});
+	}
 
 }]);
 

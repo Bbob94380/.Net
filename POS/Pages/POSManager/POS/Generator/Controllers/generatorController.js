@@ -1,7 +1,4 @@
-﻿
-
-rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", "commonHelper", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService, $common_helper) {
-
+﻿rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", "commonHelper", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService, $common_helper) {
 	function unselectAllfilters() {
 		var filtersIds = ["clear-filters", "kw-filter", "ampere-filter"];
 		filtersIds.forEach((filterbuttonId) => {
@@ -12,12 +9,14 @@ rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$
 		$("#" + filterId).css({ "backgroundColor": "#D80404", "color": "white" });
 	}
 
+	selectFilter("clear-filters");
+
 	$rootScope.showLoader = true;
 	$("#generatorSearchTextField").on('keyup', function () {
 		$('#customersTable').dataTable().fnFilter(this.value);
 	});
 
-	selectFilter("clear-filters");
+	
 
 	$common_helper.createRequest("GET", "/FPOS/rest/generatorCustomer/findAll")
 	.then(function (response) {
@@ -52,6 +51,12 @@ rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$
 			$state.go('pos.generatorInvoices');
 		});
 	}
+
+	/*$scope.goToSubscriptionsPage = function () {
+		$timeout(function () {
+			$state.go('pos.generatorSubscriptions');
+		});
+	}*/
 	$scope.openCreateNewCustomerPopup = function () {
 
 		var modalInstance;
@@ -115,11 +120,7 @@ rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$
 		})
 
 	};
-
-
-
-	$scope.addInvoice = function () {
-		console.log("Add Invoice has been called");
+	/*$scope.addInvoice = function (customer) {
 		var modalInstance;
 
 		modalInstance = $uibModal.open({
@@ -130,13 +131,13 @@ rootModule.controller("generatorController", ["$scope", "$state", "$timeout", "$
 			windowClass: 'show',
 			resolve: {
 				data: function () {
-					return { transactionItem: "11" };
+					return { transactionItem: "11", customer: customer };
 				}
 			}
 		});
 
 		modalInstance.result.then(function (Result) {}, function () {});
-	}
+	}*/
 
 	$scope.openSubscriptionPopup = function (customer) {
 		console.log("customer was passed: ", customer);

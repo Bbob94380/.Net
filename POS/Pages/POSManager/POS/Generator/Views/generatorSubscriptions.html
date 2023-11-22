@@ -6,7 +6,7 @@
                 <a ui-sref="pos.generator" class="nav-link back-btn" href="#!/pos/generator">
                     &lt; Back
                 </a>
-                <h1 class="pos-section-title">Generator Subscriptions</h1>
+                <h1 class="pos-section-title">Generator Invoices</h1>
             </div>
         </div>
         <div class="row col-sm-12" style="margin-top: 2em;">
@@ -35,33 +35,29 @@
             <div class="col-12">
                 <div class="card-table-generator">
                     <div class="card-body table-responsive p-0">
-                        <table id="dataTableId" table-jquery class="table table-hover  table-condensed text-nowrap table-trans">
+                        <table id="dataTableId" table-jquery  class="table table-hover  table-condensed text-nowrap table-trans">
                             <thead>
                                 <tr>
                                     <th style="width: 10%">ID</th>
-                                    <th style="width: 15%">CUSTOMER NAME</th>
+                                    <th style="width: 15%">CUSTOMERS</th>
                                     <th style="width: 15%">TYPE</th>
-                                    <!--<th style="width: 15%">MOBILE</th>-->
-                                    <th style="width: 15%">FROM-TO</th>
-                                    <!--<th style="width: 15%">Total Amount</th>-->
+                                    <th style="width: 15%">MOBILE</th>
+                                    <th style="width: 15%">INVOICES</th>
+                                    <th style="width: 15%">Total Amount</th>
                                     <th style="width: 15%">STATUS</th>
-                                    <th style="width: 15%"></th>
-                                </tr>
-                            </thead>
+</thead>
                             <tbody>
-                                <tr ng-repeat="subscription in subscriptionsList" ng-click="viewInvoice(item)">
-                                    <td>{{subscription.id}}</td>
-                                    <td>{{subscription.customer_id}}</td>
-                                    <td>{{ subscription.serviceType == "OPEN_USAGE" ? "AM" : "KW" }}</td>
-                                    <td>{{ subscription.startDate }} - {{ subscription.endDate }}</td>
-                                    <td style="color: {{subscription.payStatus == 'PAID' ? 'green' : 'red' }}">{{subscription.payStatus}}</td>
-                                    <td>
-                                        <span ng-click="addInvoice()" style="cursor: pointer;background:#0E8019" class="receipts-history-btn">Add Invoice</span>
-                                    </td>
+                                <tr ng-repeat="item in GeneratorList" ng-click="goToCustomerInvoices(item)">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.Customer}}</td>
+                                    <td>{{item.Type}}</td>
+                                    <td>{{item.Mobile}}</td>
+                                    <td>{{item.Invoice}}</td>
+                                    <td>{{item.unPaid}}</td>
+                                    <td>{{item.total}}</td>
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                     <!-- /.card-body -->
                 </div>

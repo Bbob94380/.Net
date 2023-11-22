@@ -1,7 +1,6 @@
 ﻿<div class="modal-header" style="background: #F3F3F3;">
     <div class="popUpHeader">
         <h5 class="modal-title">Adding Invoice</h5>
-        <h6 class="modal-title">&lt;Invoice ID&gt; - Adding Invoice</h6>
     </div>
     <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
         <span aria-hidden="true">&times;</span>
@@ -10,13 +9,9 @@
 <div class="modal-body" style="padding: 2rem;">
 
     <div class="row" style="padding: 1em; border-bottom: 1px solid #E6E6E6; margin-bottom: 4em;">
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">Invoice ID</span> <br>
-            <h6>&lt;Invoice ID&gt;</h6>
-        </div>
-        <div class="col-2" style="padding-left: 1em;">
-            <span class="PopUpFuelHeaderTitleSpan">Station Manager</span> <br>
-            <h6>&lt;Station Manager Name&gt;</h6>
+        <div class="col-3">
+            <span class="PopUpFuelHeaderTitleSpan">Customer Name</span> <br>
+            <h6>{{ customer.name }}</h6>
         </div>
         <div class="col-7">
             From: <input class="date-filter-input generator-medium-input-field" type="text" id="min" name="min">
@@ -24,7 +19,7 @@
             <span ng-click="applyfilter()" style="cursor: pointer" class="receipts-create-btn">Filter</span>
         </div>
         <div class="col-1">
-              Kw <input class="generator-small-input-field" type="text" value="2.5$">
+              Kw <input class="generator-small-input-field" type="text" value="{{ $scope.kwPrice }}">
         </div>
     </div>
 

@@ -110,6 +110,11 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
             templateUrl: "/Pages/POSManager/POS/Generator/Views/generatorInvoices.html",
             controller: "generatorInvoicesController"
         })
+        .state("generatorSubscriptions", {
+            url: "/generatorSubscriptions",
+            templateUrl: "/Pages/POSManager/POS/Generator/Views/generatorSubscriptions.html",
+            controller: "generatorSubscriptionsController"
+        })
         .state("pos.eod", {
             url: "/eod",
             templateUrl: "/Pages/POSManager/POS/EOD/Views/eod.html",

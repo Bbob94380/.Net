@@ -1,5 +1,6 @@
-﻿rootModule.controller("generatorInvoicesController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", "commonHelper", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService, $common_helper) {
+﻿rootModule.controller("generatorSubscriptionsController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", "commonHelper", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $filter, filterTableListService, $common_helper) {
 
+	console.log("Inside new controller");
 	function unselectAllfilters() {
 		var filtersIds = ["clear-filters", "kw-filter", "ampere-filter"];
 		filtersIds.forEach((filterbuttonId) => {
@@ -22,32 +23,16 @@
 
 	$scope.goToHistoryPage = function (person) {
 		$timeout(function () {
+			console.log("Viewing generator history page.")
 			$state.go('pos.generatorHistory');
 		})
+
 	};
 	$common_helper.createRequest("GET", "/FPOS/rest/generatorSubscription/findAll").then(function (response) {
 		console.log("Retrieved Customer Subscriptions");
 		$scope.subscriptionsList = response.data;
 	});
 
-	$scope.addInvoice = function (customer) {
-		var modalInstance;
-
-		modalInstance = $uibModal.open({
-			animate: true,
-			templateUrl: '/Pages/POSManager/POS/Generator/Views/addInvoicePopup.html',
-			controller: 'addInvoicePopupController',
-			scope: $scope,
-			windowClass: 'show',
-			resolve: {
-				data: function () {
-					return { transactionItem: "11", customer: customer };
-				}
-			}
-		});
-
-		modalInstance.result.then(function (Result) { }, function () { });
-	}
 
 }]);
 

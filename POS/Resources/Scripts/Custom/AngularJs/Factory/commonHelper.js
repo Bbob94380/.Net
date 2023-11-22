@@ -36,9 +36,10 @@
         }
 
     allFunctions.createRequest = function (method, url, data = {}) {
+        console.log("Inside common helper");
         return $http({
             method: method,
-            url: "http://localhost:8080" + url,
+            url: "http://35.181.42.111:8080/" + url,
             withCredentials: true,
             dataType: "json",
             headers: {

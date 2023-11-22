@@ -1,5 +1,7 @@
-﻿rootModule.controller('addInvoicePopupController', function ($scope, $rootScope, $uibModal, $http, $filter, $uibModalInstance, data) {
+﻿rootModule.controller('addInvoicePopupController', function ($scope, $rootScope, $uibModal, $http, $filter, $uibModalInstance, data, commonHelper) {
 
+	console.log("Customer: ", data.customer);
+	$scope.customer = data.customer;
 	function unselectAllfilters() {
 		var filtersIds = ["popup-kw-filter", "popup-ampere-filter"];
 		filtersIds.forEach((filterbuttonId) => {
@@ -20,22 +22,20 @@
 		selectFilter($event.srcElement.id);
 	}
 
-	$rootScope.showLoader = true;
+	/*$rootScope.showLoader = true;*/
 
-	$http({
-		method: "GET",
-		url: "http://localhost:8080/FPOS/rest/generatorInvoice/findAll",
-		withCredentials: true,
-		headers: {
-			"Access-Control-Allow-Origin": "http://localhost:44346",
-		},
-	}).then(function (response) {
-		console.log("Received invoices list");
-		console.log(response.data);
-		$scope.invoicesList = response.data;
+	console.log("Calling request from insidde controller");
+	commonHelper.create_request("GET", "/FPOS/rest/generatorSubscription/getKwPrice").then(function (response) {
+		console.log("KW Price: ", response.data);
+		$scope.kwPrice = response.data;
+		commonHelper.create_request("GET", "/FPOS/rest/generatorInvoice/findAll")
+			.then(function (response) {
+				console.log("Received invoices list");
+				console.log(response.data);
+				$scope.invoicesList = response.data;
+				/*$rootScope.showLoader = true;*/
+			});
 	});
-
-	$rootScope.showLoader = false;
 
 	$scope.closeModal = function () {
 		$uibModalInstance.close();
