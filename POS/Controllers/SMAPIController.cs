@@ -92,7 +92,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -104,7 +104,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -150,7 +150,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -162,7 +162,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -208,7 +208,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -220,7 +220,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -265,7 +265,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -277,7 +277,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -322,7 +322,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -334,7 +334,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -378,7 +378,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -390,7 +390,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -441,7 +441,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -453,7 +453,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -499,7 +499,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -511,7 +511,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -556,7 +556,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -568,7 +568,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -614,7 +614,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -626,7 +626,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -671,7 +671,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -683,7 +683,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -728,7 +728,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -740,7 +740,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -786,7 +786,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -798,7 +798,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -843,7 +843,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -855,7 +855,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -901,7 +901,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -913,7 +913,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -959,7 +959,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -971,7 +971,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1016,7 +1016,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1028,7 +1028,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1072,7 +1072,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1084,7 +1084,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1131,7 +1131,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1143,7 +1143,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1188,7 +1188,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1200,7 +1200,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1249,7 +1249,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1261,7 +1261,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1306,7 +1306,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1318,7 +1318,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1365,7 +1365,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1377,7 +1377,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1422,7 +1422,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1434,7 +1434,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -1485,7 +1485,7 @@ namespace POS.Controllers
                 //Add cookie
                 WebRequestHandler handler = new WebRequestHandler();
                 handler.CookieContainer = new System.Net.CookieContainer();
-                handler.UseCookies = true;
+                handler.UseCookies = false;
                 handler.UseDefaultCredentials = true;
                 Cookie clientCookie = new Cookie("session_id", payload.sessionId);
                 clientCookie.Domain = Request.RequestUri.Host;
@@ -1497,7 +1497,7 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 

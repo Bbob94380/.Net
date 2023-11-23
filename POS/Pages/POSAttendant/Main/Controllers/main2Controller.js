@@ -1,4 +1,4 @@
-﻿posAttendantRootModule.controller("main2Controller", ["$scope", "$uibModal", "$http", "$rootScope", "$translate", "commonAttendantHelper", function ($scope, $uibModal, $http, $rootScope, $translate, $common_helper) {
+﻿posAttendantRootModule.controller("main2Controller", ["$scope", "$uibModal", "$http", "$rootScope", "$translate", "commonAttendantHelper", "$filter", function ($scope, $uibModal, $http, $rootScope, $translate, $common_helper, $filter) {
 
     var modalInstanceRate = null;
     var totalLeb = 0;
@@ -219,21 +219,21 @@
                         localStorage.setItem('dollarRate', result.resultData);
 
                     } else {
-                        swal("Failed getting currency ratio", "", "error");
+                        swal($filter('translate')('failedGetCurrentRatio'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting currency ratio", "", "error");
+                    swal($filter('translate')('failedGetCurrentRatio'), "", "error");
                 }
 
             } else {
-                swal("Failed getting currency ratio", "", "error");
+                swal($filter('translate')('failedGetCurrentRatio'), "", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting currency ratio", "", "error");
+                swal($filter('translate')('failedGetCurrentRatio'), "", "error");
             //$rootScope.showLoader = false;
             console.log(error);
         });
@@ -327,20 +327,20 @@
                                 localStorage.setItem("transList", JSON.stringify($rootScope.transactionsList));
 
                             } else {
-                                swal("Oops", "Failed getting product id", "");
+                                //swal("Oops", "Failed getting product id", "");
                             }
 
                         } else {
-                            swal("Oops", "Failed getting product id", "");
+                            //swal("Oops", "Failed getting product id", "");
                         }
 
                     } else {
-                        swal("Oops", "Failed getting product id", "");
+                        //swal("Oops", "Failed getting product id", "");
                     }
 
 
                 }, function (error) {
-                    swal("Oops", "eee", "error");
+                    //swal("Oops", "eee", "error");
                     $rootScope.showLoader = false;
                 });
         }
@@ -542,21 +542,21 @@
                         $rootScope.profileName = $scope.employeeName.slice(0, 2).toUpperCase();
 
                     } else {
-                        swal("Failed getting user info", "Please try again", "error");
+                        swal($filter('translate')('failedGetUserInfo'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting user info", "Please try again", "error");
+                    swal($filter('translate')('failedGetUserInfo'), "", "error");
                 }
 
             } else {
-                swal("Failed getting user info", "Please try again", "error");
+                swal($filter('translate')('failedGetUserInfo'), "", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting user info", "Please try again", "error");
+                swal($filter('translate')('failedGetUserInfo'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -603,7 +603,7 @@
 
                         console.log(result.resultData);
                         if (result.resultData) {
-                            swal("You have already opened a shift today", "", "warning");
+                            swal($filter('translate')('AlreadyOpenShift'), "", "warning");
 
                         } else {
 
@@ -631,20 +631,20 @@
                         }
 
                     } else {
-                        swal("Oops", "Failed checking if employee has an open session id", "");
+                        swal($filter('translate')('failedCheckOpenShift'), "", "error");
                     }
 
                 } else {
-                    swal("Oops", "Failed checking if employee has an open session id", "");
+                    swal($filter('translate')('failedCheckOpenShift'), "", "error");
                 }
 
             } else {
-                swal("Oops", "Failed checking if employee has an open session id", "");
+                swal($filter('translate')('failedCheckOpenShift'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Oops", "Failed checking if employee has an open session id", "");
+                swal($filter('translate')('failedCheckOpenShift'), "", "error");
             $rootScope.showLoader = false;
         });
 

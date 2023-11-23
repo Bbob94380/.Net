@@ -1,4 +1,4 @@
-﻿posAttendantRootModule.controller("dryMenuController", ["$scope", "$uibModal", "$http", "$timeout", "$rootScope", function ($scope, $uibModal, $http, $timeout, $rootScope) {
+﻿posAttendantRootModule.controller("dryMenuController", ["$scope", "$uibModal", "$http", "$timeout", "$rootScope", "$filter", function ($scope, $uibModal, $http, $timeout, $rootScope, $filter) {
 
     var dryItemsList = [];
     $scope.totalItems = [];
@@ -130,21 +130,21 @@
                         }, 50);
 
                     } else {
-                        swal("Oops", "Failed getting dry products", "");
+                        swal($filter('translate')('failedgetDryProducts'), "", "error");
                     }
 
                 } else {
-                    swal("Oops", "No dry products found", "");
+                    swal($filter('translate')('failedgetDryProducts'), "", "error");
                 }
 
             } else {
-                swal("Oops", "Failed getting dry products", "");
+                swal($filter('translate')('failedgetDryProducts'), "", "error");
             }
 
 
 
         }, function (error) {
-                swal("Oops", "eee", "error");
+                swal($filter('translate')('failedgetDryProducts'), "", "error");
                 $rootScope.showLoader = false;
         });
 
@@ -172,7 +172,7 @@
             $scope.totalDollar += $rootScope.dryItemsList[i].totalIt;
         }
         $scope.totalLL = $scope.totalDollar * 100000;
-        $scope.totalLL = $scope.totalLL + " L.L";
+        $scope.totalLL = $scope.totalLL + " "+ $filter('translate')('LL');
         $scope.totalDollar = "$" + $scope.totalDollar;
     }
 
@@ -208,7 +208,7 @@
 
 
             if ($rootScope.dryItemsList[i].qtyItem === 0 || $rootScope.dryItemsList[i].qtyItem === "0" || $rootScope.dryItemsList[i].qtyItem === undefined || $rootScope.dryItemsList[i].qtyItem === null || $rootScope.dryItemsList[i].qtyItem === "") {
-                swal("Please add item qty", "", "warning");
+                swal($filter('translate')('addItemQty'), "", "warning");
                 return;
             }
 

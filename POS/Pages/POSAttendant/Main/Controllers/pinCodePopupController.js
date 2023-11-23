@@ -1,12 +1,12 @@
 ﻿
-posAttendantRootModule.controller('pinCodePopupController', function ($scope, $rootScope, $http, $uibModalInstance, data, $uibModal) {
+posAttendantRootModule.controller('pinCodePopupController', function ($scope, $rootScope, $http, $uibModalInstance, data, $uibModal, $filter) {
 
 
     $scope.backBtnClicked = function (pinCodeValue) {
 
 
         if (pinCodeValue === null || pinCodeValue === undefined || pinCodeValue === "") {
-            swal("Please add your pin code", "", "warning");
+            swal($filter('translate')('addPinCode'), "", "warning");
             return;
         }
 
@@ -38,17 +38,17 @@ posAttendantRootModule.controller('pinCodePopupController', function ($scope, $r
 
                 } else {
                     localStorage.setItem('session_id', '');
-                    swal("Oops", "Verfication failed", "");
+                    swal($filter('translate')('VerficationFailed'), "", "error");
                 }
 
             } else {
                 localStorage.setItem('session_id', '');
-                swal("Oops", "Verfication failed", "");
+                swal($filter('translate')('VerficationFailed'), "", "error");
             }
 
         }, function (error) {
                 localStorage.setItem('session_id', '');
-                swal("Oops", "Verfication failed", "");
+                swal($filter('translate')('VerficationFailed'), "", "error");
                 $rootScope.showLoader = false;
         });
 

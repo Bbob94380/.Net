@@ -60,16 +60,16 @@ posAttendantRootModule.controller('employeeLoginPopupController', function ($sco
                      ];
 
                 } else {
-                    swal("Failed getting car was options", "Please try again", "error");
+                    swal($filter('translate')('failedGetCheckedIn'), "", "error");
                 }
 
             } else {
-                swal("Failed getting car was options", "Please try again", "error");
+                swal($filter('translate')('failedGetCheckedIn'), "", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting car was options", "Please try again", "error");
+                swal($filter('translate')('failedGetCheckedIn'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });

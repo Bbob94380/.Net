@@ -72,21 +72,21 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
                         $scope.servicesList = result.resultData;
 
                     } else {
-                        swal("Failed getting services", "Please try again", "error");
+                        swal($filter('translate')('failedGetServices'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting services", "Please try again", "error");
+                    swal($filter('translate')('failedGetServices'), "", "error");
                 }
 
             } else {
-                swal("Failed getting services", "Please try again", "error");
+                swal($filter('translate')('failedGetServices'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Failed getting services", "Please try again", "error");
+                swal($filter('translate')('failedGetServices'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -131,21 +131,21 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
                        
 
                     } else {
-                        swal("Failed getting customers", "Please try again", "error");
+                        //swal("Failed getting customers", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting services", "Please try again", "error");
+                    //swal("Failed getting services", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting services", "Please try again", "error");
+                //swal("Failed getting services", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting services", "Please try again", "error");
+            //swal("Failed getting services", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -185,7 +185,7 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
             $scope.displayCounterResult[2] === null || $scope.displayCounterResult[2] === undefined || $scope.displayCounterResult[2] === "" || $scope.displayCounterResult[2] === "0" || $scope.displayCounterResult[2] === 0 ||
             $scope.address === null || $scope.address === undefined || $scope.address === "") {
 
-            swal("Please fill all fields", "", "warning");
+            swal($filter('translate')('fillAllRequiredFields'), "", "warning");
             return;
         }
 
@@ -239,25 +239,25 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
                             $scope.displayCounterResult[4] = '0';
                             $scope.displayCounterResult[5] = 0;
                             $scope.displayCounterResult[6] = 0;
-                            swal("Customer created successfully", "", "success");
+                            swal($filter('translate')('customerCreatedSuccessfully'), "", "success");
                         }
 
                     } else {
-                        swal("Failed creating customer", "Please try again", "error");
+                        swal($filter('translate')('failedCreatingCustomer'), "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed creating customer", "Please try again", "error");
+                    swal($filter('translate')('failedCreatingCustomer'), "Please try again", "error");
                 }
 
             } else {
-                swal("Failed creating customer", "Please try again", "error");
+                swal($filter('translate')('failedCreatingCustomer'), "Please try again", "error");
             }
 
 
         }, function (error) {
-                swal("Failed creating customer", "Please try again", "error");
+                swal($filter('translate')('failedCreatingCustomer'), "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -306,7 +306,7 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
             $scope.displayCounterResult[3] === null || $scope.displayCounterResult[3] === undefined || $scope.displayCounterResult[3] === "" || $scope.displayCounterResult[3] === "0" || $scope.displayCounterResult[3] === 0 ||
             $scope.displayCounterResult[4] === null || $scope.displayCounterResult[4] === undefined || $scope.displayCounterResult[4] === "" || $scope.displayCounterResult[4] === "0" || $scope.displayCounterResult[4] === 0) {
 
-            swal("Please fill all fields", "", "warning");
+            swal($filter('translate')('fillAllRequiredFields'), "", "warning");
             return;
         }
 

@@ -34,7 +34,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
     //Initialization
     $scope.totalLL = data.totalLL + " " +$filter('translate')('LL');
-    $scope.totalDollar = data.totalDollar + "$";
+    $scope.totalDollar = "$" + data.totalDollar ;
 
     $rootScope.employeeName = data.employeeName;
     $rootScope.employeeId = data.employeeId;
@@ -144,6 +144,10 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
     //getCurrentUser();
 
+    $scope.close = function () {
+
+        $uibModalInstance.dismiss('cancel');
+    }
 
     function getTransactionMainId() {
 
@@ -168,21 +172,21 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
                         $rootScope.mainTransId = result.resultData;
 
                     } else {
-                        swal("Failed getting user info", "Please try again", "error");
+                        //swal("Failed getting user info", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting user info", "Please try again", "error");
+                    //swal("Failed getting user info", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting user info", "Please try again", "error");
+                //swal("Failed getting user info", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting user info", "Please try again", "error");
+            //swal("Failed getting user info", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -419,7 +423,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
             (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0) &&
             (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
 
-            swal("Oops", "Please enter your payment method information", "warning");
+            swal($filter('translate')('addPaymentInfo'), "", "warning");
             return;
 
         }
@@ -432,7 +436,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
                 (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0) &&
                 (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0)) {
 
-                swal("Oops", "Please enter your payment method information", "warning");
+                swal($filter('translate')('addPaymentInfo'), "", "warning");
                 return;
 
             }
@@ -444,7 +448,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
                 (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0) &&
                 (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
 
-                swal("Oops", "Please enter your payment method information", "warning");
+                swal($filter('translate')('addPaymentInfo'), "", "warning");
                 return;
 
             }
@@ -607,25 +611,25 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
                     if (result.isSuccessStatusCode) {
 
-                        swal("Great", "The payment process was completed successfully", "success");
+                        swal($filter('translate')('paymentSucceeded'), "", "success");
                         $uibModalInstance.close('Succeeded');
 
                     } else {
-                        swal("Payment failed", "Please try again", "error");
+                        swal($filter('translate')('paymentFailed'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Payment failed", "Please try again", "error");
+                    swal($filter('translate')('paymentFailed'), "", "error");
                 }
 
             } else {
-                swal("Payment failed", "Please try again", "error");
+                swal($filter('translate')('paymentFailed'), "", "error");
             }
 
 
         }, function (error) {
-            swal("Payment failed", "Please try again", "error");
+                swal($filter('translate')('paymentFailed'), "", "error");
             $rootScope.showLoader = false;
                 console.log(error);
         });
@@ -647,7 +651,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
             (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0) &&
             (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
 
-            swal("Oops", "Please enter your payment method information", "warning");
+            swal($filter('translate')('addPaymentInfo'), "", "warning");
             return;
 
         }
@@ -660,7 +664,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
                 (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0) &&
                 (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0)) {
 
-                swal("Oops", "Please enter your payment method information", "warning");
+                swal($filter('translate')('addPaymentInfo'), "", "warning");
                 return;
 
             }
@@ -672,7 +676,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
                 (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0) &&
                 (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
 
-                swal("Oops", "Please enter your payment method information", "warning");
+                swal($filter('translate')('addPaymentInfo'), "", "warning");
                 return;
 
             }
@@ -835,25 +839,25 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
                     if (result.isSuccessStatusCode) {
 
-                        swal("Great", "The payment process was completed successfully", "success");
+                        swal($filter('translate')('paymentSucceeded'), "", "success");
                         $uibModalInstance.close('Succeeded');
 
                     } else {
-                        swal("Payment failed", "Please try again", "error");
+                        swal($filter('translate')('paymentFailed'), "", "success");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Payment failed", "Please try again", "error");
+                    swal($filter('translate')('paymentFailed'), "", "success");
                 }
 
             } else {
-                swal("Payment failed", "Please try again", "error");
+                swal($filter('translate')('paymentFailed'), "", "success");
             }
 
 
         }, function (error) {
-            swal("Payment failed", "Please try again", "error");
+                swal($filter('translate')('paymentFailed'), "", "success");
             $rootScope.showLoader = false;
             console.log(error);
         });

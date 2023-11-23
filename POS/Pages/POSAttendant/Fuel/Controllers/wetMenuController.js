@@ -1,4 +1,4 @@
-﻿posAttendantRootModule.controller("wetMenuController", ["$scope", "$uibModal", "$http", "$rootScope", function ($scope, $uibModal, $http, $rootScope) {
+﻿posAttendantRootModule.controller("wetMenuController", ["$scope", "$uibModal", "$http", "$rootScope", "$filter", function ($scope, $uibModal, $http, $rootScope, $filter) {
 
 	$rootScope.dryItemsList = [];
 
@@ -51,24 +51,24 @@
 
                     } else {
                         $rootScope.showLoader = false;
-                        swal("Failed getting wet product types", "Please try again", "error");
+                        swal($filter('translate')('failedGetWetProductsTypes'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
                     $rootScope.showLoader = false;
-                    swal("Failed getting wet product types", "Please try again", "error");
+                    swal($filter('translate')('failedGetWetProductsTypes'), "", "error");
                 }
 
             } else {
                 $rootScope.showLoader = false;
 
-                swal("Failed getting wet product types", "Please try again", "error");
+                swal($filter('translate')('failedGetWetProductsTypes'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Failed getting wet product types", "Please try again", "error");
+                swal($filter('translate')('failedGetWetProductsTypes'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });

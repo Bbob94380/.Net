@@ -1,5 +1,5 @@
 ﻿
-posAttendantRootModule.controller('openShiftPopupController', function ($scope, $rootScope, $uibModal, $http, $uibModalInstance, data) {
+posAttendantRootModule.controller('openShiftPopupController', function ($scope, $rootScope, $uibModal, $http, $uibModalInstance, data, $filter) {
 
     $scope.isCounterDisabled = true;
     $scope.isOpenBtnHide = false;
@@ -98,23 +98,23 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
                         $scope.isCounterDisabled = true;
                         $scope.isChecked = false;
 
-                        swal("Update process succeeded", "", "success");
+                        swal($filter('translate')('updateSuccess'), "", "success");
 
                     } else {
-                        swal("Update operation failed", "Please try again", "error");
+                        swal($filter('translate')('updateFailed'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Update operation failed", "Please try again", "error");
+                    swal($filter('translate')('updateFailed'), "", "error");
                 }
 
             } else {
-                swal("Update operation failed", "Please try again", "error");
+                swal($filter('translate')('updateFailed'), "", "error");
             }
 
         }, function (error) {
-            swal("Update operation failed", "Please try again", "error");
+                swal($filter('translate')('updateFailed'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -147,21 +147,21 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
                         findNozzlesAccordingToEmployee(result.resultData.id);
 
                     } else {
-                        swal("Failed getting user info", "Please try again", "error");
+                        //swal("Failed getting user info", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting user info", "Please try again", "error");
+                    //swal("Failed getting user info", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting user info", "Please try again", "error");
+                //swal("Failed getting user info", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting user info", "Please try again", "error");
+            //swal("Failed getting user info", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -193,21 +193,20 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
                         $rootScope.stationManagerName = result.resultData;
 
                     } else {
-                        swal("Failed getting station manager name", "Please try again", "error");
-                        console.log(result.errorMsg);
+                        //swal("Failed getting station manager name", "Please try again", "error");
                     }
 
                 } else {
-                    swal("Failed getting station manager name", "Please try again", "error");
+                    //swal("Failed getting station manager name", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting station manager name", "Please try again", "error");
+                //swal("Failed getting station manager name", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting station manager name", "Please try again", "error");
+            //swal("Failed getting station manager name", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -245,21 +244,21 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
                         }
 
                     } else {
-                        swal("Failed getting nozzles of employee", "Please try again", "error");
+                        swal($filter('translate')('failedGetNozzles'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting nozzles of employee", "Please try again", "error");
+                    swal($filter('translate')('failedGetNozzles'), "", "error");
                 }
 
             } else {
-                swal("Failed getting nozzles of employee", "Please try again", "error");
+                swal($filter('translate')('failedGetNozzles'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Failed getting nozzles of employee", "Please try again", "error");
+                swal($filter('translate')('failedGetNozzles'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -310,25 +309,25 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
 
                     if (result.isSuccessStatusCode) {
 
-                        swal("Great", "Shift created successfully", "success");
+                        swal($filter('translate')('shiftCreatedSuccess'), "", "success");
                         $uibModalInstance.close('Succeeded');
 
                     } else {
-                        swal("Shift creation failed", "Please try again", "error");
+                        swal($filter('translate')('shiftCreatedFailed'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Shift creation failed", "Please try again", "error");
+                    swal($filter('translate')('shiftCreatedFailed'), "", "error");
                 }
 
             } else {
-                swal("Shift creation failed", "Please try again", "error");
+                swal($filter('translate')('shiftCreatedFailed'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Shift creation failed", "Please try again", "error");
+                swal($filter('translate')('shiftCreatedFailed'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });

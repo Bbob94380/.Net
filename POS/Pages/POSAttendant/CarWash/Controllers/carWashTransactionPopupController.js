@@ -1,5 +1,5 @@
 ﻿
-posAttendantRootModule.controller('carWashTransactionPopupController', function ($scope, $rootScope, $filter, $http, $uibModalInstance, data, $translate) {
+posAttendantRootModule.controller('carWashTransactionPopupController', function ($scope, $rootScope, $filter, $http, $uibModalInstance, data) {
 
 
     //Initialization
@@ -117,21 +117,21 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
                         console.log($scope.optionsList);
 
                     } else {
-                        swal("Failed getting car was options", "Please try again", "error");
+                        swal($filter('translate')('failedgetCarWashOptions'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting car was options", "Please try again", "error");
+                    swal($filter('translate')('failedgetCarWashOptions'), "", "error");
                 }
 
             } else {
-                swal("Failed getting car was options", "Please try again", "error");
+                swal($filter('translate')('failedgetCarWashOptions'), "", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting car was options", "Please try again", "error");
+                swal($filter('translate')('failedgetCarWashOptions'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });

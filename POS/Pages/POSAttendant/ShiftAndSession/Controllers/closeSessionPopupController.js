@@ -1,5 +1,5 @@
 ﻿
-posAttendantRootModule.controller('closeSessionPopupController', function ($scope, $rootScope, $http, $uibModalInstance, $uibModal, data) {
+posAttendantRootModule.controller('closeSessionPopupController', function ($scope, $rootScope, $http, $uibModalInstance, $uibModal, data, $filter) {
 
     //Initialization
     $scope.isCloseSessionBtnDisabled = true;
@@ -39,21 +39,21 @@ posAttendantRootModule.controller('closeSessionPopupController', function ($scop
                         localStorage.setItem('oldDollarRate', result.resultData);
 
                     } else {
-                        swal("Failed getting currency ratio", "", "error");
+                        //swal("Failed getting currency ratio", "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting currency ratio", "", "error");
+                    //swal("Failed getting currency ratio", "", "error");
                 }
 
             } else {
-                swal("Failed getting currency ratio", "", "error");
+                //swal("Failed getting currency ratio", "", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting currency ratio", "", "error");
+            //swal("Failed getting currency ratio", "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -111,24 +111,24 @@ posAttendantRootModule.controller('closeSessionPopupController', function ($scop
 
                         localStorage.setItem('blockUI', "false");
                         $uibModalInstance.close('Succeeded');
-                        swal("Great", "Session closing succeeded", "success");
+                        swal($filter('translate')('sessionClosed'), "", "success");
 
                     } else {
-                        swal("Closing session failed", "Please try again", "error");
+                        swal($filter('translate')('closeSessionFailed'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Closing session failed", "Please try again", "error");
+                    swal($filter('translate')('closeSessionFailed'), "", "error");
                 }
 
             } else {
-                swal("Closing session failed", "Please try again", "error");
+                swal($filter('translate')('closeSessionFailed'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Closing session failed", "Please try again", "error");
+                swal($filter('translate')('closeSessionFailed'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -249,21 +249,21 @@ posAttendantRootModule.controller('closeSessionPopupController', function ($scop
                         findNozzlesAccordingToEmployeeForClosingSession(result.resultData.id);
 
                     } else {
-                        swal("Failed getting user info", "Please try again", "error");
+                        //swal("Failed getting user info", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting user info", "Please try again", "error");
+                    //swal("Failed getting user info", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting user info", "Please try again", "error");
+                //swal("Failed getting user info", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting user info", "Please try again", "error");
+            //swal("Failed getting user info", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -295,21 +295,21 @@ posAttendantRootModule.controller('closeSessionPopupController', function ($scop
                         $rootScope.stationManagerName = result.resultData;
 
                     } else {
-                        swal("Failed getting station manager name", "Please try again", "error");
+                        //swal("Failed getting station manager name", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting station manager name", "Please try again", "error");
+                    //swal("Failed getting station manager name", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting station manager name", "Please try again", "error");
+                //swal("Failed getting station manager name", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting station manager name", "Please try again", "error");
+            //swal("Failed getting station manager name", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -347,21 +347,21 @@ posAttendantRootModule.controller('closeSessionPopupController', function ($scop
                         }
 
                     } else {
-                        swal("Failed getting nozzles of employee", "Please try again", "error");
+                        swal($filter('translate')('failedGetNozzles'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting nozzles of employee", "Please try again", "error");
+                    swal($filter('translate')('failedGetNozzles'), "", "error");
                 }
 
             } else {
-                swal("Failed getting nozzles of employee", "Please try again", "error");
+                swal($filter('translate')('failedGetNozzles'), "", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting nozzles of employee", "Please try again", "error");
+                swal($filter('translate')('failedGetNozzles'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
