@@ -1,5 +1,5 @@
 ﻿
-rootModule.controller("moneyFormController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $filter, filterTableListService) {
+rootModule.controller("moneyDeliveryViewController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $filter, filterTableListService) {
 
     $scope.type = $stateParams.type; //getting fooVal
 

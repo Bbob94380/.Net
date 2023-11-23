@@ -358,10 +358,12 @@
     <Content Include="Pages\POSManager\POS\Generator\Views\generator.html" />
     <Content Include="Pages\POSManager\POS\Generator\Views\generatorHistory.html" />
     <Content Include="Pages\POSManager\POS\Generator\Views\receiptsInfo.html" />
-    <Content Include="Pages\POSManager\POS\MoneyDelivery\Controllers\moneyFormController.js" />
-    <Content Include="Pages\POSManager\POS\MoneyDelivery\Controllers\moneyDeliveryController.js" />
-    <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyForm.html" />
-    <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyDelivery.html" />
+    <Content Include="Pages\POSManager\POS\MoneyDelivery\Controllers\moneyDeliveryViewController.js" />
+    <Content Include="Pages\POSManager\POS\MoneyDelivery\Controllers\moneyDeliveryFormController.js" />
+    <Content Include="Pages\POSManager\POS\MoneyDelivery\Controllers\moneyDeliveryIndexController.js" />
+    <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyDeliveryView.html" />
+    <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyDeliveryForm.html" />
+    <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyDeliveryIndex.html" />
     <Content Include="Pages\POSManager\POS\Nuzzle\Controllers\nuzzleController.js" />
     <Content Include="Pages\POSManager\POS\Nuzzle\Views\nuzzle.html" />
     <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsController.js" />
@@ -1172,6 +1174,8 @@
           <DevelopmentServerPort>50969</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:44346/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:44346/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

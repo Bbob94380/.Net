@@ -144,18 +144,18 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
             templateUrl: "/Pages/POSManager/POS/Shifts/Views/shiftsHistory.html",
             controller: "shiftsHistoryController"
         })
-        .state("pos.money", {
-            url: "/money",
-            templateUrl: "/Pages/POSManager/POS/MoneyDelivery/Views/moneyDelivery.html",
-            controller: "moneyDeliveryController"
+        .state("pos.moneyDeliveryIndex", {
+            url: "/moneyDeliveryIndex",
+            templateUrl: "/Pages/POSManager/POS/MoneyDelivery/Views/moneyDeliveryIndex.html",
+            controller: "moneyDeliveryIndexController"
         })
-        .state("pos.moneyForm", {
+        .state("pos.moneyDeliveryForm", {
             url: "/moneyForm",
             params: {
                 item: null
             },
-            templateUrl: "/Pages/POSManager/POS/MoneyDelivery/Views/moneyForm.html",
-            controller: "moneyFormController"
+            templateUrl: "/Pages/POSManager/POS/MoneyDelivery/Views/moneyDeliveryForm.html",
+            controller: "moneyDeliveryFormController"
         })
         .state("pos.invoice", {
             url: "/invoice",

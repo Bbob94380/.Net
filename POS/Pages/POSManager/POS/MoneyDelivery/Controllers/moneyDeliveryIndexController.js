@@ -1,5 +1,5 @@
 ﻿
-rootModule.controller("moneyDeliveryController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", function ($scope, $state, $timeout, $uibModal, $http, $rootScope) {
+rootModule.controller("moneyDeliveryIndexController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", function ($scope, $state, $timeout, $uibModal, $http, $rootScope) {
 
     var itemSelector = ".item";
     var $checkboxes = $('.filter-item');
@@ -174,8 +174,18 @@ rootModule.controller("moneyDeliveryController", ["$scope", "$state", "$timeout"
     $scope.goToMoneyForm = function (type) {
 
         $timeout(function () {
-            $state.go('pos.moneyForm', {
+            $state.go('pos.moneyDeliveryForm', {
                 type: type
+            });
+        })
+
+    };
+
+    $scope.viewMoneyDelivery = function (mdObject) {
+
+        $timeout(function () {
+            $state.go('pos.moneyDeliveryView', {
+                mdObject: mdObject
             });
         })
 
