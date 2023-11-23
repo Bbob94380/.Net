@@ -105,38 +105,40 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
         }
         console.log("data to be created: ");
         console.log(data);
-
-        $scope.uploadFile = function (files, id) {
-            var base64 = getBase64(files[0], id);
-            console.log(base64);
-        };
-
-
-        function getBase64(file, index) {
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function () {
-
-                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-
-                var imgObj = {
-                    fileName: file.name,
-                    size: file.size,
-                    contentType: file.type,
-                    description: $scope.Decription, // TODO: use a dyamic ng model: attachment1, attachment2, ... ($scope.("attachment"+index) .. something like that)
-                    base64encoded: base64String,
-                    url: "URL_HERE", // TODO: Add a url, where to get it?,
-                    attachmenttype: "attachementtype" // TODO: add attachment type ("FILE" or "IMAGE")
-                }
-
-                $scope.imagesList[index] = imgObj;
-
-                console.log($scope.imagesList);
-            };
-            reader.onerror = function (error) {
-                console.log('Error: ', error);
-            };
-        }
-        // $common_helper.createRequest()
+        $common_helper.createRequest("POST", "/FPOS/rest/moneyDeliv/create", data).then(function (response) {
+            console.log("Response: ", response);
+        });
     }
+
+    $scope.uploadFile = function (files, id) {
+        var base64 = getBase64(files[0], id);
+        console.log(base64);
+    };
+
+
+    function getBase64(file, index) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+
+            base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+
+            var imgObj = {
+                fileName: file.name,
+                size: file.size,
+                contentType: file.type,
+                description: $scope.Decription, // TODO: use a dyamic ng model: attachment1, attachment2, ... ($scope.("attachment"+index) .. something like that)
+                base64encoded: base64String,
+                url: "URL_HERE", // TODO: Add a url, where to get it?,
+                attachmenttype: "attachementtype" // TODO: add attachment type ("FILE" or "IMAGE")
+            }
+
+            $scope.imagesList[index] = imgObj;
+
+            console.log($scope.imagesList);
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    };
 }]);
