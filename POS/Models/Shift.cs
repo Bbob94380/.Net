@@ -112,6 +112,14 @@ namespace POS.Models
 
     }
 
+    public class AssignNozzle
+    {
+        public int employeeId { get; set; }
+        public string employeeName { get; set; }
+        public List<decimal> nozzles { get; set; }
+
+    }
+
     public class Amount
     {
         public int quantity { get; set; }

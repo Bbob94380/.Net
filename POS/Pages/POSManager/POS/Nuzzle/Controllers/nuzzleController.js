@@ -7,6 +7,20 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
     $scope.employeesList = [];
     $scope.employeeNuzzlesList = [];
     $scope.availableNuzzlesList = [];
+    $scope.selectedCheckBox = [[]];
+
+
+    function makeArray(w, h, val) {
+        var arr = [];
+        for (let i = 0; i < h; i++) {
+            arr[i] = [];
+            for (let j = 0; j < w; j++) {
+                arr[i][j] = val;
+            }
+        }
+        return arr;
+    }
+
 
     function rootFilter() {
 
@@ -202,7 +216,69 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
         })
     }
 
-  
+
+    function findAvailableNozzles() {
+
+        //$rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/findAvailableNozzles",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
+        }).then(function (response) {
+
+            console.log(response);
+            //$rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.availableNuzzlesList = result.resultData;
+
+                        console.log($scope.availableNuzzlesList);
+
+                        for (var i = 0; i < $scope.availableNuzzlesList.length; i++) {
+                            $scope.availableNuzzlesList[i].isChecked = false;
+                        }
+
+                        for (var j = 0; j < $scope.employeesList.length; j++) {
+                            $scope.employeesList[j].nuzzles = $scope.availableNuzzlesList;
+                        }
+
+                        $scope.selectedCheckBox = makeArray($scope.availableNuzzlesList.length, $scope.employeesList.length, false);
+
+
+                        setTimeout(function () {
+                            rootFilter();
+                        }, 1);
+
+                    } else {
+                        //swal("Failed getting station manager name", "Please try again", "error");
+                        //console.log(result.errorMsg);
+                    }
+
+                } else {
+                    //swal("Failed getting station manager name", "Please try again", "error");
+                }
+
+            } else {
+                //swal("Failed getting station manager name", "Please try again", "error");
+            }
+
+
+        }, function (error) {
+            //swal("Failed getting station manager name", "Please try again", "error");
+            //$rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
+
+
     function getCheckedInUsers() {
 
         $rootScope.showLoader = true;
@@ -265,9 +341,7 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
 
                     ];
 
-                    setTimeout(function () {
-                        rootFilter();
-                    }, 1);
+                    findAvailableNozzles();
 
                 } else {
                     //swal("Failed getting car was options", "Please try again", "error");
@@ -289,17 +363,58 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
     getCheckedInUsers();
 
 
-    function findAvailableNozzles() {
+  
+    $scope.boxClicked = function (value, parent, index) {
 
-        //$rootScope.showLoader = true;
-        promise2 = $http({
+        $scope.selectedCheckBox[parent][index] = value;
+        console.log($scope.selectedCheckBox);
+
+    }
+
+
+    $scope.assignNozzle = function() {
+
+        if ($scope.availableNuzzlesList.length <= 0) {
+            swal("There is no available nozzles to assign", "", "warning");
+            return;
+        }
+
+
+        var assignNozzles = [];
+
+        for (var j = 0; j < $scope.employeesList.length; j++) {
+
+            var nozzles = [];
+
+            for (var x = 0; x < $scope.employeesList[j].nuzzles.length; x++) {
+                if ($scope.selectedCheckBox[j][x] === true) nozzles.push($scope.employeesList[j].nuzzles[x].number);
+            }
+
+
+            var payload = {
+                employeeId: $scope.employeesList[j].employeeId,
+                employeeName: $scope.employeesList[j].employeeName,
+                nozzles: nozzles
+
+            }
+
+            assignNozzles.push(payload);
+
+
+        }
+
+
+
+
+        $rootScope.showLoader = true;
+        $http({
             method: "POST",
-            url: "/api/Request/findAvailableNozzles",
-            data: { sessionId: localStorage.getItem('session_id_sm') }
+            url: "/api/SmApi/assignNozzles",
+            data: { sessionId: localStorage.getItem('session_id_sm'), assignNozzles: assignNozzles }
         }).then(function (response) {
 
             console.log(response);
-            //$rootScope.showLoader = false;
+            $rootScope.showLoader = false;
 
             if (response !== null && response !== undefined) {
 
@@ -309,147 +424,31 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
 
                     if (result.isSuccessStatusCode) {
 
-                        $scope.availableNuzzlesList = result.resultData;
-                        console.log($scope.availableNuzzlesList);
+                        swal("Nozzles are assigned successfully", "", "success");
+                        $state.reload()
+
 
                     } else {
-                        //swal("Failed getting station manager name", "Please try again", "error");
-                        //console.log(result.errorMsg);
+                        swal("Operation failed", "", "error");
+
                     }
 
                 } else {
-                    //swal("Failed getting station manager name", "Please try again", "error");
+                    swal("Operation failed", "", "error");
                 }
 
             } else {
-                //swal("Failed getting station manager name", "Please try again", "error");
+                swal("Operation failed", "", "error");
             }
 
 
         }, function (error) {
-            //swal("Failed getting station manager name", "Please try again", "error");
-            //$rootScope.showLoader = false;
+                swal("Operation failed", "", "error");
+            $rootScope.showLoader = false;
             console.log(error);
         });
 
     };
-
-    findAvailableNozzles();
-
-
-
-    $q.all([promise1, promise2]).then(function (result) {
-        dd();
-    });
-
-
-    function dd() {
-
-        var chain = $q.when();
-        angular.forEach($scope.employeesList, function (item) {
-            chain = chain.then(function () {
-                return $http({
-                    method: "POST",
-                    url: "/api/Request/findNozzlesAccordingToEmployee",
-                    data: { sessionId: localStorage.getItem('session_id_sm'), employeeId: item.employeeId }
-                }).then(function (response) {
-
-                    if (response !== null && response !== undefined) {
-
-                        if (response.data !== null && response.data !== undefined) {
-
-                            var result = JSON.parse(response.data);
-
-                            if (result.isSuccessStatusCode) {
-
-                                var obj = {
-                                    nuzzles : result.resultData,
-                                    employee: item,
-                                }
-
-                                $scope.employeeNuzzlesList.push(obj);
-
-                            }
-
-                        }
-
-                    }
-
-
-                }, function (error) {
-                    console.log(error);
-                });
-            });
-        });
-
-        // the final chain object will resolve once all the posts have completed.
-        chain.then(function () {
-            console.log('all done!');
-
-            console.log($scope.employeeNuzzlesList);
-
-
-            for (var i = 0; i < $scope.availableNuzzlesList.length; i++) {
-
-                var av = $scope.availableNuzzlesList[i];
-                av.isAvailable = true;
-
-                for (var j = 0; j < $scope.employeeNuzzlesList.length; j++) {
-
-                    if (av.id === $scope.employeeNuzzlesList[j].id) {
-                        av.isAvailable = false;
-                        break;
-                    }
-
-                }
-            }
-
-            $scope.ff = [];
-            $scope.mm = [];
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-            $scope.mm.push($scope.availableNuzzlesList[0]);
-
-
-            var index = 0;
-
-            for (var z = 0; z < $scope.mm.length; z++) {
-
-                var nuzzles = [];
-                var d = {};
-                
-                nuzzles.push($scope.mm[z]);
-
-                if (z % 4 === 0) {
-
-                    d = {
-                        id: index,
-                        nuzzles: nuzzles
-                    };
-                    $scope.ff.push(d);
-                    index++;
-                }
-
-            }
-
-
-            
-
-            console.log($scope.ff);
-
-
-        });
-
-    }
 
 }]);
 

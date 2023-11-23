@@ -1867,6 +1867,7 @@ namespace POS.Controllers
         public CloseSession closeSession { get; set; }
         public HistoryPayload historyPayload { get; set; }
         public List<NozzleCounter> nozzleCounters { get; set; }
+        public List<AssignNozzle> assignNozzles { get; set; }
     }
 
     public class HistoryPayload
