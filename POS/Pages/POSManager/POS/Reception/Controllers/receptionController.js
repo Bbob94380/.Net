@@ -4,7 +4,7 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
     $rootScope.receptionsList = [];
     $rootScope.stationDOsList = [];
     var DOList = [];
-
+    $scope.showNoData = true;
 
     //localStorage.setItem("notifications", "");
     //localStorage.setItem("stationDOs", "");
@@ -301,26 +301,34 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
                         $rootScope.receptionsList.push.apply($rootScope.receptionsList, $rootScope.stationDOsList);
 
+                        if ($rootScope.receptionsList.length > 0) {
+                            $scope.showNoData = false;
+                        }
+
                         setTimeout(function () {
                             rootFilter();
                         }, 1);
 
                     } else {
                         //swal("Oops", "Failed getting receptions", "");
+                        $scope.showNoData = true;
                     }
 
                 } else {
                     //swal("Oops", "Failed getting receptions", "");
+                    $scope.showNoData = true;
                 }
 
             } else {
                 //swal("Oops", "Failed getting receptions", "");
+                $scope.showNoData = true;
             }
 
 
         }, function (error) {
                 //swal("Oops", "Failed getting receptions", "");
-            $rootScope.showLoader = false;
+                $rootScope.showLoader = false;
+                $scope.showNoData = true;
         });
 
     };

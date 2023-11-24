@@ -1474,6 +1474,69 @@ namespace POS.Controllers
         }
 
         [HttpPost]
+        public async Task<string> getReceiptsHistory(Payload payload)
+        {
+            //variables
+            List<Receipt> receipts = null;
+            ResponseData<List<Receipt>> responseData = new ResponseData<List<Receipt>>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = false;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear(); client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                    var objAsJson = JsonConvert.SerializeObject(payload.historyPayload);
+                    var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync("FPOS/rest/receipt/findBetweenTwoDates", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        receipts = await response.Content.ReadAsAsync<List<Receipt>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = receipts;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.errorMsg = response.ReasonPhrase.ToString();
+                        responseData.resultData = null;
+
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+        [HttpPost]
         public async Task<string> findShiftById(Payload payload)
         {
             //variables

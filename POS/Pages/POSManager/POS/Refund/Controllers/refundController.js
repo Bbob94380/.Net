@@ -1,6 +1,8 @@
 ﻿
 rootModule.controller("refundController", ["$scope", "$uibModal", "$http", "$rootScope", "$state", "$timeout", "$window", function ($scope, $uibModal, $http, $rootScope, $state, $timeout, $window) {
 
+    $scope.showNoData = true;
+
     function rootFilter() {
 
         var itemSelector = ".item";
@@ -312,6 +314,10 @@ rootModule.controller("refundController", ["$scope", "$uibModal", "$http", "$roo
 
                         }
 
+                        if ($scope.refundsList.length > 0) {
+                            $scope.showNoData = false;
+                        }
+
                         setTimeout(function () {
                             rootFilter();
                         }, 1);
@@ -319,20 +325,24 @@ rootModule.controller("refundController", ["$scope", "$uibModal", "$http", "$roo
 
 
                     } else {
-                        swal("Oops", "Failed getting refunds", "");
+                       // swal("Oops", "Failed getting refunds", "");
+                        $scope.showNoData = true;
                     }
 
                 } else {
-                    swal("Oops", "No refunds found", "");
+                    //swal("Oops", "No refunds found", "");
+                    $scope.showNoData = true;
                 }
 
             } else {
-                swal("Oops", "Failed getting refunds", "");
+                //swal("Oops", "Failed getting refunds", "");
+                $scope.showNoData = true;
             }
 
 
         }, function (error) {
-            swal("Oops", "Failed getting refunds", "error");
+                //swal("Oops", "Failed getting refunds", "error");
+                $scope.showNoData = true;
             $rootScope.showLoader = false;
         });
 

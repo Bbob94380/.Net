@@ -49,7 +49,7 @@
                                         </tr>
                                         <tr>
                                             <td style="text-align:left">
-                                                <span style="color:red" ng-repeat="fuel in item.fuelAmounts"> {{fuel.wetProductType}},</span> 
+                                                <span style="color:red" ng-repeat="fuel in item.fuelAmounts"> {{fuel.wetProductType}},</span>
                                             </td>
                                             <td>
                                                 {{item.creationDate}}
@@ -64,12 +64,16 @@
                                     </table>
                                 </div>
                                 <div class="col-4 text-center" style=" margin: auto;">
-                                    <input ng-click="goToReceptionPage(item)"  ng-hide="item.hideFillingBtn" type="button" value="Start Filling Process" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
-                                    <input ng-click="goToReceptionPage(item)"  ng-show="item.hideFillingBtn" type="button" value="Show Reception Details" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
+                                    <input ng-click="goToReceptionPage(item)" ng-hide="item.hideFillingBtn" type="button" value="Start Filling Process" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
+                                    <input ng-click="goToReceptionPage(item)" ng-show="item.hideFillingBtn" type="button" value="Show Reception Details" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div ng-show="showNoData" style=" margin-left: 45%; margin-top: 13%; color: #a7a5a5;">
+                    <span>No data found</span>
                 </div>
             </div>
         </div>

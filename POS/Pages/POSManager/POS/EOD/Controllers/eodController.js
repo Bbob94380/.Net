@@ -1,6 +1,10 @@
 ﻿
 rootModule.controller("eodController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", function ($scope, $state, $timeout, $uibModal, $http, $rootScope) {
 
+
+    $scope.showNoData = true;
+
+
     function rootFilter() {
 
         var itemSelector = ".item";
@@ -280,26 +284,35 @@ rootModule.controller("eodController", ["$scope", "$state", "$timeout", "$uibMod
 
                        
                         $scope.eodList = result.resultData;
+
+                        if ($scope.eodList.length > 0) {
+                            $scope.showNoData = false;
+                        }
+
                         setTimeout(function () {
                             rootFilter();
                         }, 1);
 
                     } else {
                         //swal("Oops", "Failed getting receipts", "");
+                        $scope.showNoData = true;
                     }
 
                 } else {
                     //swal("Oops", "No receipts found", "");
+                    $scope.showNoData = true;
                 }
 
             } else {
                 //swal("Oops", "Failed getting receipts", "");
+                $scope.showNoData = true;
             }
 
 
         }, function (error) {
             //swal("Oops", "Failed getting receipts", "error");
-            $rootScope.showLoader = false;
+                $rootScope.showLoader = false;
+                $scope.showNoData = true;
         });
 
     };
