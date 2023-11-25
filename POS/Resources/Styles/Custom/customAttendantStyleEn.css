@@ -288,7 +288,7 @@ button {
     grid-gap: 15px;
     padding: 0px 22px;
     width: fit-content;
-    /* margin: 0 2em; */
+    margin: 0 auto;
 }
 
 .trans-table {

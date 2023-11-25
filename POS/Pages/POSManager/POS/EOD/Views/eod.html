@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 style=" font-family: 'rubikMedium'; margin-left: 0.6em;">End of The Day</h1>
+                <h1 style=" font-family: 'rubikMedium'; margin-left: 0.6em;">{{'EndOfDay' | translate}}</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -14,12 +14,12 @@
             <div>
                 <div class="row">
                     <div class="col-5" style="visibility:hidden;">
-                        <span class="transfer-all-box" id="clear-filters"><span id="allTab" class="fas fa-times-circle "></span>&nbsp;All</span>
+                        <span class="transfer-all-box" id="clear-filters"><span id="allTab" class="fas fa-times-circle "></span>&nbsp;{{'All' | translate}}</span>
                     </div>
                     <div class="col-1"></div>
                     <div class="col-5 input-group-sm input-group-receipts">
                         <!--<span ng-click="goToHistoryPage()" style="cursor: pointer;margin-right: 4.8em;" class="refund-history-btn">History</span>-->
-                        <span ng-click="goToEODForm()" style="cursor: pointer;margin-right: 0em;" class="refund-create-btn">End of The Day</span>
+                        <span ng-click="goToEODForm()" style="cursor: pointer;margin-right: 0em;" class="refund-create-btn">{{'EndOfDay' | translate}}</span>
                     </div>
                 </div>
 
@@ -31,22 +31,22 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-9">
-                                    <h2 style="display: inline; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100;">
+                                    <h2 class="eod-card-title" style="display: inline; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100;">
                                         {{item.id}} -  {{stationManagerName}} -  {{item.creationDate}}
                                     </h2>
                                     <table class="table reception-item-table">
                                         <tr>
                                             <th style="text-align:left">
-                                                CREATION DATE
+                                                {{'CreationDate' | translate}}
                                             </th>
                                             <th>
-                                                CREATED BY
+                                                {{'CreatedBy' | translate}}
                                             </th>
                                             <th>
-                                                TOTAL IN LEBANESE LIREA
+                                                {{'TotalInLebaneseLira' | translate}}
                                             </th>
                                             <th style="border:none;">
-                                                TOTAL IN DOLLAR
+                                                {{'TotalInUSD' | translate}}
                                             </th>
                                         </tr>
                                         <tr>
@@ -57,7 +57,7 @@
                                                 {{item.creator}}
                                             </td>
                                             <td>
-                                                {{item.cashLbp}} L.L
+                                                {{item.cashLbp}} {{'LL' | translate}}
                                             </td>
                                             <td style="border:none;">
                                                 $ {{item.cashUsd}}
@@ -71,7 +71,7 @@
                 </div>
 
                 <div ng-show="showNoData" style=" margin-left: 45%; margin-top: 13%; color: #a7a5a5;">
-                    <span>No data found</span>
+                    <span>{{'noDataFound' | translate}}</span>
                 </div>
 
             </div>

@@ -52,7 +52,7 @@
 
 							if (trans.saleInvoice !== null) {
 								trans.saleInvoice.category = "Dry Product";
-								trans.saleInvoice.amount = trans.saleInvoice.saleDetails.length + " item(s)";
+								trans.saleInvoice.amount = trans.saleInvoice.saleDetails.length + " " + $filter('translate')('item(s)');
 								trans.saleInvoice.creationDate = trans.creationDate;
 								trans.saleInvoice.creator = trans.creator;
 								trans.saleInvoice.bigTransCashLL = trans.cachAmountMc;
@@ -67,7 +67,7 @@
 							if (trans.saleTransactions !== null && trans.saleTransactions !== undefined && trans.saleTransactions !== "") {
 								for (let j = 0; j < trans.saleTransactions.length; j++) {
 									trans.saleTransactions[j].category = "Fuel";
-									trans.saleTransactions[j].amount = trans.saleTransactions[j].dispensedVolume + " L";
+									trans.saleTransactions[j].amount = trans.saleTransactions[j].dispensedVolume + " "+ $filter('translate')('Litre');
 									trans.saleTransactions[j].creationDate = trans.creationDate;
 									trans.saleTransactions[j].creator = trans.creator;
 									trans.saleTransactions[j].bigTransCashLL = trans.cachAmountMc;
@@ -123,21 +123,21 @@
 							}
 
 							if (isCardPaid && isCashPaid) {
-								item.wop = "Cash and card";
+								item.wop = $filter('translate')('CashAndcard');
 							} else if (isCardPaid) {
-								item.wop = "Card";
+								item.wop = $filter('translate')('card');
 							} else if (isCashPaid) {
-								item.wop = "Cash";
+								item.wop = $filter('translate')('cash');
 							} else {
 								item = "";
 							}
 
 							if (isDollarPaid && isLLPaid) {
-								item.currency = "Lebanese Lire and dollar";
+								item.currency = $filter('translate')('LebaneseAnddollar');
 							} else if (isDollarPaid) {
-								item.currency = "Dollar";
+								item.currency = $filter('translate')('dollar');
 							} else if (isLLPaid) {
-								item.currency = "Lebanese Lire";
+								item.currency = $filter('translate')('lebanese');
 							} else {
 								item.currency = "";
 							}

@@ -10,23 +10,23 @@
 <div class="modal-body">
     <div class="row" style="padding: 1em;">
         <div class="col-3" style="border-right: 1px solid #dee2e6;">
-            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">REFUND ID</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">{{'RefundID' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.id}}</span>
         </div>
         <div class="col-2" style="padding-left: 1.5em;">
-            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">TYPE</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">Calibration</span>
+            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">{{'Type' | translate}}</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{'Calibration' | translate}}</span>
         </div>
         <div class="col-2" style="border-right: 1px solid #dee2e6;">
-            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">AMOUNT</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">{{'Amount' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000"></span>
         </div>
         <div class="col-3" style="padding-left: 1.5em;">
-            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">CREATION DATE</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">{{'CreationDate' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.creationDate}}</span>
         </div>
         <div class="col-2">
-            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">CREATED BY</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">{{'CreationTime' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.creator}}</span>
         </div>
     </div>
@@ -40,16 +40,16 @@
         <div class="col-2" style="border-right: 1px solid #dee2e6;">
         </div>
         <div class="col-3" style="padding-left: 1.5em;">
-            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">Nozzle number</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">{{'NozzleNumber' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.nozzleNumber}}</span>
         </div>
         <div class="col-2">
-            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">Tank id</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 14px;color:#6F6F6F">{{'TankID' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.tankId}}</span>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn  exportBtn-trans" data-dismiss="modal"><img src="/Resources/Images/common/export-icon.png" style="padding-right:5px; padding-bottom:2px"/>Export</button>
-    <button type="button" class="btn  printBtn-refund">Print</button>
+    <button type="button" class="btn  exportBtn-trans" data-dismiss="modal"><img src="/Resources/Images/common/export-icon.png" style="padding-right:5px; padding-bottom:2px" />{{'Export' | translate}}</button>
+    <button type="button" class="btn  printBtn-refund">{{'Print' | translate}}</button>
 </div>

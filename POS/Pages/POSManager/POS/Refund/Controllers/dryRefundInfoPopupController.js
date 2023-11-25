@@ -1,5 +1,5 @@
 ﻿
-rootModule.controller('dryRefundInfoPopupController', function ($scope, $rootScope, $http, $uibModalInstance, data) {
+rootModule.controller('dryRefundInfoPopupController', function ($scope, $rootScope, $http, $uibModalInstance, data, $filter) {
 
     //Initialization
     $scope.refundItem = data.refundItem;
@@ -136,11 +136,11 @@ rootModule.controller('dryRefundInfoPopupController', function ($scope, $rootSco
 	}
 
 	if (isCardPaid && isCashPaid) {
-		$scope.refundItem.wop = "Cash and card";
+        $scope.refundItem.wop = $filter('translate')('CashAndcard');
 	} else if (isCardPaid) {
-		$scope.refundItem.wop = "Card";
+        $scope.refundItem.wop = $filter('translate')('card');
 	} else if (isCashPaid) {
-		$scope.refundItem.wop = "Cash";
+        $scope.refundItem.wop = $filter('translate')('cash');
 	} else {
 		$scope.refundItem.wop = "";
 	}
@@ -162,8 +162,8 @@ rootModule.controller('dryRefundInfoPopupController', function ($scope, $rootSco
     }
 
     $scope.discount = totalDiscount;
-    $scope.price = totalPriceLL + " L.L/" + totalPriceDollar + " $";
-    $scope.total = totalOfTotalLL + " L.L/" + totalOfTotalDollar + " $";
+    $scope.price = totalPriceLL + $filter('translate')('LL') + " /" + totalPriceDollar + " $";
+    $scope.total = totalOfTotalLL + $filter('translate')('LL'); + " /" + totalOfTotalDollar + " $";
 
 
     $scope.cancel = function () {

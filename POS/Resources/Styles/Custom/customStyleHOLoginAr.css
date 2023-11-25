@@ -17,6 +17,7 @@
     font-size: 22px;
     color: #C9002D;
     padding-left: 1.5rem;
+    text-align: right;
 }
 
 .input-login-ho {
@@ -60,6 +61,9 @@
 .div-icons {
     margin-top: 1.5em;
     padding: 4px;
+    float: right;
+    display: block;
+    width: 100%;
 }
 
 .login-icon {
@@ -69,17 +73,18 @@
 }
 
 .login-icon-span {
-    font-size: 18px;
+    font-size: 26px;
     padding-top: 3px;
     color: #2F2C2C;
 }
 
 .login-icon-span2 {
-    font-size: 12px;
-    margin-top: -4px;
+    font-size: 18px;
     display: block;
     position: relative;
     color: #ACACAC;
+    float: right;
+    text-align: right;
 }
 
 .touch {

@@ -10,13 +10,13 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>*@
         <li class="nav-item d-none d-sm-inline-block">
-            <a ui-sref="dashboard" class="nav-link navBarPos navDashItem">DASHBOARD</a>
+            <a ui-sref="dashboard" class="nav-link navBarPos navDashItem">{{'dashboard' | translate}}</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a ui-sref="pos" class="nav-link navBarPos navPOSItem">POS</a>
+            <a ui-sref="pos" class="nav-link navBarPos navPOSItem">{{'menu' | translate}}</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a ui-sref="inventory" class="nav-link navBarPos navFMSItem">FMS</a>
+            <a ui-sref="inventory" class="nav-link navBarPos navFMSItem">{{'fms' | translate}}</a>
         </li>
 
     </ul>
@@ -27,14 +27,14 @@
         <!-- Language Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                {{selectedLanguage}}
+                {{selectedLanguage }}
             </a>
             <div class="dropdown-menu dropdown-menu-right p-0">
                 <a ng-click="goToEnglishLayout('en')" class="dropdown-item active">
-                    EN
+                    {{'en' | translate}}
                 </a>
                 <a ng-click="goToArabicLayout('ar')" class="dropdown-item">
-                    AR
+                    {{'ar' | translate}}
                 </a>
             </div>
         </li>
@@ -43,12 +43,12 @@
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <img class="far fa-comments" src="~/Resources/Images/common/wifi-icon.png" />
+                <img  style="width: 1.5em;" src="~/Resources/Images/common/{{image_wifi}}" />
             </a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <span class="pos-menu-rate">1$ = {{dollarRate}} L.L</span>
+                <span class="pos-menu-rate">1$ = {{dollarRate}} {{'LL' | translate}}</span>
             </a>
         </li>
         <!-- Notifications Dropdown Menu -->
@@ -71,11 +71,11 @@
 
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <span style="background-color: #D80404; color: white; padding: 7px 19px; font-size: 19px; border: none; border-radius: 46px;">  </span>
+                <span style="background-color: #D80404; color: white; padding: 11px 12px; font-size: 16px; border: none; border-radius: 46px;"> {{profileName}}  </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right p-0">
                 <a ng-click="SignOut()" class="dropdown-item active">
-                    Log out
+                    {{'logout' | translate}}
                 </a>
             </div>
         </li>

@@ -4,23 +4,23 @@
         <div class="row mb-2" style=" margin-bottom: 1em !important; margin-left: 0.2em;">
             <div class="col-sm-6">
                 <a ui-sref="pos.receipts" class="nav-link back-btn">
-                    < Back
+                    < {{'back' | translate}}
                 </a>
-                <h1 class="pos-section-title">Receipts</h1>
-                <span class="history-subtitle">Receipts History</span>
+                <h1 class="pos-section-title">{{'receipts' | translate}}</h1>
+                <span class="history-subtitle">{{'historyReceipt' | translate}}</span>
             </div>
         </div>
-        <div class="row col-sm-12" style="padding-right: 0;">
+        <div class="row col-sm-12 receipt-row-filter" style="padding-right: 0;">
             <div class="col-sm-3">
-                <label class="date-filter-label">From </label>
+                <label class="date-filter-label">{{'from' | translate}} </label>
                 <input class="form-control col-12" type="date" ng-model="dateFrom" />
             </div>
             <div class="col-sm-3">
-                <label class="date-filter-label">To </label>
+                <label class="date-filter-label">{{'to' | translate}} </label>
                 <input class="form-control col-12" type="date" ng-model="dateTo" />
             </div>
             <div class="col-sm-3">
-                <span ng-click="getReceiptsHistory(dateFrom, dateTo)" class="history-clear-btn">Filter</span>
+                <span ng-click="getReceiptsHistory(dateFrom, dateTo)" class="history-clear-btn">{{'filter' | translate}}</span>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -37,23 +37,24 @@
                             <thead>
                                 <tr>
                                     <th style="width: 20%">
-                                        ID
+                                        {{'ID' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        Nu. of Transactions
+                                        {{'nbOfTransaction' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        WOP
+                                        {{'WOP' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        Time & Date
+                                        {{'timeDate' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        Currency
+                                        {{'Currency' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        Total
+                                        {{'Total' | translate}}
                                     </th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in ReceiptsList">

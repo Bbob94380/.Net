@@ -10,15 +10,15 @@
 <div class="modal-body">
     <div class="row" style="padding: 1em;">
         <div class="col-2" style="border-right: 1px solid #dee2e6;">
-            <span class="PopUpFuelHeaderTitleSpan">Fuel Transaction ID</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan"> {{'fuelTransId' | translate}} </span> <br />
             <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.id}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">TYPE</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'Type' | translate}}</span> <br />
             <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.category}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">AMOUNT</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'Amount' | translate}}</span> <br />
             <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.amount}}</span>
         </div>
         <!--<div class="col-2" style="border-right: 1px solid #dee2e6;">
@@ -26,44 +26,44 @@
             <span class="PopUpFuelHeaderTitleSpanValue">{{wop}}</span>
         </div>-->
         <div class="col-3" style="padding-left: 15px;">
-            <span class="PopUpFuelHeaderTitleSpan">CREATION DATE</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'CreationDate' | translate}}</span> <br />
             <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.creationDate}}</span>
         </div>
         <div class="col-2" style="padding-left: 10px;">
-            <span class="PopUpFuelHeaderTitleSpan">CREATED BY</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'CreatedBy' | translate}}</span> <br />
             <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.creator}}</span>
         </div>
     </div>
-    <div class="row" style="border-top: 1px solid #dee2e6;padding: 1em 0em 1em 13em;">
+    <div class="row trans-credit-sec" style="">
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">CREDIT</span>
-        </div>
-        <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCardDollar}}</span>
-        </div>
-        <div class="col-2" style="border-right: 1px solid #dee2e6;">
-            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCardLL}}</span>
+            <span class="PopUpFuelHeaderTitleSpanBold">{{'card' | translate}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">CASH</span>
+            <span class="PopUpFuelHeaderTitleSpan">{{'dollar2' | translate}}</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">${{transactionItem.bigTransCardDollar}}</span>
+        </div>
+        <div class="col-1" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">{{'LEBANESE' | translate}}</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCardLL}} {{'LL' | translate}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCashDollar}}</span>
+            <span class="PopUpFuelHeaderTitleSpanBold">{{'cash' | translate}}</span>
         </div>
-        <div class="col-2" style="border-right: 1px solid #dee2e6;">
-            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCashLL}}</span>
+        <div class="col-1">
+            <span class="PopUpFuelHeaderTitleSpan">{{'dollar2' | translate}}</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">${{transactionItem.bigTransCashDollar}}</span>
         </div>
-        <div class="col-2">
-            <span class="PopUpFuelHeaderTitleSpan">TOTAL</span> <br />
-            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransTotalLL}} L.L/{{transactionItem.bigTransTotalDollar}} $</span>
+        <div class="col-1" style="border-right: 1px solid #dee2e6;">
+            <span class="PopUpFuelHeaderTitleSpan">{{'LEBANESE' | translate}}</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransCashLL}} {{'LL' | translate}}</span>
+        </div>
+        <div class="col-3">
+            <span class="PopUpFuelHeaderTitleSpan">{{'Total' | translate}}</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanValue">{{transactionItem.bigTransTotalLL}} {{'LL' | translate}}/{{transactionItem.bigTransTotalDollar}} $</span>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn  exportBtn-trans" data-dismiss="modal">Export</button>
-    <button type="button" class="btn  printBtn-trans">Print</button>
+    <button type="button" class="btn  exportBtn-trans" data-dismiss="modal">{{'Export' | translate}}</button>
+    <button type="button" class="btn  printBtn-trans">{{'Print' | translate}}</button>
 </div>

@@ -11,9 +11,9 @@
         <div class="col-12">
             <div class="card-header" style="border-bottom: none;">
                 <a ui-sref="pos.reception" class="nav-link back-btn" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
-                    < Back
+                    < {{'back' | translate}}
                 </a>
-                <h3 class="receiptInfo-title">Reception</h3>
+                <h3 class="receiptInfo-title">{{'Reception' | translate}}</h3>
                 <!--<h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>-->
             </div>
         </div>
@@ -24,11 +24,11 @@
                 <table class="table  text-nowrap transfer-popup-table reception-table-info">
                     <thead>
                         <tr>
-                            <th>STATION DO ID</th>
-                            <th>SENDED BY</th>
-                            <th>CREATION DATE</th>
-                            <th>DELIVERY DATE</th>
-                            <th>SUPPLIER NAME</th>
+                            <th>{{'STATIONDOID' | translate}}</th>
+                            <th>{{'SentBy' | translate}}</th>
+                            <th>{{'creationDate' | translate}}</th>
+                            <th>{{'DATERECEIVED' | translate}}</th>
+                            <th>{{'SupplierName' | translate}}</th>
                             <th class="reception-item-status-filling" style="color: #df960b ; width: 1em;">FILLING</th>
                         </tr>
                     </thead>
@@ -47,14 +47,14 @@
 
 
             <div>
-                <label style=" width: 100%; margin-bottom: 0.1em; padding: 1em 1em 0em 1em;">Driver and truck data</label>
+                <label style=" " class="drive-title">{{'DriverTruckData' | translate}}</label>
                 <div class="row" style="padding: 1em;">
                     <table class="table  text-nowrap transfer-popup-table reception-table-info" style=" width: 50%;">
                         <thead>
                             <tr>
-                                <th>DRIVER NAME</th>
-                                <th>PLATE NUMBER</th>
-                                <th>TRANSPORT PARTY</th>
+                                <th>{{'DriverName' | translate}}</th>
+                                <th>{{'PlateNumber' | translate}}</th>
+                                <th>{{'TransportParty' | translate}}</th>
                                 <th>
                                     <input style="width: 14em;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files, 0)" />
                                 </th>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-check conformity-check">
                     <input type="checkbox" class="form-check-input"  ng-model="chkStatus" ng-change="showHideDiv()">
-                    <label class="form-check-label">NONCONFORMITY</label>
+                    <label class="form-check-label">{{'Nonconformity' | translate}}</label>
                 </div>
                 <div ng-show='showhideprop'>
                     <div class="row" style="padding: 0 5em;" ng-repeat="choice in conformities">
@@ -86,14 +86,14 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label>Nonconformity Reason</label>
+                                <label>{{'NonconformityReason' | translate}}</label>
                                 <select class="form-control" ng-model="choice.reason" ng-options="item for item in NConfTypes">
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>{{'Description' | translate}}</label>
                                 <input class="form-control" ng-model="choice.desc" />
                             </div>
                         </div>
@@ -108,17 +108,17 @@
             </div>
 
             <div class="row" style="padding: 1em;">
-                <label>DO Information</label>
+                <label>{{'doInfo' | translate}}</label>
                 <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in reception.fuelAmounts">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                            <th class="th-text">Type</th>
-                            <th class="th-text">SUBTANK</th>
-                            <th class="th-text">AMOUNT SENT</th>
-                            <th class="th-text">SUB-TANK SIZE</th>
-                            <th class="th-text">TOP SIZE</th>
-                            <th class="th-text">DOWN SIZE</th>
+                            <th class="th-text">{{'Type' | translate}}</th>
+                            <th class="th-text">{{'Subtank' | translate}}</th>
+                            <th class="th-text">{{'quantitySent' | translate}}</th>
+                            <th class="th-text">{{'SubtankSize' | translate}}</th>
+                            <th class="th-text">{{'TopSize' | translate}}</th>
+                            <th class="th-text">{{'BottomSize' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -136,7 +136,7 @@
             </div>
 
             <div>
-                <label style=" width: 100%;margin-bottom: 1.5em;padding: 1em;">Reception Information</label>
+                <label style=" " class="recep-info">{{'ReceptionInformation' | translate}}</label>
                 <div class="row" style="padding: 0 1em;" ng-repeat="item in reception.fuelAmounts">
                     <div class="row">
                         <div class="col-6">
@@ -147,7 +147,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Amount Sent</label>
+                                <label>{{'quantitySent' | translate}}</label>
                                 <input class="form-control" disabled value="{{item.productVolume}}" />
                             </div>
                         </div>
@@ -155,48 +155,48 @@
                     <div class="row col-md-12">
                         <div class="col-md-3 conformity-check form-check">
                             <input type="checkbox" class="form-check-input" ng-model="item.fuel_below_indicator" ng-change="missingBoxChanged(item.fuel_below_indicator, item)" >
-                            <label class="form-check-label" for="exampleCheck1">Missing Amount</label>
+                            <label class="form-check-label" for="exampleCheck1">{{'MissingQuantity' | translate}}</label>
                         </div>
                         <div class="col-md-3 form-check">
                             <input type="checkbox" class="form-check-input" ng-model="item.fillingPayedByDriver">
-                            <label class="form-check-label" for="exampleCheck1">Payed by Driver</label>
+                            <label class="form-check-label" for="exampleCheck1">{{'PaidByDriver' | translate}}</label>
                         </div>
                     </div>
                     <div class="row col-md-12" ng-show='item.fuel_below_indicator'>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Sale Transaction</label>
+                                <label class="label-reception-info">{{'SaleTransaction' | translate}}</label>
                                 <select class="form-control" ng-model="item.selectedTrans" ng-options="item5.id +' - '+ item5.dispensedVolume + ' L - '+ item5.nozzleNumber for item5 in transList">
                                 </select>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Missing Amount</label>
+                                <label class="label-reception-info">{{'quantitySent' | translate}}</label>
                                 <input class="form-control" disabled value="{{item.selectedTrans.dispensedVolume}}" />
                             </div>
                         </div>
                         <div class="col-1">
                             <div class="form-group">
-                                <label class="label-reception-info">TRANSACRION ID</label>
+                                <label class="label-reception-info">{{'TransactionID' | translate}}</label>
                                 <input class="form-control" disabled value="{{item.selectedTrans.id}}" />
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">ADDED AMOUNT</label>
+                                <label class="label-reception-info">{{'AddedQuantity' | translate}}</label>
                                 <input class="form-control" disabled value="{{item.selectedTrans.dispensedVolume}}" />
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">ADDED AMOUNT PRICE</label>
-                                <input class="form-control" disabled value="{{item.selectedTrans.netTotalMc}} L.L/$ {{item.selectedTrans.netTotalSc}}" />
+                                <label class="label-reception-info">{{'AddedQuantityPrice' | translate}}</label>
+                                <input class="form-control" disabled value="{{item.selectedTrans.netTotalMc}} {{'LL' | translate}}/$ {{item.selectedTrans.netTotalSc}}" />
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Difference Reason</label>
+                                <label class="label-reception-info">{{'DifferenceReason' | translate}}</label>
                                 <input class="form-control" type="text" ng-model="item.qantitiesDifferenceReason" />
                             </div>
                         </div>
@@ -208,26 +208,26 @@
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Tank</label>
+                                <label class="label-reception-info">{{'Tank' | translate}}</label>
                                 <select class="form-control" ng-change="tankNumberSelected(item.tankId,item.subTankId, item.volumeSoldDuringReception)" ng-model="item.tankId" ng-options="item2.id as item2.tankNumber for item2 in tanks">
                                 </select>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Available Amount</label>
+                                <label class="label-reception-info">{{'AvailableQuantity' | translate}}</label>
                                 <input class="form-control" disabled ng-model="item.volumeBeforeReception" />
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Added Amount</label>
+                                <label class="label-reception-info">{{'AddedQuantity' | translate}}</label>
                                 <input class="form-control" ng-model="item.volumeSoldDuringReception" ng-change="validateTankAddedAmount(item.volumeSoldDuringReception, item.productVolume, item.subTankId, item.volumeBeforeReception)"/>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">New Available Amount </label>
+                                <label class="label-reception-info">{{'NewAvailableQuantity' | translate}}</label>
                                 <input class="form-control" disabled ng-model="item.estVolAfterReception" />
                             </div>
                         </div>
@@ -239,21 +239,21 @@
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Subtank ID on Valve</label>
+                                <label class="label-reception-info">{{'SubtankIDValve' | translate}}</label>
                                 <select class="form-control" ng-model="item.subTankID_on_valve" ng-options="item3 for item3 in sealTypes">
                                 </select>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Seal on Valve</label>
+                                <label class="label-reception-info">{{'SealValve' | translate}}</label>
                                 <select class="form-control" ng-model="item.seal_on_valve" ng-options="item4 for item4 in sealTypes">
                                 </select>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="label-reception-info">Seal on Subtank</label>
+                                <label class="label-reception-info">{{'SealSubtank' | translate}}</label>
                                 <select class="form-control" ng-model="item.seal_on_subTank_cover" ng-options="item5 for item5 in sealTypes">
                                 </select>
                             </div>
@@ -263,7 +263,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="createReception()">Confirm</button>
+                <button type="button" class="btn btn-primary" ng-click="createReception()">{{'Confirm' | translate}}</button>
             </div>
         </div>
         

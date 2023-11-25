@@ -11,9 +11,9 @@
         <div class="col-12">
             <div class="card-header" style="border-bottom: none;">
                 <a ui-sref="pos.reception" class="nav-link back-btn" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
-                    < Back
+                    < {{'back' | translate}}
                 </a>
-                <h3 class="receiptInfo-title">Reception</h3>
+                <h3 class="receiptInfo-title">{{'Reception' | translate}}</h3>
                 <!--<h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>-->
             </div>
         </div>
@@ -24,11 +24,11 @@
                 <table class="table  text-nowrap transfer-popup-table reception-table-info">
                     <thead>
                         <tr>
-                            <th>RECEPTION ID</th>
-                            <th>SENDED BY</th>
-                            <th>CREATION DATE</th>
-                            <th>DELIVERY DATE</th>
-                            <th>SUPPLIER NAME</th>
+                            <th>{{'ReceptionID' | translate}}</th>
+                            <th>{{'SentBy' | translate}}</th>
+                            <th>{{'creationDate' | translate}}</th>
+                            <th>{{'creationTime' | translate}}</th>
+                            <th>{{'SupplierName' | translate}}</th>
                             <th class="reception-do-item-status" ng-class="item.statusStyle" style="color: #ffc720; width: 1em;">{{reception.status}}</th>
                         </tr>
                     </thead>
@@ -48,15 +48,15 @@
             <span style="height: 1px; background: #ede6e6;"></span>
 
             <div>
-                <label style=" width: 100%; margin-bottom: 0.1em; padding: 1em 1em 0em 1em;">Driver and truck data</label>
+                <label style=" width: 100%; margin-bottom: 0.1em; padding: 1em 1em 0em 1em;">{{'DriverTruckData' | translate}}</label>
                 <div class="row" style="padding: 1em;">
                     <div class="col-md-6">
                         <table class="table  text-nowrap transfer-popup-table reception-table-info">
                             <thead>
                                 <tr>
-                                    <th>DRIVER NAME</th>
-                                    <th>PLATE NUMBER</th>
-                                    <th>TRANSPORT PARTY</th>
+                                    <th>{{'DriverName' | translate}}</th>
+                                    <th>{{'PlateNumber' | translate}}</th>
+                                    <th>{{'TransportParty' | translate}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,8 +80,8 @@
                         <table class="table  text-nowrap transfer-popup-table reception-table-info">
                             <thead>
                                 <tr>
-                                    <th>Nonconformity Reason</th>
-                                    <th>Description</th>
+                                    <th>{{'NonconformityReason' | translate}}</th>
+                                    <th>{{'Description' | translate}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,17 +110,17 @@
 
 
             <div class="row" style="padding: 1em;">
-                <label>DO Information</label>
+                <label>{{'doInfo' | translate}}</label>
                 <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in reception.receivedSubTanks">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                            <th class="th-text">Type</th>
-                            <th class="th-text">SUBTANK</th>
-                            <th class="th-text">AMOUNT SENT</th>
-                            <th class="th-text">SubTank Id On Valve</th>
-                            <th class="th-text">Seal On SubTank Cover</th>
-                            <th class="th-text">Seal On Valve</th>
+                            <th class="th-text">{{'Type' | translate}}</th>
+                            <th class="th-text">{{'Subtank' | translate}}</th>
+                            <th class="th-text">{{'quantitySent' | translate}}</th>
+                            <th class="th-text">{{'SubtankIDValve' | translate}}</th>
+                            <th class="th-text">{{'SealSubtank' | translate}}</th>
+                            <th class="th-text">{{'SealValve' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -140,24 +140,24 @@
             <span style="height: 1px; background: #ede6e6;"></span>
 
             <div class="row" style="padding: 1em;">
-                <label>Reception Information</label>
+                <label>{{'ReceptionInformation' | translate}}</label>
                 <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in reception.receivedSubTanks">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
-                            <th class="th-text">Type</th>
-                            <th class="th-text">SUBTANK</th>
-                            <th class="th-text">AMOUNT</th>
+                            <th class="th-text">{{'Type' | translate}}</th>
+                            <th class="th-text">{{'Subtank' | translate}}</th>
+                            <th class="th-text">{{'Amount' | translate}}</th>
                             <th class="th-text">
                                 <div style=" background: #f3efef; width: 26em; height: 5em;">
-                                    <span class="missing-title">Missing Amount</span> - <span class="missing-title">  {{item.isPayed}}</span>
+                                    <span class="missing-title">{{'MissingQuantity' | translate}}</span> - <span class="missing-title">  {{item.isPayed}}</span>
                                     <table class="table  text-nowrap transfer-popup-table reception-do-info-table" style="margin-top: 0.4em;">
                                         <thead>
                                             <tr>
-                                                <th class="th-text">Missing Amount</th>
-                                                <th class="th-text">SubTank</th>
-                                                <th class="th-text">TRANSACTION ID</th>
-                                                <th class="th-text">Amount Added</th>
+                                                <th class="th-text">{{'MissingQuantity' | translate}}</th>
+                                                <th class="th-text">{{'Subtank' | translate}}</th>
+                                                <th class="th-text">{{'TransactionID' | translate}}</th>
+                                                <th class="th-text">{{'AddedQuantity' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -181,13 +181,13 @@
                             <td>{{item.volume}} L</td>
                             <td class="th-text">
                                 <div style=" background: #f3efef; width: 26em; height: 5em; margin-top: 1em;">
-                                    <span class="reception-info-title">Reception Information</span>
+                                    <span class="reception-info-title">{{'ReceptionInformation' | translate}}</span>
                                     <table class="table  text-nowrap transfer-popup-table reception-do-info-table">
                                         <thead>
                                             <tr>
-                                                <th class="th-text">Reception Amount</th>
-                                                <th class="th-text">Tank</th>
-                                                <th class="th-text">Station Manager</th>
+                                                <th class="th-text">{{'ReceptionAmount' | translate}}</th>
+                                                <th class="th-text">{{'Tank' | translate}}</th>
+                                                <th class="th-text">{{'StationManager' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -207,7 +207,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="createReception()">Confirm</button>
+                <button type="button" class="btn btn-primary" ng-click="createReception()">{{'Confirm' | translate}}</button>
             </div>
         </div>
 

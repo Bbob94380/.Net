@@ -156,21 +156,21 @@
 								}//end for loop
 
 								if (isCardPaid && isCashPaid) {
-									result.resultData[i].wop = "Cash and card";
+									result.resultData[i].wop = $filter('translate')('CashAndcard');
 								} else if (isCardPaid) {
-									result.resultData[i].wop = "Card";
+									result.resultData[i].wop = $filter('translate')('card');
 								} else if (isCashPaid) {
-									result.resultData[i].wop = "Cash";
+									result.resultData[i].wop = $filter('translate')('cash');
 								} else {
 									result.resultData[i].wop = "";
 								}
 
 								if (isDollarPaid && isLLPaid) {
-									result.resultData[i].currency = "Lebanese Lire and dollar";
+									result.resultData[i].currency = $filter('translate')('LebaneseAnddollar');
 								} else if (isDollarPaid) {
-									result.resultData[i].currency = "Dollar";
+									result.resultData[i].currency = $filter('translate')('dollar');
 								} else if (isLLPaid) {
-									result.resultData[i].currency = "Lebanese Lire";
+									result.resultData[i].currency = $filter('translate')('lebanese');
 								} else {
 									result.resultData[i].currency = "";
 								}

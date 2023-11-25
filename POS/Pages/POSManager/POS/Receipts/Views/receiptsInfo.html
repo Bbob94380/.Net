@@ -11,10 +11,10 @@
     <div class="container-fluid">
             <div class="col-12">
                 <div class="card-header" style="border-bottom: none;">
-                    <a ui-sref="pos.receipts" class="nav-link back-btn" >
-                        < Back
+                    <a ui-sref="pos.receipts" class="nav-link back-btn">
+                        < {{'back' | translate}}
                     </a>
-                    <h3 class="receiptInfo-title">Receipts</h3>
+                    <h3 class="receiptInfo-title">{{'receipts' | translate}}</h3>
                     <!--<h6 class="receiptInfo-subTitle">Receipts ID - Way of Payment - Employee - Amount</h6>-->
                 </div>
                 </div>
@@ -23,23 +23,23 @@
                     <div class="card-body  p-0">
                         <div class="row" style="padding: 1em;">
                             <div class="col-2" style="border-right: 1px solid #dee2e6;">
-                                <span class="receipt-info-span">Receipts ID</span> <br />
+                                <span class="receipt-info-span">{{'ReceiptsID' | translate}}</span> <br />
                                 <span>{{receiptId}}</span>
                             </div>
                             <div class="col-2" style="padding-left: 1em;">
-                                <span class="receipt-info-span">Way of payment</span> <br />
+                                <span class="receipt-info-span">{{'WOP' | translate}}</span> <br />
                                 <span>{{wop}}</span>
                             </div>
                             <div class="col-2">
-                                <span class="receipt-info-span">Creation Date</span> <br />
+                                <span class="receipt-info-span">{{'CreationDate' | translate}}</span> <br />
                                 <span>{{creationDate}}</span>
                             </div>
                             <div class="col-2">
-                                <span class="receipt-info-span">Transaction Number</span> <br />
+                                <span class="receipt-info-span">{{'TransactionNumber' | translate}}</span> <br />
                                 <span>{{transNb}}</span>
                             </div>
                             <div class="col-3">
-                                <span class="receipt-info-span">Created by</span> <br />
+                                <span class="receipt-info-span">{{'CreatedBy' | translate}}</span> <br />
                                 <span>{{createdBy}}</span>
                             </div>
                         </div>
@@ -48,11 +48,11 @@
                             <table class="table table-hover text-nowrap receiptInfoTable">
                                 <thead>
                                     <tr  style="border-left: 1px solid #DEDEDE;border-right: 1px solid #DEDEDE;">
-                                        <th>Transaction ID</th>
-                                        <th>creator</th>
-                                        <th>Creation Date</th>
-                                        <th>Total</th>
-                                        <th></th>
+                                        <th>{{'TransactionID' | translate}}</th>
+                                        <th>{{'creator' | translate}}</th>
+                                        <th>{{'CreationDate' | translate}}</th>
+                                        <th>{{'Total' | translate}}</th>
+                                        <!--<th></th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,14 +60,14 @@
                                         <td>{{item.id}}</td>
                                         <td>{{item.creator}}</td>
                                         <td>{{item.creationDate}}</td>
-                                        <td>{{item.netTotalMc}} L.L/ {{item.netTotalSc}} $</td>
-                                        <td><span class="view-btn">View</span></td>
+                                        <td>{{item.netTotalMc}} {{'LL' | translate}}/ {{item.netTotalSc}} $</td>
+                                        <!--<td><span class="view-btn">View</span></td>-->
                                     </tr>
                                     <tr style="border-top: 1px solid #DEDEDE; border-left: none; border-right: none;">
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><span style="padding-right: 2em;font-weight:bold">TOTAL</span> <span>{{totalTrans}}</span></td>
+                                        <td><span style="padding-right: 2em;font-weight:bold">{{'Total' | translate}}</span> <span>{{totalTrans}}</span></td>
                                         <td></td>
                                     </tr>
                                 </tbody>
@@ -75,36 +75,36 @@
                         </div>
                         <div class="row receiptInfo-lastRow" style="padding: 1em;clear: both;">
                             <div class="col-1">
-                                <span style="font-weight: 600; font-family: 'rubikRegular'; color: #6F6F6F;">CREDIT</span> <br />
+                                <span style="font-weight: 600; font-family: 'rubikRegular'; color: #6F6F6F;">{{'card' | translate}}</span> <br />
                             </div>
                             <div class="col-1">
-                                <span>DOLLAR</span> <br />
+                                <span>{{'DOLLAR' | translate}}</span> <br />
                                 <span>{{dollarCredit}}</span>
                             </div>
                             <div class="col-1"  style="border-right: 1px solid #dee2e6;">
-                                <span>LEBANESE</span> <br />
+                                <span>{{'LEBANESE' | translate}}</span> <br />
                                 <span>{{LebaneseCredit}}</span>
                             </div>
                             <div class="col-1">
-                                <span style="font-weight: 600; font-family: 'rubikRegular'; color: #6F6F6F;">CASH</span> <br />
+                                <span style="font-weight: 600; font-family: 'rubikRegular'; color: #6F6F6F;">{{'cash' | translate}}</span> <br />
                             </div>
                             <div class="col-1">
-                                <span>DOLLAR</span> <br />
+                                <span>{{'DOLLAR' | translate}}</span> <br />
                                 <span>{{dollarCash}}</span>
                             </div>
                             <div class="col-1" style="border-right: 1px solid #dee2e6;">
-                                <span>LEBANESE</span> <br />
+                                <span>{{'LEBANESE' | translate}}</span> <br />
                                 <span>{{LebaneseCash}}</span>
                             </div>
                             <div class="col-2">
-                                <span>TOTAL</span> <br />
+                                <span>{{'Total' | translate}}</span> <br />
                                 <span>{{totalTrans}}</span>
                             </div>
                         </div>
 
                         <div class="row receiptInfo-footer">
-                            <button type="button" class="btn  btn-primary btn-print">Print</button>
-                            <button type="button" class="btn  btn-primary btn-export">Export</button>
+                            <button type="button" class="btn  btn-primary btn-print">{{'Print' | translate}}</button>
+                            <button type="button" class="btn  btn-primary btn-export">{{'Export' | translate}}</button>
                         </div>
                     </div>
                     <!-- /.card-body -->

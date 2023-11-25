@@ -10,27 +10,27 @@
 <div class="modal-body">
     <div class="row" style="padding: 1em;">
         <div class="col-1" style="border-right: 1px solid #dee2e6;">
-            <span class="popUp-span-title">REFUND ID</span> <br />
+            <span class="popUp-span-title">{{'RefundID' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.id}}</span>
         </div>
         <div class="col-2">
-            <span class="popUp-span-title">Sale ID</span> <br />
+            <span class="popUp-span-title">{{'SaleID' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.saleId}}</span>
         </div>
         <div class="col-2" style="border-right: 1px solid #dee2e6;">
-            <span class="popUp-span-title">WAY OF PAYMENT</span> <br />
+            <span class="popUp-span-title">{{'WOP' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.wop}}</span>
         </div>
         <div class="col-3">
-            <span class="popUp-span-title">CREATION DATE</span> <br />
+            <span class="popUp-span-title">{{'CreationDate' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.creationDate}}</span>
         </div>
         <div class="col-2">
-            <span class="popUp-span-title">CREATED BY</span> <br />
+            <span class="popUp-span-title">{{'CreationTime' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.creator}}</span>
         </div>
         <div class="col-1">
-            <span class="popUp-span-title">CUSTOMER</span> <br />
+            <span class="popUp-span-title">{{'Customer' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{refundItem.customerId}}</span>
         </div>
     </div>
@@ -38,12 +38,12 @@
         <table class="table table-hover text-nowrap tableTransPopupDry">
             <thead>
                 <tr>
-                    <th>ITEM ID</th>
-                    <th>ITEN NAME</th>
-                    <th>QUANTITY</th>
-                    <th>DISCOUNT</th>
-                    <th>PRICE</th>
-                    <th>TOTAL</th>
+                    <th>{{'ItemID' | translate}}</th>
+                    <th>{{'ItemName' | translate}}</th>
+                    <th>{{'quantity' | translate}}</th>
+                    <th>{{'Discount' | translate}}</th>
+                    <th>{{'Price' | translate}}</th>
+                    <th>{{'Total' | translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,65 +68,65 @@
     </div>
     <div class="row " style="border-top: 1px solid #dee2e6;padding: 2em 0em 1em 1em;">
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">TOTAL</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanBold">{{'Total' | translate}}</span> <br />
             <!--<span class="titleValue">400</span>-->
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">CREDIT</span>
+            <span class="PopUpFuelHeaderTitleSpanBold">{{'card' | translate}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'dollar' | translate}}</span> <br />
             <span class="titleValue">{{$scope.dollarPaid}}</span>
         </div>
         <div class="col-1" style="border-right: 1px solid #dee2e6;">
-            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'Lebanese' | translate}}</span> <br />
             <span class="titleValue">{{$scope.lebanesePaid}}</span>
         </div>
         <div class="col-1" style="padding-left: 1em;">
-            <span class="PopUpFuelHeaderTitleSpanBold">CASH</span>
+            <span class="PopUpFuelHeaderTitleSpanBold">{{'cash' | translate}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'dollar' | translate}}</span> <br />
             <span class="titleValue">{{saleInvoice.cachAmountSc}}</span>
         </div>
         <div class="col-1" style="border-right: 1px solid #dee2e6;">
-            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'Lebanese' | translate}}</span> <br />
             <span class="titleValue">{{saleInvoice.cachAmountMc}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">TOTAL</span> <br />
-            <span class="titleValue">{{saleInvoice.netTotalMc}} L.L/ {{saleInvoice.netTotalSc}} $</span>
+            <span class="PopUpFuelHeaderTitleSpan">{{'Total' | translate}}</span> <br />
+            <span class="titleValue">{{saleInvoice.netTotalMc}} {{'LL' | translate}}/ {{saleInvoice.netTotalSc}} $</span>
         </div>
     </div>
     <div class="row" style="padding: 1em 0em 1em 1em;">
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">REFUND</span> <br />
+            <span class="PopUpFuelHeaderTitleSpanBold">{{'Refund' | translate}}</span> <br />
             <!--<span class="titleValue">400</span>-->
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpanBold">CREDIT</span>
+            <span class="PopUpFuelHeaderTitleSpanBold">{{'card' | translate}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'dollar' | translate}}</span> <br />
             <span class="titleValue">{{refundItem.cardReturnedSc}}</span>
         </div>
         <div class="col-1" style="border-right: 1px solid #dee2e6;">
-            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'Lebanese' | translate}}</span> <br />
             <span class="titleValue">{{refundItem.cardReturnedLc}}</span>
         </div>
         <div class="col-1" style="padding-left: 0.5em;">
             <span class="PopUpFuelHeaderTitleSpanBold">CASH</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">DOLLAR</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'dollar' | translate}}</span> <br />
             <span class="titleValue">{{refundItem.cachAmountSc}}</span>
         </div>
         <div class="col-1" style="border-right: 1px solid #dee2e6;">
-            <span class="PopUpFuelHeaderTitleSpan">LEBANESE</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'Lebanese' | translate}}</span> <br />
             <span class="titleValue">{{refundItem.cachAmountMc}}</span>
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">REFUND TOTAL</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'RefundTotal' | translate}}</span> <br />
             <span class="titleValue">{{refundItem.netTotalMc}} L.L/ {{refundItem.netTotalSc}} $</span>
         </div>
     </div>
@@ -152,7 +152,7 @@
            
         </div>
         <div class="col-1">
-            <span class="PopUpFuelHeaderTitleSpan">NEW TOTAL</span> <br />
+            <span class="PopUpFuelHeaderTitleSpan">{{'TotalAmount' | translate}}</span> <br />
             <span class="titleValue">{{saleInvoice.netTotalMc - refundItem.netTotalMc}} L.L/ {{saleInvoice.netTotalSc - refundItem.netTotalSc}} $</span>
         </div>
     </div>

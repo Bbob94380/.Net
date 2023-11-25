@@ -7,6 +7,8 @@
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.5.1/css/dataTables.dateTime.min.css">
     <link rel="stylesheet" href="~/Resources/Styles/Plugins/fontawesome-free/all.min.css">
     <link rel="stylesheet" href="~/Resources/Styles/Plugins/flag-icon/flag-icon.min.css">
@@ -94,15 +96,40 @@
     <script src="~/Pages/POSManager/POS/Receipts/Controllers/receiptsInfoController.js"></script>
     <script src="~/Pages/POSManager/POS/Receipts/Controllers/receiptsHistoryController.js"></script>
     <!-- Generator-->
+    <script src="~/Pages/POSManager/POS/Generator/Controllers/addInvoicePopupController.js"></script>
     <script src="~/Pages/POSManager/POS/Generator/Controllers/generatorController.js"></script>
+    <script src="~/Pages/POSManager/POS/Generator/Controllers/generatorInvoicesController.js"></script>
     <script src="~/Pages/POSManager/POS/Generator/Controllers/generatorHistoryController.js"></script>
     <script src="~/Pages/POSManager/POS/Generator/Controllers/createNewCustomerPopupController.js"></script>
+    <script src="~/Pages/POSManager/POS/Generator/Controllers/createNewSubscriptionPopupController.js"></script>
     <script src="~/Pages/POSManager/POS/Generator/Controllers/customerInvoicesPopupController.js"></script>
     <script src="~/Pages/POSManager/POS/Generator/Controllers/showInvoiceDetailsPaidPopupController.js"></script>
     <script src="~/Pages/POSManager/POS/Generator/Controllers/showInvoiceDetailsUnPaidPopupController.js"></script>
+    <!-- EOD-->
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/eodController.js"></script>
+    <script src="~/Pages/POSManager/POS/MoneyDelivery/Controllers/moneyDeliveryController.js"></script>
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/eodFormController.js"></script>
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/shiftFuelPopupController.js"></script>
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/shiftDryPopupController.js"></script>
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/shiftCarWashPopupController.js"></script>
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/shiftCashPopupController.js"></script>
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/shiftMoneyTypePopupController.js"></script>
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/karedAlHassanPopupController.js"></script>
+    <script src="~/Pages/POSManager/POS/EOD/Controllers/EPaymentPopupController.js"></script>
+    <script src="~/Pages/POSManager/POS/MoneyDelivery/Controllers/moneyFormController.js"></script>
+    <!-- Shifts-->
+    <script src="~/Pages/POSManager/POS/Shifts/Controllers/shiftsController.js"></script>
+    <script src="~/Pages/POSManager/POS/Shifts/Controllers/shiftsHistoryController.js"></script>
+    <script src="~/Pages/POSManager/POS/Shifts/Controllers/shiftsInfoPopupController.js"></script>
+    <!-- Nuzzle-->
+    <script src="~/Pages/POSManager/POS/Nuzzle/Controllers/nuzzleController.js"></script>
+
 
     <!-- Directives-->
     <script src="~/Resources/Scripts/Custom/AngularJs/Directives/tableJquery.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 
     <div class="CustomLoader" ng-show="showLoader"></div>
     <div class="ui-loader-background" ng-show="showLoader"> </div>

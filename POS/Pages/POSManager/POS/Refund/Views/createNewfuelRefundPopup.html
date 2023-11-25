@@ -1,16 +1,16 @@
 ﻿<div class="modal-header">
-    <h5 class="modal-title">Invoice Id</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!--<h5 class="modal-title">Invoice Id</h5>-->
+    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
-    </button>
+    </button>-->
 </div>
 <div class="modal-body">
     <div class="row" style="padding: 1em;">
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Refund Type</label>
+                <label class="popUp-span-title">{{'RefundMethod' | translate}}</label>
                 <select class="form-control" ng-options="refund.type for refund in refundTypes" ng-change="refundTypeChanged()" ng-model="refundTypeSelected">
-                    <option value="">--Select User--</option>
+                    <option value="">--{{'select' | translate}}--</option>
                 </select>
             </div>
         </div>
@@ -18,13 +18,13 @@
     <div class="row" style="padding: 0em 1em 1em 1em;" ng-if="refundTypeSelected.id == '2'">
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Sale Invoice ID</label>
-                <input class="form-control" ng-model="saleId"  />
+                <label class="popUp-span-title">{{ 'SaleInvoiceID' | translate}}</label>
+                <input class="form-control" ng-model="saleId" />
             </div>
         </div>
         <div class="col-2">
             <div class="form-group">
-                <label class="popUp-span-title" style="visibility:hidden !important">Transaction ID</label>
+                <label class="popUp-span-title" style="visibility:hidden !important">{{ 'TransactionID' | translate}}</label>
                 <span class="create-btn-popup" style="display: block;border-radius: 4px; cursor: pointer" ng-click="getInfo(saleId)">Get info</span>
             </div>
         </div>
@@ -33,28 +33,28 @@
     <div class="row" style="padding: 0em 1em 1em 1em;border-bottom: 1px solid #dee2e6;" ng-if="refundTypeSelected.id == '1'">
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Fuel Type</label>
+                <label class="popUp-span-title">{{ 'FuelType' | translate}}</label>
                 <select class="form-control" ng-options="item for item in wetProductTypes" ng-model="fuelTypeSelected">
-                    <option value="">--Select User--</option>
+                    <option value="">--{{ 'select' | translate}}--</option>
                 </select>
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Creation Date</label>
+                <label class="popUp-span-title">{{ 'CreationDate' | translate}}</label>
                 <input class="form-control" ng-model="creationDate" disabled />
 
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Creation Time</label>
+                <label class="popUp-span-title">{{ 'CreationTime' | translate}}</label>
                 <input class="form-control" ng-model="creationTime" disabled />
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Employee Name</label>
+                <label class="popUp-span-title">{{ 'EmployeeName' | translate}}</label>
                 <input class="form-control" value="{{employeeNameCalib}}" disabled />
             </div>
         </div>
@@ -64,20 +64,20 @@
     <div class="row" style="padding: 0em 1em 1em 1em; border-bottom: 1px solid #dee2e6;" ng-if="refundTypeSelected.id == '2'">
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Employee Name</label>
+                <label class="popUp-span-title">{{ 'EmployeeName' | translate}}</label>
                 <input class="form-control" value="{{employeeName}}" disabled />
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Creation Date</label>
+                <label class="popUp-span-title">{{ 'CreationDate' | translate}}</label>
                 <input class="form-control" value="{{creationDate}}" disabled />
 
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Creation Time</label>
+                <label class="popUp-span-title">{{ 'CreationTime' | translate}}</label>
                 <input class="form-control" value="{{creationTime}}" disabled />
 
             </div>
@@ -88,20 +88,20 @@
     <div class="row" style="padding: 2em 1em 1em 1em;" ng-if="refundTypeSelected.id == '1'">
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Nozzle Number</label>
+                <label class="popUp-span-title">{{ 'NozzleNumber' | translate}}</label>
                 <input class="form-control" valuw="{{saleTransaction.nozzleNumber}}" disabled />
 
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Tank Number</label>
-                <input class="form-control" ng-model="tankNumber"  />
+                <label class="popUp-span-title">{{ 'TankNumber' | translate}}</label>
+                <input class="form-control" ng-model="tankNumber" />
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Amount</label>
+                <label class="popUp-span-title">{{ 'Amount' | translate}}</label>
                 <input class="form-control" ng-model="amountFuel" />
 
             </div>
@@ -110,27 +110,27 @@
 
     <div class="row" style="padding: 1em;" ng-if="refundTypeSelected.id == '2'">
         <div class="col-1">
-            <span class="popUp-span-title">Customer ID</span> <br />
+            <span class="popUp-span-title">{{ 'CustomerID' | translate}}</span> <br />
             <span>{{saleInvoice.customerId}}</span>
         </div>
         <div class="col-2">
-            <span class="popUp-span-title">Way of Payment</span> <br />
+            <span class="popUp-span-title">{{ 'WOP' | translate}}</span> <br />
             <span>{{saleInvoice.wop}}</span>
         </div>
         <div class="col-2">
-            <span class="popUp-span-title">Discount</span> <br />
+            <span class="popUp-span-title">{{ 'Discount' | translate}}</span> <br />
             <span>{{saleInvoice.discountPercent}}</span>
         </div>
         <div class="col-1">
-            <span class="popUp-span-title">Dollar</span> <br />
+            <span class="popUp-span-title">{{ 'DOLLAR' | translate}}</span> <br />
             <span>{{dollarPaid}}</span>
         </div>
         <div class="col-1">
-            <span class="popUp-span-title">Lebanese</span> <br />
+            <span class="popUp-span-title">{{ 'LEBANESE' | translate}}</span> <br />
             <span>{{lebanesePaid}}</span>
         </div>
         <div class="col-2">
-            <span class="popUp-span-title">Total </span> <br />
+            <span class="popUp-span-title">{{ 'Total' | translate}} </span> <br />
             <span>{{total}}</span>
         </div>
     </div>
@@ -140,14 +140,13 @@
         <table class="table table-hover text-nowrap tableTransPopupDry">
             <thead>
                 <tr>
-                    <th></th>
-                    <th>ITEM ID</th>
-                    <th>ITEN NAME</th>
-                    <th>QUANTITY</th>
-                    <th>DISCOUNT</th>
-                    <th>PRICE</th>
-                    <th>TOTAL</th>
-                    <th>REFUND AMOUNT</th>
+                    <th>{{'ItemID' | translate}}</th>
+                    <th>{{'ItemName' | translate}}</th>
+                    <th>{{'quantity' | translate}}</th>
+                    <th>{{'Discount' | translate}}</th>
+                    <th>{{'Price' | translate}}</th>
+                    <th>{{'Total' | translate}}</th>
+                    <th>{{'RefundAmount' | translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -159,8 +158,8 @@
                     <td>{{item.productName}}</td>
                     <td>{{item.quantity}}</td>
                     <td>{{item.discountPercent}}</td>
-                    <td>{{item.priceMc}} L.L/{{item.priceSc}} $ </td>
-                    <td>{{item.netTotalMc}} L.L/{{item.netTotalSc}} $ </td>
+                    <td>{{item.priceMc}} {{'LL' | translate}}/{{item.priceSc}} $ </td>
+                    <td>{{item.netTotalMc}} {{'LL' | translate}}/{{item.netTotalSc}} $ </td>
                     <td>
                         <input type="number" class="form-control" ng-disabled="!IsDisabled" ng-model="refundAmount[$index]" ng-change="refundAmountChanged(item, refundAmount[$index], $index)" />
                     </td>
@@ -183,19 +182,19 @@
     <div class="row" style="padding: 1em; border-top: 1px solid #dee2e6;" ng-if="refundTypeSelected.id == '2'">
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Way Of Refund</label>
+                <label class="popUp-span-title"> {{'WOR' | translate}}</label>
                 <select class="form-control">
-                    <option>Cash</option>
-                    <option>Card</option>
+                    <option>{{'cash' | translate}}</option>
+                    <option>{{'card' | translate}}</option>
                 </select>
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label class="popUp-span-title">Currency</label>
+                <label class="popUp-span-title">{{'Currency' | translate}}</label>
                 <select class="form-control">
-                    <option>Dollar</option>
-                    <option>Lebanese Lira</option>
+                    <option>{{'dollar' | translate}}</option>
+                    <option>{{'Lebanese' | translate}} {{'LL' | translate}}</option>
                 </select>
             </div>
         </div>
@@ -209,6 +208,6 @@
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-default cancel-btn-popup" data-dismiss="modal">CANCEL</button>
-    <button type="button" class="btn btn-primary create-btn-popup" ng-click="createRefund()">CREATE</button>
+    <button type="button" class="btn btn-default cancel-btn-popup" data-dismiss="modal">{{'Cancel' | translate}}</button>
+    <button type="button" class="btn btn-primary create-btn-popup" ng-click="createRefund()">{{'Create' | translate}}</button>
 </div>

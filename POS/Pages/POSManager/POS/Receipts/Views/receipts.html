@@ -7,7 +7,7 @@
             </div>
             <div class="col-sm-7">
                 <div class="input-group input-group-sm input-group-receipts">
-                    <span ng-click="goToHistoryPage()" style="cursor: pointer" class="receipts-history-btn">{{'history' | translate}}</span>
+                    <span ng-click="goToHistoryPage()" style="cursor: pointer" class="receipts-history-btn">{{'historyReceipt' | translate}}</span>
                     <span ng-click="openCreateNewReceiptPopup()" style="cursor: pointer" class="receipts-create-btn">{{'createnewreceipt' | translate}}</span>
                     <div class="form-group has-search">
                         <span class="fa fa-search form-control-feedback"></span>
@@ -30,23 +30,24 @@
                             <thead>
                                 <tr>
                                     <th style="width: 20%">
-                                        ID
+                                        {{'ID' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        Nu. of Transactions
+                                        {{'nbOfTransaction' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        WOP
+                                        {{'WOP' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        Time & Date
+                                        {{'timeDate' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        Currency
+                                        {{'Currency' | translate}}
                                     </th>
                                     <th style="width: 18%">
-                                        Total
+                                        {{'Total' | translate}}
                                     </th>
+                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in ReceiptsList" ng-click="goToReceiptInfo(item)">
@@ -55,7 +56,7 @@
                                     <td>{{item.wop}}</td>
                                     <td>{{item.creationDate}}</td>
                                     <td>{{item.currency}}</td>
-                                    <td>{{item.ReceiptTotalMC}} L.L <br />  $ {{item.ReceiptTotalSC}}</td>
+                                    <td>{{item.ReceiptTotalMC}} {{'LL' | translate}} <br />  $ {{item.ReceiptTotalSC}}</td>
                                 </tr>
                             </tbody>
                         </table>

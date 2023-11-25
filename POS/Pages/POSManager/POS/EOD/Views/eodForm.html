@@ -11,9 +11,9 @@
         <div class="col-12">
             <div class="card-header" style="border-bottom: none;">
                 <a ui-sref="pos.eod" class="nav-link back-btn" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
-                    < Back
+                    < {{'back' | translate}}
                 </a>
-                <h3 class="receiptInfo-title">End of Day Form</h3>
+                <h3 class="receiptInfo-title">{{'EndOfDayForm' | translate}}</h3>
                 <h6 class="receiptInfo-subTitle" style="color: #898888; font-size: 14px; margin-top: 4px; font-weight: 100; font-family: 'rubikMedium';">{{eodId}} - {{stationManagerName}} - {{creationDate}} - {{creationTime}}</h6>
             </div>
         </div>
@@ -24,10 +24,10 @@
                 <table class="table  text-nowrap transfer-popup-table reception-table-info">
                     <thead>
                         <tr>
-                            <th>EOD ID</th>
-                            <th class="col-3">CREATED BY</th>
-                            <th>CREATION DATE</th>
-                            <th>Select Date Of EOD</th>
+                            <th>{{'ID' | translate}}</th>
+                            <th class="col-3">{{'CreatedBy' | translate}}</th>
+                            <th>{{'CreationDate' | translate}}</th>
+                            <th>{{'SelectDateOfEOD' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@
                             <td>{{stationManagerName}}</td>
                             <td>{{creationDate}}</td>
                             <td>
-                                    <input class="form-control col-8" type="date" ng-model="dateOfEod" ng-change="getEod(dateOfEod)" />
+                                    <input style="float: left;" class="form-control col-8" type="date" ng-model="dateOfEod" ng-change="getEod(dateOfEod)" />
                             </td>
                         </tr>
                     </tbody>
@@ -49,43 +49,43 @@
                 <div class="row" style="padding: 0 1em;">
                     <div class="col-4" style="border-right: 1px solid #e1e1e1; padding: 0 2em 0em 1em;">
                         <div class="form-group">
-                            <label style="display: block;font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">EOD ID</label>
+                            <label style="display: block;font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">{{'ID' | translate}}</label>
                             <input class="form-control" disabled value="{{eodId}}" />
                         </div>
                         <div class="form-group">
-                            <label style="display: block;font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">Station Manager</label>
+                            <label style="display: block;font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">{{'StationManager' | translate}}</label>
                             <input class="form-control" disabled value="{{stationManagerName}}" />
                         </div>
                         <div class="form-group">
-                            <label style="display: block; margin-top: 2em; font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">Creation Date</label>
+                            <label style="display: block; margin-top: 2em; font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">{{'CreationDate' | translate}}</label>
                             <input class="form-control" disabled value="{{creationDate}}" />
                         </div>
                         <div class="form-group">
-                            <label style="display: block; margin-top: 2em; font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">Creation Time</label>
+                            <label style="display: block; margin-top: 2em; font-family: 'rubikRegular'; color: #6F6F6F; font-size: 14px;">{{'CreationTime' | translate}}</label>
                             <input class="form-control" disabled value="{{creationTime}}" />
                         </div>
                        
                     </div>
                     <div class="col-4" style="margin-left: 2em;">
                         <div class="form-group shift-box {{styleShiftFinishedOne}}" ng-click="shiftFuelClicked(1)">
-                            <label style="display: block; font-family: 'rubikBold'; font-size: 18px;">Shift 1</label>
-                            <span style="display: block; margin-top: 3em; font-family: 'rubikRegular'; color: #c5c4c4; font-size: 14px;">EMPLOYEE NUMBER</span>
+                            <label style="display: block; font-family: 'rubikBold'; font-size: 18px;">{{'Shift' | translate}} 1</label>
+                            <span style="display: block; margin-top: 3em; font-family: 'rubikRegular'; color: #c5c4c4; font-size: 14px;">{{'numberOfEmployees' | translate}}</span>
                             <span style="display: block; font-family: 'rubikMedium'; color: red;">{{eodObj.numberOfEmployeesShift1}}</span>
                         </div>
                         <div class="form-group shift-box {{styleShiftFinishedTwo}}" ng-click="shiftFuelClicked(2)">
-                            <label style="display: block; font-family: 'rubikBold'; font-size: 18px;">Shift 2</label>
-                            <span style="display: block; margin-top: 3em; font-family: 'rubikRegular'; color: #c5c4c4; font-size: 14px;">EMPLOYEE NUMBER</span>
+                            <label style="display: block; font-family: 'rubikBold'; font-size: 18px;">{{'Shift' | translate}} 2</label>
+                            <span style="display: block; margin-top: 3em; font-family: 'rubikRegular'; color: #c5c4c4; font-size: 14px;">{{'numberOfEmployees' | translate}}</span>
                             <span style="display: block; font-family: 'rubikMedium'; color: red;">{{eodObj.numberOfEmployeesShift2}}</span>
                         </div>
                         <div class="form-group shift-box {{styleShiftFinishedThree}}" ng-click="shiftFuelClicked(3)">
-                            <label style="display: block; font-family: 'rubikBold'; font-size: 18px;">Shift 3</label>
-                            <span style="display: block; margin-top: 3em; font-family: 'rubikRegular'; color: #c5c4c4; font-size: 14px;">EMPLOYEE NUMBER</span>
+                            <label style="display: block; font-family: 'rubikBold'; font-size: 18px;">{{'Shift' | translate}} 3</label>
+                            <span style="display: block; margin-top: 3em; font-family: 'rubikRegular'; color: #c5c4c4; font-size: 14px;">{{'numberOfEmployees' | translate}}</span>
                             <span style="display: block; font-family: 'rubikMedium'; color: red;">{{eodObj.numberOfEmployeesShift3}}</span>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="form-group shift-box2 {{styleShiftFinishedKared}}" ng-click="goToKaredAlHassan()">
-                            <label style="display: block;">Kared al hassan</label>
+                            <label style="display: block;">{{'KaredAlHassan' | translate}}</label>
                             <!--<span class="cash-title" style="margin-top: 10em; ">BANK</span>
                             <span class="cash-value">342233</span>
                             <span class="cash-value">342233</span>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-2">
                         <div class="form-group shift-box2 {{styleShiftFinishedPayment}}" ng-click="goToEPayment()">
-                            <label style="display: block;">E-Payment</label>
+                            <label style="display: block;">{{'EPayment' | translate}}</label>
                             <!--<span class="cash-title" style="margin-top: 16em; ">USD</span>
                             <span class="cash-value">342233</span>
                             <br />
@@ -111,15 +111,15 @@
             </div>
 
             <div class="col-12 " style="margin-right: 2em; ">
-                <div style=" display: block; width: 100%; text-align: end;padding-right: 2em;">
-                    <span style=" display: inline-block; color: #b3afaf; font-size: 14px;">USD</span>
+                <div style="" class="eod-usd">
+                    <span style=" display: inline-block; color: #b3afaf; font-size: 14px;">{{'USD' | translate}}</span>
                     <span style=" color: red; font-size: 14px; font-weight: bold;margin-right: 2em;">$ {{eodObj.cashUsd}}</span>
-                    <span style=" display: inline-block; color: #b3afaf; font-size: 14px;">LBP</span>
-                    <span style=" color: red; font-size: 14px; font-weight: bold;">{{eodObj.cashLbp}} L.L</span>
+                    <span style=" display: inline-block; color: #b3afaf; font-size: 14px;">{{'LebaneseLira' | translate}}</span>
+                    <span style=" color: red; font-size: 14px; font-weight: bold;">{{eodObj.cashLbp}} {{'LL' | translate}}</span>
                 </div>
                 <br />
-                <button type="button" class="btn printBtn-trans refund-create-btn" style="display: block; margin-top: 2em;    float: left;}" ng-click="clear()">Clear</button>
-                <button type="button" class="btn printBtn-trans" style="background:#2A5699; display: block; margin-top: 2em;float: right;" ng-click="createEOD()">Create EOD</button>
+                <button type="button" class="btn printBtn-trans refund-create-btn" style="display: block; margin-top: 2em;    float: left;}" ng-click="clear()">{{'Clear' | translate}}</button>
+                <button type="button" class="btn printBtn-trans" style="background:#2A5699; display: block; margin-top: 2em;float: right;" ng-click="createEOD()">{{'Create' | translate}}</button>
 
             </div>
         </div>

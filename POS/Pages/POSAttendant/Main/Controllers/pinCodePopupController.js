@@ -16,8 +16,8 @@ posAttendantRootModule.controller('pinCodePopupController', function ($scope, $r
         $http({
             method: "POST",
             url: "/api/Request/CheckPinCodeAsync",
-            //data: { email: data.username, password: pinCodeValue }
-            data: { email: "admin@gsm.com", password: "odoo123" }
+            data: { email: data.username, password: pinCodeValue }
+            //data: { email: "admin@gsm.com", password: "odoo123" }
         }).then(function (response) {
 
             console.log(response);

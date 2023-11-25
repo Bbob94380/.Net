@@ -1,40 +1,40 @@
 ﻿<div class="modal-header" id="custom-modal-1">
     <div class="row col-md-12" style="padding: 1em;">
         <div class="col-2">
-            <span class="popUp-span-title">EOD ID</span> <br />
+            <span class="popUp-span-title">{{'ID' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{eodId}}</span>
         </div>
         <div class="col-3">
-            <span class="popUp-span-title">CREATED BY</span> <br />
+            <span class="popUp-span-title">{{'CreatedBy' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{stationManagerName}}</span>
         </div>
 
         <div class="col-3">
-            <span class="popUp-span-title">CREATION DATE</span> <br />
+            <span class="popUp-span-title">{{'CreationDate' | translate}}</span> <br />
             <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{creationDate}}</span>
         </div>
         <div class="col-2">
-            <span class="popUp-span-title">SHIFT</span> <br />
-            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">Shift 2</span>
+            <span class="popUp-span-title">{{'Shift' | translate}}</span> <br />
+            <span style="font-family: 'rubikRegular'; font-size: 13px;color:#000">{{'Shift' | translate}} {{shiftNumber}}</span>
         </div>
     </div>
-    <button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" style="margin-right:1em;display: contents;">
+    <!--<button type="button" class="close closeBtnPopup" data-dismiss="modal" aria-label="Close" style="margin-right:1em;display: contents;">
         <span aria-hidden="true">&times;</span>
-    </button>
+    </button>-->
 </div>
 <div class="modal-body">
 
 
     <div class="row" style="padding: 1em;" ng-repeat="employee in shiftObj.employeeMoneyAmounts">
-        <label style="display: block; width:100%">Employee {{$index + 1}}: {{employee.employeeName}}</label>
+        <label style="display: block; width:100%">{{'Employee' | translate}} {{$index + 1}}: {{employee.employeeName}}</label>
 
         <div class="col-md-12">
             <!--<label style="margin-top:2em;">First of the Day Cash</label>-->
             <table class="table text-nowrap shiftTable">
                 <thead>
                     <tr>
-                        <th class="th-text">USD CLASS</th>
-                        <th class="th-text">QUANTITY</th>
+                        <th class="th-text">{{'usdClass' | translate}}</th>
+                        <th class="th-text">{{'quantity' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,8 +50,8 @@
             <table class="table text-nowrap shiftTable">
                 <thead>
                     <tr>
-                        <th class="th-text">LBP CLASS</th>
-                        <th class="th-text">QUANTITY</th>
+                        <th class="th-text">{{'lbpClass' | translate}}</th>
+                        <th class="th-text">{{'quantity' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,5 +70,5 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn printBtn-trans" style="background:#2A5699" ng-click="closeShift1()">Finish</button>
+    <button type="button" class="btn printBtn-trans" style="background:#2A5699" ng-click="closeShift1()">{{'save' | translate}}</button>
 </div>

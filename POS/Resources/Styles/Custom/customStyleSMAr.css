@@ -23,6 +23,9 @@ body {
     background: #EBEBEB;
 }
 
+
+
+
 body:not(.layout-fixed) .main-sidebar-custom-pos {
     /*top: 57px;*/
 }
@@ -80,7 +83,7 @@ body:not(.layout-fixed) .main-sidebar {
 
 .navBarPOSLogo {
     width: 7em;
-    margin: 0px 1em 8px 1em;
+    margin: 0px 2em 8px 1em;
 }
 
 .pos-menu-rate {
@@ -168,7 +171,8 @@ body:not(.layout-fixed) .main-sidebar {
 }
 
 .transfer-items {
-    width: 93%
+    width: 93%;
+    margin-right: 2em;
 }
 
 #clear-filters {
@@ -193,7 +197,7 @@ body:not(.layout-fixed) .main-sidebar {
 
 .transfer-checkbox-label {
     background: #fff;
-    padding: 10px 20px 7px 7px;
+    padding: 10px 20px 7px 30px;
     border-radius: 5px;
     margin: 0 0.5em;
     font-weight: 100 !important;
@@ -211,9 +215,51 @@ body:not(.layout-fixed) .main-sidebar {
         color: #fff;
     }
 
+.btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.shiftTable {
+    margin: 1em 0em 6em 0.8em;
+    width: 23%;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    float: left;
+}
+
+.dryShiftTable {
+    font-size: 12px;
+    border: none !important;
+}
+
+    .dryShiftTable th, td {
+        border: none !important;
+    }
+
+    .dryShiftTable th {
+        color: #9d9898;
+    }
+
+.shift-box {
+    /*background: #e9e4e4;*/
+    padding: 1em 3em 1em 1.4em;
+    margin-left: 7px;
+    border: 1px solid #e9e4e4;
+}
+
+.shift-box2 {
+    /*background: #e9e4e4;*/
+    padding: 1em 3em 1em 1.4em;
+    margin-left: 7px;
+    border: 1px solid #e9e4e4;
+    height: 97%;
+}
+
 .transfer-all-box {
     background: #D80404;
-    padding: 12px 19px 9px 11px;
+    padding: 12px 19px 9px 21px;
     border-radius: 6px;
     margin: 0 0em;
     color: #fff;
@@ -275,7 +321,7 @@ body:not(.layout-fixed) .main-sidebar {
     position: relative;
     display: block;
     border-bottom: 2px solid #EAEAEA;
-    border-left: 2px solid #EAEAEA;
+    border-right: 2px solid #EAEAEA;
 }
 
 .th-text {
@@ -286,13 +332,18 @@ body:not(.layout-fixed) .main-sidebar {
     width: 20em;
 }
 
+.activeMenuItemSM {
+    border-bottom: 2px solid #D80404;
+}
+
+
 .transfer-half-rectangle2 {
-    height: 30px;
+    height: 60px;
     width: 100%;
     position: relative;
     display: block;
     border-bottom: none;
-    border-left: 2px solid #EAEAEA;
+    border-right: 2px solid #EAEAEA;
 }
 
 .remove-icon {
@@ -624,12 +675,96 @@ body:not(.layout-fixed) .main-sidebar {
     color: #000000;
     font-size: 28px;
     font-weight: 600;
+    float: right;
 }
 
 .receiptInfo-subTitle {
     color: #474747;
     font-size: 14px;
     margin-top: 4px;
+    text-align: right;
+    float: right;
+    display: block;
+    width: 100%;
+}
+
+
+
+.isotope-pager,
+.filters {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.reception-info-title {
+    font-family: 'rubikRegular';
+    font-size: 14px;
+    color: #3fb7e7;
+    margin: 9px;
+}
+
+
+    .isotope-pager .pager,
+    .filters li {
+        display: block;
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        margin: 0px;
+        color: #000;
+        text-decoration: none;
+        background-color: #fff;
+    }
+
+        .isotope-pager .pager,
+        .filters li a {
+            text-decoration: none;
+        }
+
+            .isotope-pager .pager:focus {
+                color: #fff;
+                background-color: #D80404;
+                border-color: #D80404;
+            }
+
+.isotope-pager {
+    float: right;
+    margin-right: 3em;
+}
+
+
+
+.modal-dialog:has(#custom-modal-1) {
+    max-width: 86% !important;
+}
+
+.styleShiftFinished {
+    background: #e9e4e4;
+}
+
+.modal-dialog:has(#custom-modal-shift) {
+    max-width: 48% !important;
+}
+
+.closeShiftLine {
+    display: block;
+    height: 2px;
+    background: #efe8e8;
+    margin: 3em 0px 0em 1.4em;
+    clear: both;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: right;
+}
+
+.eod-usd {
+    display: block;
+    width: 100%;
+    text-align: end;
+    padding-left: 2em;
 }
 
 .receiptInfo-lastRow {
@@ -645,7 +780,12 @@ body:not(.layout-fixed) .main-sidebar {
     position: relative;
     display: block;
     border-top: 1px solid #dee2e6;
-    padding: 2em 11em 2em 2em;
+    padding: 2em 3em 2em 2em;
+}
+
+.trans-credit-sec {
+    border-top: 1px solid #dee2e6;
+    padding: 1em 0em 1em 8em;
 }
 
     .receiptInfo-footer .btn-export {
@@ -681,17 +821,17 @@ body:not(.layout-fixed) .main-sidebar {
 }
 
 .content-header {
-    padding: 3em 1.2rem 0em 1.2rem;
+    padding: 7em 1.2rem 0em 1.2rem;
 }
 
 .pos-section-title {
     font-family: 'rubikMedium';
-    font-size: 22px !important;
+    font-size: 32px !important;
     text-align: center;
 }
 
 .card-table-trans {
-    margin: 0em 2.2em;
+    margin: 0em 2.5em 0em 2.6em;
     padding: 0 0 8em 0;
 }
 
@@ -825,6 +965,16 @@ ul.pagination li:first-child, ul.pagination li:last-child {
     font-size: 14px;
 }
 
+.back-btn {
+    font-family: 'rubikRegular';
+    font-size: 12px;
+    color: #838383;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    margin-right: 1.4em;
+}
+
 .printBtn-trans {
     background: #6F6F6F;
     color: #fff;
@@ -832,6 +982,14 @@ ul.pagination li:first-child, ul.pagination li:last-child {
     border-radius: 5px;
     font-family: 'rubikMedium';
     font-size: 14px;
+}
+
+.eod-save {
+    background: #2A5699;
+    display: block;
+    margin-right: 1em;
+    margin-top: 2em;
+    float: left;
 }
 
 .tableTransPopupDry {
@@ -920,6 +1078,8 @@ div.dataTables_wrapper div.dataTables_info {
     margin-right: 1em;
     float: right;
     margin-right: 6em;
+    margin-left: 1em;
+    float: left;
 }
 
 .input-group-receipts {
@@ -1047,8 +1207,28 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table
 .conformity-check {
     position: relative;
     display: block;
-    padding-left: 2.25rem;
+    padding-right: 2.25rem;
     margin-bottom: 1em;
+    float: right;
+}
+
+.recep-info {
+    width: 100%;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    text-align: right;
+}
+
+.form-check-label {
+    margin-bottom: 0;
+    margin-right: 1em;
+}
+
+.drive-title {
+    width: 100%;
+    margin-bottom: 0.1em;
+    padding: 1em 1em 0em 1em;
+    text-align: right;
 }
 
 .date-filter-input {
@@ -1062,7 +1242,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table
     font-family: 'rubikRegular';
     font-weight: 100 !important;
     font-size: 15px;
-    margin-left: 1em;
+    margin-left: 0.2em;
+    text-align: right;
+    float: right;
 }
 
 .navbarTopSM {
@@ -1082,6 +1264,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table
 .nav-sidebar {
     position: relative;
     text-align: right;
+    padding: 0;
 }
 
 .user-panel {
@@ -1117,6 +1300,83 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table
     top: 40%;
     left: 50%;
 }
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: left;
+    overflow: hidden;
+}
+
+.sidebar {
+    padding-top: 4em;
+}
+
+.content-header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    float: right;
+    margin-right: 0.5em;
+}
+
+.history-subtitle {
+    display: block;
+    width: 100%;
+    float: right;
+    text-align: right;
+    margin-right: 1.6em;
+    font-size: 12px;
+}
+
+.modal-header .close, .modal-header .mailbox-attachment-close {
+    padding: 1rem;
+    margin: -1rem -1rem -1rem 0;
+}
+
+
+.history-clear-btn {
+    background: #D80404;
+    color: #fff;
+    padding: 8px 3.2em;
+    height: 2.6em;
+    font-family: 'rubikMedium';
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 1em;
+    margin-top: 2.3em;
+    position: relative;
+    display: table-caption;
+}
+
+.date-filter-label {
+    font-family: 'rubikRegular';
+    font-weight: 100 !important;
+    font-size: 15px;
+    margin-left: 0.2em;
+}
+
+.date-filter-input {
+    border: 1px solid #DEDEDE;
+    padding: 7px 9px;
+    border-radius: 4px;
+    margin: 0 6px;
+    background: url(/Resources/Images/common/calendar-icon.png) no-repeat scroll 12px 9px;
+    padding-left: 36px;
+    background-color: #fff;
+    background-size: 18px 19px;
+}
+
+
+.receipt-row-filter {
+    margin-right: 0.8em;
+}
+
+.eod-card-title {
+    float: right;
+    margin-bottom: 2em;
+}
+
+
 
 @-webkit-keyframes spin {
     0% {
@@ -1164,17 +1424,32 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table
     }
 }
 
+.sidebar:hover {
+    height: calc(100% - (3.5rem + 1px));
+    overflow-x: hidden;
+    overflow-y: initial;
+    padding-bottom: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 4em;
+}
+
+
+.pos-wrapper {
+    margin-right: 15em !important;
+}
+
 
 
 @media (min-width: 768px) {
     body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
         transition: margin-right 0.3s ease-in-out;
         margin-left: 3rem;
-        margin-right: 3em;
+        margin-right: 4em;
     }
     .ff {
         transition: margin-right 0.3s ease-in-out;
-        margin-right: 12rem;
+        /*margin-right: 12rem;*/
     }
 }
 

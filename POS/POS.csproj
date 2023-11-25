@@ -458,6 +458,8 @@
     <Content Include="Resources\Images\common\trans-dash-icon.png" />
     <Content Include="Resources\Images\common\transfer-dash-icon.png" />
     <Content Include="Resources\Images\common\wifi-icon.png" />
+    <Content Include="Resources\Images\common\wifi_offline.png" />
+    <Content Include="Resources\Images\common\wifi_online.png" />
     <Content Include="Resources\Images\default-150x150.png" />
     <Content Include="Resources\Images\flags\1x1\ac.svg" />
     <Content Include="Resources\Images\flags\1x1\ad.svg" />

@@ -307,7 +307,52 @@
     }
 
 
+    function getCurrentUser() {
 
+        //$rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/GetCurrentUser",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
+        }).then(function (response) {
+
+            console.log(response);
+            //$rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.employeeName = result.resultData.name;
+                        $rootScope.profileName = $scope.employeeName.slice(0, 2).toUpperCase();
+
+                    } else {
+                        swal($filter('translate')('failedGetUserInfo'), "", "error");
+                        console.log(result.errorMsg);
+                    }
+
+                } else {
+                    swal($filter('translate')('failedGetUserInfo'), "", "error");
+                }
+
+            } else {
+                swal($filter('translate')('failedGetUserInfo'), "", "error");
+            }
+
+
+        }, function (error) {
+            swal($filter('translate')('failedGetUserInfo'), "", "error");
+            //$rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
+
+    getCurrentUser();
 
 
 

@@ -2,8 +2,12 @@
 
     $scope.receipt = $stateParams.item; //getting fooVal
 
-    console.log($scope.receipt);
 
+    if ($scope.receipt === undefined || $scope.receipt === null || $scope.receipt === "") {
+        $scope.receipt = JSON.parse(localStorage.getItem("itemDataReceipt"));
+    } else {
+        localStorage.setItem("itemDataReceipt", JSON.stringify($scope.receipt));
+    }
 
     $scope.receiptId = $scope.receipt.id;
     $scope.wop = $scope.receipt.wop;
@@ -57,7 +61,7 @@
 
     }
 
-    $scope.totalTrans = totalLL + " L.L/" + totalDollar + " $";
+    $scope.totalTrans = totalLL +  $filter('translate')('LL') +" /" + totalDollar + " $";
 
 
 

@@ -177,17 +177,52 @@ rootModule.config(['$qProvider', function ($qProvider) {
 
 rootModule.run(function ($window, $rootScope) {
     $rootScope.online = navigator.onLine;
+
+    if ($rootScope.online) {
+        $rootScope.image_wifi = "wifi_online.png";
+
+    } else {
+        $rootScope.image_wifi = "wifi_offline.png";
+    }
+
     $window.addEventListener("offline", function () {
         $rootScope.$apply(function () {
             $rootScope.online = false;
-            alert('offline');
+            //alert('offline');
+
+            $rootScope.image_wifi = "wifi_offline.png";
+
+            Toastify({
+
+                text: "You're offline",
+
+                duration: 3000,
+               
+                style: {
+                    background: "linear-gradient(to right, #eb8686, #D80404)",
+                },
+            }).showToast();
         });
     }, false);
 
     $window.addEventListener("online", function () {
         $rootScope.$apply(function () {
             $rootScope.online = true;
-            alert('online');
+            //alert('online');
+
+            $rootScope.image_wifi = "wifi_online.png";
+
+            Toastify({
+
+                text: "You're online now",
+
+                duration: 3000,
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+
+            }).showToast();
+
         });
     }, false);
 });

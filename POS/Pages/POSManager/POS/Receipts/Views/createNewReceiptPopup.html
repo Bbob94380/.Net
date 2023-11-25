@@ -15,23 +15,21 @@
                         <thead>
                             <tr>
                                 <th style="width: 20%">
-                                    ID
+                                    {{'ID' | translate}}
                                 </th>
                                 <th style="width: 18%">
-                                    WOP
+                                    {{'WOP' | translate}}
                                 </th>
                                 <th style="width: 18%">
-                                    Time & Date
+                                    {{'timeDate' | translate}}
                                 </th>
                                 <th style="width: 18%">
-                                    Currency
+                                    {{'Currency' | translate}}
                                 </th>
                                 <th style="width: 18%">
-                                    Total
+                                    {{'Total' | translate}}
                                 </th>
-                                <th style="width: 18%">
-                                    
-                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in transList">
@@ -39,7 +37,7 @@
                                 <td>{{item.wop}}</td>
                                 <td>{{item.creationDate}}</td>
                                 <td>{{item.currency}}</td>
-                                <td>{{item.netTotalMc}} L.L / $ {{item.netTotalSc}}  </td>
+                                <td>{{item.netTotalMc}}{{'LL' | translate}} / $ {{item.netTotalSc}}  </td>
                                 <td>
                                     <span class="receipt-add-btn" ng-click="addTransToReceipt(item)">+</span>
                                 </td>
@@ -60,15 +58,15 @@
         <table class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>TRAN. ID</th>
-                    <th>Total</th>
+                    <th>{{'ID' | translate}}</th>
+                    <th>{{'Total' | translate}}</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in listOfAddedTransToReceipt">
                     <td>{{item.id}}</td>
-                    <td>{{item.netTotalMc }} L.L/ $ {{ item.netTotalSc}} </td>
+                    <td> {{item.netTotalMc }} {{'LL' | translate}} / $ {{ item.netTotalSc}} </td>
                     <td ng-click="removeTransFromReceipt(item.id)"><img src="/Resources/Images/remove-icon.png" /></td>
                 </tr>
             </tbody>
@@ -79,8 +77,9 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>TOTAL</th>
+                    <th>{{'Total' | translate}}</th>
                     <td>{{ totalReceipt }}</td>
+
                 </tr>
             </thead>
         </table>
@@ -90,5 +89,5 @@
 </div>
 <div class="modal-footer" style="display:block">
     <!--<button type="button" class="btn btn-default btnClearReceipt" data-dismiss="modal" ng-click="clearAll()">CLEAR</button>-->
-    <button type="button" class="btn btn-primary btnReceipt" ng-click="createReceipt()">CREATE RECEIPT & PRINT </button>
+    <button type="button" class="btn btn-primary btnReceipt" ng-click="createReceipt()">{{'createReceiptAndPrint' | translate}}</button>
 </div>

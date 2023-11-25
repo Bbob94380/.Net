@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 style=" font-family: 'rubikMedium'; margin-left: 0.6em;">Reception</h1>
+                <h1 style=" font-family: 'rubikMedium'; margin-left: 0.6em;">{{'Reception' | translate}}</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-3"></div>
                     <div class="row col-4" style="flex-direction: row-reverse;">
-                        <span ng-click="goToHistoryPage()" style="cursor: pointer" class="refund-history-btn">History</span>
+                        <!--<span ng-click="goToHistoryPage()" style="cursor: pointer" class="refund-history-btn">{{'History' | translate}}</span>-->
                     </div>
                 </div>
                 <div id="receptionItems" class="reception-items">
@@ -35,16 +35,16 @@
                                     <table class="table reception-item-table">
                                         <tr>
                                             <th style="text-align:left">
-                                                TYPE
+                                                {{'Type' | translate}}
                                             </th>
                                             <th>
-                                                Creation Date
+                                                {{'creationDate' | translate}}
                                             </th>
                                             <th>
-                                                SENDED BY
+                                                {{'SentBy' | translate}}
                                             </th>
                                             <th>
-                                                RECEIVING DATE
+                                                {{'DATERECEIVED' | translate}}
                                             </th>
                                         </tr>
                                         <tr>
@@ -64,8 +64,8 @@
                                     </table>
                                 </div>
                                 <div class="col-4 text-center" style=" margin: auto;">
-                                    <input ng-click="goToReceptionPage(item)" ng-hide="item.hideFillingBtn" type="button" value="Start Filling Process" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
-                                    <input ng-click="goToReceptionPage(item)" ng-show="item.hideFillingBtn" type="button" value="Show Reception Details" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
+                                    <input ng-click="goToReceptionPage(item)" ng-hide="item.hideFillingBtn" type="button" value="{{'StartFillingProcess' | translate}}" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
+                                    <input ng-click="goToReceptionPage(item)" ng-show="item.hideFillingBtn" type="button" value="{{'showReceptionDetails' | translate}}" style="background: #2A5699; font-family: 'rubikMedium'; font-size: 14px;" class="col-8 btn btn-block btn-primary reception-btn-filling" />
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                 </div>
 
                 <div ng-show="showNoData" style=" margin-left: 45%; margin-top: 13%; color: #a7a5a5;">
-                    <span>No data found</span>
+                    <span>{{'noDataFound' | translate}}</span>
                 </div>
             </div>
         </div>

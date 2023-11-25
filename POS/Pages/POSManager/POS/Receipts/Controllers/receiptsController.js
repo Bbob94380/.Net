@@ -107,24 +107,24 @@ rootModule.controller("receiptsController", ["$scope", "$state", "$timeout", "$u
 								}//end for loop
 
 									if (isCardPaid && isCashPaid) {
-										result.resultData[i].wop = "Cash and card";
+										result.resultData[i].wop = $filter('translate')('CashAndcard');
 									} else if (isCardPaid) {
-										result.resultData[i].wop = "Card";
+										result.resultData[i].wop = $filter('translate')('card');
 									} else if (isCashPaid) {
-										result.resultData[i].wop = "Cash";
+										result.resultData[i].wop = $filter('translate')('cash');
 									} else {
 										result.resultData[i].wop = "";
 									}
 
-									if (isDollarPaid && isLLPaid) {
-										result.resultData[i].currency = "Lebanese Lire and dollar";
-									} else if (isDollarPaid) {
-										result.resultData[i].currency = "Dollar";
-									} else if (isLLPaid) {
-										result.resultData[i].currency = "Lebanese Lire";
-									} else {
-										result.resultData[i].currency = "";
-									}
+								if (isDollarPaid && isLLPaid) {
+									result.resultData[i].currency = $filter('translate')('LebaneseAnddollar');
+								} else if (isDollarPaid) {
+									result.resultData[i].currency = $filter('translate')('dollar');
+								} else if (isLLPaid) {
+									result.resultData[i].currency = $filter('translate')('lebanese');
+								} else {
+									result.resultData[i].currency = "";
+								}
 
 
 								if (result.resultData[i].transactions !== null && result.resultData[i].transactions !== undefined) {

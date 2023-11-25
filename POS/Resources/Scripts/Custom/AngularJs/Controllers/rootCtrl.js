@@ -11,7 +11,7 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
         $translate.use('en');
         document.cookie = "languageSM=en";
     } else if (localStorage.getItem('languageSM') === 'ar') {
-        $scope.selectedLanguage = "AR";
+        $scope.selectedLanguage = "عربي";
         $translate.use('ar');
         document.cookie = "languageSM=ar";
     } else {
@@ -25,7 +25,7 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
         localStorage.setItem('languageSM', 'ar');
         document.cookie = "languageSM=ar";
         $translate.use('ar');
-        $scope.selectedLanguage = "AR";
+        $scope.selectedLanguage = "عربي";
         window.location.href = "/SM/IndexAr";
         //window.location.href = "/SM/IndexAr#!/main2";
     }
@@ -191,54 +191,25 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
 
                     $scope.employeesList = [
                         {
-                            employee: "admin@gsm.com"
+                            employee: "ali@gsm.com",
+                            name: "Ali"
                         },
                         {
-                            employee: "admin@gsm.com"
+                            employee: "hassan@gsm.com",
+                            name: "Hassan"
                         },
                         {
-                            employee: "admin@gsm.com"
+                            employee: "mhmd@gsm.com",
+                            name: "Mohamad"
                         },
                         {
-                            employee: "admin@gsm.com"
+                            employee: "tarek@gsm.com",
+                            name: "Tarek"
                         },
                         {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
+                            employee: "admin@gsm.com",
+                            name: "Admin"
                         }
-
                     ];
 
                 } else {

@@ -33,30 +33,25 @@ posAttendantRootModule.controller('employeeLoginPopupController', function ($sco
 
                     $scope.employeesList = [
                         {
-                            employee: "admin@gsm.com"
+                            employee: "ali@gsm.com",
+                            name: "Ali"
                         },
                         {
-                            employee: "admin@gsm.com"
+                            employee: "hassan@gsm.com",
+                            name: "Hassan"
                         },
                         {
-                            employee: "admin@gsm.com"
+                            employee: "mhmd@gsm.com",
+                            name: "Mohamad"
                         },
                         {
-                            employee: "admin@gsm.com"
+                            employee: "tarek@gsm.com",
+                            name: "Tarek"
                         },
                         {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
-                        },
-                        {
-                            employee: "admin@gsm.com"
+                            employee: "admin@gsm.com",
+                            name: "Admin"
                         }
-                        
                      ];
 
                 } else {

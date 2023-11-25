@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Refunds</h1>
+                <h1>{{'Refunds' | translate}}</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -15,13 +15,13 @@
                 <!-- Checkboxes: targeted in the JS by class and value set to the class on item you want to filter for -->
                 <div class="row col-12">
                     <div class="col-6">
-                        <span id="clear-filters" class="transfer-all-box"><span class="fa-times-circle"></span>&nbsp;All</span>
-                        <label class="transfer-checkbox-label"><input type="checkbox" value="Dry" class="filter-item" />Dry product</label>
-                        <label class="transfer-checkbox-label"><input type="checkbox" value="Calibration" class="filter-item" />Calibration</label>&nbsp;&nbsp;
+                        <span id="clear-filters" class="transfer-all-box"><span class="fa-times-circle"></span>&nbsp;{{'All' | translate}}</span>
+                        <label class="transfer-checkbox-label"><input type="checkbox" value="Dry" class="filter-item" />{{'DryProducts' | translate}}</label>
+                        <label class="transfer-checkbox-label"><input type="checkbox" value="Calibration" class="filter-item" />{{'Calibration' | translate}}</label>&nbsp;&nbsp;
                     </div>
                     <div class="col-5 input-group-sm input-group-receipts">
-                        <span ng-click="createNewFuelRefund()" style="cursor: pointer" class="refund-create-btn">Create a New Refund</span>
-                        <span ng-click="goToHistoryPage()" style="cursor: pointer" class="refund-history-btn">History</span>
+                        <span ng-click="createNewFuelRefund()" style="cursor: pointer" class="refund-create-btn">{{'CreateNewRefund' | translate}}</span>
+                        <!--<span ng-click="goToHistoryPage()" style="cursor: pointer" class="refund-history-btn">History</span>-->
                     </div>
                 </div>
 
@@ -33,17 +33,17 @@
                         <div ng-if="item.type == 'Calibration'" class="card-body pt-0">
                             <div class="row">
                                 <div class="col-5 div-nozzle">
-                                    <span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>
+                                    <!--<span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>-->
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <!-- text input -->
                                             <div class="form-group">
-                                                <span class="sub-title-item-refund">REFUND TYPE</span>
+                                                <span class="sub-title-item-refund">{{'RefundMethod' | translate}}</span>
                                                 <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.type}}</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                            <span class="sub-title-item-refund" style="margin-top: 0;">EMPLOYEE NAME</span>
+                                            <span class="sub-title-item-refund" style="margin-top: 0;">{{'EmployeeName' | translate}}</span>
                                             <span class="" style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.creator}}</span>
                                         </div>
                                     </div>
@@ -54,16 +54,16 @@
                                         <div class="col-sm-8">
                                             <!-- text input -->
                                             <div class="form-group">
-                                                <span class="sub-title-item-refund" style="margin-top: 4em;">NOZZLE NUMBER</span>
-                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">TANK ID</span>
-                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">VOLUME</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 4em;">{{'NozzleNumber' | translate}}</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">{{'TankNumber' | translate}}</span>
+                                                <span class="sub-title-item-refund" style="margin-top: 0.5em;">{{'VOLUME' | translate}}</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-4" style="text-align: end;">
                                             <div class="form-group">
                                                 <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
                                                 <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">{{item.tankId}}</span>
-                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 L</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 {{'Litre' | translate}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@
                         <div ng-if="item.type == 'Dry'" class="card-body pt-0" style=" padding-right: 0;">
                             <div class="row" style=" border-bottom: 1px solid #d4d2d2; margin: 0 1em 0 0; padding-bottom: 9px;">
                                 <div class="col-md-4">
-                                    <span style="font-family: rubikBold; font-size: 15px; ">1. DR1234</span>
+                                    <!--<span style="font-family: rubikBold; font-size: 15px; ">1. DR1234</span>-->
                                 </div>
                                 <div class="col-md-3"></div>
                                 <div class="col-md-5">
@@ -85,21 +85,21 @@
                                 <div class="col-md-4">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <span class="sub-title-item-refund">REFUND TYPE</span>
+                                        <span class="sub-title-item-refund">{{'RefundMethod' | translate}}</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.type}}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <span class="sub-title-item-refund">EMPLOYEE NAME</span>
+                                        <span class="sub-title-item-refund">{{'EmployeeName' | translate}}</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.creator}}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <span class="sub-title-item-refund">CUSTOMER ID</span>
+                                        <span class="sub-title-item-refund">{{'CustomerID' | translate}}</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.customerId}}</span>
                                     </div>
                                 </div>
@@ -108,27 +108,27 @@
                                 <div class="col-md-4">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <span class="sub-title-item-refund" style="margin-top: 0em;">TOTAL AMOUNT</span>
+                                        <span class="sub-title-item-refund" style="margin-top: 0em;">{{'TotalAmount' | translate}}</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.type}}</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.type}}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <!--<div class="col-md-5">-->
                                     <!-- text input -->
-                                    <div class="form-group">
-                                        <span class="sub-title-item-refund" style="margin-top: 0em;">RETURNED AMOUNT</span>
+                                    <!--<div class="form-group">
+                                        <span class="sub-title-item-refund" style="margin-top: 0em;">{{'ReturnedAmount' | translate}}</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.netTotalMc}} L.L</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.netTotalSc}} $</span>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3">-->
                                     <!-- text input -->
-                                    <div class="form-group">
-                                        <span class="sub-title-item-refund" style="margin-top: 0em;">TOTAL</span>
+                                    <!--<div class="form-group">
+                                        <span class="sub-title-item-refund" style="margin-top: 0em;">{{'FinalAmount' | translate}}</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.type}}</span>
                                         <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.type}}</span>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
 

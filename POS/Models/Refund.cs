@@ -31,7 +31,7 @@ namespace POS.Models
         public decimal cachAmountSc { get; set; }
         public decimal cardReturnedLc { get; set; }
         public decimal cardReturnedSc { get; set; }
-        public decimal netTotalMc { get; set; }
+        public decimal netTotalMc { get; set; } 
         public decimal netTotalSc { get; set; }
         public List<SaleDetail> saleDetailReturn { get; set; }
     }

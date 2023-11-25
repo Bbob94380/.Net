@@ -21,32 +21,23 @@
                                 </div>
 
                                 <form>
-                                    <p class="signInLabel">Sign In to Your Account</p>
+                                    <p class="signInLabel">سجّل الدخول إلى حسابك</p>
 
                                     <div class="form-outline mb-4">
                                         <input type="text" id="form2Example11" ng-model="username" class="form-control input-login-ho"
-                                               placeholder="Username or Email" />
+                                               placeholder="اسم المستخدم أو البريد الالكتروني" />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="form2Example22" ng-model="password" class="form-control input-login-ho" placeholder="Password" />
+                                        <input type="password" id="form2Example22" ng-model="password" class="form-control input-login-ho" placeholder="كلمة السر" />
                                         @*<input  maxlength="6" ng-keypress="filterValue($event)" aria-label="6-digit code" type="password" id="form2Example22" ng-model="password" class="form-control input-login-ho" placeholder="Password" />*@
 
                                     </div>
 
                                     <div class="pt-1 pb-1">
-                                        <button ng-click="loginBtn(username, password)" class="btn btn-primary fa-lg gradient-custom-2 mb-3 login-span" type="button">
-                                            Login Now
+                                        <button style="float: right;" ng-click="loginBtn(username, password)" class="btn btn-primary fa-lg gradient-custom-2 mb-3 login-span" type="button">
+                                            سجل الدخول
                                         </button>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input custom-control-input-danger" type="checkbox" id="customCheckbox4" checked="">
-                                            <label for="customCheckbox4" class="custom-control-label custom-checkbox-text">Remember Me</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="align-items-center pb-4">
-                                        <span class="mb-0 me-2 lostAndRegister">Lost your password?</span>
-                                        <span class="mb-0 me-2 lostAndRegister">Register Now</span>
                                     </div>
 
                                 </form>
@@ -54,25 +45,25 @@
                             </div>
                         </div>
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-                            <div class="px-3 py-4 p-md-5 mx-md-4 touch">
-                                <h4 class="mb-4">Get In Touch</h4>
-                                <p class="small mb-0">
-                                    Lorem ipsum dolor sit amet, duis metus ligula amet in purus, vitae donec vestibulum enim, tincidunt massa sit, convallis ipsum.
+                            <div class="px-3 py-4 p-md-5 mx-md-4 touch" style="margin-top: 4em;">
+                                <h4 class="mb-4" style="font-size: 35px;text-align: right;">ابقى على تواصل</h4>
+                                <p class="small mb-0" style="font-size: 18px;text-align: right;direction: rtl;">
+                                    تعمل محطات الأمانة في مجال تجارة و توزيع المحروقات وتتميز في تقديم أفضل الخدمات للزبائن بالتزامن مع الإلتزام الدائم بمعايير النزاهة والجودة والدقة في الكيل.
                                 </p>
-                                <div class="div-icons">
-                                    <img src="~/Resources/Images/HO/login-phone.png" class="login-icon" />
-                                    <span class="login-icon-span" style="display: block;">+961 00 000 000</span>
-                                    <span class="login-icon-span2">Mon-Fri 9am-6pm</span>
+                                <div class="div-icons" style=" margin-top: 1.5em; padding: 1px; ">
+                                    <img src="~/Resources/Images/HO/login-phone.png" class="login-icon" style=" float: right; margin-left: 1em; width: 2.8em;direction: ltr;" />
+                                    <span class="login-icon-span" style=" display: block; text-align: right;">+961 00 000 000</span>
+                                    <span class="login-icon-span2">الاثنين-الجمعة, 6 صباحا-9 مساء</span>
                                 </div>
                                 <div class="div-icons">
-                                    <img src="~/Resources/Images/HO/login-email.png" class="login-icon" />
-                                    <span class="login-icon-span" style="display: block; color:#C9002D">example@email.com</span>
+                                    <img src="~/Resources/Images/HO/login-email.png" class="login-icon" style="margin-left: 1em; width: 2.8em; float: right; " />
+                                    <span class="login-icon-span" style="display: block; color:#C9002D;text-align: right;">example@email.com</span>
                                     <span class="login-icon-span2">online support</span>
                                 </div>
                                 <div class="div-icons">
-                                    <img src="~/Resources/Images/HO/login-address.png" class="login-icon" />
-                                    <span class="login-icon-span" style="display: block;">Lebanon</span>
-                                    <span class="login-icon-span2">Beirut, Main Street</span>
+                                    <img src="~/Resources/Images/HO/login-address.png" class="login-icon" style=" margin-left: 1em; width: 2.8em; float: right;" />
+                                    <span class="login-icon-span" style=" display: block; text-align: right;">لبنان</span>
+                                    <span class="login-icon-span2">حارة حريك, الشارع العريض</span>
                                 </div>
                             </div>
                         </div>

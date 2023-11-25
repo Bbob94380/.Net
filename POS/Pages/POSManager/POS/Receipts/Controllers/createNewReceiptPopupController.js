@@ -102,21 +102,21 @@ rootModule.controller('createNewReceiptPopupController', function ($scope, $root
 
 
 								if (isCardPaid && isCashPaid) {
-									trans.wop = "Cash and card";
+									trans.wop = $filter('translate')('CashAndcard');
 								} else if (isCardPaid) {
-									trans.wop = "Card";
+									trans.wop = $filter('translate')('card');
 								} else if (isCashPaid) {
-									trans.wop = "Cash";
+									trans.wop = $filter('translate')('cash');
 								} else {
 									trans.wop = "";
 								}
 
 								if (isDollarPaid && isLLPaid) {
-									trans.currency = "Lebanese Lire and dollar";
+									trans.currency = $filter('translate')('LebaneseAnddollar');
 								} else if (isDollarPaid) {
-									trans.currency = "Dollar";
+									trans.currency = $filter('translate')('dollar');
 								} else if (isLLPaid) {
-									trans.currency = "Lebanese Lire";
+									trans.currency = $filter('translate')('lebanese');
 								} else {
 									trans.currency = "";
 								}
@@ -177,7 +177,7 @@ rootModule.controller('createNewReceiptPopupController', function ($scope, $root
 				totalLebanese = totalLebanese + $scope.listOfAddedTransToReceipt[i].netTotalMc;
 				totalDollar = totalDollar + $scope.listOfAddedTransToReceipt[i].netTotalSc;
 			}
-			$scope.totalReceipt = totalLebanese + " L.L/" + totalDollar + " $";
+			$scope.totalReceipt = totalLebanese + " " + $filter('translate')('LL')+ " /" + totalDollar + " $";
 
 			$scope.isHide = false;	
 		}
@@ -200,7 +200,7 @@ rootModule.controller('createNewReceiptPopupController', function ($scope, $root
 			totalLebanese = totalLebanese + $scope.listOfAddedTransToReceipt[i].netTotalMc;
 			totalDollar = totalDollar + $scope.listOfAddedTransToReceipt[i].netTotalSc;
 		}
-		$scope.totalReceipt = totalLebanese + " L.L/" + totalDollar + " $";
+		$scope.totalReceipt = totalLebanese + " " + $filter('translate')('LL') +  " /" + totalDollar + " $";
 
 		if ($scope.listOfAddedTransToReceipt.length > 0) { $scope.isHide = false; }
 		else { $scope.isHide = true; }
