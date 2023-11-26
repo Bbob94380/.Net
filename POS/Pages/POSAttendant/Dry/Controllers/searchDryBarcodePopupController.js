@@ -198,14 +198,16 @@ posAttendantRootModule.controller('searchDryBarcodePopupController', function ($
     $scope.ClearFocusedField = function () {
 
         if (isBarcodeFocus) {
-            calculator.displayBarcodeValue = '0';
+            //calculator.displayBarcodeValue = '0';
+            calculator.displayBarcodeValue = calculator.displayBarcodeValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isQtyFocus) {
-            calculator.displayQtyValue = '0';
+            //calculator.displayQtyValue = '0';
+            calculator.displayQtyValue = calculator.displayQtyValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;

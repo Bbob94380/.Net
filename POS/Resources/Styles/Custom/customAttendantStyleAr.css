@@ -313,21 +313,30 @@ button {
 .trans-table {
     border-collapse: collapse;
     width: 100%;
-    margin-top: 1em;
-    margin-bottom: 0em;
+    /* margin-top: 1em; */
+    margin-bottom: 0.5em;
+    height: 15em;
+    overflow-y: scroll;
+    display: block;
+    overflow-x: scroll;
 }
 
     .trans-table th, .trans-table td {
-        padding: 8px;
+        padding: 9px;
         text-align: left;
         border: 1px solid #ddd;
         text-align: center;
-        font-size: 18px;
+        font-size: 19px;
     }
 
     .trans-table th {
         color: #6F6F6F;
+        width: 100%;
     }
+
+.table thead th {
+    width: 100%;
+}
 
 .total-table {
     float: right;
@@ -399,8 +408,12 @@ button {
 }
 
 .trans-table-wop {
-    font-size: 0.6em;
+    /* font-size: 0.6em; */
     text-align: center;
+    height: 13em;
+    overflow-y: scroll;
+    display: block;
+    width: 100%;
 }
 
     .trans-table-wop th {
@@ -708,6 +721,7 @@ button {
 
     .dry-table th {
         color: #6F6F6F;
+        width: auto !important;
     }
 
 .dryTotalLabel {

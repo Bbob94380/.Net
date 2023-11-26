@@ -412,16 +412,26 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
     $scope.payDone = function () {
         //$uibModalInstance.close('Succeeded');
 
-        console.log($scope.checked);
+        console.log(data.totalLL);
+        console.log(data.totalDollar);
+        console.log($scope.totalPayLL);
+        console.log($scope.totalPayDollar);
 
-        if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0) && 
-            (secondCashLL === undefined || secondCashLL === null || secondCashLL === 0) &&
-            (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0) &&
-            (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0) &&
-            (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0) && 
-            (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0) &&
-            (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0) &&
-            (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
+        if ($scope.totalPayLL !== data.totalLL || $scope.totalPayDollar !== data.totalDollar) {
+
+                swal($filter('translate')('wrongMoney'), "", "warning");
+                return;
+        }
+
+
+        if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0 || firstCashLL === "" ) && 
+            (secondCashLL === undefined || secondCashLL === null || secondCashLL === 0 || secondCashLL === "") &&
+            (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0 || firstCashDollar === "") &&
+            (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0 || secondCashDollar === "") &&
+            (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0 || firstCardDollar === "") && 
+            (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0 || secondCardDollar === "") &&
+            (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0 || firstNourCardDollar === "") &&
+            (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0 || secondNourCardDollar === "")) {
 
             swal($filter('translate')('addPaymentInfo'), "", "warning");
             return;
@@ -431,10 +441,10 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         if ($scope.checked && $scope.selectedPaymentType !== undefined && $scope.selectedPaymentType !== null) {
 
-            if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0) &&
-                (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0) &&
-                (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0) &&
-                (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0)) {
+            if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0 || firstCashLL === "") &&
+                (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0 || firstCashDollar === "") &&
+                (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0 || firstCardDollar === "") &&
+                (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0 || firstNourCardDollar === "")) {
 
                 swal($filter('translate')('addPaymentInfo'), "", "warning");
                 return;
@@ -443,10 +453,10 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         } else if ($scope.checked2 && $scope.selectedSecondPaymentType !== undefined && $scope.selectedSecondPaymentType !== null) {
 
-            if ((secondCashLL === undefined || secondCashLL === null || secondCashLL === 0) &&
-                (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0) &&
-                (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0) &&
-                (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
+            if ((secondCashLL === undefined || secondCashLL === null || secondCashLL === 0 || secondCashLL === "") &&
+                (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0 || secondCashDollar === "") &&
+                (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0 || secondCardDollar === "") &&
+                (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0 || secondNourCardDollar === "")) {
 
                 swal($filter('translate')('addPaymentInfo'), "", "warning");
                 return;
@@ -639,17 +649,21 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
     $scope.createRecipetForOneTransaction = function () {
         //$uibModalInstance.close('Succeeded');
+        if ($scope.totalPayLL !== data.totalLL || $scope.totalPayDollar !== data.totalDollar) {
 
-        console.log($scope.checked);
+            swal($filter('translate')('wrongMoney'), "", "warning");
+            return;
+        }
 
-        if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0) &&
-            (secondCashLL === undefined || secondCashLL === null || secondCashLL === 0) &&
-            (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0) &&
-            (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0) &&
-            (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0) &&
-            (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0) &&
-            (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0) &&
-            (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
+
+        if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0 || firstCashLL === "") &&
+            (secondCashLL === undefined || secondCashLL === null || secondCashLL === 0 || secondCashLL === "") &&
+            (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0 || firstCashDollar === "") &&
+            (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0 || secondCashDollar === "") &&
+            (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0 || firstCardDollar === "") &&
+            (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0 || secondCardDollar === "") &&
+            (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0 || firstNourCardDollar === "") &&
+            (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0 || secondNourCardDollar === "")) {
 
             swal($filter('translate')('addPaymentInfo'), "", "warning");
             return;
@@ -659,10 +673,10 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         if ($scope.checked && $scope.selectedPaymentType !== undefined && $scope.selectedPaymentType !== null) {
 
-            if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0) &&
-                (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0) &&
-                (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0) &&
-                (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0)) {
+            if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0 || firstCashLL === "") &&
+                (firstCashDollar === undefined || firstCashDollar === null || firstCashDollar === 0 || firstCashDollar === "") &&
+                (firstCardDollar === undefined || firstCardDollar === null || firstCardDollar === 0 || firstCardDollar === "") &&
+                (firstNourCardDollar === undefined || firstNourCardDollar === null || firstNourCardDollar === 0 || firstNourCardDollar === "")) {
 
                 swal($filter('translate')('addPaymentInfo'), "", "warning");
                 return;
@@ -671,10 +685,10 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         } else if ($scope.checked2 && $scope.selectedSecondPaymentType !== undefined && $scope.selectedSecondPaymentType !== null) {
 
-            if ((secondCashLL === undefined || secondCashLL === null || secondCashLL === 0) &&
-                (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0) &&
-                (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0) &&
-                (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0)) {
+            if ((secondCashLL === undefined || secondCashLL === null || secondCashLL === 0 || secondCashLL === "") &&
+                (secondCashDollar === undefined || secondCashDollar === null || secondCashDollar === 0 || secondCashDollar === "") &&
+                (secondCardDollar === undefined || secondCardDollar === null || secondCardDollar === 0 || secondCardDollar === "") &&
+                (secondNourCardDollar === undefined || secondNourCardDollar === null || secondNourCardDollar === 0 || secondNourCardDollar === "")) {
 
                 swal($filter('translate')('addPaymentInfo'), "", "warning");
                 return;
@@ -1236,84 +1250,96 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
     $scope.ClearFocusedField = function () {
 
         if (isFirstCashDollarFieldFocus) {
-            calculator.displayFirstCashDollarValue = '0';
+            //calculator.displayFirstCashDollarValue = '0';
+            calculator.displayFirstCashDollarValue = calculator.displayFirstCashDollarValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isFirstCashLebaneseFieldFocus) {
-            calculator.displayFirstCashLebaneseValue = '0';
+            //calculator.displayFirstCashLebaneseValue = '0';
+            calculator.displayFirstCashLebaneseValue = calculator.displayFirstCashLebaneseValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isFirstCardDollarFieldFocus) {
-            calculator.displayFirstCardDollarValue = '0';
+            //calculator.displayFirstCardDollarValue = '0';
+            calculator.displayFirstCardDollarValue = calculator.displayFirstCardDollarValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isFirstCardCodeFieldFocus) {
-            calculator.displayFirstCardCodeValue = '0';
+            //calculator.displayFirstCardCodeValue = '0';
+            calculator.displayFirstCardCodeValue = calculator.displayFirstCardCodeValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isFirstNourCardDollarFieldFocus) {
-            calculator.displayFirstNourCardDollarValue = '0';
+            //calculator.displayFirstNourCardDollarValue = '0';
+            calculator.displayFirstNourCardDollarValue = calculator.displayFirstNourCardDollarValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isFirstNourCardCodeFieldFocus) {
-            calculator.displayFirstNourCardCodeValue = '0';
+            //calculator.displayFirstNourCardCodeValue = '0';
+            calculator.displayFirstNourCardCodeValue = calculator.displayFirstNourCardCodeValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isSecondCashDollarFieldFocus) {
-            calculator.displaySecondCashDollarValue = '0';
+            //calculator.displaySecondCashDollarValue = '0';
+            calculator.displaySecondCashDollarValue = calculator.displaySecondCashDollarValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isSecondCashLebaneseFieldFocus) {
-            calculator.displaySecondCashLebaneseValue = '0';
+            //calculator.displaySecondCashLebaneseValue = '0';
+            calculator.displaySecondCashLebaneseValue = calculator.displaySecondCashLebaneseValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isSecondCardDollarFieldFocus) {
-            calculator.displaySecondCardDollarValue = '0';
+            //calculator.displaySecondCardDollarValue = '0';
+            calculator.displaySecondCardDollarValue = calculator.displaySecondCardDollarValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isSecondCardCodeFieldFocus) {
-            calculator.displaySecondCardCodeValue = '0';
+            //calculator.displaySecondCardCodeValue = '0';
+            calculator.displaySecondCardCodeValue = calculator.displaySecondCardCodeValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isSecondNourCardDollarFieldFocus) {
-            calculator.displaySecondNourCardDollarValue = '0';
+            //calculator.displaySecondNourCardDollarValue = '0';
+            calculator.displaySecondNourCardDollarValue = calculator.displaySecondNourCardDollarValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isSecondNourCardCodeFieldFocus) {
-            calculator.displaySecondNourCardCodeValue = '0';
+            //calculator.displaySecondNourCardCodeValue = '0';
+            calculator.displaySecondNourCardCodeValue = calculator.displaySecondNourCardCodeValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;

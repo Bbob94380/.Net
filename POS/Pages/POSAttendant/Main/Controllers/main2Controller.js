@@ -458,7 +458,7 @@
                 windowClass: 'show',
                 resolve: {
                     data: function () {
-                        return { totalLL: totalLeb, totalDollar: totalDol, employeeName: $scope.employeeName, employeeId: $scope.employeeId };
+                        return { totalLL: totalLeb, totalDollar: totalDol, employeeName: $scope.employeeName, employeeId: localStorage.getItem("employeeId") };
                     }
                 }
             });
@@ -539,24 +539,25 @@
 
                         $scope.employeeName = result.resultData.name;
                         $scope.employeeId = result.resultData.id;
+                        localStorage.setItem("employeeId", $scope.employeeId);
                         $rootScope.profileName = $scope.employeeName.slice(0, 2).toUpperCase();
 
                     } else {
-                        swal($filter('translate')('failedGetUserInfo'), "", "error");
+                        //swal($filter('translate')('failedGetUserInfo'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal($filter('translate')('failedGetUserInfo'), "", "error");
+                    //swal($filter('translate')('failedGetUserInfo'), "", "error");
                 }
 
             } else {
-                swal($filter('translate')('failedGetUserInfo'), "", "error");
+                //swal($filter('translate')('failedGetUserInfo'), "", "error");
             }
 
 
         }, function (error) {
-                swal($filter('translate')('failedGetUserInfo'), "", "error");
+                //swal($filter('translate')('failedGetUserInfo'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -587,7 +588,7 @@
         $http({
             method: "POST",
             url: "/api/Request/checkIfEmployeeHasOpenSession",
-            data: { sessionId: localStorage.getItem('session_id'), employeeId: $scope.employeeId }
+            data: { sessionId: localStorage.getItem('session_id'), employeeId: localStorage.getItem("employeeId") }
         }).then(function (response) {
 
             console.log(response);
@@ -775,14 +776,16 @@
     $rootScope.dryClearFocusedField = function () {
 
         if (isQtyFocus) {
-            calculator.dryQtyValue = '0';
+            //calculator.dryQtyValue = '0';
+            calculator.dryQtyValue = calculator.dryQtyValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isDiscountFocus) {
-            calculator.dryDiscountValue = '0';
+            //calculator.dryDiscountValue = '0';
+            calculator.dryDiscountValue = calculator.dryDiscountValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;

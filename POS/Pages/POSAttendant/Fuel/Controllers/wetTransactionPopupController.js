@@ -365,21 +365,24 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
     $scope.ClearFocusedField = function () {
 
         if (isQtyFocus) {
-            calculator.displayQtyValue = '0';
+            //calculator.displayQtyValue = '0';
+            calculator.displayQtyValue = calculator.displayQtyValue.toString().slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isPriceFocus) {
-            calculator.displayPriceValue = '0';
+            //calculator.displayPriceValue = '0';
+            calculator.displayPriceValue = calculator.displayPriceValue.toString().slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isPriceDollarFocus) {
-            calculator.displayPriceDollarValue = '0';
+            //calculator.displayPriceDollarValue = '0';
+            calculator.displayPriceDollarValue = calculator.displayPriceDollarValue.toString().slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;

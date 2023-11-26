@@ -4,9 +4,65 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
     $scope.isCounterDisabled = true;
     $scope.isOpenBtnHide = false;
     $scope.isSaveBtnHide = true;
+    $scope.showCheckBox = false;
+    $scope.showNuzzlesSection = false;
+    $scope.isPts = false;
     var isFieldFocus = [];
     var displayCounterValue = [];
     $scope.displayCounterResult = [];
+
+
+    $scope.checkIfPtsFound = function () {
+
+        $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/checkIfPtsFound",
+            data: { sessionId: localStorage.getItem('session_id') }
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        if (result.resultData === true) {
+                            $scope.isPts = true;
+                            $scope.showNuzzlesSection = false;
+                        } else {
+                            $scope.isPts = false;
+                            $scope.showNuzzlesSection = true;
+                        }
+
+                    } else {
+                        //swal("Failed getting user info", "Please try again", "error");
+                        console.log(result.errorMsg);
+                    }
+
+                } else {
+                    //swal("Failed getting user info", "Please try again", "error");
+                }
+
+            } else {
+                //swal("Failed getting user info", "Please try again", "error");
+            }
+
+
+        }, function (error) {
+            //swal("Failed getting user info", "Please try again", "error");
+            $rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
+
+    $scope.checkIfPtsFound();
 
     $scope.validateByManager = function () {
 
@@ -237,6 +293,9 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
                     if (result.isSuccessStatusCode) {
 
                         $scope.nuzzlesList = result.resultData;
+
+                        if ($scope.nuzzlesList.length > 0 && $scope.isPts === false) { $scope.showCheckBox = true; }
+
                         for (var i = 0; i < $scope.nuzzlesList.length; i++ ) {
                             isFieldFocus[i] = false;
                             displayCounterValue[i] = '0';
@@ -270,17 +329,32 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
 
         var nozzleCounters = [];
 
+        if ($scope.isPts === true) {
 
-        for (var i = 0; i < $scope.nuzzlesList.length; i++) {
+            nozzleCounters = [];
 
-            var nozzleCounterObj = {
-                nozzleNumber: $scope.nuzzlesList[i].number,
-                oldNozzleCounter: $scope.nuzzlesList[i].litersCounterEnd
+        } else {
+
+            if ($scope.nuzzlesList.length <= 0) {
+                swal($filter('translate')('noNuzzles'), "", "warning");
+                return;
+            } else {
+
+                for (var i = 0; i < $scope.nuzzlesList.length; i++) {
+
+                    var nozzleCounterObj = {
+                        nozzleNumber: $scope.nuzzlesList[i].number,
+                        oldNozzleCounter: $scope.nuzzlesList[i].litersCounterEnd
+                    }
+
+                    nozzleCounters.push(nozzleCounterObj);
+
+                }
+
             }
 
-            nozzleCounters.push(nozzleCounterObj);
-
         }
+
 
         var shiftObj = {
             employeeName: $scope.employeeName,
@@ -424,7 +498,8 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
     $scope.ClearFocusedField = function () {
 
         if (isFieldFocus[$scope.indexArray]) {
-            calculator.displayCounterValue[$scope.indexArray] = '0';
+            //calculator.displayCounterValue[$scope.indexArray] = '0';
+            calculator.displayCounterValue[$scope.indexArray] = calculator.displayCounterValue[$scope.indexArray].slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;

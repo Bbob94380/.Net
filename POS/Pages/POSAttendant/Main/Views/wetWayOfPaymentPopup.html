@@ -66,7 +66,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="trans in transactionsList">
+                        <tr ng-repeat="trans in transactionsList track by $index">
                             <td>{{trans.id}}</td>
                             <td>{{trans.productType}}</td>
                             <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }} </td>
@@ -234,6 +234,6 @@
     <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="close()">{{'close' | translate}}</button>
     <button type="button" class="btn btn-primary nextbtn" ng-click="payDone()">{{'done' | translate}}</button>
     <button type="button" class="btn btn-primary payCreateReceipt" ng-click="createRecipetForOneTransaction()">{{'createReceiptAndPrint' | translate}}</button>
-    <button type="button" class="btn btn-primary payCreateReceipt" style="background:#000 !important;" ng-click="displayCouponPopup()">{{'coupon' | translate}} </button>
+    <!--<button type="button" class="btn btn-primary payCreateReceipt" style="background:#000 !important;" ng-click="displayCouponPopup()">{{'coupon' | translate}} </button>-->
 
 </div>

@@ -520,21 +520,24 @@ posAttendantRootModule.controller('closeSessionPopupController', function ($scop
     $scope.ClearFocusedField = function () {
 
         if (isFirstCashDollarFieldFocus) {
-            calculator.displayFirstCashDollarValue = '0';
+            //calculator.displayFirstCashDollarValue = '0';
+            calculator.displayFirstCashDollarValue = calculator.displayFirstCashDollarValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isFirstCashLebaneseFieldFocus) {
-            calculator.displayFirstCashLebaneseValue = '0';
+            //calculator.displayFirstCashLebaneseValue = '0';
+            calculator.displayFirstCashLebaneseValue = calculator.displayFirstCashLebaneseValue.slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;
         }
 
         if (isNewFieldFocus[$scope.indexArray]) {
-            calculator.displayNewCounterValue[$scope.indexArray] = '0';
+            //calculator.displayNewCounterValue[$scope.indexArray] = '0';
+            calculator.displayNewCounterValue[$scope.indexArray] = calculator.displayNewCounterValue[$scope.indexArray].slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;

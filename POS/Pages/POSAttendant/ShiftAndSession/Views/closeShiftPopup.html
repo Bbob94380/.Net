@@ -58,7 +58,7 @@
             <div class="card-body">
 
 
-                <div class="row" style="border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList">
+                <div ng-show="showNuzzlesSection" class="row" style="border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList">
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
@@ -89,8 +89,8 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-top:1em;margin-left:1em;" ng-show="showSummaryBtnSection" >
-                    <div class="col-sm-6">
+                <div class="row" style="margin-top:1em;margin-left:1em;">
+                    <div class="col-sm-6" ng-show="showBoxSection">
                         <input class="form-check-input" type="checkbox" ng-model="isChecked" ng-change="validateByManager()">
                         <label class="form-check-label">{{'problemInCounter' | translate }}</label>
                     </div>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
 
-                <span class="closeShiftLine" ng-show="showSummaryBtnSection"></span>
+                <span class="closeShiftLine" ></span>
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
                     <label>{{'wetproduct' | translate }}</label>

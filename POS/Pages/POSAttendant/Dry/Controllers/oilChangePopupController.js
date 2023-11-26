@@ -407,7 +407,8 @@ posAttendantRootModule.controller('oilChangePopupController', function ($scope, 
     $scope.ClearFocusedField = function () {
 
         if (isFieldFocus[$scope.indexArray]) {
-            calculator.displayCounterValue[$scope.indexArray] = '0';
+            //calculator.displayCounterValue[$scope.indexArray] = '0';
+            calculator.displayCounterValue[$scope.indexArray] = calculator.displayCounterValue[$scope.indexArray].slice(0, -1);
             calculator.firstOperand = null;
             calculator.waitingForSecondOperand = false;
             calculator.operator = null;

@@ -171,6 +171,8 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
         "LoginFailed": "Login failed",
         "shiftCreatedSuccess": "Shift created successfully",
         "shiftCreatedFailed": "Shift creation failed",
+        "wrongMoney": "The amount paid must be equal to the value of the purchases",
+        "noNuzzles": "No nozzles found",
 
     }
 
@@ -343,6 +345,9 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
         "LoginFailed": "فشلت عملية تسجيل الدخول",
         "shiftCreatedSuccess": "تمت عملية فتح الوردية بنجاح",
         "shiftCreatedFailed": "فشلت عملية فتح الوردية",
+        "wrongMoney": "يجب ان يكون المبلغ المدفوع مساوٍ لقيمة المشتريات",
+        "noNuzzles": "لا يوجد عدادات",
+
     }
 
 

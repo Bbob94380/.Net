@@ -658,6 +658,64 @@ namespace POS.Controllers
         }
 
         [HttpPost]
+        public async Task<string> checkIfPtsFound(Payload payload)
+        {
+
+            //variables
+            bool isPts = false;
+            ResponseData<bool> responseData = new ResponseData<bool>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = false;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear(); client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/generalConfiguration/checkIfPtsFound");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        isPts = await response.Content.ReadAsAsync<bool>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = isPts;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = false;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = false;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+        [HttpPost]
         public async Task<string> findPreviousCurrencyRatio(Payload payload)
         {
 

@@ -1,6 +1,53 @@
 ﻿
 posAttendantRootModule.controller('pinCodePopupController', function ($scope, $rootScope, $http, $uibModalInstance, data, $uibModal, $filter) {
 
+    function getCurrentUser() {
+
+        $rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/GetCurrentUser",
+            data: { sessionId: localStorage.getItem('session_id') }
+        }).then(function (response) {
+
+            console.log(response);
+            $rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        $scope.employeeName = result.resultData.name;
+                        $scope.employeeId = result.resultData.id;
+                        localStorage.setItem("employeeId", $scope.employeeId);
+                        $rootScope.profileName = $scope.employeeName.slice(0, 2).toUpperCase();
+                        $uibModalInstance.close(true);
+
+                    } else {
+                        //swal($filter('translate')('failedGetUserInfo'), "", "error");
+                        console.log(result.errorMsg);
+                    }
+
+                } else {
+                    //swal($filter('translate')('failedGetUserInfo'), "", "error");
+                }
+
+            } else {
+                //swal($filter('translate')('failedGetUserInfo'), "", "error");
+            }
+
+
+        }, function (error) {
+            //swal($filter('translate')('failedGetUserInfo'), "", "error");
+            $rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
 
     $scope.backBtnClicked = function (pinCodeValue) {
 
@@ -34,7 +81,7 @@ posAttendantRootModule.controller('pinCodePopupController', function ($scope, $r
                     localStorage.setItem('username', data.username);
                     $rootScope.profileName = data.username.slice(0, 2).toUpperCase();
                     localStorage.setItem('employeeRoles', JSON.stringify(result.resultData.roles));
-                    $uibModalInstance.close(true)
+                    getCurrentUser();
 
                 } else {
                     localStorage.setItem('session_id', '');
@@ -47,9 +94,9 @@ posAttendantRootModule.controller('pinCodePopupController', function ($scope, $r
             }
 
         }, function (error) {
-                localStorage.setItem('session_id', '');
-                swal($filter('translate')('VerficationFailed'), "", "error");
-                $rootScope.showLoader = false;
+            localStorage.setItem('session_id', '');
+            swal($filter('translate')('VerficationFailed'), "", "error");
+            $rootScope.showLoader = false;
         });
 
     }
