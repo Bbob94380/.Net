@@ -1,12 +1,11 @@
-﻿<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 style=" font-family: 'rubikMedium'; margin-left: 0.6em;">Money Delivery</h1>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
+﻿<div class="col-12">
+    <div class="card-header" style="border-bottom: none;">
+        <a ui-sref="pos.moneyDeliveryIndex" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+            < Back
+        </a>
+        <h3 class="receiptInfo-title">Money Delivery - History</h3>
+    </div>
+</div>
 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="">
@@ -14,10 +13,7 @@
             <div>
                 <div class="row">
                     <div class="col-8"></div>
-                    <div class="col-4" style="flex-direction: row-reverse;">
-                        <span ng-click="goToMoneyForm()" style="cursor: pointer" class="receipts-create-btn">Create a New Delivery</span>
-                        <span ng-click="goToMoneyHistory()" style="cursor: pointer" class="receipts-history-btn">History</span>
-                    </div>
+                    <div class="col-4" style="flex-direction: row-reverse;"></div>
                 </div>
 
                 <div id="transferProducts" class="transfer-items">

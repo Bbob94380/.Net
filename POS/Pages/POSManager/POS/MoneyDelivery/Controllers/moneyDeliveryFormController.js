@@ -18,7 +18,7 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
         $(".LBP_INPUT").each((index, element) => {
             fiat_count = parseInt(element.value);
             fiat_weight = parseInt(element.getAttribute("weight"));
-            if (fiat_count < 0) {
+            if (fiat_count < 0 || element.value === "") {
                 element.value = 0;
                 fiat_count = 0;
             }
@@ -30,7 +30,7 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
         $(".USD_INPUT").each((index, element) => {
             fiat_count = parseInt(element.value);
             fiat_weight = parseInt(element.getAttribute("weight"));
-            if (fiat_count < 0) {
+            if (fiat_count < 0 || element.value === "") {
                 element.value = 0;
                 fiat_count = 0;
             }
@@ -92,7 +92,7 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
         /*attachments = [];*/
         /*$(".attachment").each(index, element)*/
         data = {
-            "craetor": "admin@gsm.com",
+            "creator": "admin@gsm.com",
             "collectorName": $scope.collectorName,
             "collectorMobile": $scope.collectorMobile,
             "bankName": $scope.bankName,
@@ -107,6 +107,9 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
         console.log(data);
         $common_helper.createRequest("POST", "/FPOS/rest/moneyDeliv/create", data).then(function (response) {
             console.log("Response: ", response);
+            $rootScope.showLoader = true;
+            history.back();
+            $rootScope.showLoader = false;
         });
     }
 

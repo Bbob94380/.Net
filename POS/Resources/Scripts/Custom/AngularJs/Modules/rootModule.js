@@ -157,6 +157,19 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
             templateUrl: "/Pages/POSManager/POS/MoneyDelivery/Views/moneyDeliveryForm.html",
             controller: "moneyDeliveryFormController"
         })
+        .state("pos.moneyDeliveryHistory", {
+            url: "/moneyHistory",
+            params: {
+                item: null
+            },
+            templateUrl: "/Pages/POSManager/POS/MoneyDelivery/Views/moneyDeliveryHistory.html",
+            controller: "moneyDeliveryHistoryController"
+        })
+        .state("pos.moneyDeliveryView", {
+            url: "/moneyView/{mdObjectId}",
+            templateUrl: "/Pages/POSManager/POS/MoneyDelivery/Views/moneyDeliveryView.html",
+            controller: "moneyDeliveryViewController"
+        })
         .state("pos.invoice", {
             url: "/invoice",
             templateUrl: "/Pages/POSManager/POS/Invoice/Views/invoice.html",

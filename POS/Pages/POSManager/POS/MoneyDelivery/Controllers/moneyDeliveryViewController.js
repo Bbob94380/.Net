@@ -1,36 +1,33 @@
 ﻿
-rootModule.controller("moneyDeliveryViewController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $filter, filterTableListService) {
+rootModule.controller("moneyDeliveryViewController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", "commonHelper", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $filter, filterTableListService, $common_helper) {
 
-    $scope.type = $stateParams.type; //getting fooVal
+    $rootScope.showLoader = true;
 
-    console.log($scope.receipt);
-   
-    $scope.selectOptions = ["Mobile",
-        "Office",
-        "Home"
+    $scope.LBP_VALUES = [
+        "100000", "50000", "20000", "10000", "5000", "1000"
+    ];
+    $scope.USD_VALUES = [
+        "100", "50", "20", "10", "5", "1"
     ];
 
-    $scope.choices = [{ "id": 1, "type": "Mobile", "name": "" },
-    { "id": 2, "type": "Mobile", "name": "" }];
+    $scope.mdObjectId = $stateParams.mdObjectId;
 
-    $scope.index = $scope.choices.length;
-
-    $scope.addNewChoice = function () {
-        var newItemNo = ++$scope.index;
-        $scope.choices.push({ 'id': newItemNo, "type": "Mobile", "name": newItemNo });
-    };
-
-    $scope.removeChoice = function (id) {
-
-        var index = -1;
-        var comArr = eval($scope.choices);
-        for (var i = 0; i < comArr.length; i++) {
-            if (comArr[i].id === id) {
-                index = i;
-                break;
-            }
+    $common_helper.createRequest("GET", "/FPOS/rest/moneyDeliv/find/" + $scope.mdObjectId).then(function (response) {
+        $scope.delivery = response.data;
+        console.log("Delivery = ", $scope.delivery);
+        console.log("type of lbp_Amounts = ", typeof ($scope.delivery.lbp_Amounts));
+        for (const weight in response.data.lbp_Amounts) {
+            var count = response.data.lbp_Amounts[weight];
+            /*weight = weight.slice(0, weight.length - 2);*/
+            /*console.log("Weight = ", weight);
+            console.log("Count = ", count);
+            $("input[weight='" + weight + "']")[0].value = count;*/
         }
-        $scope.choices.splice(index, 1);
-    };
+        $rootScope.showLoader = false;
+    });
+
+    $scope.goBack = function () {
+        history.back();
+    }
 
 }]);
