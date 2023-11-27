@@ -21,7 +21,6 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
         return arr;
     }
 
-
     function rootFilter() {
 
         var itemSelector = ".item";
@@ -216,7 +215,6 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
         })
     }
 
-
     function findAvailableNozzles() {
 
         //$rootScope.showLoader = true;
@@ -277,7 +275,6 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
         });
 
     };
-
 
     function getCheckedInUsers() {
 
@@ -340,7 +337,6 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
                         }
 
                     ];
-
                     findAvailableNozzles();
 
                 } else {
@@ -361,8 +357,6 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
     }
 
     getCheckedInUsers();
-
-
   
     $scope.boxClicked = function (value, parent, index) {
 
@@ -447,7 +441,6 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
             $rootScope.showLoader = false;
             console.log(error);
         });
-
     };
 
 }]);

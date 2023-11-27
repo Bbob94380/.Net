@@ -310,7 +310,7 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
                         }, 1);
 
                     } else {
-                        //swal("Oops", "Failed getting receptions", "");
+                        //swal("Oops", "Failed getting receptions", 
                         $scope.showNoData = true;
                     }
 
@@ -326,7 +326,7 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
 
 
         }, function (error) {
-                //swal("Oops", "Failed getting receptions", "");
+                //swal("Oops", "Failed getting receptions", 
                 $rootScope.showLoader = false;
                 $scope.showNoData = true;
         });

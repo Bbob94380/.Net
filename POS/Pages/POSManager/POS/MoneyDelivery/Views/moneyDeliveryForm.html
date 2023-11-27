@@ -1,0 +1,153 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        </div>
+    </div>
+</section>
+
+<section class="content ff">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card-header" style="border-bottom: none;">
+                <a ui-sref="pos.moneyDeliveryIndex" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                    < Back
+                </a>
+                <h3 class="receiptInfo-title">Money Delivery - Create</h3>
+            </div>
+        </div>
+
+
+        <div class="card modal-body" style="margin: 1.7em;">
+            <div>
+                <div class="row col-md-12" style="margin-top: 50px">
+                    <div class="col-2"></div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Collector Name</label>
+                            <input class="form-control" ng-model="collectorName"/>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Collector Mobile</label>
+                            <input class="form-control" ng-model="collectorMobile"/>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <hr/>
+
+                <div class="row" style="padding: 1em;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-7">
+                        <table class="table text-nowrap money-form-table col-md-4" style=" margin: 1em 3em 6em 1em;">
+                            <thead>
+                                <tr>
+                                    <th class="th-text">LBP CLASS</th>
+                                    <th class="th-text">QUANTITY</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="bill in LBP_VALUES">
+                                    <td>{{ bill }}</td>
+                                    <td><input type="number" step="1" id="{{ bill }}" class="form-control LBP_INPUT" weight="{{ bill }}" value="0" min="0" ng-blur="handleLBPOnBlur()" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table text-nowrap money-form-table col-md-4" style=" margin: 1em 5em 6em 1em;">
+                            <thead>
+                                <tr>
+                                    <th class="th-text">USD CLASS</th>
+                                    <th class="th-text">QUANTITY</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="bill in USD_VALUES">
+                                    <td>{{ bill }}</td>
+                                    <td><input type="number" step="1" id="{{ bill }}" class="form-control USD_INPUT" weight="{{ bill }}" value="0" min="0" ng-blur="handleUSDOnBlur()" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row totalTable">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>TOTAL IN LEBANESE LIRA</td>
+                                        <td>{{ LBP_TOTAL }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TOTAL IN DOLLARS</td>
+                                        <td>{{ USD_TOTAL }}</td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
+
+            </div>
+
+            <div class="row" style="padding: 1em;">
+                <label>Attachments</label>
+                <table class="table  text-nowrap transfer-popup-table" ng-repeat="attachmentItem in attachments" style="margin-bottom: 0rem;">
+                    <thead>
+                        <tr>
+                            <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                            <th class="" style="width: 1%;"></th>
+                            <th class="">Attachment Name</th>
+                            <th class="">Upload Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle3"></span></td>
+                            <td><img style="cursor:pointer; margin-top:0;" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeAttachment(choice.id)" /></td>
+                            <td><input class="form-control" ng-model="attachmentItem.ngModelName" /></td>
+                            <td><input ng-model="attachmentItem.ngModelFileName" id="{{ attachmentItem.id }}" type="file" onchange="angular.element(this).scope().uploadFile(this.files, this.id)"/></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <img class="form-group add-btn" style="cursor:pointer;padding: 0 0.5em;" ng-click="addNewAttachment()" src="/Resources/Images/add-btn.png" />
+            </div>
+
+            <div class="row" style="padding: 1em;">
+                <label>Bank</label>
+                <table class="table  text-nowrap transfer-popup-table" style="margin-bottom: 0rem;">
+                    <thead>
+                        <tr>
+                            <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
+                            <th class="" style="width: 1%;"></th>
+                            <th class="">Bank Name</th>
+                            <th class="">Bank Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="transfer-half-rectangle3"/></td>
+                            <td></td>
+                            <td><input class="form-control" ng-model="bankName" /></td>
+                            <td><input class="form-control" ng-model="bankAddress" /></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <button ui-sref="pos.moneyDeliveryIndex" type="button" class="btn btn-danger">CANCEL</button>
+                <button type="button" class="btn btn-primary" ng-click="craeteMoneyDelivey()">CREATE</button>
+            </div>
+        </div>
+        
+    </div>
+</section>
