@@ -33,7 +33,7 @@
                         <div ng-if="item.type == 'Calibration'" class="card-body pt-0">
                             <div class="row">
                                 <div class="col-5 div-nozzle">
-                                    <!--<span style="font-family: rubikBold; font-size: 15px; ">1. CR1234</span>-->
+                                    <span style="font-family: rubikBold; font-size: 15px; ">{{item.id}}</span>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <!-- text input -->
@@ -72,9 +72,9 @@
                         </div>
 
                         <div ng-if="item.type == 'Dry'" class="card-body pt-0" style=" padding-right: 0;">
-                            <div class="row" style=" border-bottom: 1px solid #d4d2d2; margin: 0 1em 0 0; padding-bottom: 9px;">
+                            <div class="row" style=" border-bottom: 1px solid #d4d2d2; margin: 0 1em 0 0; padding-bottom: 9px;text-align: justify;">
                                 <div class="col-md-4">
-                                    <!--<span style="font-family: rubikBold; font-size: 15px; ">1. DR1234</span>-->
+                                    <span style="font-family: rubikBold; font-size: 15px; ">{{item.id}}</span>
                                 </div>
                                 <div class="col-md-3"></div>
                                 <div class="col-md-5">
@@ -109,26 +109,26 @@
                                     <!-- text input -->
                                     <div class="form-group">
                                         <span class="sub-title-item-refund" style="margin-top: 0em;">{{'TotalAmount' | translate}}</span>
-                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.type}}</span>
-                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.type}}</span>
+                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.netTotalMc}}</span>
+                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.netTotalSc}}</span>
                                     </div>
                                 </div>
-                                <!--<div class="col-md-5">-->
-                                    <!-- text input -->
-                                    <!--<div class="form-group">
+                                <div class="col-md-5">
+                                     
+                                    <div class="form-group">
                                         <span class="sub-title-item-refund" style="margin-top: 0em;">{{'ReturnedAmount' | translate}}</span>
-                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.netTotalMc}} L.L</span>
-                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.netTotalSc}} $</span>
+                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.returnedMc}} {{'LL' | translate}}</span>
+                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.returnedSc}} $</span>
                                     </div>
                                 </div>
-                                <div class="col-md-3">-->
-                                    <!-- text input -->
-                                    <!--<div class="form-group">
+                                <div class="col-md-3">
+                                     
+                                    <div class="form-group">
                                         <span class="sub-title-item-refund" style="margin-top: 0em;">{{'FinalAmount' | translate}}</span>
-                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.type}}</span>
-                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.type}}</span>
+                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;display: block;">{{item.netTotalMc - item.returnedMc}}</span>
+                                        <span style="color:#000;font-family: 'rubikRegular';font-size: 13px;">{{item.netTotalSc - item.returnedSc}}</span>
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
                         </div>
 

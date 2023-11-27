@@ -167,6 +167,7 @@ body:not(.layout-fixed) .main-sidebar {
 #products .item {
     float: left;
     width: 450px;
+    height: 14em;
     /*    position: relative !important;
     left: 0 !important;*/
 }

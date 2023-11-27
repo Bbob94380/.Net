@@ -314,8 +314,29 @@ rootModule.controller("refundController", ["$scope", "$uibModal", "$http", "$roo
 
                         }
 
-                        if ($scope.refundsList.length > 0) {
+                        if ($scope.refundsList.length <= 0) {
+                            $scope.showNoData = true;
+                        } else {
+
                             $scope.showNoData = false;
+
+                            var totalAllDryMC = 0;
+                            var totalAllDrySC = 0;
+                            for (var i = 0; i < $scope.refundsList.length; i++) {
+
+                                if ($scope.refundsList[i].saleDetailReturn !== null) {
+                                    if ($scope.refundsList[i].saleDetailReturn.length > 0) {
+
+                                        for (var j = 0; j < $scope.refundsList[i].saleDetailReturn.length; j++) {
+                                            totalAllDryMC += $scope.refundsList[i].saleDetailReturn[j].netTotalMc;
+                                            totalAllDrySC += $scope.refundsList[i].saleDetailReturn[j].netTotalSc;
+                                        }
+                                        $scope.refundsList[i].returnedMc = totalAllDryMC;
+                                        $scope.refundsList[i].returnedSc = totalAllDrySC;
+                                    }
+                                }
+                            }
+
                         }
 
                         setTimeout(function () {

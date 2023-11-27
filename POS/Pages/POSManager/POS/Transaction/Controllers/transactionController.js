@@ -55,17 +55,17 @@
 
 							if (trans.firstCardCurrency === "LBP") {
 
-								bigTransCardLL = bigTransCardLL + firstCardTypeAmount;
+								bigTransCardLL = bigTransCardLL + trans.firstCardTypeAmount;
 							} else if (trans.firstCardCurrency === "USD") {
-								bigTransCardDollar = bigTransCardDollar + firstCardTypeAmount;
+								bigTransCardDollar = bigTransCardDollar + trans.firstCardTypeAmount;
 
 							}
 
 							if (trans.secondCardCurrency === "LBP") {
-								bigTransCardLL = bigTransCardLL + secondCardTypeAmount;
+								bigTransCardLL = bigTransCardLL + trans.secondCardTypeAmount;
 
 							} else if (trans.secondCardCurrency === "USD") {
-								bigTransCardDollar = bigTransCardDollar + secondCardTypeAmount;
+								bigTransCardDollar = bigTransCardDollar + trans.secondCardTypeAmount;
 
 							}
 
