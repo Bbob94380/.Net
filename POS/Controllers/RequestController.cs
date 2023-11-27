@@ -54,6 +54,7 @@ namespace POS.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
+                    Console.WriteLine("Status is success");
                     var sessionId = response.Headers.GetValues("Set-Cookie").First(x => x.StartsWith("session_id"));
                     loginResponse.sessionId = sessionId.Substring(11);
 
@@ -69,6 +70,9 @@ namespace POS.Controllers
 
                     HttpCookie sessionIdCookie = new HttpCookie("session_id", sessionId.Substring(11));
                     HttpContext.Current.Response.Cookies.Add(sessionIdCookie);
+
+                    Console.WriteLine("Response Data: ");
+                    Console.WriteLine(responseData);
                 }
                 else
                 {
@@ -76,6 +80,8 @@ namespace POS.Controllers
                     responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
                     responseData.statusCode = response.StatusCode.ToString();
                     responseData.resultData = loginResponse;
+                    Console.WriteLine("Response is failure. Response Data: ");
+                    Console.WriteLine(responseData);
                 }
 
                 return JsonConvert.SerializeObject(responseData);

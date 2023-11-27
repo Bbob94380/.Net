@@ -111,8 +111,8 @@
                         <tr>
                             <td><span class="transfer-half-rectangle3"></span></td>
                             <td><img style="cursor:pointer; margin-top:0;" class="form-group remove-icon" src="/Resources/Images/remove-icon.png" ng-click="removeAttachment(choice.id)" /></td>
-                            <td><input class="form-control" ng-model="attachment.ngModelName" /></td>
-                            <td><input ng-model="attachment.ngModelFileName" type="file" onchange="angular.element(this).scope().uploadFile(this.files, attachmentItem.id)"/></td>
+                            <td><input class="form-control" ng-model="attachmentItem.ngModelName" /></td>
+                            <td><input ng-model="attachmentItem.ngModelFileName" id="{{ attachmentItem.id }}" type="file" onchange="angular.element(this).scope().uploadFile(this.files, this.id)"/></td>
                         </tr>
                     </tbody>
 

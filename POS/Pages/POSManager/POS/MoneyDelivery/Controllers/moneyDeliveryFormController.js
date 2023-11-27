@@ -44,12 +44,8 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
         handleLBPOnBlur();
     }
 
-    // My Code Ends 
-   
-
     $scope.attachments = [
-        { "id": 1, "type": "Mobile", "name": "attachment1", "ngModelName": "attachment1", "ngModelFileName": "attachmentFile1" },
-        { "id": 2, "type": "Mobile", "name": "attachment2", "ngModelName": "attachment2", "ngModelFileName": "attachmentFile2" }
+        { "id": 1, "type": "Mobile", "name": "attachment1", "ngModelName": "attachment1", "ngModelFileName": "attachmentFile1" }
     ];
     $scope.nextIndex = $scope.attachments.length + 1;
 
@@ -108,36 +104,43 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
         $common_helper.createRequest("POST", "/FPOS/rest/moneyDeliv/create", data).then(function (response) {
             console.log("Response: ", response);
             $rootScope.showLoader = true;
-            history.back();
+            /*history.back();*/
             $rootScope.showLoader = false;
         });
     }
 
-    $scope.uploadFile = function (files, id) {
-        var base64 = getBase64(files[0], id);
-        console.log(base64);
+    $scope.uploadFile = function (files, attachmentId) {
+        console.log("uplaod file has been called with att ID: ", attachmentId);
+        console.log("files = ", files);
+        console.log("files[0] = ", files[0]);
+        console.log("Current images list = ", $scope.imagesList);
+        var base64 = getBase64(files[0], attachmentId);
+        /*console.log(base64);*/
     };
-
-
-    function getBase64(file, index) {
+    function getBase64(file, attachmentItemId) {
+        $scope.attachmentItemId = attachmentItemId;
+        console.log("getting base 64");
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-
+            console.log("On laod render has been called");
             base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
 
             var imgObj = {
                 fileName: file.name,
                 size: file.size,
                 contentType: file.type,
-                description: $scope.Decription, // TODO: use a dyamic ng model: attachment1, attachment2, ... ($scope.("attachment"+index) .. something like that)
+                /*description: attachmentItemNgModelName,*/
                 base64encoded: base64String,
-                url: "URL_HERE", // TODO: Add a url, where to get it?,
-                attachmenttype: "attachementtype" // TODO: add attachment type ("FILE" or "IMAGE")
+                attachmenttype: "IMAGE"
             }
 
-            $scope.imagesList[index] = imgObj;
+            console.log("Image object = ", imgObj);
+            console.log("Attachment ID: ", $scope.attachmentItemId);
 
+            $scope.imagesList[$scope.attachmentItemId] = imgObj;
+
+            console.log("imagesList = ", );
             console.log($scope.imagesList);
         };
         reader.onerror = function (error) {
