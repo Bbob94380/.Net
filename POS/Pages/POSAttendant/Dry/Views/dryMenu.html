@@ -68,8 +68,8 @@
                         <tr ng-repeat="item in dryItemsList">
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
-                            <td><input style=" border: 1px solid #a7a7a7; padding-left: 6px;" ng-focus="DryQtyFieldFocus($index)" ng-blur="DryQtyFieldBlur(item.qtyItem)" ng-change="calculateTotalDry(item.qtyItem,item.discountItem,item.price,$index, item.maxQtyItem)"  type="text" ng-model="item.qtyItem"/></td>
-                            <td><input style=" border: 1px solid #a7a7a7; padding-left: 6px;" ng-focus="DryDiscountFieldFocus($index)" ng-blur="DryDiscountFieldBlur(item.discountItem)"  ng-change="calculateTotalDry(item.qtyItem,item.discountItem,item.price, $index)" type="text" ng-model="item.discountItem" /></td>
+                            <td><input style=" border: 1px solid #a7a7a7; padding-left: 6px; width:8em" ng-focus="DryQtyFieldFocus($index)" ng-blur="DryQtyFieldBlur(item.qtyItem)" ng-change="calculateTotalDry(item.qtyItem,item.discountItem,item.price,$index, item.maxQtyItem)"  type="text" ng-model="item.qtyItem"/></td>
+                            <td><input style=" border: 1px solid #a7a7a7; padding-left: 6px;width:8em" ng-focus="DryDiscountFieldFocus($index)" ng-blur="DryDiscountFieldBlur(item.discountItem)"  ng-change="calculateTotalDry(item.qtyItem,item.discountItem,item.price, $index)" type="text" ng-model="item.discountItem" /></td>
                             <td>${{item.price}}</td>
                             <td>${{item.totalIt}}</td>
                         </tr>

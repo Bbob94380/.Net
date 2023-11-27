@@ -4,7 +4,7 @@
             <div class="row main-center-row">
                 <div class="col-lg-3">
                     <div class="card main2-left-card">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="padding-left: 0; padding-right: 0;">
                             <!--<div class="form-group">
                                 <label>Customer</label>
                                 <input placeholder="name.."  class="form-control form-control-lg" >
@@ -78,31 +78,37 @@
                         <div class="card-body">
                             <div class="row main-row">
                                 <div class="col-lg-4" ng-show="showMenuWet">
-                                    <div class="card submenu-main-card" style="background: #D80404;">
-                                        <div class="card-body">
-                                            <a ui-sref="main2.wetMenu" class="nav-link">
+                                    <a ui-sref="main2.wetMenu" >
+
+                                        <div class="card submenu-main-card" style="background: #D80404;">
+                                            <div class="card-body">
                                                 <span class="">{{'wetproduct' | translate}}</span>
-                                            </a>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
+
                                 </div>
                                 <div class="col-lg-4" ng-show="showMenuDry">
-                                    <div class="card submenu-main-card" style="background: #32ACD1;">
-                                        <div class="card-body">
-                                            <a ui-sref="main2.dryMenu" class="nav-link">
+                                    <a ui-sref="main2.dryMenu" >
+                                        <div class="card submenu-main-card" style="background: #32ACD1;">
+                                            <div class="card-body">
+
                                                 <span class="">{{'dryproduct' | translate}}</span>
-                                            </a>
+
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <div class="col-lg-4" ng-show="showMenuCar">
-                                    <div class="card submenu-main-card" style="background: #2B2C2C;">
-                                        <div class="card-body">
-                                            <a ui-sref="main2.carWashMenu" class="nav-link">
+                                    <a ui-sref="main2.carWashMenu" >
+                                        <div class="card submenu-main-card" style="background: #2B2C2C;">
+                                            <div class="card-body">
+
                                                 <span class="">{{'carwash' | translate}}</span>
-                                            </a>
+
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="">

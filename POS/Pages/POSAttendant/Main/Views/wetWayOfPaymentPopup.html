@@ -69,7 +69,7 @@
                         <tr ng-repeat="trans in transactionsList track by $index">
                             <td>{{trans.id}}</td>
                             <td>{{trans.productType}}</td>
-                            <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }} </td>
+                            <td>{{trans.productType == 'Fuel'? trans.qty + ('Litre' | translate): trans.productType == 'Service'?  trans.qty + (' service(s)' | translate )  : trans.productType == 'Car wash'? trans.qty + ( 'carwashTrans' | translate ) : trans.qty + ( 'items' | translate )}} </td>
                             <td>{{trans.priceLL}} {{ 'LL' | translate}} ({{trans.priceDollar}}$ )</td>
                         </tr>
                     </tbody>

@@ -417,11 +417,11 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
         console.log($scope.totalPayLL);
         console.log($scope.totalPayDollar);
 
-        if ($scope.totalPayLL !== data.totalLL || $scope.totalPayDollar !== data.totalDollar) {
+        //if (parseFloat($scope.totalPayLL).toFixed(2) <= parseFloat(data.totalLL).toFixed(2) || $scope.totalPayDollar !== data.totalDollar) {
 
-                swal($filter('translate')('wrongMoney'), "", "warning");
-                return;
-        }
+        //        swal($filter('translate')('wrongMoney'), "", "warning");
+        //        return;
+        //}
 
 
         if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0 || firstCashLL === "" ) && 
@@ -649,11 +649,11 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
     $scope.createRecipetForOneTransaction = function () {
         //$uibModalInstance.close('Succeeded');
-        if ($scope.totalPayLL !== data.totalLL || $scope.totalPayDollar !== data.totalDollar) {
+        //if ($scope.totalPayLL !== data.totalLL || $scope.totalPayDollar !== data.totalDollar) {
 
-            swal($filter('translate')('wrongMoney'), "", "warning");
-            return;
-        }
+        //    swal($filter('translate')('wrongMoney'), "", "warning");
+        //    return;
+        //}
 
 
         if ((firstCashLL === undefined || firstCashLL === null || firstCashLL === 0 || firstCashLL === "") &&

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-5" style="border-right: 2px solid #dee2e6;">
 
-            <form>
+            <form style="height: 21em; overflow-y: scroll;">
                 <div class="card-body">
                     <span class="carWashOptionSpan {{item.styleClass}}" ng-repeat="item in optionsList" ng-click="addCarWashOption(item.id, item.name, item.priceMc, item.priceSc, item)">{{item.name}}</span>
                 </div>

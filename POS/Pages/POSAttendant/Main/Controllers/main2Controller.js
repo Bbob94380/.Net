@@ -96,7 +96,8 @@
 
 
 
-    var ws = new WebSocket("ws://localhost:8080/FPOS/sendingNotifications");
+    //var ws = new WebSocket("ws://localhost:8080/FPOS/sendingNotifications");
+    var ws = new WebSocket("ws://35.181.42.111:8080/FPOS/sendingNotifications");
 
     ws.onopen = function () {
         console.log("connection established...");
@@ -219,21 +220,21 @@
                         localStorage.setItem('dollarRate', result.resultData);
 
                     } else {
-                        swal($filter('translate')('failedGetCurrentRatio'), "", "error");
+                        //swal($filter('translate')('failedGetCurrentRatio'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal($filter('translate')('failedGetCurrentRatio'), "", "error");
+                    //swal($filter('translate')('failedGetCurrentRatio'), "", "error");
                 }
 
             } else {
-                swal($filter('translate')('failedGetCurrentRatio'), "", "error");
+                //swal($filter('translate')('failedGetCurrentRatio'), "", "error");
             }
 
 
         }, function (error) {
-                swal($filter('translate')('failedGetCurrentRatio'), "", "error");
+                //swal($filter('translate')('failedGetCurrentRatio'), "", "error");
             //$rootScope.showLoader = false;
             console.log(error);
         });
@@ -358,14 +359,16 @@
         localStorage.setItem("transList", JSON.stringify($rootScope.transactionsList));
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
-            totalLL += $rootScope.transactionsList[i].priceLL;
-            totalDollar += $rootScope.transactionsList[i].priceDollar;
+            totalLL += parseFloat($rootScope.transactionsList[i].priceLL);
+            totalDollar += parseFloat($rootScope.transactionsList[i].priceDollar);
         }
-        totalLeb = totalLL;
+        totalLeb = parseFloat(totalLL).toFixed(2);
         totalDol = totalDollar;
-        $scope.transTotalLebanese = totalLL;
+        $scope.transTotalLebanese = parseFloat(totalLL).toFixed(2);
         $scope.transTotalDollar = "$" + totalDollar ;
         $rootScope.totalLabelDryAndWet = "showTotalLabelDryAndWet";
+        console.log(totalLL);
+        console.log(totalDollar);
     }
 
     var transJson = JSON.parse(localStorage.getItem("transList"));
@@ -408,7 +411,7 @@
             });
 
         } else {
-            sweetAlert("There are no transactions to be edit!", "", "warning");
+            sweetAlert($filter('translate')('noTrans'), "", "warning");
         }
     };
 

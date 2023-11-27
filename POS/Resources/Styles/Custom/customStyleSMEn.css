@@ -1357,6 +1357,14 @@ input[type="search"]::-webkit-search-cancel-button {
         color: #9d9898;
     }
 
+.create_receipt_table {
+    height: 15em;
+    display: block;
+    overflow: scroll;
+}
+
+
+
 .receiptInfoTable {
     margin: 3em;
     border-bottom: none;

@@ -72,13 +72,21 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
             } else if (type === "LL") {
 
                 $scope.displayQtyResult = parseFloat(newValue) / $scope.priceMcOfLitre;
+                $scope.displayQtyResult = parseFloat($scope.displayQtyResult).toFixed(2);
                 $scope.displayPriceDollarResult = parseFloat(newValue) / $scope.dollarRate;
+
+                console.log($scope.displayQtyResult);
+                console.log($scope.displayPriceDollarResult);
 
             } else if (type === "dollar") {
 
                 $scope.displayPriceResult = parseFloat(newValue) * $scope.dollarRate;
                 $scope.displayQtyResult = parseFloat(newValue) / $scope.priceScOfLitre;
 
+                $scope.displayQtyResult = parseFloat($scope.displayQtyResult).toFixed(2);
+
+                console.log($scope.displayPriceResult);
+                console.log($scope.displayQtyResult);
             }
 
             
@@ -127,20 +135,20 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
         if ($scope.displayPriceDollarResult === undefined || $scope.displayPriceDollarResult === null || $scope.displayPriceDollarResult === "") {
             dd=0
         } else {
-            dd = parseFloat($scope.displayPriceDollarResult)
+            dd = $scope.displayPriceDollarResult;
         }
 
         if ($scope.displayPriceResult === undefined || $scope.displayPriceResult === null || $scope.displayPriceResult === "") {
             ll = 0
         } else {
-            ll = parseFloat($scope.displayPriceResult)
+            ll = $scope.displayPriceResult;
         }
 
         var fuelResultObj = {
             id: 0,
-            qty: $scope.displayQtyResult,
-            priceLL: ll,
-            priceDollar: dd,
+            qty: parseFloat($scope.displayQtyResult).toFixed(2),
+            priceLL: parseFloat(ll).toFixed(2),
+            priceDollar: parseFloat(dd).toFixed(2),
             productType: "Fuel",
             wetId: $scope.wetId,
             gas: $scope.isGas,

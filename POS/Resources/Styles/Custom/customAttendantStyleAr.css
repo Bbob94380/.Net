@@ -89,6 +89,7 @@
     align-items: center;
     justify-content: center;
     color: #fff;
+    font-size: 27px;
 }
 
     .submenu-main-card a {
@@ -98,7 +99,7 @@
     }
 
     .submenu-main-card div {
-        padding: 0em 0.5em 0.3em 0.5em !important;
+        padding: 0em 0.5em 0.7em 0.5em !important;
         margin-top: 0.5em !important;
     }
 
@@ -130,7 +131,7 @@
 }
 
 .main2-right-card {
-    height: 100vh;
+    height: 125vh;
     display: flex;
     position: relative;
     margin: 0;
@@ -322,12 +323,14 @@ button {
 }
 
     .trans-table th, .trans-table td {
-        padding: 9px;
+        padding: 9px 6px;
         text-align: left;
         border: 1px solid #ddd;
         text-align: center;
         font-size: 19px;
     }
+
+
 
     .trans-table th {
         color: #6F6F6F;
@@ -344,7 +347,7 @@ button {
 
     .total-table th, td {
         border: none;
-        padding: 15px 8px 0px 40px;
+        padding: 9px 20px;
     }
 
 .edit-btn {
@@ -680,8 +683,8 @@ button {
 .slick-slide {
     display: none;
     float: right;
-    width: 6.7em !important;
-    height: 9.4em;
+    width: 7.2em !important;
+    height: 10.8em;
     min-height: 1px;
     display: flex;
     position: relative;
@@ -698,6 +701,29 @@ button {
 
 
 
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: transparent;
+    }
+
+
 .nav-tabs {
     border-bottom: none;
 }
@@ -708,27 +734,37 @@ button {
     width: 100%;
     margin-top: 1em;
     margin-bottom: 0em;
+    overflow-y: scroll;
+    height: 5.5em;
+    display: block;
 }
+
+    .dry-table thead {
+        width: 100%;
+        display: contents;
+    }
+
 
     .dry-table th, .dry-table td {
         padding: 8px;
         text-align: left;
         border: none;
-        text-align: center;
+        text-align: left;
         font-size: 18px;
         font-weight: 500;
+        width: 12%;
     }
 
     .dry-table th {
         color: #6F6F6F;
-        width: auto !important;
+        width: 5% !important;
     }
 
 .dryTotalLabel {
     float: right;
-    margin-top: 0em;
+    margin-top: 1em;
     margin-right: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 0em;
 }
 
 .drylineTotal {
@@ -938,6 +974,9 @@ button {
     margin-top: 1em;
     margin-bottom: 0em;
     border-bottom: 1px solid #dee2e6;
+    overflow-y: scroll;
+    display: block;
+    height: 13em;
 }
 
 .edit-table-total {
@@ -1320,18 +1359,18 @@ button {
     position: relative;
     display: flex;
     padding: 1.5em 0em 0.5em 0.2em;
-    height: 75%;
+    height: 65%;
 }
 
 .dry-item-title {
-    font-size: 14px;
+    font-size: 16px;
     border-top: 1px solid #b9b7b7;
     width: 100%;
     padding: 3px 0;
 }
 
 .dry-item-title2 {
-    font-size: 12px;
+    font-size: 23px;
     width: 100%;
     padding: 0;
     text-overflow: ellipsis;
@@ -1366,7 +1405,7 @@ button {
 }
 
 .dry-ul-scroll {
-    width: 35em;
+    width: 30em;
     overflow-x: scroll;
     white-space: nowrap;
     display: inline-block;
