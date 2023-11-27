@@ -39,10 +39,59 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
     }
 
 
+    function getCurrencyRatio() {
 
-    //$rootScope.dollarRate = 100000;
-    $rootScope.dollarRate = localStorage.getItem('dollarRateSM');
-    if ($rootScope.dollarRate === null || $rootScope.dollarRate === undefined || $rootScope.dollarRate === "") $rootScope.dollarRate = 0;
+        //$rootScope.showLoader = true;
+        $http({
+            method: "POST",
+            url: "/api/Request/GetCurrencyRatio",
+            data: { sessionId: localStorage.getItem('session_id_sm') }
+        }).then(function (response) {
+
+            console.log(response);
+            //$rootScope.showLoader = false;
+
+            if (response !== null && response !== undefined) {
+
+                if (response.data !== null && response.data !== undefined) {
+
+                    var result = JSON.parse(response.data);
+
+                    if (result.isSuccessStatusCode) {
+
+                        console.log(result.resultData);
+                        $rootScope.dollarRate = result.resultData;
+                        localStorage.setItem('dollarRateSM', result.resultData);
+
+                    } else {
+                        //swal($filter('translate')('failedGetCurrentRatio'), "", "error");
+                        console.log(result.errorMsg);
+                    }
+
+                } else {
+                    //swal($filter('translate')('failedGetCurrentRatio'), "", "error");
+                }
+
+            } else {
+                //swal($filter('translate')('failedGetCurrentRatio'), "", "error");
+            }
+
+
+        }, function (error) {
+            //swal($filter('translate')('failedGetCurrentRatio'), "", "error");
+            //$rootScope.showLoader = false;
+            console.log(error);
+        });
+
+    };
+
+    if (localStorage.getItem('dollarRateSM') === '' || localStorage.getItem('dollarRateSM') === "" || localStorage.getItem('dollarRateSM') === " " || localStorage.getItem('dollarRateSM') === null ||
+        localStorage.getItem('dollarRateSM') === undefined || localStorage.getItem('dollarRateSM') === '0' || localStorage.getItem('dollarRateSM') === "0" || localStorage.getItem('dollarRateSM') === "0.0") {
+        $rootScope.dollarRate = 0;
+        getCurrencyRatio();
+    } else {
+        $rootScope.dollarRate = localStorage.getItem('dollarRateSM');
+    }
     
 
     $rootScope.trustUrlSrc = function (src) {

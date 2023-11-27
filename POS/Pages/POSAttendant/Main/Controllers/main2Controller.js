@@ -242,7 +242,7 @@
     };
 
     if (localStorage.getItem('dollarRate') === '' || localStorage.getItem('dollarRate') === "" || localStorage.getItem('dollarRate') === " " || localStorage.getItem('dollarRate') === null ||
-        localStorage.getItem('dollarRate') === undefined || localStorage.getItem('dollarRate') === '0' || localStorage.getItem('dollarRate') === "0") {
+        localStorage.getItem('dollarRate') === undefined || localStorage.getItem('dollarRate') === '0' || localStorage.getItem('dollarRate') === "0" || localStorage.getItem('dollarRate') === "0.0") {
         getCurrencyRatio();
     } else {
         $rootScope.dollarRate = localStorage.getItem('dollarRate');

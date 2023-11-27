@@ -340,21 +340,21 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
                         $scope.creator = result.resultData.name;
 
                     } else {
-                        swal("Failed getting user info", "Please try again", "error");
+                        //swal("Failed getting user info", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting user info", "Please try again", "error");
+                    //swal("Failed getting user info", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting user info", "Please try again", "error");
+                //swal("Failed getting user info", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting user info", "Please try again", "error");
+            //swal("Failed getting user info", "Please try again", "error");
             //$rootScope.showLoader = false;
             console.log(error);
         });

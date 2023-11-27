@@ -46,7 +46,7 @@
                                 <td><span class="transfer-half-rectangle2"></span></td>
                                 <td>{{item.name}}</td>
                                 <td>{{item.liters}}</td>
-                                <td>{{item.amountLbp}} L.L/ $ {{item.amountUsd}}</td>
+                                <td>{{item.amountLbp}} {{'LL' | translate}}/ $ {{item.amountUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -68,7 +68,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{shiftObj.numberOfVehicles}}</td>
-                                <td>{{shiftObj.carWashTotalLbp}} L.L/ $ {{shiftObj.carWashTotalUsd}}</td>
+                                <td>{{shiftObj.carWashTotalLbp}} {{'LL' | translate}}/ $ {{shiftObj.carWashTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,7 +90,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{shiftObj.numberOfItems}}</td>
-                                <td>{{shiftObj.dryProductTotalLbp}} L.L/ $ {{shiftObj.dryProductTotalUsd}}</td>
+                                <td>{{shiftObj.dryProductTotalLbp}} {{'LL' | translate}}/ $ {{shiftObj.dryProductTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -112,7 +112,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{shiftObj.numberOfStationServices}}</td>
-                                <td>{{shiftObj.stationServicesTotalLbp}} L.L/ $ {{shiftObj.stationServicesTotalUsd}}</td>
+                                <td>{{shiftObj.stationServicesTotalLbp}} {{'LL' | translate}}/ $ {{shiftObj.stationServicesTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -121,7 +121,7 @@
                 <div class="row  paytotalLabelLLAndDolar" >
                     <div>
                         <span class="col-md-3 payDryTotal2Label">{{'TotalInLebaneseLira' | translate}}</span>
-                        <span class="col-md-3 payDryTotalValue">{{shiftObj.totalLbp}} L.L</span>
+                        <span class="col-md-3 payDryTotalValue">{{shiftObj.totalLbp}} {{'LL' | translate}}</span>
                     </div>
                     <div style="float:right;">
                         <span class="col-md-3 payDryTotal2Label">{{'TotalInUSD' | translate}}</span>
@@ -200,7 +200,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{shiftObj.numberOfPostPaidCoupons}}</td>
-                                <td>{{shiftObj.postPaidCouponsTotalLbp}} L.L/ {{shiftObj.postPaidCouponsTotalUSd}} $ </td>
+                                <td>{{shiftObj.postPaidCouponsTotalLbp}} {{'LL' | translate}}/ {{shiftObj.postPaidCouponsTotalUSd}} $ </td>
                             </tr>
                         </tbody>
                     </table>
@@ -222,7 +222,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{shiftObj.numberOfRefunds}}</td>
-                                <td>{{shiftObj.refundTotalLbp}} L.L/ $ {{shiftObj.refundTotalUsd}}</td>
+                                <td>{{shiftObj.refundTotalLbp}} {{'LL' | translate}}/ $ {{shiftObj.refundTotalUsd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -310,5 +310,5 @@
 </div>
 <div class="modal-footer wetTransPopupFooter payFooterPopup" style="border-top: 2px solid #E6E6E6; display: flex !important">
     <button type="button" class="btn  btn-primary btn-print">{{'Print' | translate}}</button>
-    <button type="button" class="btn  btn-primary btn-export">{{'Export' | translate}}</button>
+    <!--<button type="button" class="btn  btn-primary btn-export">{{'Export' | translate}}</button>-->
 </div>

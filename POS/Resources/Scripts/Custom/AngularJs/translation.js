@@ -10,6 +10,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
         "LL": "LBP",
         "logout": "Log out",
         "receipts": "Receipts",
+		"createReceipt": "Create Receipt",
         "transactions": "Transactions",
         "Refunds": "Refunds",
         "Refund": "Refunds",
@@ -28,7 +29,8 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
         /*receipts*/
         "historyReceipt": "History",
         "createnewreceipt": "Create New Receipt",
-        "search": "Search",
+		"search": "Search",
+		"view": "View",
         "nbOfTransaction": "Nb. of Transactions",
         "WOP": "Way Of Payment",
         "WOR": "Way Of Refund",
@@ -185,6 +187,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"SelectDateOfEOD": "Select Date Of EOD",
 
 		"EndOfDayForm": "End of Day Form",
+		"StationServices": "Station Services",
 		"EODID": "EOD ID",
 		"StationManager": "Station Manager",
 		"Shift": "Shift",
@@ -250,6 +253,15 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"CarWashTransactionsCoupon": " Car Wash Transactions - in Coupon",
 		"karedTable": "Table containing cash from bank Alkared Alhassan",
 
+		"CashReceivedAlQardAlHassan": "Cash received from Al-Qard Al-Hassan",
+		"AccountNumber": "Account Number",
+		"ReceiptNumber": "Receipt Number",
+		"CheckNumber": "Check Number",
+		"CheckCurrency": "Check Currency",
+		"CheckValue": "Check Value",
+		"Epayments": "E-payments",
+		"Duedate": "Due date",
+		"DateOfCheck": "Date of Check",
 
 		/*shifts*/
 		"ShiftID": "SHIFT ID",
@@ -292,7 +304,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"Clear": "Clear",
 
 	/*assign nozzles*/
-		"ActiveEmployees": "Active Employees",
+		"ActiveEmployees": "Assign nozzls to employees",
 		"save": "save",
 		"Next": "Next",
 
@@ -321,11 +333,11 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
         "transactions": "العمليات",
         "Refunds": "المبالغ المستردة",
         "Refund": "المبلغ المسترد",
-        "Reception": "استلام",
+        "Reception": "استلام المحروقات",
         "EOD": "نهاية اليوم",
-        "Shifts": "المناوبات",
+        "Shifts": "الدوام",
         "moneydelivery": "استلام الأموال",
-        "assignNozzles": "تعيين الفوهات",
+        "assignNozzles": "تعيين المزودات",
         "back": "رجوع",
 		"noDataFound": "لا يوجد معلومات",
 		"usdOverall": "بالدولار الامريكي",
@@ -335,10 +347,12 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"CarWash": "غسيل السيارات",
 		"TypeCar": "نوع المركبة",
 
-        /*receipts*/
+		/*receipts*/
+		"createReceipt": "إنشاء إيصال",
         "historyReceipt": "سجل الإيصالات",
         "createnewreceipt": "إنشاء إيصال جديد",
         "search": "بحث",
+        "view": "عرض تفاصيل",
         "nbOfTransaction": "عدد العمليات",
 		"WOP": "طريقة الدفع",
 		"WOR": "طريقة الاسترداد",
@@ -398,6 +412,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		/*refunds*/
 		"All": "الكل",
 		"DryProducts": "البضائع",
+		"DryProduct": "البضائع",
 		"Calibration": "معايرة",
 		"RefundMethod": "طريقة رد المال",
 		"EmployeeName": "إسم الموظف",
@@ -497,7 +512,8 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"EndOfDayForm": "سجل نهاية اليوم",
 		"EODID": "EOD ID",
 		"StationManager": "مدير المحطة",
-		"Shift": "مناوبة",
+		"StationServices": "الخدمات",
+		"Shift": "دوام",
 		"numberOfEmployees": "عدد الموظفين",
 		"Bank": "بنك",
 		"Cards": "بطاقات",
@@ -505,7 +521,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"KaredAlHassan": "قرض الحسن",
 		"EPayment": "الدفع الالتكتروني",
 
-		"FuelSales": "Fuel Sales",
+		"FuelSales": "مبيعات الوقود",
 		"Octane98": "أوكتان 98",
 		"InitialCounter": "عداد البداية",
 		"closingCounter": "عداد النهاية",
@@ -520,7 +536,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"GreenDiesel": "ديزل أخضر",
 		"FuelTransactionsPaidCard": "Fuel Transactions - Paid by Card",
 		"FuelTransactionsPaidCoupon ": "Fuel Transactions - Paid in Coupon ",
-		"EmployeesInsideShift": "Employees Inside this Shift",
+		"EmployeesInsideShift": "الموظفون",
 		"currencyValue": "CURRENCY VALUE",
 		"TotalUSD": "TOTAL USD",
 		"TotalLBP": "TOTAL LBP",
@@ -543,11 +559,11 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"valueOfCashSelling": "VALUE OF CASH SELLING",
 		"NumberOfSellingCash": "NUMBER OF SELLING IN CASH",
 		"ValueOfSellingCash": "VALUE OF SELLING IN CASH",
-		"GasSale": "Gas Sale",
-		"GasType": "GAS TYPE",
-		"QuantityBeginning": "QUANTITY BEGINNING",
-		"QuantitySalesCash": "QUANTITY SALES CASH",
-		"ValueSalesCash ": "VALUE SALES CASH",
+		"GasSale": "مبيعات الغاز",
+		"GasType": "نوغع الغاز",
+		"QuantityBeginning": "بداية الكمية",
+		"QuantitySalesCash": "الكمية المبيعات النقدية",
+		"ValueSalesCash ": "قيمة المبيعات النقدية",
 		"QuantitySalesAccount": "QUANTITY  SALES IN ACCOUNT",
 		"ValueSalesAccount ": "Value sales in account",
 		"QuantityAtTheEnd": "QUANTITY AT THE END",
@@ -559,20 +575,29 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"karedTable": "جدول يحتوي على مبالغ نقدية من بنك الكارد الحسن",
 
 
+		"CashReceivedAlQardAlHassan": "المقبوضات من القرض الحسن",
+		"AccountNumber": "رقم الحساب",
+		"ReceiptNumber": "رقم الإيصال",
+		"CheckNumber": "رقم الشيك",
+		"CheckCurrency": "عملة الشيك",
+		"CheckValue": "قيمة الشيك",
+		"Epayments": "المقبوضات الالكترونية",
+		"Duedate": "تاريخ الاستحقاق",
+		"DateOfCheck": "تاريخ الاستلام",
+
 		/*shifts*/
-		"ShiftID": "رمز تعريف المناوبة",
+		"ShiftID": "رمز تعريف الدوام",
 		"Nozzle": "مزود الوقود",
 		"Session": "الفترات",
 
-		"ShiftsHistory": "سجل المناوبات",
-		"ShiftNumber": "رقم المناوبة",
+		"ShiftsHistory": "سجل الدوام",
+		"ShiftNumber": "رقم الدوام",
 		"LebaneseLiraLL": "الليرة اللبنانية (ل.ل)",
 		"DollarUSD": "الدولار الأميركي ($)",
 
 		"NozzleCounter": "عداد مزود الوقود",
 		"WetProduct": "المحروقات",
 		"Liters": "الكمية",
-		"DryProduct": "بضائع",
 		"NumberOfCars": "عدد السيارات",
 		"NumberOfItems": "عدد السلع",
 		"NumberOfServices": "عدد الخدمات",
@@ -602,7 +627,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"Clear": "مسح",
 
 		/*assign nozzles*/
-		"ActiveEmployees": "الموظفون المتاحون",
+		"ActiveEmployees": "تعيين المزودات للموظفين",
 		"save": "حفظ",
 		"Next": "التالي",
     }

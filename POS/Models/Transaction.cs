@@ -59,6 +59,7 @@ namespace POS.Models
     public class SaleInvoice
     {
         public decimal id { get; set; }
+        public decimal customerId { get; set; }
         public decimal currencyRatio { get; set; }
         public decimal firstCardTypeAmount { get; set; }
         public decimal secondCardTypeAmount { get; set; }

@@ -651,7 +651,7 @@ body:not(.layout-fixed) .main-sidebar {
 }
 
 .receiptInfoTable {
-    border: 1px solid #DEDEDE;
+    /*border: 1px solid #DEDEDE;*/
     margin: 3em;
     border-bottom: none;
 }
@@ -760,11 +760,26 @@ body:not(.layout-fixed) .main-sidebar {
     text-align: right;
 }
 
+.eod-table-line {
+    margin-right: 6em
+}
+
 .eod-usd {
     display: block;
     width: 100%;
     text-align: end;
-    padding-left: 2em;
+    padding-left: 6em;
+}
+
+.eod-next-btn {
+    justify-content: flex-start;
+}
+
+.eod-label-title {
+    text-align: right;
+    position: relative;
+    display: block;
+    margin: 1em 2em;
 }
 
 .receiptInfo-lastRow {
@@ -785,7 +800,7 @@ body:not(.layout-fixed) .main-sidebar {
 
 .trans-credit-sec {
     border-top: 1px solid #dee2e6;
-    padding: 1em 0em 1em 8em;
+    padding: 1em 0em 1em 7em;
 }
 
     .receiptInfo-footer .btn-export {
@@ -843,7 +858,7 @@ body:not(.layout-fixed) .main-sidebar {
 
 .table-trans th {
     font-family: 'rubikRegular';
-    font-size: 13px;
+    font-size: 17px;
     color: #676666;
     font-weight: 100;
     border-bottom: none !important;
@@ -984,12 +999,27 @@ ul.pagination li:first-child, ul.pagination li:last-child {
     font-size: 14px;
 }
 
+.create-btn-popup {
+    background: #2A5699;
+    color: #fff;
+    padding: 8px 27px;
+    font-size: 12px;
+    font-family: 'rubikMedium';
+}
+
+
 .eod-save {
     background: #2A5699;
     display: block;
-    margin-right: 1em;
+    margin-left: 1em;
     margin-top: 2em;
     float: left;
+    font-size: 18px;
+}
+
+a.pager:first-child {
+    background-color: rgb(216, 4, 4);
+    color: rgb(255, 255, 255);
 }
 
 .tableTransPopupDry {
@@ -1446,7 +1476,7 @@ div.dataTables_wrapper div.dataTables_paginate {
 
 @media (min-width: 576px) {
     .modal-dialog {
-        max-width: 800px;
+        max-width: 1100px;
         margin: 1.75rem auto;
     }
 }

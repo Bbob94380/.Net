@@ -24,7 +24,7 @@
 </div>
 <div class="modal-body">
 
-    <label>{{'DryProduct' | translate}}</label>
+    <label class="eod-label-title">{{'DryProduct' | translate}}</label>
     <div class="row col-md-12" style="padding: 2em 0em 1em 1em;">
         <table class="table table-hover text-nowrap dryShiftTable">
             <thead>
@@ -53,7 +53,7 @@
 
     </div>
 
-    <label>Station Services</label>
+    <label class="eod-label-title">{{'StationServices' | translate}}</label>
     <div class="row col-md-12" style="padding: 2em 0em 1em 1em;">
         <table class="table table-hover text-nowrap dryShiftTable">
             <thead>
@@ -154,13 +154,13 @@
     </div>-->
 
 
-    <label style="margin-top:2em;">{{'EmployeesInsideShift' | translate}}</label>
+    <label style="margin-top:2em;" class="eod-label-title">{{'EmployeesInsideShift' | translate}}</label>
 
-    <label style="display: block;margin-left:1em;">{{'DryProduct' | translate}}</label>
+    <label style="display: block;margin-left:1em;" class="eod-label-title">{{ 'DryProduct' | translate}}</label>
     <div class="row" style="padding: 1em; margin-left: 3em;" ng-repeat="employee in shiftObj.employeeDryProductSummaries">
-        <label style="display: block; width:100%">{{'Employee' | translate}} {{$index + 1}}: {{employee.employeeName}}</label>
+        <label style="display: block; width:100%" class="eod-label-title">{{'Employee' | translate}} {{$index + 1}}: {{employee.employeeName}}</label>
         <br />
-        <table class="table  text-nowrap transfer-popup-table" style="margin-left:1em;margin-bottom: 0 !important;">
+        <table class="table  text-nowrap transfer-popup-table eod-table-line" style="margin-left:1em;margin-bottom: 0 !important;">
             <thead>
                 <tr>
                     <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
@@ -178,11 +178,11 @@
         </table>
     </div>
 
-    <label style="display: block;margin-left:1em; margin-top:1em;">Station Service</label>
+    <label style="display: block;margin-left:1em; margin-top:1em;" class="eod-label-title">{{'StationServices' | translate}}</label>
     <div class="row" style="padding: 1em; margin-left: 3em;" ng-repeat="employee in shiftObj.employeeStationServiceSummaries">
-        <label style="display: block; width:100%">{{'Employee' | translate}} {{$index + 1}}: {{employee.employeeName}}</label>
+        <label style="display: block; width:100%" class="eod-label-title">{{'Employee' | translate}} {{$index + 1}}: {{employee.employeeName}}</label>
         <br />
-        <table class="table  text-nowrap transfer-popup-table" style="margin-left:1em;margin-bottom: 0 !important;">
+        <table class="table  text-nowrap transfer-popup-table eod-table-line" style="margin-left:1em;margin-bottom: 0 !important;">
             <thead>
                 <tr>
                     <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
@@ -202,6 +202,6 @@
 
 
 </div>
-<div class="modal-footer">
+<div class="modal-footer eod-next-btn">
     <button type="button" class="btn printBtn-trans" style="background:#2A5699" ng-click="goToCarWashShift()">{{'Next' | translate}}</button>
 </div>

@@ -25,9 +25,9 @@
                     <thead>
                         <tr>
                             <th>{{'ID' | translate}}</th>
-                            <th class="col-3">{{'CreatedBy' | translate}}</th>
+                            <th  style="text-align: center;" class="col-3">{{'CreatedBy' | translate}}</th>
                             <th>{{'CreationDate' | translate}}</th>
-                            <th>{{'SelectDateOfEOD' | translate}}</th>
+                            <th style="text-align: center;">{{'SelectDateOfEOD' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,7 +113,7 @@
             <div class="col-12 " style="margin-right: 2em; ">
                 <div style="" class="eod-usd">
                     <span style=" display: inline-block; color: #b3afaf; font-size: 14px;">{{'USD' | translate}}</span>
-                    <span style=" color: red; font-size: 14px; font-weight: bold;margin-right: 2em;">$ {{eodObj.cashUsd}}</span>
+                    <span style="color: red; font-size: 14px; font-weight: bold; margin-right: 0em;">$ {{eodObj.cashUsd}}</span>
                     <span style=" display: inline-block; color: #b3afaf; font-size: 14px;">{{'LebaneseLira' | translate}}</span>
                     <span style=" color: red; font-size: 14px; font-weight: bold;">{{eodObj.cashLbp}} {{'LL' | translate}}</span>
                 </div>

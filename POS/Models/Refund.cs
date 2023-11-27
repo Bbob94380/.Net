@@ -12,12 +12,15 @@ namespace POS.Models
         public int pumpNumber { get; set; }
         public int nozzleNumber { get; set; }
         public decimal tankId { get; set; }
+        public int tankNumber { get; set; }
+        public decimal volume { get; set; }
         public decimal wetProductId { get; set; }
         public decimal saleTransactionId { get; set; }
 
         public decimal currencyRatio { get; set; }
         public string creator { get; set; }
         public string creationDate { get; set; }
+        public string fuelType { get; set; }
 
         //dry
         public decimal saleId { get; set; }
@@ -41,6 +44,16 @@ namespace POS.Models
         public decimal tankId { get; set; }
         public decimal wetProductId { get; set; }
         public decimal saleTransactionId { get; set; }
+        public string creator { get; set; }
+    }
+
+    public class CreateCalibration
+    {
+
+        public int tankNumber { get; set; }
+        public decimal wetProductId { get; set; }
+        public decimal saleTransactionId { get; set; }
+        public int nozzleNumber { get; set; }
         public string creator { get; set; }
     }
 

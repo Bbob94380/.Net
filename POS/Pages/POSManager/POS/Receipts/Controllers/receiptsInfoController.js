@@ -49,11 +49,11 @@
 
         if ($scope.transInfoList[i].secondCardTypeAmount !== 0 && $scope.transInfoList[i].secondCardTypeAmount !== null) {
 
-            if ($scope.transInfoList[i].firstCardCurrency === "USD") {
+            if ($scope.transInfoList[i].secondCardCurrency === "USD") {
                 $scope.dollarCredit = $scope.dollarCredit + $scope.transInfoList[i].secondCardTypeAmount;
             }
 
-            if ($scope.transInfoList[i].firstCardCurrency === "LBP") {
+            if ($scope.transInfoList[i].secondCardCurrency === "LBP") {
                 $scope.LebaneseCredit = $scope.LebaneseCredit + $scope.transInfoList[i].secondCardTypeAmount;
             }
         }

@@ -19,13 +19,13 @@
         <div class="col-4">
             <div class="form-group">
                 <label class="popUp-span-title">{{ 'SaleInvoiceID' | translate}}</label>
-                <input class="form-control" ng-model="saleId" />
+                <input class="form-control" ng-model="$parent.saleId" />
             </div>
         </div>
         <div class="col-2">
             <div class="form-group">
                 <label class="popUp-span-title" style="visibility:hidden !important">{{ 'TransactionID' | translate}}</label>
-                <span class="create-btn-popup" style="display: block;border-radius: 4px; cursor: pointer" ng-click="getInfo(saleId)">Get info</span>
+                <span class="create-btn-popup" style="display: block;border-radius: 4px; cursor: pointer;    width: 9em;" ng-click="getInfo(saleId)">Get info</span>
             </div>
         </div>
     </div>
@@ -89,34 +89,35 @@
         <div class="col-4">
             <div class="form-group">
                 <label class="popUp-span-title">{{ 'NozzleNumber' | translate}}</label>
-                <input class="form-control" valuw="{{saleTransaction.nozzleNumber}}" disabled />
+                <!--<input class="form-control" value="{{saleTransaction.nozzleNumber}}" disabled />-->
+                <input class="form-control" type="number" ng-model="$parent.nozzleNumberValue"  />
 
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
                 <label class="popUp-span-title">{{ 'TankNumber' | translate}}</label>
-                <input class="form-control" ng-model="tankNumber" />
+                <input class="form-control" type="number" ng-model="$parent.tankNumber" />
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
                 <label class="popUp-span-title">{{ 'Amount' | translate}}</label>
-                <input class="form-control" ng-model="amountFuel" />
+                <input class="form-control" disabled value="{{saleTransaction.dispensedVolume}}" />
 
             </div>
         </div>
     </div>
 
     <div class="row" style="padding: 1em;" ng-if="refundTypeSelected.id == '2'">
-        <div class="col-1">
+        <!--<div class="col-1">
             <span class="popUp-span-title">{{ 'CustomerID' | translate}}</span> <br />
             <span>{{saleInvoice.customerId}}</span>
-        </div>
-        <div class="col-2">
+        </div>-->
+        <!--<div class="col-2">
             <span class="popUp-span-title">{{ 'WOP' | translate}}</span> <br />
             <span>{{saleInvoice.wop}}</span>
-        </div>
+        </div>-->
         <div class="col-2">
             <span class="popUp-span-title">{{ 'Discount' | translate}}</span> <br />
             <span>{{saleInvoice.discountPercent}}</span>
@@ -140,6 +141,7 @@
         <table class="table table-hover text-nowrap tableTransPopupDry">
             <thead>
                 <tr>
+                    <th></th>
                     <th>{{'ItemID' | translate}}</th>
                     <th>{{'ItemName' | translate}}</th>
                     <th>{{'quantity' | translate}}</th>

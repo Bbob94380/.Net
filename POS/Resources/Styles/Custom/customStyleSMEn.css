@@ -694,7 +694,7 @@ body:not(.layout-fixed) .main-sidebar {
 
 .table-trans th {
     font-family: 'rubikRegular';
-    font-size: 13px;
+    font-size: 15px;
     color: #676666;
     font-weight: 100;
     border-bottom: none !important;
@@ -1538,7 +1538,7 @@ a.pager:first-child {
 
 .trans-credit-sec {
     border-top: 1px solid #dee2e6;
-    padding: 1em 0em 1em 24em;
+    padding: 1em 0em 1em 13em;
 }
 
 

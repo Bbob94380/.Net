@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="col-7 nozzle-info">
-                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">Fuel Type, {{item.creationDate}}</span>
+                                    <span style="font-family: 'rubikMedium'; font-size: 13px;">{{item.fuelType}}, {{item.creationDate}}</span>
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <!-- text input -->
@@ -61,9 +61,9 @@
                                         </div>
                                         <div class="col-sm-4" style="text-align: end;">
                                             <div class="form-group">
-                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">4</span>
-                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">{{item.tankId}}</span>
-                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">150 {{'Litre' | translate}}</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 4em;">{{item.nozzleNumber}}</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">{{item.tankNumber}}</span>
+                                                <span class="sub-title-item-refund" style="color:#000;margin-top: 0.5em;">{{item.volume}} {{'Litre' | translate}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -135,8 +135,8 @@
                     </div>
                 </div>
 
-                <div ng-show="showNoData" style=" margin-left: 45%; margin-top: 13%; color: #a7a5a5;">
-                    <span>No data found</span>
+                <div ng-show="showNoData" style=" margin-left: 45%; margin-top: 13%; color: #a7a5a5;font-size: 24px;">
+                    <span>{{'noDataFound' | translate}}</span>
                 </div>
 
             </div>

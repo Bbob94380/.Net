@@ -511,11 +511,12 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    var objAsJson = JsonConvert.SerializeObject(payload.calibration);
+                    var objAsJson = JsonConvert.SerializeObject(payload.createCalibration);
                     var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
 
                     HttpResponseMessage response = await client.PostAsync("FPOS/rest/calibration/create", content);

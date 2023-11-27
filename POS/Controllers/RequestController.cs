@@ -1919,6 +1919,7 @@ namespace POS.Controllers
         public FuelAmount fuelAmount { get; set; }
         public StationToPO addStationToPO { get; set; }
         public Calibration calibration { get; set; }
+        public CreateCalibration createCalibration { get; set; }
         public RefundDry refundDry { get; set; }
         public Shift shift { get; set; }
         public CloseShift closeShift { get; set; }

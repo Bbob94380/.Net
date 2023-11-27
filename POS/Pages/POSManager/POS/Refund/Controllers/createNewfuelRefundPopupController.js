@@ -1,5 +1,5 @@
 ﻿
-rootModule.controller('createNewfuelRefundPopupController', function ($scope, $rootScope, $http, $uibModalInstance, data) {
+rootModule.controller('createNewfuelRefundPopupController', function ($scope, $rootScope, $http, $uibModalInstance, data, $filter) {
 
     //Initialization
     $scope.refundTypeValue = "calibration";
@@ -106,7 +106,7 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
         $scope.dollarPaid = 0;
         $scope.lebanesePaid = 0;
 
-        $scope.total = $scope.saleInvoice.netTotalMc + " L.L/" + $scope.saleInvoice.netTotalSc + " $";
+        $scope.total = $scope.saleInvoice.netTotalMc + $filter('translate')('LL') + " /" + $scope.saleInvoice.netTotalSc + " $";
 
 
         if ($scope.saleInvoice.firstCardTypeAmount !== 0 && $scope.saleInvoice.firstCardTypeAmount !== null) {
@@ -229,6 +229,7 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
             data: { sessionId: localStorage.getItem('session_id_sm')}
         }).then(function (response) {
 
+            $rootScope.showLoader = false;
             console.log(response);
 
             if (response !== null && response !== undefined) {
@@ -242,18 +243,15 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
                         $scope.saleTransaction = result.resultData;
 
                     } else {
-                        $rootScope.showLoader = false;
                         swal("Creation process failed", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    $rootScope.showLoader = false;
                     swal("Creation process failed", "Please try again", "error");
                 }
 
             } else {
-                $rootScope.showLoader = false;
 
                 swal("Creation process failed", "Please try again", "error");
             }
@@ -261,7 +259,6 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
 
         }, function (error) {
             swal("Creation process failed", "Please try again", "error");
-            $rootScope.showLoader = false;
             console.log(error);
         });
 
@@ -395,17 +392,19 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
         if ($scope.refundTypeSelected.id === 1) {
 
             var calibration = {
+                tankNumber: $scope.tankNumber,
                 creator: $scope.employeeNameCalib,
-                saleTransactionId: 12.3 /*$scope.saleTransaction.id*/,
-                tankId: $scope.tankNumber,
-                wetProductId: 12.4 /*$scope.saleTransaction.wetProductId*/
+                saleTransactionId: $scope.saleTransaction.id,
+                wetProductId: $scope.saleTransaction.wetProductId,
+                nozzleNumber: $scope.nozzleNumberValue
+               // nozzleNumber: $scope.saleTransaction.nozzleNumber
             }
 
             $rootScope.showLoader = true;
             $http({
                 method: "POST",
                 url: "/api/SmApi/createCalibrationAsync",
-                data: { sessionId: localStorage.getItem('session_id_sm'), calibration: calibration }
+                data: { sessionId: localStorage.getItem('session_id_sm'), createCalibration: calibration }
             }).then(function (response) {
 
                 console.log(response);

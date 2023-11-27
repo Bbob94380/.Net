@@ -26,7 +26,7 @@
 
 
     <div class="row" style="padding: 1em;" ng-repeat="employee in shiftObj.employeeMoneyAmounts">
-        <label style="display: block; width:100%">{{'Employee' | translate}} {{$index + 1}}: {{employee.employeeName}}</label>
+        <label class="eod-label-title" style="display: block; width:100%">{{'Employee' | translate}} {{$index + 1}}: {{employee.employeeName}}</label>
 
         <div class="col-md-12">
             <!--<label style="margin-top:2em;">First of the Day Cash</label>-->
@@ -69,6 +69,6 @@
 
 
 </div>
-<div class="modal-footer">
+<div class="modal-footer eod-next-btn">
     <button type="button" class="btn printBtn-trans" style="background:#2A5699" ng-click="closeShift1()">{{'save' | translate}}</button>
 </div>

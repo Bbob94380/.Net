@@ -50,6 +50,26 @@
 
 							var trans = result.resultData[i];
 
+							var bigTransCardLL = 0;
+							var bigTransCardDollar = 0;
+
+							if (trans.firstCardCurrency === "LBP") {
+
+								bigTransCardLL = bigTransCardLL + firstCardTypeAmount;
+							} else if (trans.firstCardCurrency === "USD") {
+								bigTransCardDollar = bigTransCardDollar + firstCardTypeAmount;
+
+							}
+
+							if (trans.secondCardCurrency === "LBP") {
+								bigTransCardLL = bigTransCardLL + secondCardTypeAmount;
+
+							} else if (trans.secondCardCurrency === "USD") {
+								bigTransCardDollar = bigTransCardDollar + secondCardTypeAmount;
+
+							}
+
+
 							if (trans.saleInvoice !== null) {
 								trans.saleInvoice.category = "Dry Product";
 								trans.saleInvoice.amount = trans.saleInvoice.saleDetails.length + " " + $filter('translate')('item(s)');
@@ -57,8 +77,8 @@
 								trans.saleInvoice.creator = trans.creator;
 								trans.saleInvoice.bigTransCashLL = trans.cachAmountMc;
 								trans.saleInvoice.bigTransCashDollar = trans.cachAmountSc;
-								trans.saleInvoice.bigTransCardLL = trans.invoiceAmountMc;
-								trans.saleInvoice.bigTransCardDollar = trans.invoiceAmountSc;
+								trans.saleInvoice.bigTransCardLL = bigTransCardLL;
+								trans.saleInvoice.bigTransCardDollar = bigTransCardDollar;
 								trans.saleInvoice.bigTransTotalLL = trans.netTotalMc;
 								trans.saleInvoice.bigTransTotalDollar = trans.netTotalSc;
 								$scope.saleTransList.push(trans.saleInvoice);
@@ -72,8 +92,8 @@
 									trans.saleTransactions[j].creator = trans.creator;
 									trans.saleTransactions[j].bigTransCashLL = trans.cachAmountMc;
 									trans.saleTransactions[j].bigTransCashDollar = trans.cachAmountSc;
-									trans.saleTransactions[j].bigTransCardLL = trans.invoiceAmountMc;
-									trans.saleTransactions[j].bigTransCardDollar = trans.invoiceAmountSc;
+									trans.saleTransactions[j].bigTransCardLL = bigTransCardLL;
+									trans.saleTransactions[j].bigTransCardDollar = bigTransCardDollar;
 									trans.saleTransactions[j].bigTransTotalLL = trans.netTotalMc;
 									trans.saleTransactions[j].bigTransTotalDollar = trans.netTotalSc;
 									$scope.saleTransList.push(trans.saleTransactions[j]);
