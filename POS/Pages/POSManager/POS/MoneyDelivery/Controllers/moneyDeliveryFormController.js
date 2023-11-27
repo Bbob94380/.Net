@@ -97,36 +97,32 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
             "lbp_Amounts": lbp_amounts,
             "totalLbp": $scope.LBP_TOTAL,
             "totalUsd": $scope.USD_TOTAL,
-            "files": $scope.imagesList
+            "files": [$scope.imageToUpload]
         }
         console.log("data to be created: ");
         console.log(data);
         $common_helper.createRequest("POST", "/FPOS/rest/moneyDeliv/create", data).then(function (response) {
             console.log("Response: ", response);
             $rootScope.showLoader = true;
-            /*history.back();*/
+            history.back();
             $rootScope.showLoader = false;
         });
     }
 
-    $scope.uploadFile = function (files, attachmentId) {
-        console.log("uplaod file has been called with att ID: ", attachmentId);
+    $scope.uploadFile = function (files) {
         console.log("files = ", files);
         console.log("files[0] = ", files[0]);
-        console.log("Current images list = ", $scope.imagesList);
-        var base64 = getBase64(files[0], attachmentId);
+        var base64 = getBase64(files[0]);
         /*console.log(base64);*/
     };
-    function getBase64(file, attachmentItemId) {
-        $scope.attachmentItemId = attachmentItemId;
+    function getBase64(file) {
         console.log("getting base 64");
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            console.log("On laod render has been called");
             base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
 
-            var imgObj = {
+            $scope.imageToUpload = {
                 fileName: file.name,
                 size: file.size,
                 contentType: file.type,
@@ -134,14 +130,6 @@ rootModule.controller("moneyDeliveryFormController", ["$scope", "$location", "$s
                 base64encoded: base64String,
                 attachmenttype: "IMAGE"
             }
-
-            console.log("Image object = ", imgObj);
-            console.log("Attachment ID: ", $scope.attachmentItemId);
-
-            $scope.imagesList[$scope.attachmentItemId] = imgObj;
-
-            console.log("imagesList = ", );
-            console.log($scope.imagesList);
         };
         reader.onerror = function (error) {
             console.log('Error: ', error);
