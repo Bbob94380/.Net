@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 style=" font-family: 'rubikMedium'; margin-left: 0.6em;">Money Delivery</h1>
+                <h1 style=" font-family: 'rubikMedium'; margin-left: 0.6em;">{{ 'MoneyDelivery' | translate }}</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -12,16 +12,13 @@
     <div class="">
         <div class="card-body">
             <div>
-                <div class="row">
-                    <div class="col-8"></div>
-                    <div class="col-4" style="flex-direction: row-reverse;">
-                        <span ng-click="goToMoneyForm()" style="cursor: pointer" class="receipts-create-btn">Create a New Delivery</span>
-                        <span ng-click="goToMoneyHistory()" style="cursor: pointer" class="receipts-history-btn">History</span>
-                    </div>
+                <div class="row" style="flex-direction: row-reverse; width: 90%; margin: auto;">
+                    <span ng-click="goToMoneyHistory()" style="cursor: pointer" class="receipts-history-btn">{{ 'HistoryMoneyDelivery' | translate }}</span>
+                    <span ng-click="goToMoneyForm()" style="cursor: pointer" class="receipts-create-btn">{{ 'CreateNewDeliveryOrder' | translate }}</span>
                 </div>
 
                 <div id="transferProducts" class="transfer-items">
-                    <h1 ng-if="md.length == 0">No records found</h1>
+                    <h1 ng-if="mds.length == 0">{{ 'noDataFound' | translate }}</h1>
                     <div class="col-md-12 pink corncob rebar product-block item card bg-light" ng-repeat="md in mds" ng-click="viewMoneyDelivery(md)">
                         <div class="card-header text-muted border-bottom-0">
 
@@ -34,14 +31,14 @@
                                     </h2>
                                     <table class="table reception-item-table">
                                         <tr>
-                                            <th style="text-align:left">BANK NAME</th>
-                                            <th>CREATION DATE</th>
-                                            <th>SENT BY</th>
+                                            <th>{{ 'BanKName' | translate }}</th>
+                                            <th>{{ 'CreationDate' | translate }}</th>
+                                            <th>{{ 'SentBy' | translate }}</th>
                                         </tr>
                                         <tr>
-                                            <td style="text-align:left; color:red; font-weight: bold">{{ md.bankName }} - {{ md.bankAddress }}</td>
+                                            <td style="color:red; font-weight: bold">{{ md.bankName }} - {{ md.bankAddress }}</td>
                                             <td>{{ md.creationDate }}</td>
-                                            <td>Sales Manager</td>
+                                            <td>{{ 'SalesManager' | translate }}</td>
                                         </tr>
                                     </table>
                                 </div>

@@ -103,8 +103,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"SaleID": "Sale ID",
 		"TotalAmount": "TOTAL AMOUNT",
 		"ReturnedAmount": "RETURNED AMOUNT",
-		"ReturnedAmount2": "RETURNED AMOUNT",
-		"FinalAmount": "Final AMOUNT",
+		"FinalAmount": "Final Total AMOUNT",
 		"CustomerID": "Customer ID",
 		"TankID": "Tank ID",
 		"RefundID": "REFUND ID",
@@ -292,7 +291,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		/*Money delivery */
 		"CreateNewDeliveryOrder": "Create a New Delivery Order",
 		"HistoryMoneyDelivery": "History",
-		"BanKName": "Bank Name",
+		"BanKName": "BANK NAME",
 
 		"ReferenceNumber": "Reference Number",
 		"CollectorName": "Collector Name",
@@ -304,7 +303,13 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"Create": "Create", 	
 		"Clear": "Clear",
 
-	/*assign nozzles*/
+		"MoneyDelivery": "Money Delivery",
+		"CreationDate": "CREATION DATE",
+		"SentBy": "SENT BY",
+		"DeliveryDate": "DELIVERY DATE",
+		"SalesManager": "Sales Manager",
+
+		/*assign nozzles*/
 		"ActiveEmployees": "Assign nozzls to employees",
 		"save": "save",
 		"Next": "Next",
@@ -428,7 +433,6 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"TankID": "معرف الخزان",
 		"TotalAmount": "المبلغ الإجمالي",
 		"ReturnedAmount": "المبلغ المردود",
-		"ReturnedAmount2": "الكمية المردودة",
 		"FinalAmount": "المبلغ النهائي",
 		"CustomerID": "رمز تعريف الزبون",
 		"RefundID": "رمز تعريف عملية رد المال",
@@ -618,12 +622,22 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"HistoryMoneyDelivery": "سجل تسليم الأموال",
 		"BanKName": "إسم البنك",
 
+		"MoneyDelivery": "تسليم الأموال",
+		"CreationDate": "تاريخ الإنشاء",
+		"SentBy": "أرسل بواسطة",
+		"DeliveryDate": "تاريخ التسليم",
+		"SalesManager": "مدير المبيعات",
+		"LBP_CLASS": "فئات الليرة اللبنانية",
+		"USD_CLASS": "فئات الدولار الأمريكي",
+		"TotalInLebaneseLira": "المجموع بالليرة اللبنانية (ل.ل)",
+		"TotalInUSD": "المجموع بالدولار الأميركي ($)",
+
 		"ReferenceNumber": "الرقم المرجعي",
 		"CollectorName": "اسم المحصل",
 		"CollectorPhoneNumber": "رقم هاتف المحصل",
 		"Attachments": "الملحقات",
 		"AttachmentTitle": "عنوان الملحق",
-		"AttachedImage ": "الصورة الملحقة",
+		"AttachedImage": "الصورة الملحقة",
 		"BankAddress": "عنوان البنك",
 		"Create": "إنشاء",
 		"Clear": "مسح",
