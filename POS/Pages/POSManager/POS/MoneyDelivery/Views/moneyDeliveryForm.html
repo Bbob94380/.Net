@@ -11,9 +11,9 @@
         <div class="col-12">
             <div class="card-header" style="border-bottom: none;">
                 <a ui-sref="pos.moneyDeliveryIndex" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
-                    < Back
+                    < {{ 'back' | translate }}
                 </a>
-                <h3 class="receiptInfo-title">Money Delivery - Create</h3>
+                <h3 class="receiptInfo-title">{{ 'MoneyDelivery' | translate }} - {{ 'Create' | translate }}</h3>
             </div>
         </div>
 
@@ -24,13 +24,13 @@
                     <div class="col-2"></div>
                     <div class="col-4">
                         <div class="form-group">
-                            <label>Collector Name</label>
+                            <label>{{ 'CollectorName' | translate }}</label>
                             <input class="form-control" ng-model="collectorName"/>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group">
-                            <label>Collector Mobile</label>
+                            <label>{{ 'CollectorPhoneNumber' | translate }}</label>
                             <input class="form-control" ng-model="collectorMobile"/>
                         </div>
                     </div>
@@ -45,8 +45,8 @@
                         <table class="table text-nowrap money-form-table col-md-4" style=" margin: 1em 3em 6em 1em;">
                             <thead>
                                 <tr>
-                                    <th class="th-text">LBP CLASS</th>
-                                    <th class="th-text">QUANTITY</th>
+                                    <th class="th-text">{{ 'LBP_CLASS' | translate }}</th>
+                                    <th class="th-text">{{ 'quantity' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,8 +60,8 @@
                         <table class="table text-nowrap money-form-table col-md-4" style=" margin: 1em 5em 6em 1em;">
                             <thead>
                                 <tr>
-                                    <th class="th-text">USD CLASS</th>
-                                    <th class="th-text">QUANTITY</th>
+                                    <th class="th-text">{{ 'USD_CLASS' | translate }}</th>
+                                    <th class="th-text">{{ 'quantity' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,11 +77,11 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <td>TOTAL IN LEBANESE LIRA</td>
+                                        <td>{{ 'TotalInLebaneseLira' | translate}}</td>
                                         <td>{{ LBP_TOTAL }}</td>
                                     </tr>
                                     <tr>
-                                        <td>TOTAL IN DOLLARS</td>
+                                        <td>{{ 'TotalInUSD' | translate}}</td>
                                         <td>{{ USD_TOTAL }}</td>
                                     </tr>
                                 </thead>
@@ -97,14 +97,14 @@
             </div>
 
             <div class="row" style="padding: 1em;">
-                <label>Attachments</label>
+                <label>{{ 'Attachments' | translate }}</label>
                 <table class="table  text-nowrap transfer-popup-table" ng-repeat="attachmentItem in attachments" style="margin-bottom: 0rem;">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                             <th class="" style="width: 1%;"></th>
-                            <th class="">Attachment Name</th>
-                            <th class="">Upload Image</th>
+                            <th class="">{{ 'AttachmentTitle' | translate }}</th>
+                            <th class="">{{ 'AttachedImage' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,14 +121,14 @@
             </div>
 
             <div class="row" style="padding: 1em;">
-                <label>Bank</label>
+                <label>{{ 'Bank' | translate }}</label>
                 <table class="table  text-nowrap transfer-popup-table" style="margin-bottom: 0rem;">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                             <th class="" style="width: 1%;"></th>
-                            <th class="">Bank Name</th>
-                            <th class="">Bank Address</th>
+                            <th class="">{{ 'BanKName' | translate }}</th>
+                            <th class="">{{ 'BankAddress' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,8 +144,8 @@
             </div>
 
             <div class="modal-footer">
-                <button ui-sref="pos.moneyDeliveryIndex" type="button" class="btn btn-danger">CANCEL</button>
-                <button type="button" class="btn btn-primary" ng-click="craeteMoneyDelivey()">CREATE</button>
+                <button ui-sref="pos.moneyDeliveryIndex" type="button" class="btn btn-danger">{{ 'Cancel' | translate }}</button>
+                <button type="button" class="btn btn-primary" ng-click="craeteMoneyDelivey()">{{ 'Create' | translate}}</button>
             </div>
         </div>
         
