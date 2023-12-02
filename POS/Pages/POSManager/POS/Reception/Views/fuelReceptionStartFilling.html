@@ -29,7 +29,7 @@
                             <th>{{'creationDate' | translate}}</th>
                             <th>{{'DATERECEIVED' | translate}}</th>
                             <th>{{'SupplierName' | translate}}</th>
-                            <th class="reception-item-status-filling" style="color: #df960b ; width: 1em;">FILLING</th>
+                            <th class="reception-item-status-filling" style="color: #df960b ; width: 1em;">{{'FILLING' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -237,7 +237,7 @@
                             <div class="form-group">
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label class="label-reception-info">{{'SubtankIDValve' | translate}}</label>
                                 <select class="form-control" ng-model="item.subTankID_on_valve" ng-options="item3 for item3 in sealTypes">

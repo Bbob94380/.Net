@@ -4,20 +4,52 @@
                 <table class="edit-table table  text-nowrap">
                     <thead>
                         <tr>
-                            <th>{{ 'transId' | translate}}</th>
-                            <th>{{ 'amount' | translate}}</th>
-                            <th>{{ 'totalAll' | translate}}</th>
                             <th style="border-right: none !important;"></th>
+                            <th>{{'name' | translate}}</th>
+                            <th>{{'nozzle' | translate}}</th>
+                            <th>{{'amount' | translate}}</th>
+                            <th>{{'total' | translate}}</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr ng-repeat="trans in transactionsList">
-                            <td>{{trans.id}}</td>
-                            <td>{{trans.productType == 'Fuel'? trans.qty + ' L': trans.productType == 'Service'?  trans.qty + ' service(s)' : trans.productType == 'Car wash'? trans.qty + ' Car wash' : trans.qty + ' item(s)' }} </td>
-                            <td>{{trans.priceLL}} {{'LL' | translate}}  ($ {{trans.priceDollar}})</td>
+                    <tbody ng-repeat="trans in transactionsList | filter: myFilter3 track by $index">
+                        <tr ng-repeat="dry in trans.products track by $index">
                             <td style="border-right: none !important;">
-                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTrans(trans.id, trans.productType);">{{ 'delete' | translate}}</button>
+                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTransDry(trans.id, trans.productType, dry.id);">{{ 'delete' | translate}}</button>
                             </td>
+                            <td>{{dry.name}}</td>
+                            <td></td>
+                            <td>{{dry.qtyItem}}</td>
+                            <td>{{( '$' | translate ) + dry.totalIt }} </td>
+                        </tr>
+                        <tr ng-repeat="service in trans.selectedServicesList track by $index">
+                            <td style="border-right: none !important;">
+                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTransService(trans.id, trans.productType, service.id);">{{ 'delete' | translate}}</button>
+                            </td>
+                            <td>{{service.name}}</td>
+                            <td></td>
+                            <td>1</td>
+                            <td>{{service.priceMc}} {{'LL' | translate}} ({{service.priceSc}}$)</td>
+                        </tr>
+                        <tr ng-repeat="car in trans.carWashOptionsList track by $index">
+                            <td style="border-right: none !important;">
+                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTransCar(trans.id, trans.productType, car.id);">{{ 'delete' | translate}}</button>
+                            </td>
+                            <td>{{car.option}}</td>
+                            <td></td>
+                            <td>1</td>
+                            <td>{{car.priceMc + ('LL' | translate) }} </td>
+                        </tr>
+                        <tr ng-show="trans.productType != 'Dry' && trans.productType != 'Car wash' && trans.productType != 'Service'">
+                            <td style="border-right: none !important;">
+                                <button type="button" class="btn btn-default delete-edit-btn" ng-click="deleteTransFuel(trans.id, trans.productType);">{{ 'delete' | translate}}</button>
+                            </td>
+                            <td>{{trans.productName}}</td>
+                            <td>{{trans.nozzleNumber}}</td>
+                            <td>{{trans.productType == 'Fuel'? trans.qty + ('Litre' | translate): trans.productType == 'Service'?  trans.qty   : trans.productType == 'Car wash'? trans.qty  : trans.qty }} </td>
+                            <!--<td>{{trans.productType == 'Fuel'? trans.qty + ('Litre' | translate): trans.productType == 'Service'?  trans.qty + (' service(s)' | translate )  : trans.productType == 'Car wash'? trans.qty + ( 'carwashTrans' | translate ) : trans.qty + ( 'items' | translate )}} </td>-->
+                            <td>{{trans.priceLL}} {{'LL' | translate}} ({{trans.priceDollar}}$)</td>
+                            <!--<td>{{trans.productType == 'Fuel'? trans.priceLL + ('LL' | translate): trans.productType == 'Service'?  trans.priceDollar + ('$' | translate )  : trans.productType == 'Car wash'? trans.priceLL + ( 'LL' | translate ) : trans.priceDollar + ( '$' | translate )}} </td>-->
+
                         </tr>
                     </tbody>
                 </table>

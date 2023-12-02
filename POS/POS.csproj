@@ -218,9 +218,11 @@
     <Content Include="Pages\POSAttendant\Dry\Controllers\oilChangePopupController.js" />
     <Content Include="Pages\POSAttendant\Dry\Controllers\dryMenuController.js" />
     <Content Include="Pages\POSAttendant\Dry\Controllers\searchDryBarcodePopupController.js" />
+    <Content Include="Pages\POSAttendant\Dry\Controllers\dryPopupController.js" />
     <Content Include="Pages\POSAttendant\Dry\Views\oilChangePopup.html" />
     <Content Include="Pages\POSAttendant\Dry\Views\dryMenu.html" />
     <Content Include="Pages\POSAttendant\Dry\Views\searchDryBarcodePopup.html" />
+    <Content Include="Pages\POSAttendant\Dry\Views\dryPopup.html" />
     <Content Include="Pages\POSAttendant\Main\Controllers\couponPopupController.js" />
     <Content Include="Pages\POSAttendant\Main\Controllers\employeeLoginPopupController.js" />
     <Content Include="Pages\POSAttendant\Main\Controllers\pinCodePopupController.js" />
@@ -368,6 +370,10 @@
     <Content Include="Pages\POSManager\POS\MoneyDelivery\Views\moneyDeliveryIndex.html" />
     <Content Include="Pages\POSManager\POS\Nuzzle\Controllers\nuzzleController.js" />
     <Content Include="Pages\POSManager\POS\Nuzzle\Views\nuzzle.html" />
+    <Content Include="Pages\POSManager\POS\Receipts\Controllers\createNewReceiptPopupController.js" />
+    <Content Include="Pages\POSManager\POS\Receipts\Controllers\showDryDetailPopupController.js" />
+    <Content Include="Pages\POSManager\POS\Receipts\Views\showDyDetailPopup.html" />
+    <Content Include="Pages\POSManager\POS\Receipts\Views\showTransDetailPopup.html" />
     <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsController.js" />
     <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsHistoryController.js" />
     <Content Include="Pages\POSManager\POS\Shifts\Controllers\shiftsInfoPopupController.js" />
@@ -390,7 +396,7 @@
     <Content Include="Pages\POSManager\POS\Refund\Views\fuelRefundInfoPopup.html" />
     <Content Include="Pages\POSManager\POS\Refund\Views\refundHistory.html" />
     <Content Include="Pages\POSManager\POS\Refund\Views\refund.html" />
-    <Content Include="Pages\POSManager\POS\Receipts\Controllers\createNewReceiptPopupController.js" />
+    <Content Include="Pages\POSManager\POS\Receipts\Controllers\showTransDetailPopupController.js" />
     <Content Include="Pages\POSManager\POS\Receipts\Controllers\receiptsController.js" />
     <Content Include="Pages\POSManager\POS\Receipts\Views\createNewReceiptPopup.html" />
     <Content Include="Pages\POSManager\POS\Receipts\Views\receipts.html" />

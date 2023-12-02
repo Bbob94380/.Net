@@ -1,7 +1,23 @@
 ﻿
 rootModule.config(["$translateProvider", function ($translateProvider) {
 
-    var en_translations = {
+	var en_translations = {
+
+		"opertionSucceeded": "Operation accomplished successfully",
+		"opertionFailed": "Operation failed",
+		"fillSaleInvoiceId": "Please fill the sale invoice id field",
+		"qtyAllowed": "This quantity is not allowed",
+		"qtyAllowed2": "Allowed quantity is : ",
+		"greater": "Added amount should not be greater than subtank volume",
+		"eodDate": "Please select EOD date",
+		"noEodShifts": "There is no shifts to create an eod",
+		"creationDate": "Creation Date",
+		"transAdded": "Transaction is already added",
+		"FILLING": "FILLING",
+		"dollarChanged": "Dollar rate has changed",
+		"DoArrived": "You have an delivery order",
+
+
         "dashboard": "DASHBOARD",
         "menu": "MENU",
         "fms": "FMS",
@@ -25,6 +41,8 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"lbpClass": "LBP CLASS",
 		"usdOverall": "USD Overall",
 		"lbpOverall": "LBP Overall",
+		"ProductName": "Product Name",
+		"discount": "Discount",
 
         /*receipts*/
         "historyReceipt": "History",
@@ -60,6 +78,8 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
         "Print": "Print",
         "Export": "Export",
         "TransactionID": "Transaction ID",
+        "transInfo": "Transaction Info",
+		"dryInfo": "Dry Info",
 
 		/*transactions*/
 		"NoOfTransactions": "NO. OF TRANSACTIONS",
@@ -112,11 +132,13 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"CreatingNewCalibrationRefund": "Creating a New Calibration Refund",
 		"RefundType": "Refund Type",
 		"FuelType": "Fuel Type",
+		"Fuel": "محروقات",
 		"CalibrationReason ": "Calibration Reason ",
 		"CalibrationAttachment ": "Calibration Attachment",
 		"AddAttachment ": "Add Attachment ",
 		"Cancel": "Cancel",
 		"RefundAmount": "Refund Amount",
+		"RefundAmount2": "Refund Amount",
 		"RefundTotal": "Refund Total",
 		"NewTotal": "New Total",
 		"RefundsHistory": "Refunds History",
@@ -304,8 +326,6 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"Clear": "Clear",
 
 		"MoneyDelivery": "Money Delivery",
-		"CreationDate": "CREATION DATE",
-		"SentBy": "SENT BY",
 		"DeliveryDate": "DELIVERY DATE",
 		"SalesManager": "Sales Manager",
 
@@ -324,10 +344,27 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"DESCRIPTION": "DESCRIPTION",
 		"USDAMOUNT": "USD AMOUNT",
 		"LBPAMOUNT": "LBP AMOUNT",
+		"epaymentTitle": "Table containing all the e-payment",
+
 
     }
 
-    var ar_translations = {
+	var ar_translations = {
+
+		"opertionSucceeded": "تمت العملية بنجاح",
+		"opertionFailed": "فشلت العملية",
+		"fillSaleInvoiceId": "يرجى ملء حقل المعرف ",
+		"qtyAllowed": "هذه الكمية غير مسموحة",
+		"qtyAllowed2": "الكمية المسموحة هي : ",
+		"greater": "يجب ألا تكون الكمية المضافة أكبر من حجم العينية",
+		"eodDate": "اختر تاريخ العملية",
+		"noEodShifts": "لا يوجد أي دوام",
+		"creationDate": "تاريخ الإنشاء",
+		"transAdded": "العملية مضافة مسبقا",
+		"FILLING": "قيد الملء",
+		"dollarChanged": "لقد تم تغيير سعر الصرف",
+		"DoArrived": "لديك أمر تسليم",
+
         "dashboard": "لوحة القيادة",
         "menu": "الرئيسية",
         "fms": "نظام مراقبة الوقود",
@@ -345,13 +382,15 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
         "moneydelivery": "استلام الأموال",
         "assignNozzles": "تعيين المزودات",
         "back": "رجوع",
-		"noDataFound": "لا يوجد معلومات",
+		"noDataFound": "لا يوجد بيانات",
 		"usdOverall": "بالدولار الامريكي",
 		"lbpOverall": "بالليرة اللبنانية",
 		"usdClass": "فئات الدولار الأمريكي",
 		"lbpClass": "فئات الليرة اللبنانية",
 		"CarWash": "غسيل السيارات",
 		"TypeCar": "نوع المركبة",
+		"ProductName": "اسم المنتج",
+		"discount": "حسم",
 
 		/*receipts*/
 		"createReceipt": "إنشاء إيصال",
@@ -388,6 +427,9 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
         "LEBANESE": "الليرة اللبنانية",
         "Print": "طباعة",
         "Export": "إصدار",
+		"transInfo": "معلومات العملية",
+		"dryInfo": "معلومات عملية الزيوت",
+
 
 		/*transactions*/
 		"NoOfTransactions": "عدد العمليات",
@@ -441,11 +483,12 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"CreatingNewCalibrationRefund": "إنشاء عملية رد المال - معايرة",
 		"RefundType": "طريقة رد المال",
 		"FuelType": "نوع الوقود",
+		"Fuel": "محروقات",
 		"CalibrationReason ": "سبب المعايرة",
 		"CalibrationAttachment ": "ملحق - معايرة",
 		"AddAttachment ": "إضافة ملحق",
 		"Cancel": "إلغاء",
-		"RefundAmount": "المبلغ المردود",
+		"RefundAmount2": "الكمية المستردة",
 		"RefundTotal": "مجموع المبالغ المردودة",
 		"NewTotal": "المجموع النهائي",
 		"RefundsHistory": "سجل المبالغ المردودة",
@@ -454,7 +497,6 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"INITIATED": "بدأ",
 		"DELIVERED": "تسلم",
 		"History": "السجل",
-		"FILLING": "تعبئة",
 		"SentBy": "أرسل بواسطة",
 		"DATERECEIVED": "تاريخ الإستلام",
 		"DueDate": "تاريخ الاستحقاق",
@@ -474,15 +516,15 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"Reason": "السبب",
 		"Description": "الشرح",
 		"DescribeTheIssueHere": "اشرح السبب هنا",
-		"SubtankIDValve": "رمز تعريف الصهريج الفرعي على الصمام",
+		"SubtankIDValve": "رمز تعريف العينية على الصمام",
 		"True": "موجود",
 		"notExist": "غير موجود",
 		"SealValve": "ختم على الصمام",
-		"SealSubtank": "ختم على الصهريج الفرعي",
+		"SealSubtank": "ختم على العينية",
 		"DeliveryOrderInformation": "معلومات التسليم",
-		"Subtank": "صهريج فرعي",
+		"Subtank": "العينية",
 		"quantitySent": "الكمية المرسلة",
-		"SubtankSize": "حجم الصهريج الفرعي",
+		"SubtankSize": "حجم العينية",
 		"TopSize": "الحجم العلوي",
 		"BottomSize": "الحجم السفلي",
 		"QuantityOBS": "الكمية",
@@ -525,7 +567,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"Cards": "بطاقات",
 		"NourCard": "بطاقة نور",
 		"KaredAlHassan": "قرض الحسن",
-		"EPayment": "الدفع الالتكتروني",
+		"EPayment": "الدفع الالكتروني",
 
 		"FuelSales": "مبيعات الوقود",
 		"Octane98": "أوكتان 98",
@@ -578,7 +620,7 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"Name": "الاسم",
 		"CarWashTransactionsPaidByCard": "Car Wash Transactions - Paid by Card",
 		"CarWashTransactionsCoupon": " Car Wash Transactions - in Coupon",
-		"karedTable": "جدول يحتوي على مبالغ نقدية من بنك الكارد الحسن",
+		"karedTable": "جدول يحتوي على مبالغ نقدية من بنك قرض الحسن",
 
 
 		"CashReceivedAlQardAlHassan": "المقبوضات من القرض الحسن",
@@ -622,15 +664,11 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"HistoryMoneyDelivery": "سجل تسليم الأموال",
 		"BanKName": "إسم البنك",
 
-		"MoneyDelivery": "تسليم الأموال",
-		"CreationDate": "تاريخ الإنشاء",
-		"SentBy": "أرسل بواسطة",
+		"MoneyDelivery": "استلام الأموال",
 		"DeliveryDate": "تاريخ التسليم",
 		"SalesManager": "مدير المبيعات",
 		"LBP_CLASS": "فئات الليرة اللبنانية",
 		"USD_CLASS": "فئات الدولار الأمريكي",
-		"TotalInLebaneseLira": "المجموع بالليرة اللبنانية (ل.ل)",
-		"TotalInUSD": "المجموع بالدولار الأميركي ($)",
 
 		"ReferenceNumber": "الرقم المرجعي",
 		"CollectorName": "اسم المحصل",
@@ -646,6 +684,17 @@ rootModule.config(["$translateProvider", function ($translateProvider) {
 		"ActiveEmployees": "تعيين المزودات للموظفين",
 		"save": "حفظ",
 		"Next": "التالي",
+
+		/*kared al hassan*/
+		"ACCOUNTNUMBER": "رقم الحساب",
+		"RECEIPTNUMBER": "رقم الايصال",
+		"CHECKNUMBER": "رقم الشيك",
+		"CURRENCYCHECK": "عملة الشيك",
+		"CHECKVALUE": "قيمة الشيك",
+		"DESCRIPTION": "ملاحظات",
+		"USDAMOUNT": "المقبوضات (بالدولار الأميركي)",
+		"LBPAMOUNT": "المقبوضات (بالليرة اللبنانية)",
+		"epaymentTitle": "المقبوضات الالكترونية",
     }
 
 

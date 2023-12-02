@@ -58,19 +58,38 @@
                 <table class="trans-table-wop table table-hover text-nowrap">
                     <thead>
                         <tr>
-                            <th>{{ 'transId' | translate}}</th>
-                            <th>{{ 'transactions' | translate}}</th>
-                            <th>{{ 'amount' | translate}}</th>
-                            <!--<th>PRICE</th>-->
-                            <th>{{ 'total' | translate}}</th>
+                            <th>{{'name' | translate}}</th>
+                            <th>{{'nozzle' | translate}}</th>
+                            <th>{{'amount' | translate}}</th>
+                            <th>{{'total' | translate}}</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr ng-repeat="trans in transactionsList track by $index">
-                            <td>{{trans.id}}</td>
-                            <td>{{trans.productType}}</td>
-                            <td>{{trans.productType == 'Fuel'? trans.qty + ('Litre' | translate): trans.productType == 'Service'?  trans.qty + (' service(s)' | translate )  : trans.productType == 'Car wash'? trans.qty + ( 'carwashTrans' | translate ) : trans.qty + ( 'items' | translate )}} </td>
-                            <td>{{trans.priceLL}} {{ 'LL' | translate}} ({{trans.priceDollar}}$ )</td>
+                    <tbody ng-repeat="trans in transactionsList | filter: myFilter2 track by $index">
+                        <tr ng-repeat="dry in trans.products track by $index">
+                            <td>{{dry.name}}</td>
+                            <td></td>
+                            <td>{{dry.qtyItem}}</td>
+                            <td>{{( '$' | translate ) + dry.totalIt }} </td>
+                        </tr>
+                        <tr ng-repeat="service in trans.selectedServicesList track by $index">
+                            <td>{{service.name}}</td>
+                            <td></td>
+                            <td>1</td>
+                            <td>{{service.priceMc}} {{'LL' | translate}} ({{service.priceSc}}$)</td>
+                        </tr>
+                        <tr ng-repeat="car in trans.carWashOptionsList track by $index">
+                            <td>{{car.option}}</td>
+                            <td></td>
+                            <td>1</td>
+                            <td>{{car.priceMc + ('LL' | translate) }} </td>
+                        </tr>
+                        <tr ng-show="trans.productType != 'Dry' && trans.productType != 'Car wash' && trans.productType != 'Service'">
+                            <td>{{trans.productName}}</td>
+                            <td>{{trans.nozzleNumber}}</td>
+                            <td>{{trans.productType == 'Fuel'? trans.qty + ('Litre' | translate): trans.productType == 'Service'?  trans.qty   : trans.productType == 'Car wash'? trans.qty  : trans.qty }} </td>
+                            <!--<td>{{trans.productType == 'Fuel'? trans.qty + ('Litre' | translate): trans.productType == 'Service'?  trans.qty + (' service(s)' | translate )  : trans.productType == 'Car wash'? trans.qty + ( 'carwashTrans' | translate ) : trans.qty + ( 'items' | translate )}} </td>-->
+                            <td>{{trans.priceLL}} {{'LL' | translate}} ({{trans.priceDollar}}$)</td>
+                            <!--<td>{{trans.productType == 'Fuel'? trans.priceLL + ('LL' | translate): trans.productType == 'Service'?  trans.priceDollar + ('$' | translate )  : trans.productType == 'Car wash'? trans.priceLL + ( 'LL' | translate ) : trans.priceDollar + ( '$' | translate )}} </td>-->
                         </tr>
                     </tbody>
                 </table>

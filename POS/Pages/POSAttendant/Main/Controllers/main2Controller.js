@@ -4,6 +4,7 @@
     var totalLeb = 0;
     var totalDol = 0;
     $rootScope.transactionsList = [];
+    $rootScope.dryItemsList = [];
     $rootScope.totalLabelDryAndWet = "hideTotalLabelDryAndWet";
     $scope.showMenuWet = false;
     $scope.showMenuDry = false;
@@ -32,10 +33,28 @@
             //when $uibModalInstance.close() fct executed
             if (loginEmployeeSuccess) {
                 localStorage.setItem("isEmployeeLoggedIn", "true");
+
+                $scope.transTotalLebanese = "";
+                $scope.transTotalDollar = "";
+                $rootScope.totalLabelDryAndWet = "hideTotalLabelDryAndWet";
+
+                var transJson = JSON.parse(localStorage.getItem("transList"));
+                if (transJson !== undefined && transJson !== null && transJson !== "") {
+                    //add for loop 3al transJson to show just transactions for current user
+                    $rootScope.transactionsList = transJson;
+                    console.log($rootScope.transactionsList);
+                    if ($rootScope.transactionsList.length > 0) $rootScope.calculateTotal();
+                }
+
+
                 if (localStorage.getItem('blockUI') === 'true' && localStorage.getItem('isEmployeeLoggedIn') === "true") {
                     if (modalInstanceRate !== null) modalInstanceRate.dismiss();
                     OpenDollarRateChangedPopup(localStorage.getItem("oldDollarRate"), localStorage.getItem("dollarRate"));
                 }
+
+                if ($rootScope.dryItemsList.length > 0) $rootScope.clearDryBtn();
+
+
             } else {
                 localStorage.setItem("isEmployeeLoggedIn", "false");
             }
@@ -136,12 +155,15 @@
                 var fuelResultObj = {
                     id: 0,
                     qty: result.saleTransaction.dispensedVolume,
-                    priceLL: result.saleTransaction.netTotalMc,
-                    priceDollar: result.saleTransaction.netTotalSc,
+                    priceLL: parseFloat(result.saleTransaction.netTotalMc).toFixed(2),
+                    priceDollar: parseFloat(result.saleTransaction.netTotalSc).toFixed(2),
                     productType: "Fuel",
                     wetId: result.saleTransaction.wetProductId,
                     priceMcOfLitre: result.saleTransaction.priceMc,
                     priceScOfLitre: result.saleTransaction.priceSc,
+                    employeeId:  result.saleTransaction.creatorId,
+                    ispts: true,
+                    nozzleNumber: result.saleTransaction.nozzleNumber
                 }
 
                 $rootScope.transactionsList.push(fuelResultObj);
@@ -257,18 +279,23 @@
         var dryTotalPriceDollar = 0;
         var isDryExist = false;
         var idDry = 0;
-        var idDryExist = false;
+        var hasId = false;
 
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Dry") {
+
+            if ($rootScope.transactionsList[i].productType === "Dry" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
+
+
                 dryTotalQty += parseInt($rootScope.transactionsList[i].qty);
-                dryTotalPriceLL = parseInt(dryTotalPriceLL) + (parseInt($rootScope.transactionsList[i].priceDollar) * 100000);
+                dryTotalPriceLL = parseInt(dryTotalPriceLL) + (parseInt($rootScope.transactionsList[i].priceDollar) * parseFloat(localStorage.getItem('dollarRate')));
                 dryTotalPriceDollar += parseInt($rootScope.transactionsList[i].priceDollar);
                 Array.prototype.push.apply(drySummaryProducts, $rootScope.transactionsList[i].products);
                 isDryExist = true;
-                if ($rootScope.transactionsList[i].id !== 0 && $rootScope.transactionsList[i].id !== null && $rootScope.transactionsList[i].id !== undefined) { idDry = $rootScope.transactionsList[i].id; idDryExist = true}
+                if ($rootScope.transactionsList[i].id !== 0 && $rootScope.transactionsList[i].id !== null && $rootScope.transactionsList[i].id !== undefined) { idDry = $rootScope.transactionsList[i].id; hasId = true }
+
+
             } else {
                 finalTranList.push($rootScope.transactionsList[i]);
             }
@@ -277,8 +304,9 @@
         if (isDryExist) {
             var dryObj = {
                 id: idDry,
-                hasId: idDryExist,
+                hasId: hasId,
                 qty: dryTotalQty,
+                employeeId: localStorage.getItem("employeeId"),
                 priceLL: dryTotalPriceLL,
                 priceDollar: dryTotalPriceDollar,
                 productType: "Dry",
@@ -355,27 +383,39 @@
 
         var totalLL = 0;
         var totalDollar = 0;
+        var isExist = false;
 
         localStorage.setItem("transList", JSON.stringify($rootScope.transactionsList));
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
-            totalLL += parseFloat($rootScope.transactionsList[i].priceLL);
-            totalDollar += parseFloat($rootScope.transactionsList[i].priceDollar);
+
+            if ($rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
+                isExist = true;
+                totalLL += parseFloat($rootScope.transactionsList[i].priceLL);
+                totalDollar += parseFloat($rootScope.transactionsList[i].priceDollar);
+            }
         }
         totalLeb = parseFloat(totalLL).toFixed(2);
         totalDol = totalDollar;
         $scope.transTotalLebanese = parseFloat(totalLL).toFixed(2);
-        $scope.transTotalDollar = "$" + totalDollar ;
-        $rootScope.totalLabelDryAndWet = "showTotalLabelDryAndWet";
+        $scope.transTotalDollar = "$" + parseFloat(totalDollar).toFixed(2);
+        if (isExist) $rootScope.totalLabelDryAndWet = "showTotalLabelDryAndWet";
         console.log(totalLL);
         console.log(totalDollar);
     }
 
     var transJson = JSON.parse(localStorage.getItem("transList"));
     if (transJson !== undefined && transJson !== null && transJson !== "") {
+        //add for loop 3al transJson to show just transactions for current user
         $rootScope.transactionsList = transJson;
+        console.log($rootScope.transactionsList);
         if ($rootScope.transactionsList.length > 0) $rootScope.calculateTotal();
     }
+
+
+    $scope.myFilter = function (item) {
+        return item.employeeId === localStorage.getItem("employeeId");
+    };
 
 
     $scope.displayEditTransactionsPopup = function () {

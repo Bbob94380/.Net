@@ -1,0 +1,54 @@
+﻿<div class="modal-header">
+    <h5 class="modal-title">{{ 'dryInfo' | translate}}</h5>
+    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>-->
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-12">
+            <!-- /.card-header -->
+            <div class="">
+                <div class="card-body table-responsive p-0">
+                    <table id="dataTableNewReceipt22Id"  class="table table-hover  table-condensed text-nowrap table-trans create_receipt_table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    {{'ProductName' | translate}}
+                                </th>
+                                <th>
+                                    {{'Amount' | translate}}
+                                </th>
+                                <th>
+                                    {{'discount' | translate}}
+                                </th>
+                                <th>
+                                    {{'Price' | translate}}
+                                </th>
+                                <th>
+                                    {{'Total' | translate}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in dry.saleDetails" >
+                                <td>{{item.productName}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.discountPercent}}</td>
+                                <td>{{item.priceMc}} {{'LL' | translate}} / {{item.priceSc}} $ </td>
+                                <td>{{item.netTotalMc}} {{'LL' | translate}} / {{item.netTotalSc}} $ </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+</div>

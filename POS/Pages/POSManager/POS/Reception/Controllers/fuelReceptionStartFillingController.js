@@ -260,7 +260,7 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
 
 
         if (parseFloat(addedAmount) > parseFloat(subTankVolume)) {
-            swal("Added amount should not be greater than subtank volume", "", "warning");
+            swal($filter('translate')('greater'), "", "warning");
             subtank.volumeSoldDuringReception = 0;
             subtank.estVolAfterReception = subtank.volumeSoldDuringReception + parseFloat(beforeAmount);
 
@@ -316,6 +316,9 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
 
         for (var i = 0; i < $scope.conformities.length; i++) {
             var key = $scope.conformities[i].reason;
+
+            if (key === "") key = "a" + i;
+
             nonConf_DescriptionObj[key] = $scope.conformities[i].desc;
         }
 
@@ -404,7 +407,7 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
             driverName: $scope.driverName,
             truckNonConformityExists: $scope.chkStatus,
             nonConf_Description: nonConf_DescriptionObj,
-            receptionDate: $scope.reception.deliveryDate,
+            receptionDate: "2023-11-29 03:30:00",
             status: "FILLING",
             receivedSubTanks: receivedSubTanks,
             tanksToBeFilled: tanksToBeFilled,
@@ -429,23 +432,23 @@ rootModule.controller("fuelReceptionStartFillingController", ["$scope", "$locati
 
                     if (result.isSuccessStatusCode) {
 
-                        swal("Reception created successfully", "", "success");
+                        swal($filter('translate')('opertionSucceeded'), "", "success");
 
                     } else {
-                        swal("Oops", "Reception creation failed", "");
+                        swal($filter('translate')('opertionFailed'), "", "error");
                     }
 
                 } else {
-                    swal("Oops", "Reception creation failed", "");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 }
 
             } else {
-                swal("Oops", "Reception creation failed", "");
+                swal($filter('translate')('opertionFailed'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Oops", "Reception creation failed", "");
+                swal($filter('translate')('opertionFailed'), "", "error");
             $rootScope.showLoader = false;
         });
 

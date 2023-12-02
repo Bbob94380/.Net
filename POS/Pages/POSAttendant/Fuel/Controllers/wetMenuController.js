@@ -25,7 +25,7 @@
 
                         $scope.wetProductTypes = result.resultData;
 
-                        for (var i = 0; $scope.wetProductTypes.length; i++) {
+                        for (var i = 0; i< $scope.wetProductTypes.length; i++) {
 
                             if (localStorage.getItem('language') === 'en') {
 

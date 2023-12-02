@@ -1,7 +1,7 @@
 ﻿
 
 
-rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate", "$location", "$state", function ($scope, $rootScope, $http, $translate, $location, $state) {
+rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate", "$location", "$state", "$filter", function ($scope, $rootScope, $http, $translate, $location, $state, $filter) {
 
     $scope.notifications = [];
 
@@ -161,8 +161,9 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
                         $rootScope.dollarRate = result.currencyRatio;
                         localStorage.setItem('dollarRateSM', result.currencyRatio);
 
+
                         $scope.notifications.push({
-                            title: "Dollar rate has changed",
+                            title: $filter('translate')('dollarChanged'),
                             image: "",
                             date: ""
                         });
@@ -189,7 +190,7 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
                     localStorage.setItem("stationDOs", JSON.stringify(DOList));
 
                     $scope.notifications.push({
-                        title: "You have an delivery order",
+                        title: $filter('translate')('DoArrived'),
                         image: "",
                         date: ""
                     });

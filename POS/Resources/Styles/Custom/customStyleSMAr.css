@@ -414,6 +414,11 @@ body:not(.layout-fixed) .main-sidebar {
     margin-top: 3rem;
 }
 
+.row-refund-ar {
+    text-align: right;
+    margin-right: 4em;
+}
+
 .div-nozzle {
     border-right: 1px solid #E6E6E6;
     text-align: right;

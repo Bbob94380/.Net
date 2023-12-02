@@ -120,18 +120,19 @@
     }
 
 .main2-left-card {
-    height: 32rem;
+    height: 34rem;
     display: flex;
     position: relative;
     align-items: start;
     justify-content: start;
     padding: 1em 0.6em 1em 0.6em;
-    font-size: 21px;
+    font-size: 23px;
     border-radius: 12px;
 }
 
 .main2-right-card {
-    height: 125vh;
+    /*    height: 125vh;*/
+    height: 89vh;
     display: flex;
     position: relative;
     margin: 0;
@@ -323,11 +324,11 @@ button {
 }
 
     .trans-table th, .trans-table td {
-        padding: 9px 6px;
+        padding: 15px 10px;
         text-align: left;
         border: 1px solid #ddd;
         text-align: center;
-        font-size: 19px;
+        font-size: 22px;
     }
 
 
@@ -1324,7 +1325,7 @@ button {
 }
 
 .main-card-wetMenu {
-    height: 19rem;
+    height: 18rem;
     display: flex;
     position: relative;
     align-items: center;
@@ -1472,8 +1473,8 @@ button {
 @media (min-width: 992px) {
     .col-lg-3 {
         -ms-flex: 0 0 25%;
-        flex: 0 0 25%;
-        max-width: 26%;
+        flex: 0 0 29%;
+        max-width: 29%;
     }
 
     .col-lg-8 {

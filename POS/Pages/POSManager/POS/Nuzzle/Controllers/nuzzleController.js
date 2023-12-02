@@ -1,5 +1,5 @@
 ﻿
-rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$q", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $q) {
+rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", "$q", "$filter", function ($scope, $state, $timeout, $uibModal, $http, $rootScope, $q, $filter) {
 
 
     var promise1;
@@ -418,26 +418,26 @@ rootModule.controller("nuzzleController", ["$scope", "$state", "$timeout", "$uib
 
                     if (result.isSuccessStatusCode) {
 
-                        swal("Nozzles are assigned successfully", "", "success");
+                        swal($filter('translate')('opertionSucceeded'), "", "success");
                         $state.reload()
 
 
                     } else {
-                        swal("Operation failed", "", "error");
+                        swal($filter('translate')('opertionFailed'), "", "error");
 
                     }
 
                 } else {
-                    swal("Operation failed", "", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 }
 
             } else {
-                swal("Operation failed", "", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Operation failed", "", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });

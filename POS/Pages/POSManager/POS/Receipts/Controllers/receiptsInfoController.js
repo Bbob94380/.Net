@@ -64,6 +64,32 @@
     $scope.totalTrans = totalLL +  $filter('translate')('LL') +" /" + totalDollar + " $";
 
 
+    $scope.showTransactionDetails = function (trans) {
+
+        var modalInstance;
+
+        modalInstance = $uibModal.open({
+            animate: true,
+            templateUrl: '/Pages/POSManager/POS/Receipts/Views/showTransDetailPopup.html',
+            controller: 'showTransDetailPopupController',
+            scope: $scope,
+            windowClass: 'show',
+            resolve: {
+                data: function () {
+                    return { transactionItem: trans };
+                }
+            }
+        });
+
+        modalInstance.result.then(function (Result) {
+            //when $uibModalInstance.close() fct executed
+
+
+        }, function () {
+            //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
+        });
+    };
+
 
 }]);
 

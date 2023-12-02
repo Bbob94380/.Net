@@ -1,0 +1,55 @@
+﻿<div class="modal-header">
+    <h5 class="modal-title">{{ 'transInfo' | translate}}</h5>
+    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>-->
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-12">
+            <!-- /.card-header -->
+            <div class="">
+                <div class="card-body table-responsive p-0">
+                    <table id="dataTableNewReceipttId" class="table table-hover  table-condensed text-nowrap table-trans create_receipt_table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    {{'ID' | translate}}
+                                </th>
+                                <th>
+                                    {{'Category' | translate}}
+                                </th>
+                                <th>
+                                    {{'Amount' | translate}}
+                                </th>
+                                <th>
+                                    {{'TimeDate' | translate}}
+                                </th>
+                                <th>
+                                    {{'Total' | translate}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in transList">
+                                <td>{{item.id}}</td>
+                                <td>{{item.category}}</td>
+                                <td>{{item.amount}}</td>
+                                <td>{{item.creationDate}}</td>
+                                <td>{{item.netTotalMc}} {{'LL' | translate}} / {{item.netTotalSc}} $ </td>
+                                <td><span ng-show="item.type == 'dry'" style="cursor:pointer;" class="view-btn" ng-click="openDryDetailsPopup(item)">{{'view' | translate}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+</div>

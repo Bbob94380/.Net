@@ -50,6 +50,11 @@ posAttendantRootModule.controller("posAttendantRootCtrl", ["$scope", "$sce", "$r
         }).then(function (response) {
 
             localStorage.setItem('session_id', '');
+
+            //$rootScope.transactionsList = [];
+            //localStorage.setItem("transList", JSON.stringify($rootScope.transactionsList));
+            //$rootScope.totalLabelDryAndWet = "hideTotalLabelDryAndWet";
+
             window.location.href = '/Attendant/LoginAttendantEn';
 
         }, function (error) {

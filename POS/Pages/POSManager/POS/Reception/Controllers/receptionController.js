@@ -202,7 +202,7 @@ rootModule.controller("receptionController", ["$scope", "$state", "$timeout", "$
         $http({
             method: "POST",
             url: "/api/Request/getAllWetProductTypes",
-            data: { sessionId: localStorage.getItem('session_id_ho') }
+            data: { sessionId: localStorage.getItem('session_id_sm') }
         }).then(function (response) {
 
             console.log(response);

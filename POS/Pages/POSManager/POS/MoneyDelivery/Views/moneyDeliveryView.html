@@ -10,10 +10,10 @@
 
         <div class="col-12">
             <div class="card-header" style="border-bottom: none;">
-                <a ng-click="goBack()" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
-                    < Back
+                <a ng-click="goBack()" class="nav-link back-btn" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                    < {{ 'back' | translate }}
                 </a>
-                <h3 class="receiptInfo-title">Money Delivery - View</h3>
+                <h3 class="receiptInfo-title">{{ 'MoneyDelivery' | translate }}</h3>
                 <h6 class="receiptInfo-subTitle">{{ delivery.id }} - {{ delivery.creator }} - {{ delivery.collectorName }}</h6>
             </div>
         </div>
@@ -25,11 +25,11 @@
                 <table class="table  text-nowrap transfer-popup-table reception-table-info">
                     <thead>
                         <tr>
-                            <th>REFERENCE NUMBER</th>
-                            <th>CREATED BY</th>
-                            <th>CREATION DATE</th>
-                            <th>COLLECTOR NAME</th>
-                            <th>COLLECTOR MOBILE</th>
+                            <th>{{ 'ID' | translate }}</th>
+                            <th>{{ 'CreationBy' | translate }}</th>
+                            <th>{{ 'CreationDate' | translate }}</th>
+                            <th>{{ 'CollectorName' | translate }}</th>
+                            <th>{{ 'CollectorPhoneNumber' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,14 +50,14 @@
                     <table class="table text-nowrap money-form-table col-md-4" style=" margin: 1em 3em 6em 1em;">
                         <thead>
                             <tr>
-                                <th class="th-text">LBP CLASS</th>
-                                <th class="th-text">QUANTITY</th>
+                                <th class="th-text">{{ 'LBP_CLASS' | translate }}</th>
+                                <th class="th-text">{{ 'quantity' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="bill in LBP_VALUES">
-                                <td>{{ bill }}</td>
-                                <td><input type="number" id="{{ bill }}" class="form-control" weight="{{ bill }}" value="{{ delivery.id }}" disabled /></td>
+                            <tr ng-repeat="(key, value) in delivery.lbp_Amounts">
+                                <td>{{ key }}</td>
+                                <td><input type="number" id="{{ key }}" class="form-control" weight="{{ key }}" value="{{ value }}" disabled /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -65,14 +65,14 @@
                     <table class="table text-nowrap money-form-table col-md-4" style=" margin: 1em 5em 6em 1em;">
                         <thead>
                             <tr>
-                                <th class="th-text">USD CLASS</th>
-                                <th class="th-text">QUANTITY</th>
+                                <th class="th-text">{{ 'USD_CLASS' | translate }}</th>
+                                <th class="th-text">{{ 'quantity' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="bill in USD_VALUES">
-                                <td>{{ bill }}</td>
-                                <td><input type="number" id="{{ bill }}" class="form-control" weight="{{ bill }}" value="{{ deliver.id }}" disabled /></td>
+                            <tr ng-repeat="(key, value) in delivery.usd_Amounts">
+                                <td>{{ key }}</td>
+                                <td><input type="number" id="{{ key }}" class="form-control" weight="{{ key }}" value="{{ value }}" disabled /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -81,11 +81,11 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <td>TOTAL IN LEBANESE LIRA</td>
+                                    <td>{{ 'TotalInLebaneseLira' | translate}}</td>
                                     <td>{{ delivery.totalLbp }}</td>
                                 </tr>
                                 <tr>
-                                    <td>TOTAL IN DOLLARS</td>
+                                    <td>{{ 'TotalInUSD' | translate}}</td>
                                     <td>{{ delivery.totalUsd }}</td>
                                 </tr>
                             </thead>
@@ -98,20 +98,20 @@
             </div>
 
             <div class="row" style="padding: 1em;">
-                <label>Attachments</label>
+                <label>{{ 'Attachments' | translate }}</label>
                 <br />
-                <img width="100%" ng-src="data:image/png;base64, {{ delivery.files[0].base64encoded }}" alt="Red dot" />
+                <img style=" width: 21em; margin-top: 5em;" ng-src="data:image/png;base64, {{ delivery.files[0].base64encoded }}" alt="Red dot" />
             </div>
 
             <div class="row" style="padding: 1em;">
-                <label>Bank</label>
+                <label>{{ 'Bank' | translate }}</label>
                 <table class="table text-nowrap transfer-popup-table" style="margin-bottom: 0rem;">
                     <thead>
                         <tr>
                             <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                             <th class="" style="width: 1%;"></th>
-                            <th class="">Bank Name</th>
-                            <th class="">Bank Address</th>
+                            <th class="">{{ 'BanKName' | translate }}</th>
+                            <th class="">{{ 'BankAddress' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>

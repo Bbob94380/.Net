@@ -34,7 +34,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
     //Initialization
     $scope.totalLL = data.totalLL + " " +$filter('translate')('LL');
-    $scope.totalDollar = "$" + data.totalDollar ;
+    $scope.totalDollar = "$" + parseFloat(data.totalDollar).toFixed(2) ;
 
     $rootScope.employeeName = data.employeeName;
     $rootScope.employeeId = data.employeeId;
@@ -54,6 +54,11 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
    
     //events
+
+    $scope.myFilter2 = function (item) {
+        return item.employeeId === localStorage.getItem("employeeId");
+    };
+
 
     function showCashFieldBydefault() {
         $scope.checked = true;
@@ -473,7 +478,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Dry") {
+            if ($rootScope.transactionsList[i].productType === "Dry" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
 
                 for (let j = 0; j < $rootScope.transactionsList[i].products.length; j++) {
 
@@ -507,7 +512,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Fuel") {
+            if ($rootScope.transactionsList[i].productType === "Fuel" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
 
                 var fuelObj = {
                     id: $rootScope.transactionsList[i].id,
@@ -527,7 +532,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Car wash") {
+            if ($rootScope.transactionsList[i].productType === "Car wash" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
 
                 var carObj = {
                     id: $rootScope.transactionsList[i].id,
@@ -544,7 +549,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Service") {
+            if ($rootScope.transactionsList[i].productType === "Service" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
 
                 customerServiceTransaction = $rootScope.transactionsList[i];
                 break;
@@ -705,7 +710,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Dry") {
+            if ($rootScope.transactionsList[i].productType === "Dry" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
 
                 for (let j = 0; j < $rootScope.transactionsList[i].products.length; j++) {
 
@@ -739,7 +744,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Fuel") {
+            if ($rootScope.transactionsList[i].productType === "Fuel" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
 
                 var fuelObj = {
                     id: $rootScope.transactionsList[i].id,
@@ -759,7 +764,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Car wash") {
+            if ($rootScope.transactionsList[i].productType === "Car wash" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
 
                 var carObj = {
                     id: $rootScope.transactionsList[i].id,
@@ -776,7 +781,7 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
 
         for (let i = 0; i < $rootScope.transactionsList.length; i++) {
 
-            if ($rootScope.transactionsList[i].productType === "Service") {
+            if ($rootScope.transactionsList[i].productType === "Service" && $rootScope.transactionsList[i].employeeId === localStorage.getItem("employeeId")) {
 
                 customerServiceTransaction = $rootScope.transactionsList[i];
                 break;

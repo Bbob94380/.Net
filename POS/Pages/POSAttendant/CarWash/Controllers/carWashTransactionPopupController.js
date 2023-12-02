@@ -84,8 +84,10 @@ posAttendantRootModule.controller('carWashTransactionPopupController', function 
             vehiceType: $scope.carWashType,
             washSubCategoriesId: $scope.washSubCategoriesId,
             priceLL: $scope.totalLL,
+            employeeId: localStorage.getItem("employeeId"),
             priceDollar: $scope.totalDollar,
-            productType: "Car wash"
+            productType: "Car wash",
+            carWashOptionsList: $scope.carWashOptionsList
         }
         $scope.$parent.transactionsList.push(carWashResultObj);
         $scope.$parent.calculateTotal();

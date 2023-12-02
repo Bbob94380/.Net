@@ -64,6 +64,12 @@ rootModule.controller('createNewReceiptPopupController', function ($scope, $root
 
 								var trans = result.resultData[j];
 
+								 isDollarPaid = false;
+								 isLLPaid = false;
+								 isCardPaid = false;
+								 isCashPaid = false;
+
+
 								if (trans.firstCardTypeAmount !== 0 || trans.firstCardTypeAmount !== 0) {
 									isCardPaid = true;
 
@@ -116,7 +122,7 @@ rootModule.controller('createNewReceiptPopupController', function ($scope, $root
 								} else if (isDollarPaid) {
 									trans.currency = $filter('translate')('dollar');
 								} else if (isLLPaid) {
-									trans.currency = $filter('translate')('lebanese');
+									trans.currency = $filter('translate')('Lebanese');
 								} else {
 									trans.currency = "";
 								}
@@ -166,7 +172,7 @@ rootModule.controller('createNewReceiptPopupController', function ($scope, $root
 		}
 
 		if (isFind) {
-			sweetAlert("Transaction is already added", "", "warning");
+			sweetAlert($filter('translate')('transAdded'), "", "warning");
 		} else {
 			$scope.listOfAddedTransToReceipt.push(item);
 
@@ -246,24 +252,24 @@ rootModule.controller('createNewReceiptPopupController', function ($scope, $root
 
 						$scope.$parent.refreshReceiptsGrid();
 						$uibModalInstance.close();
-						swal("Created successfully", "", "success");
+						swal($filter('translate')('opertionSucceeded'), "", "success");
 
 
 					} else {
-						swal("Oops", "Creation process failed", "");
+						swal($filter('translate')('opertionFailed'), "", "error");
 					}
 
 				} else {
-					swal("Oops", "Creation process failed", "");
+					swal($filter('translate')('opertionFailed'), "", "error");
 				}
 
 			} else {
-				swal("Oops", "Creation process failed", "");
+				swal($filter('translate')('opertionFailed'), "", "error");
 			}
 
 
 		}, function (error) {
-			swal("Oops", "eee", "error");
+				swal($filter('translate')('opertionFailed'), "", "error");
 			$rootScope.showLoader = false;
 		});
 

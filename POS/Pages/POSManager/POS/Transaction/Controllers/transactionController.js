@@ -1,8 +1,12 @@
 ﻿rootModule.controller("transactionController", ["$scope", "$uibModal", "$http", "$rootScope", "$filter", "filterTableListService", function ($scope, $uibModal, $http, $rootScope, $filter, filterTableListService) {
 
+
+	$scope.wetProductTypes = [];
+
 	$("#CustomSearchTextField").on('keyup', function () {
 		$('#dataTableId').dataTable().fnFilter(this.value);
 	});
+
 
 	function getAllTransactions() {
 
@@ -71,7 +75,8 @@
 
 
 							if (trans.saleInvoice !== null) {
-								trans.saleInvoice.category = "Dry Product";
+								trans.saleInvoice.category = $filter('translate')('DryProduct');
+								trans.saleInvoice.type = "dry";
 								trans.saleInvoice.amount = trans.saleInvoice.saleDetails.length + " " + $filter('translate')('item(s)');
 								trans.saleInvoice.creationDate = trans.creationDate;
 								trans.saleInvoice.creator = trans.creator;
@@ -84,10 +89,13 @@
 								$scope.saleTransList.push(trans.saleInvoice);
 							}
 
+							console.log(trans.saleTransactions);
+
 							if (trans.saleTransactions !== null && trans.saleTransactions !== undefined && trans.saleTransactions !== "") {
 								for (let j = 0; j < trans.saleTransactions.length; j++) {
-									trans.saleTransactions[j].category = "Fuel";
-									trans.saleTransactions[j].amount = trans.saleTransactions[j].dispensedVolume + " "+ $filter('translate')('Litre');
+									//trans.saleTransactions[j].category = $filter('translate')('Fuel');
+									trans.saleTransactions[j].type = "fuel";
+									trans.saleTransactions[j].amount = trans.saleTransactions[j].dispensedVolume + " " + $filter('translate')('Litre');
 									trans.saleTransactions[j].creationDate = trans.creationDate;
 									trans.saleTransactions[j].creator = trans.creator;
 									trans.saleTransactions[j].bigTransCashLL = trans.cachAmountMc;
@@ -96,6 +104,15 @@
 									trans.saleTransactions[j].bigTransCardDollar = bigTransCardDollar;
 									trans.saleTransactions[j].bigTransTotalLL = trans.netTotalMc;
 									trans.saleTransactions[j].bigTransTotalDollar = trans.netTotalSc;
+
+									for (var h = 0; h < $scope.wetProductTypes.length; h++) {
+										if (trans.saleTransactions[j].wetProductId === $scope.wetProductTypes[h].id) {
+											trans.saleTransactions[j].category = $filter('translate')('Fuel') + " (" + $scope.wetProductTypes[h].nameLang + ")";
+											break;
+										}
+									}
+
+
 									$scope.saleTransList.push(trans.saleTransactions[j]);
 								}
 							}
@@ -185,7 +202,86 @@
 
 	};
 
-	getAllTransactions();
+	//getAllTransactions();
+
+	function getWetProductTypes() {
+
+		$rootScope.showLoader = true;
+		$http({
+			method: "POST",
+			url: "/api/Request/getAllWetProductTypes",
+			data: { sessionId: localStorage.getItem('session_id_sm') }
+		}).then(function (response) {
+
+			console.log(response);
+			$rootScope.showLoader = false;
+
+			if (response !== null && response !== undefined) {
+
+				if (response.data !== null && response.data !== undefined) {
+
+					var result = JSON.parse(response.data);
+
+					if (result.isSuccessStatusCode) {
+
+						$scope.wetProductTypes = result.resultData;
+						console.log($scope.wetProductTypes);
+
+						for (var i = 0; i < $scope.wetProductTypes.length; i++) {
+
+							if (localStorage.getItem('languageSM') === 'en') {
+
+								if ($scope.wetProductTypes[i].type === "BENZENE95") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+								if ($scope.wetProductTypes[i].type === "BENZENE98") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+								if ($scope.wetProductTypes[i].type === "DIESEL1") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+								if ($scope.wetProductTypes[i].type === "DIESEL2") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+								if ($scope.wetProductTypes[i].type === "GAZ12") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+								if ($scope.wetProductTypes[i].type === "GAZ10") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+								if ($scope.wetProductTypes[i].type === "GAZ_EMPTY") $scope.wetProductTypes[i].nameLang = $scope.wetProductTypes[i].name;
+
+							} else if (localStorage.getItem('languageSM') === 'ar') {
+
+								if ($scope.wetProductTypes[i].type === "BENZENE95") $scope.wetProductTypes[i].nameLang = "أوكتان 95";
+								if ($scope.wetProductTypes[i].type === "BENZENE98") $scope.wetProductTypes[i].nameLang = "أوكتان 98";
+								if ($scope.wetProductTypes[i].type === "DIESEL1") $scope.wetProductTypes[i].nameLang = "مازوت أخضر";
+								if ($scope.wetProductTypes[i].type === "DIESEL2") $scope.wetProductTypes[i].nameLang = "مازوت أحمر";
+								if ($scope.wetProductTypes[i].type === "GAZ12") $scope.wetProductTypes[i].nameLang = "غاز 12 كلغ";
+								if ($scope.wetProductTypes[i].type === "GAZ10") $scope.wetProductTypes[i].nameLang = "غاز 10 كلغ";
+								if ($scope.wetProductTypes[i].type === "GAZ_EMPTY") $scope.wetProductTypes[i].nameLang = "غاز";
+							}
+						}
+
+						getAllTransactions();
+
+					} else {
+						$rootScope.showLoader = false;
+						//swal($filter('translate')('failedGetWetProductsTypes'), "", "error");
+						console.log(result.errorMsg);
+					}
+
+				} else {
+					$rootScope.showLoader = false;
+					//swal($filter('translate')('failedGetWetProductsTypes'), "", "error");
+				}
+
+			} else {
+				$rootScope.showLoader = false;
+
+				//swal($filter('translate')('failedGetWetProductsTypes'), "", "error");
+			}
+
+
+		}, function (error) {
+			//swal($filter('translate')('failedGetWetProductsTypes'), "", "error");
+			$rootScope.showLoader = false;
+			console.log(error);
+		});
+
+	}
+
+	getWetProductTypes();
+
+
 
 
 	//Open transaction info popup
@@ -193,7 +289,7 @@
 
 		var modalInstance;
 
-		if (transactionItem.category === "Fuel") {
+		if (transactionItem.type === "fuel") {
 
 			modalInstance = $uibModal.open({
 				animate: true,
@@ -216,7 +312,7 @@
 				//enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
 			});
 
-		} else if (transactionItem.category === "Dry Product") {
+		} else if (transactionItem.type === "dry") {
 
 			modalInstance = $uibModal.open({
 				animate: true,

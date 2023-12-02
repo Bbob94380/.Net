@@ -56,12 +56,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in transInfoList" style="border-left: 1px solid #DEDEDE;border-right: 1px solid #DEDEDE;border-top: 1px solid #DEDEDE;">
+                                    <tr ng-repeat="item in transInfoList"  style="border-left: 1px solid #DEDEDE;border-right: 1px solid #DEDEDE;border-top: 1px solid #DEDEDE;">
                                         <td>{{item.id}}</td>
                                         <td>{{item.creator}}</td>
                                         <td>{{item.creationDate}}</td>
                                         <td>{{item.netTotalMc}} {{'LL' | translate}}/ {{item.netTotalSc}} $</td>
-                                        <td><span class="view-btn">{{'view' | translate}}</span></td>
+                                        <td><span style="cursor:pointer;" class="view-btn" ng-click="showTransactionDetails(item)" >{{'view' | translate}}</span></td>
                                     </tr>
                                     <tr style="border-top: 1px solid #DEDEDE; border-left: none; border-right: none;">
                                         <td></td>

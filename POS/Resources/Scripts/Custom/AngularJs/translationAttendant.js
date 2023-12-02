@@ -2,6 +2,8 @@
 posAttendantRootModule.config(["$translateProvider", function ($translateProvider) {
 
     var en_translations = {
+        "name": "Name",
+        "productName": "Product Name",
         "carwash": "Car Wash",
         "carwashTrans": " Car wash",
         "dryproduct": "Dry Product",
@@ -93,6 +95,7 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
         "dollarRate": "Dollar Rate",
         "stationManager": "Station Manager",
         "nozzleNumber": "Nozzle Number",
+        "nozzle": "Nozzle",
         "fuelType": "Fuel Type",
         "nuzzleCounter": "Nuzzle-Counter",
         "problemInCounter": "PROBLEM IN COUNTERS",
@@ -178,6 +181,8 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
     }
 
     var ar_translations = {
+        "name": "الاسم",
+        "productName": "اسم المنتج",
         "carwash": "غسيل السيارات",
         "carwashTrans": " غسيل",
         "dryproduct": "البضائع",
@@ -243,8 +248,8 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
         "createReceiptAndPrint": "طباعة الايصال",
         "coupon": "قسيمة",
         "cancel": "أغلق",
-        "deleteAll": "مسح الكل",
-        "delete": "مسح ",
+        "deleteAll": "إزالة الكل",
+        "delete": "إزالة ",
         "customerName": "اسم الزبون",
         "firstName": "الاسم",
         "middleName": "اسم الأب",
@@ -267,7 +272,8 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
         "customerSection": "قسم العميل",
         "dollarRate": "سعر صرف الدولار",
         "stationManager": "مدير المحطة",
-        "nozzleNumber": "رقم المضخة",
+        "nozzleNumber": "رقم المزود",
+        "nozzle": "المزود",
         "fuelType": "نوع الوقود",
         "nuzzleCounter": "عداد المزود",
         "problemInCounter": "يوجد مشكلة في العدادت",

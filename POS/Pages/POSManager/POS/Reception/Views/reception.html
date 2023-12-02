@@ -20,7 +20,7 @@
                         <!--<span ng-click="goToHistoryPage()" style="cursor: pointer" class="refund-history-btn">{{'History' | translate}}</span>-->
                     </div>
                 </div>
-                <div id="receptionItems" class="reception-items">
+                <div id="receptionItems" class="reception-items" style=" margin-right: 2em;">
                     <div class="col-md-12 pink corncob rebar product-block item card bg-light" ng-repeat="item in receptionsList track by $index" ng-click="goToPurchaseInfo(item)">
                         <div class="card-header text-muted border-bottom-0">
 
@@ -28,7 +28,7 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-8">
-                                    <h2 style="display: inline; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100;">
+                                    <h2 style="display: block; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100; text-align: right;">
                                         {{item.id}} -  {{item.supplierName}} -  {{item.driverName}}
                                     </h2>
                                     <span class="reception-item-status" ng-class="item.statusStyle">{{item.status}}</span>

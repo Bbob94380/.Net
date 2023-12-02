@@ -1,0 +1,62 @@
+﻿<div class="modal-body">
+    <div class="row" style="padding: 1em;">
+        <div class="col-5" style="border-right: 1px solid #dee2e6;">
+
+            <div class="calculator card">
+
+                <div class="calculator-keys calculator-keys2">
+
+                    <button type="button" value="1" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('1')">1</button>
+                    <button type="button" value="2" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('2')">2</button>
+                    <button type="button" value="3" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('3')">3</button>
+
+                    <button type="button" value="4" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('4')">4</button>
+                    <button type="button" value="5" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('5')">5</button>
+                    <button type="button" value="6" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('6')">6</button>
+
+
+                    <button type="button" value="7" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('7')">7</button>
+                    <button type="button" value="8" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('8')">8</button>
+                    <button type="button" value="9" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('9')">9</button>
+
+                    <button type="button" value="00" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('00')">00</button>
+                    <button type="button" value="0" class="btn btn-light waves-effect cal-grey-btn" ng-click="addNumber('0')">0</button>
+                    <button type="button" class="all-clear function btn btn-danger btn-sm cal-grey-btn" style="background: #D7060E; color: #fff; font-family: cursive; " ng-click="ClearFocusedField()" value="all-clear"><</button>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-7">
+            <form>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>{{'productName' | translate}}</label>
+                        <input value="{{productItem.name}}" disabled class="form-control form-control-lg">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'quantity' | translate}}</label>
+                        <input required type="text" ng-model="displayQtyResult" ng-change="ValueChanged2(displayQtyResult, displayPriceResult, 'qty')" class="form-control form-control-lg" ng-focus="QtyFocus()" ng-blur="QtyBlur(displayQtyResult)">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'discount' | translate}}</label>
+                        <input type="text" ng-disabled="disableField" ng-model="displayPriceResult" ng-change="ValueChanged2(displayQtyResult, displayPriceResult, 'discount')" class="form-control form-control-lg" ng-focus="PriceFocus()" ng-blur="PriceBlur(displayPriceResult)">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'price' | translate}}</label>
+                        <input type="text" disabled class="form-control form-control-lg" value="{{'$' + productItem.sale_price}}">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'total' | translate}}</label>
+                        <input type="text" disabled class="form-control form-control-lg" value="{{'$' + totalIt}}" >
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer wetTransPopupFooter">
+    <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="clearAll()">{{'clear' | translate}}</button>
+    <button type="button" class="btn btn-primary nextbtn" ng-click="next()">{{'done' | translate}}</button>
+</div>

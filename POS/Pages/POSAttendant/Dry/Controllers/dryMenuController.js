@@ -155,26 +155,53 @@
 
     $rootScope.dryItemClicked = function (productItem, addedQty) {
 
-        $scope.totalLabelDry = "showTotalLabelDry";
-        $scope.ButtonsDry = "showButtonsDry";
+        var modalInstance;
+
+        modalInstance = $uibModal.open({
+            animate: true,
+            templateUrl: '/Pages/POSAttendant/Dry/Views/dryPopup.html',
+            controller: 'dryPopupController',
+            scope: $scope,
+            windowClass: 'show',
+            resolve: {
+                data: function () {
+                    return { productItem: productItem };
+                }
+            }
+        });
+
+        modalInstance.result.then(function (Result) {
+            //when $uibModalInstance.close() fct executed
 
 
-        var itemToAdd = { id: productItem.id, name: productItem.name, discountItem: 0, qtyItem: addedQty, maxQtyItem: productItem.quantity, price: productItem.sale_price, totalIt: 0 };
-        itemToAdd.totalIt = itemToAdd.qtyItem * itemToAdd.price;
+        }, function () {
+            //enter when modal dismissed (wehn $uibModalInstance.dismiss() is executed)
+        });
 
-        dryItemsList.push(itemToAdd)
-        $rootScope.dryItemsList = dryItemsList;
-
-        $scope.totalDollar = 0;
-        $scope.totalLL = 0;
-
-        for (let i = 0; i < $rootScope.dryItemsList.length; i++) {
-            $scope.totalDollar += $rootScope.dryItemsList[i].totalIt;
-        }
-        $scope.totalLL = $scope.totalDollar * 100000;
-        $scope.totalLL = $scope.totalLL + " "+ $filter('translate')('LL');
-        $scope.totalDollar = "$" + $scope.totalDollar;
     }
+
+    //$rootScope.dryItemClicked = function (productItem, addedQty) {
+
+    //    $scope.totalLabelDry = "showTotalLabelDry";
+    //    $scope.ButtonsDry = "showButtonsDry";
+
+
+    //    var itemToAdd = { id: productItem.id, name: productItem.name, discountItem: 0, qtyItem: addedQty, maxQtyItem: productItem.quantity, price: productItem.sale_price, totalIt: 0 };
+    //    itemToAdd.totalIt = itemToAdd.qtyItem * itemToAdd.price;
+
+    //    dryItemsList.push(itemToAdd)
+    //    $rootScope.dryItemsList = dryItemsList;
+
+    //    $scope.totalDollar = 0;
+    //    $scope.totalLL = 0;
+
+    //    for (let i = 0; i < $rootScope.dryItemsList.length; i++) {
+    //        $scope.totalDollar += $rootScope.dryItemsList[i].totalIt;
+    //    }
+    //    $scope.totalLL = $scope.totalDollar * parseFloat(localStorage.getItem('dollarRate'));
+    //    $scope.totalLL = $scope.totalLL + " "+ $filter('translate')('LL');
+    //    $scope.totalDollar = "$" + $scope.totalDollar;
+    //}
 
 
     $rootScope.calculateTotalDry = function (qtyItem, discountItem, price, key, maxQty) {
@@ -192,7 +219,7 @@
         for (let i = 0; i < $rootScope.dryItemsList.length; i++) {
             $scope.totalDollar += $rootScope.dryItemsList[i].totalIt;
         }
-        $scope.totalLL = $scope.totalDollar * 100000;
+        $scope.totalLL = $scope.totalDollar * parseFloat(localStorage.getItem('dollarRate'));
         $scope.totalLL = $scope.totalLL + " L.L";
         $scope.totalDollar = "$" + $scope.totalDollar;
     }
@@ -225,6 +252,7 @@
                 priceLL: dryTotalPriceLL,
                 priceDollar: dryTotalPriceDollar,
                 productType: "Dry",
+                employeeId: localStorage.getItem("employeeId"),
                 products: $rootScope.dryItemsList
             }
         )
@@ -232,10 +260,10 @@
 
         $rootScope.transactionsList.push.apply($rootScope.transactionsList, dryTranList);
         $rootScope.calculateTotal();
-        $scope.clearDryBtn();
+        $rootScope.clearDryBtn();
     }
 
-    $scope.clearDryBtn = function () {
+    $rootScope.clearDryBtn = function () {
         dryItemsList = [];
         $rootScope.dryItemsList = [];
         $rootScope.clearAllDry();

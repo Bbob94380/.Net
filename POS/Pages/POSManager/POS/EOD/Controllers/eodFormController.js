@@ -1,5 +1,5 @@
 ﻿
-rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$timeout", "$state", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $timeout, $state) {
+rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams", "$uibModal", "$http", "$rootScope", "$timeout", "$state", "$filter", function ($scope, $location, $stateParams, $uibModal, $http, $rootScope, $timeout, $state, $filter) {
 
    
 
@@ -455,20 +455,20 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
                         $scope.eodObj = result.resultData;
 
                     } else {
-                        swal("Error", "", "error");
+                        swal($filter('translate')('opertionFailed'), "", "error");
                     }
 
                 } else {
-                    swal("Error", "", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 }
 
             } else {
-                swal("Error", "", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Error", "", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             $rootScope.showLoader = false;
         });
     };
@@ -479,12 +479,12 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
     $scope.createEOD = function() {
 
         if ($scope.dateOfEod === null || $scope.dateOfEod === undefined) {
-            swal("Please select EOD date", "", "warning");
+            swal($filter('translate')('eodDate'), "", "warning");
             return;
         }
 
         if ($scope.eodObj.numberOfEmployeesShift1 === 0 && $scope.eodObj.numberOfEmployeesShift2 === 0 && $scope.eodObj.numberOfEmployeesShift3 === 0) {
-            swal("There is no shifts to create an eod", "", "warning");
+            swal($filter('translate')('noEodShifts'), "", "warning");
             return;
         }
 
@@ -519,7 +519,7 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
 
                     if (result.isSuccessStatusCode) {
 
-                          swal("Operation succeeded", "", "success");
+                        swal($filter('translate')('opertionSucceeded'), "", "success");
                             $timeout(function () {
                                 $state.go('pos.eod', {
                                     item: null
@@ -527,20 +527,20 @@ rootModule.controller("eodFormController", ["$scope", "$location", "$stateParams
                             })
 
                     } else {
-                        swal("Oops", "Operation failed", "error");
+                        swal($filter('translate')('opertionFailed'), "", "error");
                     }
 
                 } else {
-                    swal("Oops", "Operation failed", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 }
 
             } else {
-                swal("Oops", "Operation failed", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             }
 
 
         }, function (error) {
-                swal("Oops", "Operation failed", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             $rootScope.showLoader = false;
         });
     };

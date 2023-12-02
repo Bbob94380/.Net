@@ -50,7 +50,7 @@ rootHOModule.controller("hoLoginCtrl", ["$scope", "$sce", "$rootScope", "$http",
         $http({
             method: "POST",
             url: "/api/HOApi/LoginAsyncHO",
-            data: { email: "admin@gsm.com", password: "odoo123" }
+            data: { email: "admin@gsm.com", password: "123456" }
         }).then(function (response) {
 
             console.log(response);

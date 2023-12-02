@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <a ui-sref="pos.moneyDeliveryIndex" class="nav-link" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
+                <a ui-sref="pos.moneyDeliveryIndex" class="nav-link back-btn" style=" color: #000;cursor: pointer;padding:0; cursor: pointer;">
                     < {{ 'back' | translate }}
                 </a>
                 <h3 class="receiptInfo-title">{{ 'MoneyDelivery' | translate }} - {{ 'HistoryMoneyDelivery' | translate }}</h3>
@@ -28,7 +28,7 @@
                 <div class="card-body pt-0">
                     <div class="row">
                         <div class="col-9">
-                            <h2 style="display: inline; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100;">
+                            <h2 style="display: block; font-size: 17px; font-family: 'rubikMedium'; font-weight: 100; text-align: right;">
                                 {{
  md.id
                                 }} - {{ md.creator }} - {{ md.collectorName }}

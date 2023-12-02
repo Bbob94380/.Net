@@ -64,21 +64,21 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
                         $scope.employeeNameCalib = result.resultData.name;
 
                     } else {
-                        swal("Failed getting user info", "Please try again", "error");
+                        //swal("Failed getting user info", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Failed getting user info", "Please try again", "error");
+                    //swal("Failed getting user info", "Please try again", "error");
                 }
 
             } else {
-                swal("Failed getting user info", "Please try again", "error");
+                //swal("Failed getting user info", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Failed getting user info", "Please try again", "error");
+            //swal("Failed getting user info", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -92,7 +92,7 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
 
         if (refundAmount > item.allowedQuantity) {
             $scope.refundAmount[index] = 0;
-            swal("This quantity is not allowed", "Allowed quantity is : " + item.allowedQuantity , "warning");
+            swal($filter('translate')('qtyAllowed'), $filter('translate')('qtyAllowed2') + " " + item.allowedQuantity , "warning");
 
         }
 
@@ -194,24 +194,24 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
 
                     } else {
                         $rootScope.showLoader = false;
-                        swal("Creation process failed", "Please try again", "error");
+                        //swal("Creation process failed", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
                     $rootScope.showLoader = false;
-                    swal("Creation process failed", "Please try again", "error");
+                    //swal("Creation process failed", "Please try again", "error");
                 }
 
             } else {
                 $rootScope.showLoader = false;
 
-                swal("Creation process failed", "Please try again", "error");
+                //swal("Creation process failed", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Creation process failed", "Please try again", "error");
+            //swal("Creation process failed", "Please try again", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -243,22 +243,22 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
                         $scope.saleTransaction = result.resultData;
 
                     } else {
-                        swal("Creation process failed", "Please try again", "error");
+                        //swal("Creation process failed", "Please try again", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Creation process failed", "Please try again", "error");
+                   // swal("Creation process failed", "Please try again", "error");
                 }
 
             } else {
 
-                swal("Creation process failed", "Please try again", "error");
+                //swal("Creation process failed", "Please try again", "error");
             }
 
 
         }, function (error) {
-            swal("Creation process failed", "Please try again", "error");
+            //swal("Creation process failed", "Please try again", "error");
             console.log(error);
         });
 
@@ -289,24 +289,24 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
 
                     } else {
                         $rootScope.showLoader = false;
-                        swal("Creation process failed", "Please try again", "error");
+                        swal($filter('translate')('opertionFailed'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
                     $rootScope.showLoader = false;
-                    swal("Creation process failed", "Please try again", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 }
 
             } else {
                 $rootScope.showLoader = false;
 
-                swal("Creation process failed", "Please try again", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             }
 
 
         }, function (error) {
-            swal("Creation process failed", "Please try again", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -337,21 +337,21 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
                         //swal("Great", "Created successfully", "success");
 
                     } else {
-                        swal("Creation process failed", "Please try again", "error");
+                        swal($filter('translate')('opertionFailed'), "", "error");
                         console.log(result.errorMsg);
                     }
 
                 } else {
-                    swal("Creation process failed", "Please try again", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 }
 
             } else {
-                swal("Creation process failed", "Please try again", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             }
 
 
         }, function (error) {
-            swal("Creation process failed", "Please try again", "error");
+                swal($filter('translate')('opertionFailed'), "", "error");
             $rootScope.showLoader = false;
             console.log(error);
         });
@@ -367,7 +367,7 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
                 findDryProductSaleById(saleId);
 
             } else {
-                swal("Please fill the sale invoice id field", "", "warning");
+                swal($filter('translate')('fillSaleInvoiceId'), "", "warning");
             }
             
 
@@ -418,25 +418,25 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
 
                         if (result.isSuccessStatusCode) {
 
-                            swal("Great", "Created successfully", "success");
+                            swal($filter('translate')('opertionSucceeded'), "", "success");
                             $uibModalInstance.close('Succeeded');
 
                         } else {
-                            swal("Creation process failed", "Please try again", "error");
+                            swal($filter('translate')('opertionFailed'), "", "error");
                             console.log(result.errorMsg);
                         }
 
                     } else {
-                        swal("Creation process failed", "Please try again", "error");
+                        swal($filter('translate')('opertionFailed'), "", "error");
                     }
 
                 } else {
-                    swal("Creation process failed", "Please try again", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 }
 
 
             }, function (error) {
-                    swal("Creation process failed", "Please try again", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 $rootScope.showLoader = false;
                 console.log(error);
             });
@@ -488,25 +488,25 @@ rootModule.controller('createNewfuelRefundPopupController', function ($scope, $r
 
                         if (result.isSuccessStatusCode) {
 
-                            swal("Great", "Created successfully", "success");
+                            swal($filter('translate')('opertionSucceeded'), "", "success");
                             $uibModalInstance.close('Succeeded');
 
                         } else {
-                            swal("Creation process failed", "Please try again", "error");
+                            swal($filter('translate')('opertionFailed'), "", "error");
                             console.log(result.errorMsg);
                         }
 
                     } else {
-                        swal("Creation process failed", "Please try again", "error");
+                        swal($filter('translate')('opertionFailed'), "", "error");
                     }
 
                 } else {
-                    swal("Creation process failed", "Please try again", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 }
 
 
             }, function (error) {
-                swal("Creation process failed", "Please try again", "error");
+                    swal($filter('translate')('opertionFailed'), "", "error");
                 $rootScope.showLoader = false;
                 console.log(error);
             });

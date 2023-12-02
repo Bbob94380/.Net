@@ -1,5 +1,5 @@
 ﻿
-posAttendantRootModule.controller('wetTransactionPopupController', function ($scope, $document, $http, $uibModalInstance, data) {
+posAttendantRootModule.controller('dryPopupController', function ($scope, $document, $http, $uibModalInstance, data) {
 
     var isQtyFocus = false;
     var isPriceFocus = false;
@@ -7,89 +7,30 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
 
 
     //Initialization
-    console.log(data);
-    $scope.wetName = data.wetName;
-    $scope.wetId = data.wetId;
-    $scope.wetType = data.type;
-    $scope.priceMcOfLitre = data.priceMc;
-    $scope.priceScOfLitre = data.priceSc;
+    $scope.productItem = data.productItem;
     $scope.dollarRate = parseInt(localStorage.getItem("dollarRate"));
     $scope.disableField = false;
-    $scope.isGas = false;
-
-    if ($scope.wetType === "GAZ10" || $scope.wetType === "GAZ12" || $scope.wetType === "GAZ_EMPTY") {
-        $scope.disableField = true;
-        $scope.isGas = true;
-    }
-
-    //events
-    //$scope.$watch("displayQtyResult", function (newValue = '', oldValue = '') {
-
-    //    if (newValue === '' || newValue === undefined || newValue === null) {
-    //        $scope.clearAll();
-    //    } else {
-    //        $scope.displayPriceResult = parseFloat(newValue) * $scope.priceMcOfLitre;
-    //        $scope.displayPriceDollarResult = parseFloat(newValue) * $scope.priceScOfLitre;
-    //    }
-        
-
-    //});
-
-    //$scope.$watch("displayPriceResult", function (newValue = '', oldValue = '') {
-
-    //    if (newValue === '' || newValue === undefined || newValue === null) {
-    //        $scope.clearAll();
-    //    } else {
-    //        $scope.displayQtyResult = parseFloat(newValue) / $scope.priceMcOfLitre;
-    //        $scope.displayPriceDollarResult = parseFloat(newValue) / $scope.dollarRate;
-    //    }
-
-    //});
-
-    //$scope.$watch("displayPriceDollarResult", function (newValue = '', oldValue = '') {
-
-    //    if (newValue === '' || newValue === undefined || newValue === null) {
-    //        $scope.clearAll();
-    //    } else {
-    //        $scope.displayPriceResult = parseFloat(newValue) * $scope.dollarRate;
-    //        $scope.displayQtyResult = parseFloat(newValue) / $scope.priceScOfLitre;
-    //    }
+    $scope.totalIt = 0;
 
 
-    //});
+    $scope.ValueChanged2 = function (addedQty, discount, type) {
 
-    $scope.ValueChanged = function (newValue,type) {
+        if (addedQty === null || addedQty === undefined || addedQty === "") addedQty = 0;
+        if (discount === null || discount === undefined || discount === "") discount = 0;
 
-        if (newValue === '' || newValue === undefined || newValue === null) {
-            $scope.clearAll();
-        } else {
+        if (type === "qty") {
 
-            if (type === "qty") {
-
-                $scope.displayPriceResult = parseFloat(newValue) * $scope.priceMcOfLitre;
-                $scope.displayPriceDollarResult = parseFloat(newValue) * $scope.priceScOfLitre;
-
-            } else if (type === "LL") {
-
-                $scope.displayQtyResult = parseFloat(newValue) / $scope.priceMcOfLitre;
-                $scope.displayQtyResult = parseFloat($scope.displayQtyResult).toFixed(2);
-                $scope.displayPriceDollarResult = parseFloat(newValue) / $scope.dollarRate;
-
-                console.log($scope.displayQtyResult);
-                console.log($scope.displayPriceDollarResult);
-
-            } else if (type === "dollar") {
-
-                $scope.displayPriceResult = parseFloat(newValue) * $scope.dollarRate;
-                $scope.displayQtyResult = parseFloat(newValue) / $scope.priceScOfLitre;
-
-                $scope.displayQtyResult = parseFloat($scope.displayQtyResult).toFixed(2);
-
-                console.log($scope.displayPriceResult);
-                console.log($scope.displayQtyResult);
+            if (parseInt(addedQty) > $scope.productItem.quantity) {
+                alert("The quantity available for this product is only " + $scope.productItem.quantity);
+                addedQty = Math.floor(addedQty / 10);   
             }
 
-            
+            $scope.totalIt = parseInt(addedQty) * parseInt($scope.productItem.sale_price) - (parseInt(addedQty) * parseFloat($scope.productItem.sale_price) * parseFloat(discount) / 100);
+            $scope.displayQtyResult = addedQty;
+
+        } else if (type === "discount") {
+            $scope.totalIt = parseInt(addedQty) * parseInt($scope.productItem.sale_price) - (parseInt(addedQty) * parseFloat($scope.productItem.sale_price) * parseFloat(discount) / 100);
+
         }
     }
 
@@ -118,46 +59,43 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
 
     $scope.next = function () {
         
-        var dd;
-        var ll;
+        var products = [];
 
-        if (($scope.displayPriceDollarResult === undefined || $scope.displayPriceDollarResult === null ||
-            $scope.displayPriceDollarResult === '0' || $scope.displayPriceDollarResult === 0 || $scope.displayPriceDollarResult === "") &&
-            ($scope.displayPriceResult === undefined || $scope.displayPriceResult === null ||
-            $scope.displayPriceResult === '0' || $scope.displayPriceResult === 0 || $scope.displayPriceResult === "") &&
-            ($scope.displayQtyResult === undefined || $scope.displayQtyResult === null ||
-            $scope.displayQtyResult === '0' || $scope.displayQtyResult === 0 || $scope.displayQtyResult === "")) {
 
-            sweetAlert("Please fill at least one field", "", "warning");
+
+        if ($scope.displayQtyResult === '0' || $scope.displayQtyResult === 0 || $scope.displayQtyResult === ""
+            || $scope.displayQtyResult === null || $scope.displayQtyResult === undefined) {
+
+            sweetAlert("Please fill the qty field", "", "warning");
             return;
         }
 
-        if ($scope.displayPriceDollarResult === undefined || $scope.displayPriceDollarResult === null || $scope.displayPriceDollarResult === "") {
-            dd=0
-        } else {
-            dd = $scope.displayPriceDollarResult;
-        }
-
         if ($scope.displayPriceResult === undefined || $scope.displayPriceResult === null || $scope.displayPriceResult === "") {
-            ll = 0
-        } else {
-            ll = $scope.displayPriceResult;
+            $scope.displayPriceResult = 0;
         }
 
-        var fuelResultObj = {
+        products.push(
+            {
+                id: $scope.productItem.id,
+                name: $scope.productItem.name,
+                discountItem: parseFloat($scope.displayPriceResult),
+                qtyItem: parseInt($scope.displayQtyResult),
+                maxQtyItem: $scope.productItem.quantity,
+                price: $scope.productItem.sale_price,
+                totalIt: parseFloat($scope.totalIt)
+            }
+        );
+
+        $scope.$parent.transactionsList.push({
             id: 0,
-            qty: parseFloat($scope.displayQtyResult).toFixed(2),
-            priceLL: parseFloat(ll).toFixed(2),
-            priceDollar: parseFloat(dd).toFixed(2),
-            productType: "Fuel",
-            productName: $scope.wetName,
-            wetId: $scope.wetId,
-            gas: $scope.isGas,
+            qty: $scope.displayQtyResult,
+            priceLL: parseFloat($scope.totalIt) * parseFloat(localStorage.getItem('dollarRate')),
+            priceDollar: parseFloat($scope.totalIt),
+            productType: "Dry",
             employeeId: localStorage.getItem("employeeId"),
-            priceMcOfLitre: $scope.priceMcOfLitre,
-            priceScOfLitre: $scope.priceScOfLitre,
-        }
-        $scope.$parent.transactionsList.push(fuelResultObj);
+            products: products
+        });
+
         $scope.$parent.calculateTotal();
         $uibModalInstance.close('Succeeded');
         //sweetAlert("Transaction is recorded in the summary", "", "success");
@@ -213,85 +151,6 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
        
     }
 
-   
-
-    function handleOperator(nextOperator) {
-
-        if (isQtyFocus) {
-
-            const { firstOperand, displayQtyValue, operator } = calculator
-            const inputValue = parseFloat(displayQtyValue);
-
-            if (operator && calculator.waitingForSecondOperand) {
-                calculator.operator = nextOperator;
-                return;
-            }
-
-            if (firstOperand === null) {
-                calculator.firstOperand = inputValue;
-            } else if (operator) {
-                const currentValue = firstOperand || 0;
-                const result = performCalculation[operator](currentValue, inputValue);
-
-                calculator.displayQtyValue = String(result);
-                calculator.firstOperand = result;
-            }
-
-            calculator.waitingForSecondOperand = true;
-            calculator.operator = nextOperator;
-        }
-
-        if (isPriceFocus) {
-
-            const { firstOperand, displayPriceValue, operator } = calculator
-            const inputValue = parseFloat(displayPriceValue);
-
-            if (operator && calculator.waitingForSecondOperand) {
-                calculator.operator = nextOperator;
-                return;
-            }
-
-            if (firstOperand === null) {
-                calculator.firstOperand = inputValue;
-            } else if (operator) {
-                const currentValue = firstOperand || 0;
-                const result = performCalculation[operator](currentValue, inputValue);
-
-                calculator.displayPriceValue = String(result);
-                calculator.firstOperand = result;
-            }
-
-            calculator.waitingForSecondOperand = true;
-            calculator.operator = nextOperator;
-        }
-
-        if (isPriceDollarFocus) {
-
-            const { firstOperand, displayPriceDollarValue, operator } = calculator
-            const inputValue = parseFloat(displayPriceDollarValue);
-
-            if (operator && calculator.waitingForSecondOperand) {
-                calculator.operator = nextOperator;
-                return;
-            }
-
-            if (firstOperand === null) {
-                calculator.firstOperand = inputValue;
-            } else if (operator) {
-                const currentValue = firstOperand || 0;
-                const result = performCalculation[operator](currentValue, inputValue);
-
-                calculator.displayPriceDollarValue = String(result);
-                calculator.firstOperand = result;
-            }
-
-            calculator.waitingForSecondOperand = true;
-            calculator.operator = nextOperator;
-        }
-
-
-
-    }
 
     const performCalculation = {
         '/': (firstOperand, secondOperand) => firstOperand / secondOperand,
@@ -344,18 +203,14 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
     function updateDisplay() {
         if (isQtyFocus) {
             $scope.displayQtyResult = calculator.displayQtyValue;
-            $scope.ValueChanged($scope.displayQtyResult, "qty");
+            $scope.ValueChanged2($scope.displayQtyResult, $scope.displayPriceResult, "qty");
         }
 
         if (isPriceFocus) {
             $scope.displayPriceResult = calculator.displayPriceValue;
-            $scope.ValueChanged($scope.displayPriceResult, "LL");
+            $scope.ValueChanged2($scope.displayQtyResult, $scope.displayPriceResult, "discount");
         }
 
-        if (isPriceDollarFocus) {
-            $scope.displayPriceDollarResult = calculator.displayPriceDollarValue;
-            $scope.ValueChanged($scope.displayPriceDollarResult, "dollar");
-        }
         
         //console.log(calculator.displayValue);
     }
