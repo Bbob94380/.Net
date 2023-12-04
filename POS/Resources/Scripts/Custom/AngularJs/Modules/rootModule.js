@@ -180,6 +180,11 @@ rootModule.config(['$stateProvider', '$urlRouterProvider', function ($stateProvi
             templateUrl: "/Pages/POSManager/Inventory/Main/Views/mainInventory.html",
             controller: "mainInventoryController"
         })
+        .state("inventoryGeneralReport", {
+            url: "/report",
+            templateUrl: "/Pages/POSManager/Inventory/Report/Views/reportInventory.html",
+            controller: "reportInventoryController"
+        })
 }]);
 
 

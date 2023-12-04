@@ -149,8 +149,9 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
 
         if (received_msg !== null && received_msg !== undefined) {
             var result = JSON.parse(received_msg);
-
-            if (result.type === "CurrencyRatio") {
+            if (result.type === 'NewFmsState') {
+                $rootScope.$emit('fmsStateSm', result);
+            } else if (result.type === "CurrencyRatio") {
 
                 $rootScope.$apply(function () {
 
