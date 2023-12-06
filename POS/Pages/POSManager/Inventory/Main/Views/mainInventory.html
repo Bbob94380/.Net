@@ -1,8 +1,309 @@
 ﻿<div>
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="">
-            <div class="card-body">
-                <h1>Inven page</h1>
+
+    <div class="col-lg-12">
+
+        <div class="pt-3">
+            <div class="bg-white container-fluid px-4 py-5 fms-arabic-container" style="min-height: 93vh;">
+                <!-- black buttons -->
+                <div class="row mb-4">
+                    <div class="col-auto">
+                        <button ng-click="goToHistoryPage()" type="button" class="btn btn-lg btn-block fms-top-button"><span>General Dispenser Report</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-lg btn-block fms-top-button"><span>General Nozzle Report</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-lg btn-block fms-top-button"><span>General Transaction Report</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-lg btn-block fms-top-button"><span>General Tank Report</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-lg btn-block fms-top-button"><span>General Tank Volume Report</span></button>
+                    </div>
+                </div>
+
+                <!-- Title + sub -->
+                <div class="fms-title row mb-4">
+                    <div class="col-12">
+                        <h1>{{'Dispensers' | translate}}</h1>
+                    </div>
+                    <div class="col-12">
+                        <h2>{{'numberOfDispensers' | translate}}: {{ pumpStates.length? pumpStates.length : '0' }}</h2>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="row mb-4 fms-filter-group-button">
+                    <div class="col-auto">
+                        <button type="button" ng-click="dispenserFilterFunc('ALL')" ng-class="{'fms-filter-button-active': dispenserFilter.description == 'ALL'}" class="btn btn-lg btn-block px-3"><span>{{'All' | translate}}</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" ng-click="dispenserFilterFunc('IDLE')" ng-class="{'fms-blue-backgroud': dispenserFilter.description == 'IDLE'}" class="btn btn-lg btn-block"><span>{{'IDLE' | translate}}</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" ng-click="dispenserFilterFunc('FILLING')" ng-class="{'fms-green-backgroud': dispenserFilter.description == 'FILLING'}" class="btn btn-lg btn-block"><span>{{'FILLING' | translate}}</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" ng-click="dispenserFilterFunc('OFFLINE')" ng-class="{'fms-red-backgroud': dispenserFilter.description == 'OFFLINE'}" class="btn btn-lg btn-block"><span>{{'OFFLINE' | translate}}</span></button>
+                    </div>
+                </div>
+
+                <!-- Dispenser cards -->
+                <div class="row mx-0" ng-if="isLoading">
+                    <div class="fms-skeleton" ng-repeat="skeleton in skeletons"></div>
+                </div>
+
+                <div class="row mx-0" ng-if="!isLoading">
+                    <div class="fms-card" ng-repeat="pump in pumpStates">
+                        <!-- BAR -->
+                        <div ng-class="{'fms-red-backgroud': (pump.status == 'OFFLINE'),
+                             'fms-green-backgroud': (pump.status == 'FILLING'),
+                             'fms-blue-backgroud': (pump.status == 'IDLE')}" class="fms-border-top fms-bar d-flex">
+                            <div class="m-auto">{{ pump.status }}</div>
+                        </div>
+                        <!-- Image + desc -->
+                        <div class="row justify-content-center text-center image-div">
+                            <div class="col-auto"><img alt="nozzle" src="/Resources/Images/pump_nozzle.png" /></div>
+                            <div class="col-12 fms-dispenser-div">
+                                <span class="fms-dispenser">{{ pump.pumpNumber }} - {{ pump.wetProductName }}</span>
+                            </div>
+                            <div class="col-12">
+                                <div class="col-12 mx-auto fms-dispenser-line"></div>
+                            </div>
+                        </div>
+                        <!-- Values -->
+                        <div class="row">
+                            <div class="col-auto fms-card-left  fms-dispenser-text-left"><span>Employee on Shift</span></div>
+                            <div class="col-auto fms-card-right fms-dispenser-text-right"><span>{{ pump.employeeName }}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto fms-card-left  fms-dispenser-text-left"><span>Nozzle Number</span></div>
+                            <div class="col-auto fms-card-right fms-dispenser-text-right"><span>{{ pump.nozzleNumber }}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto fms-card-left  fms-dispenser-text-left"><span>Tanks</span></div>
+                            <div class="col-auto fms-card-right fms-dispenser-text-right"><span>{{ pump.tankNumber }}</span></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-auto fms-card-left  fms-dispenser-text-left"><span>Filled Volume</span></div>
+                            <div class="col-auto fms-card-right fms-dispenser-text-right"><span>{{ pump.lastVolume }} L</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto fms-card-left  fms-dispenser-text-left"><span>Filled Amount</span></div>
+                            <div class="col-auto fms-card-right fms-dispenser-text-right"><span>{{ pump.lastTotalAmount }} L</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto fms-card-left  fms-dispenser-text-left"><span>Total Volume</span></div>
+                            <div class="col-auto fms-card-right fms-dispenser-text-right"><span>{{ pump.lastTotalVolume }} L</span></div>
+                        </div>
+                        <!-- Buttons -->
+                        <div class="row button-container">
+                            <div class="col-auto fms-card-report-div">
+                                <button type="button"><span>Report</span></button>
+                            </div>
+                            <div class="col-auto fms-card-button-left">
+                                <button class="fms-card-button" style="background-color: #008000;"><span>Start</span></button>
+                            </div>
+                            <div class="col-auto fms-card-button-right">
+                                <button class="fms-card-button" style="background-color: #D80404 "><span>Cancel</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ----------------------------------------------------------------- -->
+                <!-- Title + sub Tanks -->
+                <div class="fms-title row mb-4">
+                    <div class="col-12">
+                        <h1>{{'Tanks' | translate}}</h1>
+                    </div>
+                    <div class="col-12">
+                        <h2>{{'numberOfTanks' | translate}}: {{ tanks.length? tanks.length : '0' }}</h2> 
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="row mb-4 fms-filter-group-button">
+                    <div class="col-auto">
+                        <button type="button" ng-click="tankFilterFunc('ALL')" ng-class="{'fms-filter-button-active': tankFilter.description == 'ALL'}" class="btn btn-lg btn-block px-3"><span>All</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" ng-click="tankFilterFunc('LOW')" ng-class="{'fms-red-backgroud': tankFilter.description == 'LOW'}" class="btn btn-lg btn-block"><span>Low</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" ng-click="tankFilterFunc('MEDIUM')" ng-class="{'fms-orange-backgroud': tankFilter.description == 'MEDIUM'}" class="btn btn-lg btn-block"><span>Medium</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" ng-click="tankFilterFunc('FULL')" ng-class="{'fms-green-backgroud': tankFilter.description == 'FULL'}" class="btn btn-lg btn-block"><span>Full</span></button>
+                    </div>
+                </div>
+
+                <!-- TANKS -->
+                <div class="row mx-0" ng-if="isLoading">
+                    <div class="fms-skeleton" ng-repeat="skeleton in skeletons"></div>
+                </div>
+                <div class="row mx-0" ng-if="!isLoading">
+
+                    <div class="fms-tank" ng-repeat="tank in tanks">
+                        <!-- Image -->
+                        <div class="fms-tank-img">
+                            <img alt="nozzle" ng-src="{{ '/Resources/Images/tank_' + tankFilterImg(tank) + '.png' }}" />
+                        </div>
+                        <div class="fms-tank-title">
+                            <span class="fms-tank-title-text">{{ tank.probeNum }} - Fuel Type</span>
+                        </div>
+
+                        <!-- Values -->
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Product Height</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.productHeight !== undefined ? tank.productHeight : '-' }}</span></div>
+                        </div>
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Product Volume</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.productVolume !== undefined ? tank.productVolume : '-' }}</span></div>
+                        </div>
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Product TC</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.productTcVolume !== undefined ? tank.productTcVolume : '-' }}</span></div>
+                        </div>
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Product ullage</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.productUllage !== undefined ? tank.productUllage : '-' }}</span></div>
+                        </div>
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Product density</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.productDensity !== undefined ? tank.productDensity : '-' }}</span></div>
+                        </div>
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Product Mass</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.productMass !== undefined ? tank.productMass : '-' }}</span></div>
+                        </div>
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Water height</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.waterHeight !== undefined ? tank.waterHeight : '-' }}</span></div>
+                        </div>
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Water volume</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.waterVolume !== undefined ? tank.waterVolume : '-' }}</span></div>
+                        </div>
+                        <div class="fms-tank-value">
+                            <div class="fms-tank-value-left"><span>Temperature</span></div>
+                            <div class="fms-tank-value-right"><span>{{ tank.temperature !== undefined ? tank.temperature : '-' }}</span></div>
+                        </div>
+                        <!-- Buttons -->
+                        <div>
+                            <button class="fms-tank-button-large">
+                                <span>Volume Report</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button class="fms-tank-button-large">
+                                <span>Report</span>
+                            </button>
+                        </div>
+                        <div class="fms-tank-button-container">
+                            <button class="fms-tank-button-lsmall" style="background-color: #008000;">
+                                <span>Request</span>
+                            </button>
+
+                            <button class="fms-tank-button-rsmall" style="background-color: #D80404;">
+                                <span>Alerts</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alerts Title -->
+                <div class="fms-title row mb-4">
+                    <div class="col-12">
+                        <h1>Alerts</h1>
+                    </div>
+                </div>
+                <!-- Alerts buttons -->
+                <div class="row mb-4">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-lg btn-block fms-alert-button"><span>Copy</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-lg btn-block fms-alert-button"><span>Excel</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-lg btn-block fms-alert-button"><span>CSV</span></button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-lg btn-block fms-alert-button"><span>Print</span></button>
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <div class="form-group has-search">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <input id="CustomSearchTextField" type="search" name="table_search" class="form-control float-right" placeholder="Search">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters: FROM & TO -->
+                <div class="row" style="padding-right: 0; margin-top:45px; margin-bottom:1em;">
+                    <div class="col-auto">
+                        <label class="date-filter-label mx-0" for="min">From </label>
+                        <input class="date-filter-input" type="date" id="min" name="min">
+
+                        <label class="date-filter-label" for="max">To </label>
+                        <input class="date-filter-input" type="date" id="max" name="max">
+
+                        <button style="width: 217px; height: 40px; background-color: #D80404; border: 0; border-radius: 5px; margin: 6px 0px 0px 10px;">
+                            <span style="font-family: 'rubikMedium'; font-size: 16px; color: white">Generate Report</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+                            <!-- /.card-header -->
+                            <table id="dataTableId" table-jquery class="table table-condensed text-nowrap table-trans">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            {{'ID' | translate}}
+                                        </th>
+                                        <th>
+                                            {{'dateTime' | translate}}
+                                        </th>
+                                        <th>
+                                            {{'deviceType' | translate}}
+                                        </th>
+                                        <th>
+                                            {{'numberOfDevice' | translate}}
+                                        </th>
+                                        <th>
+                                            {{'state' | translate}}
+                                        </th>
+                                        <th>
+                                            {{'description' | translate}}
+                                        </th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in saleTransList" ng-click="openTransactionInfoPopup(item)">
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.category}}</td>
+                                        <td>{{item.amount}}</td>
+                                        <!--<td>{{item.wop}}</td>-->
+                                        <td>{{item.creationDate}}</td>
+                                        <!--<td>{{item.currency}}</td>-->
+                                        <td>{{item.netTotalMc}} {{'LL' | translate}} / {{item.netTotalSc}} $ </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+
             </div>
         </div>
     </div>
