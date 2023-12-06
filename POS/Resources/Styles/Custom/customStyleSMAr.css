@@ -1564,8 +1564,11 @@ div.dataTables_wrapper div.dataTables_paginate {
 .fms-top-button:hover {
     color: #212529 !important;
 }
+.fms-top-button:hover{
+    background-color: white;
+}
 
-.fms-green-backgroud, 
+.fms-green-backgroud,
 .fms-red-backgroud,
 .fms-blue-backgroud,
 .fms-orange-backgroud,
