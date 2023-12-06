@@ -75,7 +75,7 @@
                         <!-- Values -->
                         <div class="row">
                             <div class="col-auto fms-card-left  fms-dispenser-text-left"><span>Employee on Shift</span></div>
-                            <div class="col-auto fms-card-right fms-dispenser-text-right"><span>{{ pump.employeeName }}</span></div>
+                            <div class="col-auto fms-card-right fms-dispenser-text-right"><span>{{ pump.employeeName? pump.employeeName : '-' }}</span></div>
                         </div>
                         <div class="row">
                             <div class="col-auto fms-card-left  fms-dispenser-text-left"><span>Nozzle Number</span></div>
