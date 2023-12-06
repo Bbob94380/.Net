@@ -39,11 +39,11 @@
 
 
     .main-row-wetMenu .carWashMenuSpan {
-        font-size: 24px;
+        font-size: 26px;
         border-top: 1px solid #000;
         width: 100%;
         padding: 0.5em;
-        margin-top: 2.5em;
+        margin-top: 2.1em;
     }
 
 .main-center-row {
@@ -116,7 +116,7 @@
 
     .fuel-menu-card span {
         color: #fff;
-        font-size: 24px;
+        font-size: 30px;
     }
 
 .main2-left-card {
@@ -175,6 +175,7 @@
     text-align: center;
     border-radius: 10px;
     margin-bottom: 23px;
+    font-size: 28px;
 }
 
 .carwash-menu-img {
@@ -344,6 +345,7 @@ button {
 
 .total-table {
     float: right;
+    font-size: 24px;
 }
 
     .total-table th, td {
@@ -358,7 +360,7 @@ button {
     color: #fff;
     margin-top: 1.3em;
     border-radius: 6px;
-    font-size: 23px !important;
+    font-size: 27px !important;
     height: 1.9em;
     bottom: 0;
     position: absolute;
@@ -422,7 +424,7 @@ button {
 
     .trans-table-wop th {
         color: #6F6F6F;
-        font-size: 18px;
+        font-size: 24px;
         padding: 15px;
     }
 
@@ -432,7 +434,7 @@ button {
 
     .trans-table-wop td {
         color: black;
-        font-size: 18px;
+        font-size: 22px;
     }
 
 .line1 {
@@ -477,18 +479,18 @@ button {
 .payment-dropdown {
     height: calc(3.25rem + 2px);
     padding: 0.375rem 0.75rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .label-dropdown {
-    font-size: 20px;
+    font-size: 24px;
     color: #474747;
     font-weight: 400 !important;
 }
 
 .form-check-label {
     color: #6F6F6F;
-    font-size: 22px;
+    font-size: 24px;
 }
 
 
@@ -861,13 +863,13 @@ button {
 
 .payDryTotal2Label {
     color: #6F6F6F;
-    font-size: 20px;
+    font-size: 24px;
     display: inline;
     float: right;
 }
 
 .payDryTotalValue {
-    font-size: 20px;
+    font-size: 24px;
     margin-left: 0.5em;
     float: right;
 }
@@ -888,7 +890,7 @@ button {
 .payInputField {
     height: calc(3.25rem + 2px);
     padding: 0.375rem 0.75rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .dollarRate {
@@ -957,7 +959,7 @@ button {
         border-radius: 6px;
         font-weight: 500;
         border: none;
-        font-size: 20px !important;
+        font-size: 24px !important;
     }
 
 .modal-content {
@@ -1152,7 +1154,7 @@ button {
 
 .transfer-half-rectangle {
     height: 37px;
-    width: 100%;
+    width: 90%;
     position: relative;
     display: block;
     border-bottom: 2px solid #EAEAEA;
@@ -1364,7 +1366,7 @@ button {
 }
 
 .dry-item-title {
-    font-size: 16px;
+    font-size: 18px;
     border-top: 1px solid #b9b7b7;
     width: 100%;
     padding: 3px 0;

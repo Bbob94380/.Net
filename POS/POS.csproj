@@ -425,6 +425,7 @@
     <Content Include="Resources\Fonts\Rubik\OFL.txt" />
     <Content Include="Resources\Images\add-btn.png" />
     <Content Include="Resources\Images\AdminLTELogo.png" />
+    <Content Include="Resources\Images\amana.png" />
     <Content Include="Resources\Images\attendant\BENZENE95.png" />
     <Content Include="Resources\Images\attendant\BENZENE98.png" />
     <Content Include="Resources\Images\attendant\carWash\bus.png" />
@@ -1092,6 +1093,7 @@
     <Content Include="Resources\Styles\Custom\customStyleHOLoginEn.css" />
     <Content Include="Resources\Styles\Custom\customStyleHOEn.css" />
     <Content Include="Resources\Styles\Custom\customStyleSMEn.css" />
+    <Content Include="Resources\Styles\Custom\receipt.css" />
     <Content Include="Resources\Styles\Plugins\adminlte\adminlteEn.css" />
     <Content Include="Resources\Styles\Plugins\adminlte\adminlteAr.css" />
     <Content Include="Resources\Styles\Plugins\datatables\buttons.bootstrap4.min.css" />

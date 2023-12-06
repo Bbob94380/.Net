@@ -1,4 +1,10 @@
-﻿<div class="modal-body">
+﻿<div class="modal-header" style="background: #F3F3F3; padding: 2rem;">
+
+    <button type="button" class="close closeBtnPopup" data-dismiss="modal" ng-click="$dismiss()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
     <div class="row">
         <div class="col-5" style="border-right: 2px solid #dee2e6;">
 
@@ -47,7 +53,7 @@
                 <div class="row  paytotalLabelLLAndDolar">
                     <div>
                         <span class="col-md-3 payDryTotal2Label">{{'totalInLL' | translate}}</span>
-                        <span class="col-md-2 payDryTotalValue">{{totalLL}} {{'LL' | translate}}</span>
+                        <span class="col-md-4 payDryTotalValue">{{totalLL}} {{'LL' | translate}}</span>
                     </div>
                     <div style="float:right;">
                         <span class="col-md-3 payDryTotal2Label">{{'totalInDollar' | translate}}</span>

@@ -162,7 +162,7 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
 
                     if (result.isSuccessStatusCode) {
 
-                        if (result.resultData === true) {
+                        if (!result.resultData === true) {
                             $scope.isPts = true;
                             $scope.showNuzzlesSection = false;
                         } else {
@@ -318,8 +318,10 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
                             $scope.displayCounterResult[i] = '0';
                             $scope.displayNewCounterResult[i] = '0';
                         }
-                        if ($scope.nuzzlesList.length > 0 && $scope.isPts === false) $scope.showBoxSection = true;
+                        //if ($scope.nuzzlesList.length > 0 && $scope.isPts === false) $scope.showBoxSection = true;
+                        if ($scope.nuzzlesList.length > 0) $scope.showBoxSection = true;
 
+                        if ($scope.isPts === true) { $scope.getSalesSummary();}
 
                     } else {
                         swal($filter('translate')('failedGetNozzles'), "Please try again", "error");

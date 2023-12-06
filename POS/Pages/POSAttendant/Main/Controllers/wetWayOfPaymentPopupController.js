@@ -154,6 +154,275 @@ posAttendantRootModule.controller('wetWayOfPaymentPopupController', function ($u
         $uibModalInstance.dismiss('cancel');
     }
 
+
+    $scope.printReceipt = function () {
+
+        //var content = '  <div class="printed-receipt"> '+
+        //    '<div class="printed-receipt-container" >'+
+        //    '<div class="row">' +
+        //    '<img src="/Resources/Images/amana.png" alt="Amana-logo" id="amana-logo">' +
+        //    '</div>' +
+        //    ' <div class="multi-tables-container">' +
+        //'    <div class="table-container">' +
+        //    '     <table>' +
+        //    '       <tr>' +
+        //    '        <td class="title">Branch</td>' +
+        //    '      <td class="info"> Bir Hasan - Head Office </td > ' +
+        //    '   </tr>' +
+        //    ' <tr>' +
+        //    '   <td class="title">Coupon No.</td>' +
+        //    '   <td class="info">15</td>' +
+        //    '  </tr>' +
+        //    '  <tr>' +
+        //    '     <td class="title">Card ID</td>' +
+        //    '     <td class="info">Card ID</td>' +
+        //    '  </tr>' +
+        //    '  <tr>' +
+        //    '    <td class="title">Aux. Account</td>' +
+        //    '  <td class="info">Aux. Account</td>' +
+        //    '</tr>' +
+        //    '<tr>' +
+        //    '    <td class="title">Card Trans No.</td>' +
+        //    '    <td class="info">Card Trans No.</td>' +
+        //    '</tr>' +
+        //    '<tr>' +
+        //    '    <td class="title">Card Type</td>' +
+        //    '    <td class="info">Family Card</td>' +
+        //    '</tr>' +
+        //    ' </table>' +
+        //    '</div>' +
+        //    '<div class="table-container">' +
+        //    ' <table>' +
+        //    '    <tr>' +
+        //    '      <td class="title">Date/Time</td>' +
+        //    '     <td class="info">12-01-2023 12:35 AM</td>' +
+        //    '   </tr>' +
+        //    '   <tr>' +
+        //    '      <td class="title">Holder Name</td>' +
+        //    '     <td class="info">Hussein M. Al-Rubaie</td>' +
+        //    '  </tr>' +
+        //    '   <tr>' +
+        //    '      <td class="title">Address</td>' +
+        //    '      <td class="info">Haret Hreik - Dakash Street</td>' +
+        //    '  </tr>' +
+        //    '  <tr>' +
+        //    '      <td class="title">Phone No.</td>' +
+        //    '      <td class="info">76 615 913</td>' +
+        //    '  </tr>' +
+        //    '  <tr>' +
+        //    '      <td class="title">USD Rate</td>' +
+        //    '     <td class="info">89700</td>' +
+        //    '  </tr>' +
+        //    '  <tr>' +
+        //    '    <td class="title">VAT</td>' +
+        //    '    <td class="info">11%</td>' +
+        //    ' </tr>' +
+        //    ' </table>' +
+        //    '  </div>' +
+        //    ' </div>' +
+        //    '<h5 class="sub-title">Employee</h5>' +
+        //    '<table class="bordered-table">' +
+        //    '    <tbody>' +
+        //    '    <tr>' +
+        //    '        <td>ID</td>' +
+        //    '       <td>ITEM NAME</td>' +
+        //    '      <td>UNIT PRICE</td>' +
+        //    '      <td>QTY</td>' +
+        //    '      <td>DIS</td>' +
+        //    '     <td>TOTAL</td>' +
+        //    '  </tr>' +
+        //    ' <tr class="bordered-table-row">' +
+        //    '     <td>D2040</td>' +
+        //    '    <td>Item Name Item Name</td>' +
+        //    '    <td>Unit Price</td>' +
+        //    '   <td>-</td>' +
+        //    '   <td>-</td>' +
+        //    '   <td>5000000 LBP</td>' +
+        //    ' </tr>' +
+        //    ' <tr class="bordered-table-row">' +
+        //    '     <td>F2040</td>' +
+        //    '     <td>Item Name</td>' +
+        //    '     <td>Unit Price</td>' +
+        //    '     <td>-</td>' +
+        //    '    <td>-</td>' +
+        //    '    <td>1200000 LBP</td>' +
+        //    ' </tr>' +
+        //    ' <tr class="bordered-table-row">' +
+        //    '      <td>C2040</td>' +
+        //    '      <td>Item Name</td>' +
+        //    '      <td>Unit Price</td>' +
+        //    '       <td>-</td>' +
+        //    '      <td>-</td>' +
+        //    '       <td>59000000 LBP</td>' +
+        //    '  </tr>' +
+        //    ' </tbody>' +
+        //    '  </table>' +
+
+        //    '    <div class="output-container">' +
+        //    '      <div class="output">' +
+        //    '         <p class="output-title">Vehicle KM</p>' +
+        //    '         <p class="output-value">VAT 11%</p>' +
+        //    '     </div>' +
+        //    '    <div class="output">' +
+        //    '       <p class="output-title">150000 KM</p>' +
+        //    '       <p class="output-value">VAT 11%</p>' +
+        //    '    </div>' +
+        //    '    <div class="output">' +
+        //    '       <p class="output-title">Total in LBP</p>' +
+        //    '       <p class="output-value">0 LBP</p>' +
+        //    '   </div>' +
+        //    '   <div class="output">' +
+        //    '     <p class="output-title">Total in USD</p>' +
+        //    '     <p class="output-value">$0</p>' +
+        //    '   </div>' +
+        //    ' </div>' +
+
+
+        //    ' <div class="points-summary-titles">' +
+        //    '      <p class="points-left">Remaining Balance:</p>' +
+        //    '      <p class="points-center">Points:</p>' +
+        //    '     <p class="points-right">Points Balance:</p>' +
+        //    '  </div>' +
+        //    '  <div class="points-summary-values">' +
+        //    '     <p class="points-left">Remaining Balance</p>' +
+        //    '     <p class="points-center">Points</p>' +
+        //    '     <p class="points-right">Points Balance</p>' +
+        //    ' </div>' +
+
+        //    '  <div class="signature">Signature</div>' +
+        //    ' </div>' +
+        //    '</div >' +
+        //    '    </body >' +
+        //    ' </html >';
+
+        var myHtmlDry = '';
+
+        for (var i = 0; i < $rootScope.transactionsList.length; i++) {
+
+            var trans = $rootScope.transactionsList[i];
+
+            if (trans.productType === "Dry") {
+
+                for (var j = 0; j < trans.products.length; j++) {
+                    var dryItem = trans.products[j];
+                    myHtmlDry += '<tr> <td>' + dryItem.name + '</td> <td> ' + dryItem.qtyItem + '</td> <td> $ ' + dryItem.totalIt +'</td> <tr/>';
+                }
+
+            } else if (trans.productType === "Fuel") {
+
+                myHtmlDry += '<tr> <td>' + trans.productName + '</td> <td> ' + trans.qty + '</td> <td> ' + trans.priceLL + ' LBP </td> <tr/>';
+
+            } else if (trans.productType === "Car wash") {
+
+                for (var j = 0; j < trans.carWashOptionsList.length; j++) {
+                    var carItem = trans.carWashOptionsList[j];
+                    myHtmlDry += '<tr> <td>' + carItem.option + '</td> <td> 1 </td> <td> ' + carItem.priceMc + ' LBP </td> <tr/>';
+                }
+
+            } else if (trans.productType === "Service") {
+
+                for (var j = 0; j < trans.selectedServicesList.length; j++) {
+                    var serviceItem = trans.selectedServicesList[j];
+                    myHtmlDry += '<tr> <td>' + serviceItem.name + '</td> <td> 1 </td> <td> ' + serviceItem.priceMc + ' LBP </td> <tr/>';
+                }
+
+            }
+
+        }
+
+
+        var content = '  <div class="printed-receipt"> ' +
+            '<div class="printed-receipt-container" >' +
+            '<div class="row">' +
+            '<img src="/Resources/Images/amana.png" alt="Amana-logo" id="amana-logo">' +
+            '</div>' +
+            ' <div class="multi-tables-container">' +
+            '    <div class="table-container">' +
+            '     <table>' +
+            '       <tr>' +
+            '        <td class="title">Branch</td>' +
+            '      <td class="info"> Bir Hasan - Head Office </td > ' +
+            '   </tr>' +
+            '  <tr>' +
+            '      <td class="title">Phone No.</td>' +
+            '      <td class="info">01556567</td>' +
+            '  </tr>' +
+            '  <tr>' +
+            '    <td class="title">VAT</td>' +
+            '    <td class="info"></td>' +
+            ' </tr>' +
+            ' </table>' +
+            '</div>' +
+            '<div class="table-container">' +
+            ' <table>' +
+            '    <tr>' +
+            '      <td class="title">Date/Time</td>' +
+            '     <td class="info">' + $scope.creationDate +' '+ $scope.creationTime+'</td>' +
+            '   </tr>' +
+            '   <tr>' +
+            '      <td class="title">Address</td>' +
+            '      <td class="info">Beiurt - Bir Hasan</td>' +
+            '  </tr>' +
+            '  <tr>' +
+            '      <td class="title">USD Rate</td>' +
+            '     <td class="info">' + localStorage.getItem('dollarRate') +'</td>' +
+            '  </tr>' +
+            ' </table>' +
+            '  </div>' +
+            ' </div>' +
+            '<h5 class="sub-title">Employee</h5>' +
+            '<table class="bordered-table">' +
+            '    <tbody>' +
+            '    <tr>' +
+            '       <td>NAME</td>' +
+            '      <td>QTY</td>' +
+            '     <td>TOTAL</td>' +
+            '  </tr>' + myHtmlDry +
+            ' </tbody>' +
+            '  </table>' +
+
+            '    <div class="output-container">' +
+            '    <div class="output">' +
+            '       <p class="output-title">Total in LBP</p>' +
+            '       <p class="output-value">' + data.totalLL +' LBP</p>' +
+            '   </div>' +
+            '   <div class="output">' +
+            '     <p class="output-title">Total in USD</p>' +
+            '     <p class="output-value">' + $scope.totalDollar +'</p>' +
+            '   </div>' +
+            ' </div>' +
+
+
+            ' <div class="points-summary-titles">' +
+            '      <p class="points-left">Remaining Balance:</p>' +
+            '      <p class="points-center">Points:</p>' +
+            '     <p class="points-right">Points Balance:</p>' +
+            '  </div>' +
+            '  <div class="points-summary-values">' +
+            '     <p class="points-left">Remaining Balance</p>' +
+            '     <p class="points-center">Points</p>' +
+            '     <p class="points-right">Points Balance</p>' +
+            ' </div>' +
+
+            '  <div class="signature">Signature</div>' +
+            ' </div>' +
+            '</div >' +
+            '    </body >' +
+            ' </html >';
+
+        var w = window.open();
+
+        w.document.write('<html><head><title>Receipt</title>');
+        w.document.write('<link rel="stylesheet" href="/Resources/Styles/Custom/receipt.css">');
+        w.document.write('</head><body >');
+        w.document.write(content);
+        w.document.write('<script type="text/javascript">addEventListener("load", () => { print(); close(); })</script></body></html>');
+
+        w.document.close();
+        w.focus();
+    }
+
+
     function getTransactionMainId() {
 
         $rootScope.showLoader = true;

@@ -1,0 +1,111 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    text-wrap: balance;
+}
+.printed-receipt {
+    width: 400px;
+}
+
+.printed-receipt-container {
+    width: 400px;
+}
+
+.row {
+    display: inline-block;
+    height: 29px;
+    margin-bottom: 29px;
+}
+
+.multi-tables-container {
+    width: 100%;
+    margin-bottom: 29px;
+    display: inline-flex;
+}
+
+.table-container {
+    width: 50%;
+}
+
+table {
+    font-size: 10px;
+    border: none;
+}
+
+td.title {
+    font-weight: bold;
+}
+
+h5.sub-title {
+    font-size: 12px;
+    margin-bottom: 23px;
+}
+
+table.bordered-table th td {
+    text-transform: uppercase;
+    color: #676666;
+    font-size: 10px;
+}
+tr.bordered-table-row {
+    border-top: 1px #E6E6E6;
+    min-height: 25px;
+}
+
+table.bordered-table {
+    margin-bottom: 22px;
+    width: 100%;
+}
+
+.output-container {
+    margin-bottom: 23px;
+    margin-left: 50%;
+    width: 100%;
+    text-align: left;
+    font-size: 10px;
+}
+.output {
+    display: inline-flex;
+    width: 100%;
+}
+.output-title, .output-value {
+    width: 25%;
+    margin: 0px;
+}
+.output-title {
+    font-weight: bold;
+}
+
+.points-summary-titles, .points-summary-values {
+    display: inline-flex;
+    font-size: 10px;
+    width: 100%;
+}
+.points-summary-titles {
+    font-weight: bold;
+}
+.points-summary-values {
+    margin-bottom: 23px;
+}
+
+.points-left {
+    text-align: left;
+    width: 40%;
+    margin: auto;
+}
+.points-center {
+    text-align: left;
+    width: 30%;
+    margin: auto;
+}
+.points-right {
+    text-align: left;
+    width: 30%;
+    margin: auto;
+}
+
+.signature {
+    margin-left: 50%;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 10px;
+}

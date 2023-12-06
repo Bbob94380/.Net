@@ -294,7 +294,8 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
 
                         $scope.nuzzlesList = result.resultData;
 
-                        if ($scope.nuzzlesList.length > 0 && $scope.isPts === false) { $scope.showCheckBox = true; }
+                        //if ($scope.nuzzlesList.length > 0 && $scope.isPts === false) { $scope.showCheckBox = true; }
+                        if ($scope.nuzzlesList.length > 0) { $scope.showCheckBox = true; }
 
                         for (var i = 0; i < $scope.nuzzlesList.length; i++ ) {
                             isFieldFocus[i] = false;

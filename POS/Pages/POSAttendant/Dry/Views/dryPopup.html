@@ -1,8 +1,14 @@
-﻿<div class="modal-body">
+﻿<div class="modal-header" style="background: #F3F3F3; padding: 2rem;">
+
+    <button type="button" class="close closeBtnPopup" data-dismiss="modal" ng-click="$dismiss()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
     <div class="row" style="padding: 1em;">
         <div class="col-5" style="border-right: 1px solid #dee2e6;">
 
-            <div class="calculator card">
+            <div class="calculator card" style="margin-top: 3em;">
 
                 <div class="calculator-keys calculator-keys2">
 
@@ -33,23 +39,23 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label>{{'productName' | translate}}</label>
-                        <input value="{{productItem.name}}" disabled class="form-control form-control-lg">
+                        <input style="font-size: 26px;" value="{{productItem.name}}" disabled class="form-control form-control-lg">
                     </div>
                     <div class="form-group">
                         <label>{{'quantity' | translate}}</label>
-                        <input required type="text" ng-model="displayQtyResult" ng-change="ValueChanged2(displayQtyResult, displayPriceResult, 'qty')" class="form-control form-control-lg" ng-focus="QtyFocus()" ng-blur="QtyBlur(displayQtyResult)">
+                        <input style="font-size: 26px;" required type="text" ng-model="displayQtyResult" ng-change="ValueChanged2(displayQtyResult, displayPriceResult, 'qty')" class="form-control form-control-lg" ng-focus="QtyFocus()" ng-blur="QtyBlur(displayQtyResult)">
                     </div>
                     <div class="form-group">
                         <label>{{'discount' | translate}}</label>
-                        <input type="text" ng-disabled="disableField" ng-model="displayPriceResult" ng-change="ValueChanged2(displayQtyResult, displayPriceResult, 'discount')" class="form-control form-control-lg" ng-focus="PriceFocus()" ng-blur="PriceBlur(displayPriceResult)">
+                        <input style="font-size: 26px;" type="text" ng-disabled="disableField" ng-model="displayPriceResult" ng-change="ValueChanged2(displayQtyResult, displayPriceResult, 'discount')" class="form-control form-control-lg" ng-focus="PriceFocus()" ng-blur="PriceBlur(displayPriceResult)">
                     </div>
                     <div class="form-group">
                         <label>{{'price' | translate}}</label>
-                        <input type="text" disabled class="form-control form-control-lg" value="{{'$' + productItem.sale_price}}">
+                        <input style="font-size: 26px;" type="text" disabled class="form-control form-control-lg" value="{{'$' + productItem.sale_price}}">
                     </div>
                     <div class="form-group">
                         <label>{{'total' | translate}}</label>
-                        <input type="text" disabled class="form-control form-control-lg" value="{{'$' + totalIt}}" >
+                        <input style="font-size: 26px;" type="text" disabled class="form-control form-control-lg" value="{{'$' + totalIt}}" >
                     </div>
                 </div>
             </form>

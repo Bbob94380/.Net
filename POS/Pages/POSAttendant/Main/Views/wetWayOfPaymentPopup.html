@@ -252,7 +252,8 @@
 <div class="modal-footer wetTransPopupFooter payFooterPopup" ng-init="load()">
     <button type="button" class="btn btn-default clearbtn" data-dismiss="modal" ng-click="close()">{{'close' | translate}}</button>
     <button type="button" class="btn btn-primary nextbtn" ng-click="payDone()">{{'done' | translate}}</button>
-    <button type="button" class="btn btn-primary payCreateReceipt" ng-click="createRecipetForOneTransaction()">{{'createReceiptAndPrint' | translate}}</button>
+    <!--<button type="button" class="btn btn-primary payCreateReceipt" ng-click="createRecipetForOneTransaction()">{{'createReceiptAndPrint' | translate}}</button>-->
+    <button type="button" class="btn btn-primary payCreateReceipt" ng-click="printReceipt()">{{'createReceiptAndPrint' | translate}}</button>
     <!--<button type="button" class="btn btn-primary payCreateReceipt" style="background:#000 !important;" ng-click="displayCouponPopup()">{{'coupon' | translate}} </button>-->
 
 </div>

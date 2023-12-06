@@ -1,4 +1,10 @@
-﻿<div class="modal-body">
+﻿<div class="modal-header" style="background: #F3F3F3; padding: 2rem;">
+
+    <button type="button" class="close closeBtnPopup" data-dismiss="modal" ng-click="$dismiss()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
     <div class="row">
         <div class="col-5" style="border-right: 2px solid #dee2e6;">
 
@@ -58,7 +64,8 @@
             <div class="card-body">
 
 
-                <div ng-show="showNuzzlesSection" class="row" style="border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList">
+                <!--<div ng-show="showNuzzlesSection" class="row" style="border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList">-->
+                <div  class="row" style="border-left: 5px solid #f6c720; padding: 0px 15px;" ng-repeat="item in nuzzlesList">
                     <div class="col-sm-4">
                         <!-- select -->
                         <div class="form-group">
@@ -84,7 +91,7 @@
                         <!-- select -->
                         <div class="form-group">
                             <label class="label-dropdown">{{'newNuzzleCounter' | translate }}</label>
-                            <input type="text" class="form-control payInputField" ng-model="displayNewCounterResult[$index]" ng-focus="NewCounterFocus($index)" ng-blur="NewCounterBlur(displayNewCounterResult[$index])" />
+                            <input type="text" ng-disabled="!showNuzzlesSection" class="form-control payInputField" ng-model="displayNewCounterResult[$index]" ng-focus="NewCounterFocus($index)" ng-blur="NewCounterBlur(displayNewCounterResult[$index])" />
                         </div>
                     </div>
                 </div>
@@ -104,10 +111,10 @@
 
                 <div class="row" style="padding: 1em;" ng-hide="hideSummary">
                     <label>{{'wetproduct' | translate }}</label>
-                    <table class="table  text-nowrap transfer-popup-table" ng-repeat="item in salesSummary.wetProductDtos">
+                    <table class="table  text-nowrap transfer-popup-table"  ng-repeat="item in salesSummary.wetProductDtos">
                         <thead>
                             <tr>
-                                <th></th>
+                                <!--<th></th>-->
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                                 <th class="th-text">{{'type' | translate }}</th>
                                 <th class="th-text">{{'LITERS' | translate }}</th>
@@ -116,7 +123,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
+                                <!--<td></td>-->
                                 <td><span class="transfer-half-rectangle2"></span></td>
                                 <td>{{item.name}}</td>
                                 <td>{{item.liters}} {{'Litre' | translate }}</td>
@@ -131,7 +138,6 @@
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                                 <th class="th-text">{{'numberOfCars' | translate }}</th>
                                 <th class="th-text">{{'amount' | translate }}</th>
@@ -139,7 +145,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfVehicles}}</td>
                                 <td>{{salesSummary.carWashTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.carWashTotalUsd}}</td>
@@ -153,7 +158,6 @@
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                                 <th class="th-text">{{'numberOfItems' | translate }}</th>
                                 <th class="th-text">{{'amount' | translate }}</th>
@@ -161,7 +165,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfItems}}</td>
                                 <td>{{salesSummary.dryProductTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.dryProductTotalUsd}}</td>
@@ -175,7 +178,6 @@
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                                 <th class="th-text">{{'numberOfServices' | translate }}</th>
                                 <th class="th-text">{{'amount' | translate }}</th>
@@ -183,7 +185,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
                                 <td></td>
                                 <td>{{salesSummary.numberOfStationServices}}</td>
                                 <td>{{salesSummary.stationServicesTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.stationServicesTotalUsd}}</td>
@@ -327,7 +328,7 @@
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
-                                <th></th>
+                                
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                                 <th class="th-text">{{'COUNT' | translate }}</th>
                                 <th class="th-text">{{'amount' | translate }}</th>
@@ -335,7 +336,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
+                               
                                 <td></td>
                                 <td>{{salesSummary.numberOfPostPaidCoupons}}</td>
                                 <td>{{salesSummary.postPaidCouponsTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.postPaidCouponsTotalUSd}} </td>
@@ -349,7 +350,7 @@
                     <table class="table  text-nowrap transfer-popup-table">
                         <thead>
                             <tr>
-                                <th></th>
+                                
                                 <th class="th-rect"><span class="transfer-half-rectangle"></span></th>
                                 <th class="th-text">{{'COUNT' | translate }}</th>
                                 <th class="th-text">{{'amount' | translate }}</th>
@@ -357,7 +358,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
+                                
                                 <td></td>
                                 <td>{{salesSummary.numberOfRefunds}}</td>
                                 <td>{{salesSummary.refundTotalLbp}} {{'LL' | translate }}/ $ {{salesSummary.refundTotalUsd}} </td>
