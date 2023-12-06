@@ -26,10 +26,10 @@
                 <!-- Title + sub -->
                 <div class="fms-title row mb-4">
                     <div class="col-12">
-                        <h1>Dispensers</h1>
+                        <h1>{{'Dispensers' | translate}}</h1>
                     </div>
                     <div class="col-12">
-                        <h2>Number of Dispensers</h2>
+                        <h2>{{'numberOfDispensers' | translate}}: {{ pumpStates.length? pumpStates.length : '0' }}</h2>
                     </div>
                 </div>
 
@@ -117,29 +117,26 @@
                 <!-- Title + sub Tanks -->
                 <div class="fms-title row mb-4">
                     <div class="col-12">
-                        <h1>Tanks</h1>
+                        <h1>{{'Tanks' | translate}}</h1>
                     </div>
                     <div class="col-12">
-                        <h2>Number of Tanks</h2>
+                        <h2>{{'numberOfTanks' | translate}}: {{ tanks.length? tanks.length : '0' }}</h2> 
                     </div>
                 </div>
 
                 <!-- Filters -->
                 <div class="row mb-4 fms-filter-group-button">
                     <div class="col-auto">
-                        <button type="button" class="btn btn-lg btn-block px-3 fms-filter-button-active"><span>All</span></button>
+                        <button type="button" ng-click="tankFilterFunc('ALL')" ng-class="{'fms-filter-button-active': tankFilter.description == 'ALL'}" class="btn btn-lg btn-block px-3"><span>All</span></button>
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-lg btn-block"><span>Tank</span></button>
+                        <button type="button" ng-click="tankFilterFunc('LOW')" ng-class="{'fms-red-backgroud': tankFilter.description == 'LOW'}" class="btn btn-lg btn-block"><span>Low</span></button>
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-lg btn-block"><span>Tank</span></button>
+                        <button type="button" ng-click="tankFilterFunc('MEDIUM')" ng-class="{'fms-orange-backgroud': tankFilter.description == 'MEDIUM'}" class="btn btn-lg btn-block"><span>Medium</span></button>
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-lg btn-block"><span>Tank</span></button>
-                    </div>
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-lg btn-block"><span>Tank</span></button>
+                        <button type="button" ng-click="tankFilterFunc('FULL')" ng-class="{'fms-green-backgroud': tankFilter.description == 'FULL'}" class="btn btn-lg btn-block"><span>Full</span></button>
                     </div>
                 </div>
 

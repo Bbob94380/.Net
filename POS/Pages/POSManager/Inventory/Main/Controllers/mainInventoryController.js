@@ -1,18 +1,18 @@
-﻿rootModule.controller("mainInventoryController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", function ($scope, $state, $timeout, $uibModal, $http, $rootScope) {
+﻿const DISPENSER_FILTER = Object.freeze({
+    ALL: Symbol("ALL"),
+    FILLING: Symbol("FILLING"),
+    OFFLINE: Symbol("OFFLINE"),
+    IDLE: Symbol("IDLE")
+});
 
-    const DISPENSER_FILTER = Object.freeze({
-        ALL: Symbol("ALL"),
-        FILLING: Symbol("FILLING"),
-        OFFLINE: Symbol("OFFLINE"),
-        IDLE: Symbol("IDLE")
-    });
+const TANK_FILTER = Object.freeze({
+    ALL: Symbol("ALL"),
+    LOW: Symbol('LOW'),
+    MEDIUM: Symbol('MEDIUM'),
+    FULL: Symbol('FULL')
+});
 
-    const TANK_FILTER = Object.freeze({
-        ALL: Symbol("ALL"),
-        LOW: Symbol('LOW'),
-        MEDIUM: Symbol('MEDIUM'),
-        HIGH: Symbol('HIGH')
-    });
+rootModule.controller("mainInventoryController", ["$scope", "$state", "$timeout", "$uibModal", "$http", "$rootScope", function ($scope, $state, $timeout, $uibModal, $http, $rootScope) {
 
     $scope.isLoading = true;
     $scope.dispenserFilter = DISPENSER_FILTER.ALL;
@@ -40,13 +40,13 @@
     };
 
     function filterTanks(tank) {
-        if ($scope.TANK_FILTER === TANK_FILTER.LOW && tank.fillingPercentage <= 33) {
+        if ($scope.tankFilter === TANK_FILTER.LOW && tank.fillingPercentage <= 33) {
             return true;
         }
-        if ($scope.TANK_FILTER === TANK_FILTER.HIGH && tank.fillingPercentage > 66) {
+        if ($scope.tankFilter === TANK_FILTER.FULL && tank.fillingPercentage > 66) {
             return true;
         }
-        if ($scope.TANK_FILTER === TANK_FILTER.MEDIUM && tank.fillingPercentage < 66 && tank.fillingPercentage >= 33) {
+        if ($scope.tankFilter === TANK_FILTER.MEDIUM && tank.fillingPercentage < 66 && tank.fillingPercentage >= 33) {
             return true;
         }
         return false;

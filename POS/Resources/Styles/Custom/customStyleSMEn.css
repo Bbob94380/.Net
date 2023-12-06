@@ -1655,8 +1655,7 @@ a.pager:first-child {
 
 /* FMS */
 .fms-skeleton {
-    background-color: #818181; /* Set a background color */
-    animation: skeleton-loading 1s infinite alternate; /* Add animation */
+    animation: skeleton-loading 1s linear infinite alternate;
     width: 237px;
     height: 400px;
     margin: 0px 34px 34px 0px;
@@ -1664,13 +1663,12 @@ a.pager:first-child {
 
 @keyframes skeleton-loading {
     0% {
-        opacity: 0.6;
+        background-color: hsl(200, 20%, 80%);
     }
-    /* Initial opacity */
+
     100% {
-        opacity: 1;
+        background-color: hsl(200, 20%, 95%);
     }
-    /* Full opacity */
 }
 
 
@@ -1692,15 +1690,16 @@ a.pager:first-child {
     height: 55px;
 }
 
-    .fms-bar div {
-        font-family: 'rubikMedium';
-        font-size: 13px;
-        color: white;
-    }
+.fms-bar div {
+    font-family: 'rubikMedium';
+    font-size: 13px;
+    color: white;
+}
 
 .fms-green-backgroud,
 .fms-red-backgroud,
 .fms-blue-backgroud,
+.fms-orange-backgroud,
 .fms-grey-backgroud {
     color: white !important;
 }
@@ -1708,8 +1707,12 @@ a.pager:first-child {
     background-color: #008000 !important;
 }
 
+.fms-orange-backgroud {
+    background-color: #fa8a08 !important;
+}
+
 .fms-red-backgroud {
-    background-color: #D80404 !important;
+    background-color: #e2342b !important;
 }
 
 .fms-blue-backgroud {
