@@ -1560,7 +1560,12 @@ div.dataTables_wrapper div.dataTables_paginate {
     color: white;
 }
 
-.fms-green-backgroud,
+.fms-filter-group-button button:hover:not(.fms-green-backgroud):not(.fms-red-backgroud):not(.fms-blue-backgroud):not(.fms-orange-backgroud):not(.fms-filter-button-active),
+.fms-top-button:hover {
+    color: #212529 !important;
+}
+
+.fms-green-backgroud, 
 .fms-red-backgroud,
 .fms-blue-backgroud,
 .fms-orange-backgroud,
@@ -1829,7 +1834,6 @@ div.dataTables_wrapper div.dataTables_paginate {
     margin-left: 0.2em;
 }
 /*END FMS */
-
 .pos-wrapper {
     margin-right: 15em !important;
 }
