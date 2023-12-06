@@ -1093,6 +1093,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table
 }
 
 
+.fms-date-filter-label,
 .date-filter-label {
     font-family: 'rubikRegular';
     font-weight: 100 !important;
@@ -1670,7 +1671,6 @@ a.pager:first-child {
         background-color: hsl(200, 20%, 95%);
     }
 }
-
 
 .fms-card {
     width: 237px;
