@@ -26,25 +26,60 @@
 
                 </div>
             </div>
+
+            <span class="loader" ng-show="isLoading2" style="margin-left: 43%; margin-top: 1em;"></span>
+
+            <div class="form-group" ng-show="showImage">
+                <div class="card-body dryItemSearch">
+                    <img class="dry-item-img" src="{{product.image}}" />
+                    <span class="card-title dry-item-title">{{product.barcode}}</span>
+                    <span class="card-title dry-item-title2">{{product.name}}</span>
+                    <span class="card-title dry-item-title2">{{product.sale_price}}$</span>
+                </div>
+            </div>
+
         </div>
         <div class="col-7">
+
+            
             <form>
                 <div class="card-body">
                     <div class="form-group">
-                        <label>{{ 'barcode' | translate}}</label>
-                        <input required ng-change="getProductBarcode()" type="text" ng-model="displayBarcodeResult" class="form-control form-control-lg" ng-focus="BarcodeFocus()" ng-blur="BarcodeBlur(displayBarcodeResult)">
+                        <label>{{ 'name' | translate}}</label>
+                        <input style="font-size: 26px;" autofocus required ng-change="getProductByName()" type="text" ng-model="dryProductName" class="form-control form-control-lg">
                     </div>
                     <div class="form-group">
-                        <label>{{ 'quantity2' | translate}}</label>
-                        <input required type="text" ng-model="displayQtyResult" class="form-control form-control-lg" ng-focus="QtyFocus()" ng-blur="QtyBlur(displayQtyResult)">
+                        <label>{{ 'barcode' | translate}}</label>
+                        <input style="font-size: 26px;" required ng-change="getProductBarcode()" type="text" ng-model="displayBarcodeResult" class="form-control form-control-lg" ng-focus="BarcodeFocus()" ng-blur="BarcodeBlur(displayBarcodeResult)">
                     </div>
-                    <div class="form-group" ng-show="showImage">
-                        <div class="card-body barcode-img-body">
-                            <img class="dry-item-img" src="{{product.image}}" />
-                            <span class="card-title dry-item-title">{{product.barcode}}</span>
-                            <span class="card-title dry-item-title2">{{product.name}}</span>
-                            <span class="card-title dry-item-title2">{{product.sale_price}}$</span>
-                        </div>
+                    <div class="form-group">
+                        <label>{{'quantity2' | translate}}</label>
+                        <input autofocus style="font-size: 26px;" ng-disabled="isFieldDisabled" required type="text" ng-model="displayQtyResult" ng-change="ValueChanged2(displayQtyResult, displayPriceResult, 'qty')" class="form-control form-control-lg" ng-focus="QtyFocus()" ng-blur="QtyBlur(displayQtyResult)">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'discount' | translate}}</label>
+                        <input style="font-size: 26px;" type="text" ng-disabled="isFieldDisabled" ng-model="displayPriceResult" ng-change="ValueChanged2(displayQtyResult, displayPriceResult, 'discount')" class="form-control form-control-lg" ng-focus="PriceFocus()" ng-blur="PriceBlur(displayPriceResult)">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'price' | translate}}</label>
+                        <input style="font-size: 26px;" type="text" disabled class="form-control form-control-lg" value="{{'$' + productItem.sale_price}}">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'total' | translate}}</label>
+                        <input style="font-size: 26px;" type="text" disabled class="form-control form-control-lg" value="{{'$' + totalIt}}">
+                    </div>
+                    <div style=" text-align: center;">
+                        <span class="loader" ng-show="isLoading"></span>
+                        <ul class="nav nav-tabs dry-ul-scroll" ng-show="showScrollBar" id="myTab" role="tablist">
+                            <li class="nav-item item-filter-dry" style=" border: none;" ng-repeat="item in dryProductsList">
+                                <div class="card-body dryItemSearch {{itemClickedStyle[$index]}}" ng-click="dryClicked(item, $index)">
+                                    <img class="dry-item-img" src="{{item.image}}" />
+                                    <span class="card-title dry-item-title">{{item.barcode}}</span>
+                                    <span class="card-title dry-item-title2">{{item.name}}</span>
+                                    <span class="card-title dry-item-title2">{{item.sale_price}}$</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </form>

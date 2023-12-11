@@ -17,7 +17,7 @@
                                     <p class="pincode-title">{{ 'useCode' | translate}}</p>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="6" id="pin" required ng-model="pinCodeValue" class="form-control input-pincode" placeholder="{{ 'code2' | translate}}" style="text-align:center;" />
+                                        <input autofocus type="password" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  maxlength="6" id="pin" required ng-model="pinCodeValue" class="form-control input-pincode" placeholder="{{ 'code2' | translate}}" style="text-align:center;" />
                                     </div>
 
                                     <div class="pt-1 pb-1">

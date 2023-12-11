@@ -1,8 +1,13 @@
-﻿posAttendantRootModule.controller("carWashMenuController", ["$scope", "$uibModal", "$http", "$rootScope", function ($scope, $uibModal, $http, $rootScope) {
+﻿posAttendantRootModule.controller("carWashMenuController", ["$scope", "$uibModal", "$http", "$rootScope", "$filter", function ($scope, $uibModal, $http, $rootScope, $filter) {
 
 	$rootScope.dryItemsList = [];
 
 	$scope.displayCarWashTransactionPopup = function (carWashType, carTypeLang) {
+
+		if (localStorage.getItem("isCurrentEmployeeHasOpenShift") !== "true") {
+			swal($filter('translate')('noOpenShift'), "", "warning");
+			return;
+		}
 
 		var modalInstance;
 

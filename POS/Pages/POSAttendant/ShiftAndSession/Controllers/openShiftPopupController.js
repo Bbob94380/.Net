@@ -384,8 +384,15 @@ posAttendantRootModule.controller('openShiftPopupController', function ($scope, 
 
                     if (result.isSuccessStatusCode) {
 
+                        var openedShifts = [];
+                        openedShifts.push({ employeeId: localStorage.getItem("employeeId"), blockUI: "false" });
+                        localStorage.setItem("openedShifts", JSON.stringify(openedShifts));
+                        localStorage.setItem("isCurrentEmployeeHasOpenShift", "true");
+
                         swal($filter('translate')('shiftCreatedSuccess'), "", "success");
                         $uibModalInstance.close('Succeeded');
+
+
 
                     } else {
                         swal($filter('translate')('shiftCreatedFailed'), "", "error");

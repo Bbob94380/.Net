@@ -2,6 +2,7 @@
 posAttendantRootModule.config(["$translateProvider", function ($translateProvider) {
 
     var en_translations = {
+        "noOpenShift": "You don't have an open shift",
         "name": "Name",
         "productName": "Product Name",
         "carwash": "Car Wash",
@@ -145,6 +146,7 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
         "carWashOptionNotFound": "Please add at least one car wash option",
         "fillAllRequiredFields": "Please fill all required fields",
         "fillBarcodeField": "Please fill the barcode field",
+        "fillBarcodeOrNameField": "Please fill name or barcode field",
         "fillQuantityField": "Please fill the quantity field",
         "failedgetCarWashOptions": "Failed getting car was options",
         "failedgetDryProducts": "Failed getting dry products",
@@ -181,6 +183,7 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
     }
 
     var ar_translations = {
+        "noOpenShift": "ليس لديك دوام مفتوح",
         "name": "الاسم",
         "productName": "اسم المنتج",
         "carwash": "غسيل السيارات",
@@ -323,6 +326,7 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
         "carWashOptionNotFound": "يُرجى اختيار نوع الغسيل",
         "fillAllRequiredFields": "يرجى ملء كافة الحقول الالزامية",
         "fillBarcodeField": "يُرجى ملء حقل الباركود",
+        "fillBarcodeOrNameField": "يُرجى ملء حقل الاسم أو لالباركود",
         "fillQuantityField": "يُرجى ملء حقل الكمية",
         "failedgetCarWashOptions": "فشلت عملية الحصول على خيارات غسيل المركبات",
         "failedgetDryProducts": "فشلت عملية الإتيان بمنتجات الزيوت",
@@ -350,8 +354,8 @@ posAttendantRootModule.config(["$translateProvider", function ($translateProvide
         "shiftCloseSuccess": "نجت عملية الإغلاق",
         "shiftCloseFailed": "فشلت عملية الإغلاق",
         "LoginFailed": "فشلت عملية تسجيل الدخول",
-        "shiftCreatedSuccess": "تمت عملية فتح الوردية بنجاح",
-        "shiftCreatedFailed": "فشلت عملية فتح الوردية",
+        "shiftCreatedSuccess": "تمت عملية فتح الدوام بنجاح",
+        "shiftCreatedFailed": "فشلت عملية فتح الدوام",
         "wrongMoney": "يجب ان يكون المبلغ المدفوع مساوٍ لقيمة المشتريات",
         "noNuzzles": "لا يوجد عدادات",
         "noTrans": "لا يوجد عمليات"

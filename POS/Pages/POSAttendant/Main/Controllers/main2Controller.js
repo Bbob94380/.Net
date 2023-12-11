@@ -38,6 +38,41 @@
                 $scope.transTotalDollar = "";
                 $rootScope.totalLabelDryAndWet = "hideTotalLabelDryAndWet";
 
+
+                if (localStorage.getItem("openedShifts") !== null && localStorage.getItem("openedShifts") !== "" && localStorage.getItem("openedShifts") !== undefined) {
+                    var openedShifts = JSON.parse(localStorage.getItem("openedShifts"));
+                    var existOpen = false;
+                    var isBlockUI = false;
+                    for (var g = 0; g < openedShifts.length; g++) {
+                        if (openedShifts[g].employeeId === localStorage.getItem("employeeId")) { existOpen = true; isBlockUI = openedShifts[g].blockUI; break; }
+                    }
+                    if (existOpen) {
+                        localStorage.setItem("isCurrentEmployeeHasOpenShift", "true");
+                        if (isBlockUI === "true") {
+                            var oldDollarRate = localStorage.getItem('oldDollarRate');
+                            var newDollarRate = localStorage.getItem('dollarRate');
+                            if (modalInstanceRate !== null) modalInstanceRate.dismiss();
+                            OpenDollarRateChangedPopup(oldDollarRate, newDollarRate);
+                        }
+                    } else {
+                        localStorage.setItem("isCurrentEmployeeHasOpenShift", "false");
+                    }
+                } else {
+                    localStorage.setItem("isCurrentEmployeeHasOpenShift", "false");
+                }
+
+
+                var roles = JSON.parse(localStorage.getItem("employeeRoles"));
+                if (roles !== undefined && roles !== null && roles !== "")
+                    for (var i = 0; i < roles.length; i++) {
+                        var role = roles[i];
+                        if (role === "admin_payroll") { $scope.showMenuWet = true; }
+                        if (role === "admin_contracts") { $scope.showMenuDry = true; }
+                        if (role === "admin_employees") { $scope.showMenuCar = true; }
+
+                    }
+
+
                 var transJson = JSON.parse(localStorage.getItem("transList"));
                 if (transJson !== undefined && transJson !== null && transJson !== "") {
                     //add for loop 3al transJson to show just transactions for current user
@@ -45,6 +80,7 @@
                     console.log($rootScope.transactionsList);
                     if ($rootScope.transactionsList.length > 0) $rootScope.calculateTotal();
                 }
+
 
 
                 if (localStorage.getItem('blockUI') === 'true' && localStorage.getItem('isEmployeeLoggedIn') === "true") {
@@ -70,12 +106,6 @@
         $rootScope.OpenEmployeeLoginPopup();
     }
 
-    if (localStorage.getItem('blockUI') === 'true' && localStorage.getItem('isEmployeeLoggedIn') === "true") {
-        var oldDollarRate = localStorage.getItem('oldDollarRate');
-        var newDollarRate = localStorage.getItem('dollarRate');
-        if (modalInstanceRate !== null) modalInstanceRate.dismiss();
-        OpenDollarRateChangedPopup(oldDollarRate, newDollarRate);
-    }
 
 
     if (localStorage.getItem('language') === 'en') {
@@ -113,8 +143,7 @@
 
         }
 
-
-
+   
     //var ws = new WebSocket("ws://localhost:8080/FPOS/sendingNotifications");
     var ws = new WebSocket("ws://35.181.42.111:8080/FPOS/sendingNotifications");
 
@@ -137,12 +166,18 @@
                     console.log(oldDollarRate);
 
                     if (oldDollarRate !== result.currencyRatio) {
-                        localStorage.setItem("blockUI", "true");
                         $rootScope.dollarRate = result.currencyRatio;
                         localStorage.setItem('oldDollarRate', oldDollarRate);
                         localStorage.setItem('dollarRate', result.currencyRatio);
 
-                        if (localStorage.getItem('isEmployeeLoggedIn') === "true") {
+                        if (localStorage.getItem("openedShifts") !== null && localStorage.getItem("openedShifts") !== "" && localStorage.getItem("openedShifts") !== undefined) {
+                            var openedShifts = JSON.parse(localStorage.getItem("openedShifts"));
+                            for (var g = 0; g < openedShifts.length; g++) {
+                                openedShifts[g].blockUI === "true";
+                            }
+                        }
+
+                        if (localStorage.getItem('isEmployeeLoggedIn') === "true" && localStorage.getItem('isCurrentEmployeeHasOpenShift') === "true") {
                             if (modalInstanceRate !== null) modalInstanceRate.dismiss();
                             OpenDollarRateChangedPopup(oldDollarRate, result.currencyRatio);
                         }
@@ -420,6 +455,10 @@
 
     $scope.displayEditTransactionsPopup = function () {
 
+        if (localStorage.getItem("isCurrentEmployeeHasOpenShift") !== "true") {
+            swal($filter('translate')('noOpenShift'), "", "warning");
+            return;
+        }
 
         if ($rootScope.transactionsList.length > 0) {
 
@@ -451,7 +490,7 @@
             });
 
         } else {
-            sweetAlert($filter('translate')('noTrans'), "", "warning");
+            swal($filter('translate')('noTrans'), "", "warning");
         }
     };
 
@@ -489,6 +528,11 @@
 
     $scope.displayWetWayOfPaymentPopup = function () {
 
+        if (localStorage.getItem("isCurrentEmployeeHasOpenShift") !== "true") {
+            swal($filter('translate')('noOpenShift'), "", "warning");
+            return;
+        }
+
         if ($rootScope.transactionsList.length > 0) {
 
             var modalInstance;
@@ -524,12 +568,17 @@
                 //alert('hi');
             });
         } else {
-            sweetAlert("There are no transactions to be paid!", "", "warning");
+            swal("There are no transactions to be paid!", "", "warning");
         }
 
     };
 
     $scope.displayOilChangePopup = function () {
+
+        if (localStorage.getItem("isCurrentEmployeeHasOpenShift") !== "true") {
+            swal($filter('translate')('noOpenShift'), "", "warning");
+            return;
+        }
 
             var modalInstance;
 
@@ -583,6 +632,30 @@
                         $scope.employeeName = result.resultData.name;
                         $scope.employeeId = result.resultData.id;
                         localStorage.setItem("employeeId", $scope.employeeId);
+
+                        if (localStorage.getItem("openedShifts") !== null && localStorage.getItem("openedShifts") !== "" && localStorage.getItem("openedShifts") !== undefined) {
+                            var openedShifts = JSON.parse(localStorage.getItem("openedShifts"));
+                            var existOpen = false;
+                            var isBlockUI = false;
+                            for (var g = 0; g < openedShifts.length; g++) {
+                                if (openedShifts[g].employeeId === localStorage.getItem("employeeId")) { existOpen = true; isBlockUI = openedShifts[g].blockUI; break; }
+                            }
+                            if (existOpen) {
+                                localStorage.setItem("isCurrentEmployeeHasOpenShift", "true");
+                                if (isBlockUI === "true") {
+                                    var oldDollarRate = localStorage.getItem('oldDollarRate');
+                                    var newDollarRate = localStorage.getItem('dollarRate');
+                                    if (modalInstanceRate !== null) modalInstanceRate.dismiss();
+                                    OpenDollarRateChangedPopup(oldDollarRate, newDollarRate);
+                                }
+                            } else {
+                                localStorage.setItem("isCurrentEmployeeHasOpenShift", "false");
+                            }
+                        } else {
+                            localStorage.setItem("isCurrentEmployeeHasOpenShift", "false");
+                        }
+
+
                         $rootScope.profileName = $scope.employeeName.slice(0, 2).toUpperCase();
 
                     } else {
@@ -697,6 +770,11 @@
     }
 
     $scope.closeShiftPopup = function () {
+
+        if (localStorage.getItem("isCurrentEmployeeHasOpenShift") !== "true") {
+            swal($filter('translate')('noOpenShift'), "", "warning");
+            return;
+        }
 
         var modalInstance;
 

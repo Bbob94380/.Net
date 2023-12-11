@@ -80,6 +80,13 @@
 
     $scope.displayWetTransactionPopup = function (wetName, wetId, priceMc, priceSc, type) {
 
+
+        if (localStorage.getItem("isCurrentEmployeeHasOpenShift") !== "true") {
+            swal($filter('translate')('noOpenShift'), "", "warning");
+            return;
+        }
+
+
 		var modalInstance;
 
 		modalInstance = $uibModal.open({

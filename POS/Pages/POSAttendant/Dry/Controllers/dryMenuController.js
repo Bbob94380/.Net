@@ -11,6 +11,11 @@
 
     $scope.searchProductByBarcode = function () {
 
+        if (localStorage.getItem("isCurrentEmployeeHasOpenShift") !== "true") {
+            swal($filter('translate')('noOpenShift'), "", "warning");
+            return;
+        }
+
         var modalInstance;
 
         modalInstance = $uibModal.open({
@@ -154,6 +159,12 @@
 
 
     $rootScope.dryItemClicked = function (productItem, addedQty) {
+
+        if (localStorage.getItem("isCurrentEmployeeHasOpenShift") !== "true") {
+            swal($filter('translate')('noOpenShift'), "", "warning");
+            return;
+        }
+
 
         var modalInstance;
 

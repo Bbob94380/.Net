@@ -137,7 +137,8 @@ rootModule.controller("rootCtrl", ["$scope", "$rootScope", "$http", "$translate"
     }
 
 
-    var ws = new WebSocket("ws://localhost:8080/FPOS/sendingNotifications");
+    //var ws = new WebSocket("ws://localhost:8080/FPOS/sendingNotifications");
+    var ws = new WebSocket("ws://35.181.42.111:8080/FPOS/sendingNotifications");
 
     ws.onopen = function () {
         console.log("connection established...");

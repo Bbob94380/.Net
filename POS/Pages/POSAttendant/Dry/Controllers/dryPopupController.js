@@ -66,7 +66,7 @@ posAttendantRootModule.controller('dryPopupController', function ($scope, $docum
         if ($scope.displayQtyResult === '0' || $scope.displayQtyResult === 0 || $scope.displayQtyResult === ""
             || $scope.displayQtyResult === null || $scope.displayQtyResult === undefined) {
 
-            sweetAlert("Please fill the qty field", "", "warning");
+            swal("Please fill the qty field", "", "warning");
             return;
         }
 

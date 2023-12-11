@@ -270,6 +270,66 @@ namespace POS.Controllers
             return JsonConvert.SerializeObject(responseData);
         }
 
+
+        [HttpPost]
+        public async Task<string> findbyName(Payload payload)
+        {
+
+            //variables
+            List<Product> products = new List<Product>();
+            ResponseData<List<Product>> responseData = new ResponseData<List<Product>>();
+
+            try
+            {
+                //Add cookie
+                WebRequestHandler handler = new WebRequestHandler();
+                handler.CookieContainer = new System.Net.CookieContainer();
+                handler.UseCookies = false;
+                handler.UseDefaultCredentials = true;
+                Cookie clientCookie = new Cookie("session_id", payload.sessionId);
+                clientCookie.Domain = Request.RequestUri.Host;
+                clientCookie.Path = "/";
+                handler.CookieContainer.Add(clientCookie);
+
+
+                //http request
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
+                    client.DefaultRequestHeaders.Accept.Clear(); client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage response = await client.GetAsync("FPOS/rest/dryProduct/findbyName/" + payload.productName);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        products = await response.Content.ReadAsAsync<List<Product>>();
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = products;
+                    }
+                    else
+                    {
+                        responseData.isSuccessStatusCode = response.IsSuccessStatusCode;
+                        responseData.statusCode = response.StatusCode.ToString();
+                        responseData.resultData = null;
+                    }
+
+                    return JsonConvert.SerializeObject(responseData);
+                }
+
+            }
+            catch (Exception e)
+            {
+                responseData.isSuccessStatusCode = false;
+                responseData.errorMsg = e.Message;
+                responseData.resultData = null;
+            }
+
+            return JsonConvert.SerializeObject(responseData);
+        }
+
+
         [HttpPost]
         public async Task<string> FindByBarcodeAsync(Payload payload)
         {
@@ -1898,6 +1958,7 @@ namespace POS.Controllers
         public string barcode { get; set; }
         public string transType { get; set; }
         public string employeName { get; set; }
+        public string productName { get; set; }
         public string saleId { get; set; }
         public string receptionId { get; set; }
         public string saleTransactionId { get; set; }

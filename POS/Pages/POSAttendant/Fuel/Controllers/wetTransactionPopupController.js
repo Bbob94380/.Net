@@ -128,7 +128,7 @@ posAttendantRootModule.controller('wetTransactionPopupController', function ($sc
             ($scope.displayQtyResult === undefined || $scope.displayQtyResult === null ||
             $scope.displayQtyResult === '0' || $scope.displayQtyResult === 0 || $scope.displayQtyResult === "")) {
 
-            sweetAlert("Please fill at least one field", "", "warning");
+            swal("Please fill at least one field", "", "warning");
             return;
         }
 

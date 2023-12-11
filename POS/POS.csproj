@@ -1030,7 +1030,11 @@
     <Content Include="Resources\Images\icons.png" />
     <Content Include="Resources\Images\common\logo.png" />
     <Content Include="Resources\Images\nozzle.png" />
+    <Content Include="Resources\Images\pump_nozzle.png" />
     <Content Include="Resources\Images\remove-icon.png" />
+    <Content Include="Resources\Images\tank_full.png" />
+    <Content Include="Resources\Images\tank_low.png" />
+    <Content Include="Resources\Images\tank_medium.png" />
     <Content Include="Resources\Images\user2-160x160.jpg" />
     <Content Include="Resources\Scripts\Custom\AngularJs\Controllers\hoLoginCtrl.js" />
     <Content Include="Resources\Scripts\Custom\AngularJs\Controllers\smLoginCtrl.js" />

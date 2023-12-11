@@ -110,6 +110,14 @@ posAttendantRootModule.controller('closeSessionPopupController', function ($scop
                     if (result.isSuccessStatusCode) {
 
                         localStorage.setItem('blockUI', "false");
+
+                        var openedShifts = JSON.parse(localStorage.getItem("openedShifts"));
+                        for (var i = 0; i < openedShifts.length; i++) {
+                            if (openedShifts[i].employeeId === localStorage.getItem("employeeId")) { openedShifts[i].blockUI = "false"; }
+                        }
+
+                        localStorage.setItem("openedShifts", JSON.stringify(openedShifts));
+
                         $uibModalInstance.close('Succeeded');
                         swal($filter('translate')('sessionClosed'), "", "success");
 

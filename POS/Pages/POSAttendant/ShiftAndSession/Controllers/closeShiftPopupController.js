@@ -162,7 +162,8 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
 
                     if (result.isSuccessStatusCode) {
 
-                        if (!result.resultData === true) {
+                        if (result.resultData === true) {
+                            console.log(result.resultData);
                             $scope.isPts = true;
                             $scope.showNuzzlesSection = false;
                         } else {
@@ -540,6 +541,16 @@ posAttendantRootModule.controller('closeShiftPopupController', function ($scope,
                     var result = JSON.parse(response.data);
 
                     if (result.isSuccessStatusCode) {
+
+                        
+                        var openedShifts = JSON.parse(localStorage.getItem("openedShifts"));
+                        var newOpenedShifts = [];
+                        for (var i = 0; i < openedShifts.length; i++) {
+                            if (openedShifts[i].employeeId !== localStorage.getItem("employeeId")) { newOpenedShifts.push(openedShifts[i]) }
+                        }
+
+                        localStorage.setItem("openedShifts", JSON.stringify(newOpenedShifts));
+                        localStorage.setItem("isCurrentEmployeeHasOpenShift", "false");
 
                         swal($filter('translate')('shiftCloseSuccess'), "", "success");
                         $uibModalInstance.close('Succeeded');
