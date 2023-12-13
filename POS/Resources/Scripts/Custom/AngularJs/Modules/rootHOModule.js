@@ -100,9 +100,6 @@ rootHOModule.config(['$stateProvider', '$urlRouterProvider', function ($statePro
         })
         .state("HO_Index_POS.createStation", {
             url: "/createStation",
-            params: {
-                item: null
-            },
             templateUrl: "/Pages/POSHeadOffice/Index/POS/Station/Views/createStation.html",
             controller: "createStationController"
         })
@@ -131,6 +128,11 @@ rootHOModule.config(['$stateProvider', '$urlRouterProvider', function ($statePro
             },
             templateUrl: "/Pages/POSHeadOffice/Index/POS/DO/Views/viewDO.html",
             controller: "viewDOController"
+        })
+        .state("createStationPage", {
+            url: "/createStation",
+            templateUrl: "/Pages/POSHeadOffice/Index/POS/Station/Views/createStation.html",
+            controller: "createStationController"
         })
 }]);
 

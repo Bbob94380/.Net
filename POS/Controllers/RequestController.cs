@@ -806,7 +806,8 @@ namespace POS.Controllers
                 using (HttpClient client = new HttpClient(handler))
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ipAddress"]);
-                    client.DefaultRequestHeaders.Accept.Clear();client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Add("Cookie", "session_id=" + payload.sessionId);
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
 
